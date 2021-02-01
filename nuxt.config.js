@@ -27,6 +27,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/mock-axios.ts',
+    '~/plugins/axios.ts',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -40,6 +42,8 @@ export default {
     '@nuxtjs/stylelint-module',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    // Doc: https://github.com/nuxt-community/fontawesome-module
+    '@nuxtjs/fontawesome',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -79,7 +83,23 @@ export default {
     langDir: 'lang/',
   },
 
+  /*
+   ** Font Awesome module configuration
+   ** See https://github.com/nuxt-community/fontawesome-module#readme
+   */
+  fontawesome: {
+    icons: {}
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+  },
+
+  generate: {
+    dir: 'public_html',
+  },
+
+  env: {
+    mockAxios: process.env.MOCK_AXIOS || 'false',
+  },
 }
