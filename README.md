@@ -5,7 +5,7 @@ Built with [Nuxt.js](https://nuxtjs.org)
 - **Programming language**: [TypeScript](https://typescript.nuxtjs.org)
 - **Package manager**: Npm
 - **UI framework**: [Tailwind CSS](https://tailwindcss.com)
-- **Nuxt.js modules**: [Axios](https://axios.nuxtjs.org)
+- **Nuxt.js modules**: [Axios](https://axios.nuxtjs.org), [i18n](https://i18n.nuxtjs.org)
 - **Linting tools**: ESLint, Prettier, StyleLint
 - **Testing framework**: [Jest](https://jestjs.io)
 - **Rendering mode**: Single Page App
