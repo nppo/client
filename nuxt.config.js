@@ -1,24 +1,33 @@
 export default {
   /*
-   ** Nuxt rendering mode
-   ** See https://nuxtjs.org/api/configuration-mode
+   ** Configure server-side rendering (false is for SPA's)
+   ** See https://nuxtjs.org/guides/configuration-glossary/configuration-ssr
    */
-  mode: 'spa',
+  ssr: false,
 
-  // Target: https://go.nuxtjs.dev/config-target
+  /*
+   ** Nuxt target
+   ** See https://nuxtjs.org/guides/configuration-glossary/configuration-target
+   */
   target: 'static',
 
-  // Global page headers: https://go.nuxtjs.dev/config-head
+  /*
+   ** Headers of the page
+   ** See https://nuxtjs.org/guides/configuration-glossary/configuration-head
+   */
   head: {
-    title: 'surapp-web',
+    title: 'Way2Web Compass',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { name: 'theme-color', content: '#ffffff' },
+      { hid: 'robots', name: 'robots', content: 'noindex' },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+      { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+      { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#139ade' },
+      { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -42,6 +51,8 @@ export default {
     '@nuxtjs/stylelint-module',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    // Doc: https://github.com/nuxt-community/dotenv-module
+    '@nuxtjs/dotenv',
     // Doc: https://github.com/nuxt-community/fontawesome-module
     '@nuxtjs/fontawesome',
   ],
@@ -52,13 +63,17 @@ export default {
     '@nuxtjs/axios',
     // Doc: https://i18n.nuxtjs.org
     'nuxt-i18n',
+    // Doc: https://github.com/nuxt-community/sentry-module
+    '@nuxtjs/sentry',
   ],
 
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    baseURL: process.env.API_BASE_URL || 'http://surapp-api.localtest.me',
+  },
 
   /*
    ** i18n module configuration
@@ -91,8 +106,39 @@ export default {
     icons: {}
   },
 
-  // Build Configuration: https://go.nuxtjs.dev/config-build
+  /*
+   ** Sentry module configuration
+   ** See https://github.com/nuxt-community/sentry-module
+   */
+  sentry: {
+    sourceMapStyle: 'hidden-source-map',
+    config: {
+      environment: process.env.APP_ENV || 'local',
+      ignoreErrors: ['Request failed with status code 401', 'Request aborted'],
+    },
+    webpackConfig: {
+      release: process.env.SENTRY_RELEASE_NAME,
+      urlPrefix: '~/_nuxt/',
+    },
+  },
+
+  /*
+   ** Build configuration
+   ** See https://nuxtjs.org/api/configuration-build/
+   */
   build: {
+    babel: {
+      presets() {
+        return [
+          [
+            '@nuxt/babel-preset-app',
+            {
+              corejs: { version: 3 },
+            },
+          ],
+        ]
+      },
+    },
   },
 
   generate: {
