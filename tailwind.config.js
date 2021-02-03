@@ -7,7 +7,17 @@
 module.exports = {
   theme: {
     extend: {
-      colors: {},
+      colors: {
+        blue: {
+          800: '#00033f',
+        },
+        gray: {
+          100: '#e5e5e5',
+        },
+      },
+      boxShadow: {
+        input: '0px 0px 20px rgba(137, 170, 205, 0.2)',
+      },
     },
   },
   variants: {},
