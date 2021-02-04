@@ -3,7 +3,7 @@
     <div class="grid grid-cols-3 gap-4 p-6">
       <div />
       <div class="col-span-2 ...">
-        <div class="relative text-gray-600 focus-within:text-gray-400">
+        <div class="relative text-gray-600 focus-within:text-gray-400 mb-6">
           <input
             v-model="searchString"
             class="w-full py-4 px-6 focus:outline-none bg-white placeholder-blue-800 shadow-input rounded-3xl"
@@ -19,11 +19,11 @@
             </button>
           </span>
         </div>
-      </div>
-    </div>
 
-    <div v-for="product in products" :key="product.id">
-      {{ product.name }}
+        <div v-for="product in products" :key="product.id">
+          {{ product.name }}
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -32,7 +32,11 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { Product } from '~/types/entities'
 
-@Component
+@Component({
+  async fetch(this: IndexPage) {
+    await this.$accessor.products.fetchAll()
+  },
+})
 export default class IndexPage extends Vue {
   private searchString: string = ''
 

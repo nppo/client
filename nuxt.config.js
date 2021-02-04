@@ -74,7 +74,18 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: process.env.API_BASE_URL || 'http://surapp-api.localtest.me',
+    baseURL: process.env.PROXY === 'true' ? null : process.env.BACKEND_URL,
+    // eslint-disable-next-line no-unneeded-ternary
+    proxy: process.env.PROXY === 'true' ? true : false,
+  },
+
+  proxy: {
+    '/auth': {
+      target: process.env.BACKEND_URL + '/',
+    },
+    '/api': {
+      target: process.env.BACKEND_URL + '/',
+    },
   },
 
   /*

@@ -10,7 +10,7 @@ export type ProductsState = ReturnType<typeof state>
 export const getters = getterTree(state, {
   filter: (state) => (searchString: string) => {
     if (searchString === '') {
-      return state.all
+      return state.all.slice(0, 6)
     }
 
     return state.all.filter((product) => {
