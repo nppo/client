@@ -17,7 +17,7 @@
           </div>
         </div>
 
-        <div v-else>Geen producten gevonden</div>
+        <div v-else>{{ $t('pages.search.no_results') }}</div>
       </div>
     </div>
   </div>

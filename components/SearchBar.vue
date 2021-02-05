@@ -4,7 +4,7 @@
       v-model="value"
       class="w-full py-4 px-6 focus:outline-none bg-white placeholder-blue-800 shadow-input rounded-3xl"
       type="search"
-      :placeholder="'Start je zoektocht…'"
+      :placeholder="$t('pages.search.placeholder')"
     />
 
     <span
