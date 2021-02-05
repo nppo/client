@@ -4,35 +4,51 @@ import { Product } from '~/types/entities'
 const products: Product[] = [
   {
     id: 1,
-    name: 'Product 1',
+    title: 'Product 1',
+    description:
+      'Laboriosam quae temporibus ipsa et dicta porro tempore qui. Sapiente quasi et et est. Occaecati qui eos pariatur sapiente reiciendis earum voluptatem.',
   },
   {
     id: 2,
-    name: 'Product 2',
+    title: 'Product 2',
+    description:
+      'Laboriosam quae temporibus ipsa et dicta porro tempore qui. Sapiente quasi et et est. Occaecati qui eos pariatur sapiente reiciendis earum voluptatem.',
   },
   {
     id: 3,
-    name: 'Product 3',
+    title: 'Product 3',
+    description:
+      'Laboriosam quae temporibus ipsa et dicta porro tempore qui. Sapiente quasi et et est. Occaecati qui eos pariatur sapiente reiciendis earum voluptatem.',
   },
   {
     id: 4,
-    name: 'Product 4',
+    title: 'Product 4',
+    description:
+      'Laboriosam quae temporibus ipsa et dicta porro tempore qui. Sapiente quasi et et est. Occaecati qui eos pariatur sapiente reiciendis earum voluptatem.',
   },
   {
     id: 5,
-    name: 'Product 5',
+    title: 'Product 5',
+    description:
+      'Laboriosam quae temporibus ipsa et dicta porro tempore qui. Sapiente quasi et et est. Occaecati qui eos pariatur sapiente reiciendis earum voluptatem.',
   },
   {
     id: 6,
-    name: 'Product 6',
+    title: 'Product 6',
+    description:
+      'Laboriosam quae temporibus ipsa et dicta porro tempore qui. Sapiente quasi et et est. Occaecati qui eos pariatur sapiente reiciendis earum voluptatem.',
   },
   {
     id: 7,
-    name: 'Product 7',
+    title: 'Product 7',
+    description:
+      'Laboriosam quae temporibus ipsa et dicta porro tempore qui. Sapiente quasi et et est. Occaecati qui eos pariatur sapiente reiciendis earum voluptatem.',
   },
   {
     id: 8,
-    name: 'Product 8',
+    title: 'Product 8',
+    description:
+      'Laboriosam quae temporibus ipsa et dicta porro tempore qui. Sapiente quasi et et est. Occaecati qui eos pariatur sapiente reiciendis earum voluptatem.',
   },
 ]
 

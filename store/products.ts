@@ -14,7 +14,10 @@ export const getters = getterTree(state, {
     }
 
     return state.all.filter((product) => {
-      return product.name.toLowerCase().includes(searchString.toLowerCase())
+      return (
+        product.title.toLowerCase().includes(searchString.toLowerCase()) ||
+        product.description.toLowerCase().includes(searchString.toLowerCase())
+      )
     })
   },
 })
