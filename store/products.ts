@@ -3,7 +3,9 @@ import { Product } from '~/types/entities'
 
 export const state = () => ({
   all: [] as Product[],
-  current: {} as Product,
+  current: localStorage.getItem('currentSearch')
+    ? (JSON.parse(<string>localStorage.getItem('currentSearch')) as Product)
+    : ({} as Product),
 })
 
 export type ProductsState = ReturnType<typeof state>
@@ -38,6 +40,10 @@ export const actions = actionTree(
 
       if (status === 200) {
         commit('setCurrent', data.data)
+        localStorage.setItem(
+          'currentSearch',
+          JSON.stringify(data.data as Product)
+        )
       }
     },
   }
