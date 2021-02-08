@@ -12,7 +12,9 @@ export default class ProductRepository {
     this.axios = axios
   }
 
-  all(): Promise<AxiosResponse<MultipleResults<Product>>> {
-    return this.axios.get(`/api/${resource}`)
+  result(
+    searchString: string
+  ): Promise<AxiosResponse<MultipleResults<Product>>> {
+    return this.axios.get(`/api/${resource}/search?query=${searchString}`)
   }
 }

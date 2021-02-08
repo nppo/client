@@ -36,13 +36,13 @@ export default class SearchPage extends Vue {
   private searchString: string = ''
 
   get products() {
-    return this.$accessor.products.current
+    return this.$accessor.search.current
   }
 
   async search() {
-    this.$store.commit('products/setCurrent', this.searchString)
+    this.$store.commit('search/setCurrent', this.searchString)
 
-    await this.$accessor.products.search(this.searchString)
+    await this.$accessor.search.result(this.searchString)
   }
 }
 </script>

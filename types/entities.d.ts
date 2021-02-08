@@ -8,3 +8,7 @@ export interface ErrorMessage {
   type: string
   message: string
 }
+
+export interface search extends Product {
+  id: number
+}
