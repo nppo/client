@@ -3,9 +3,7 @@ import { Product } from '~/types/entities'
 
 export const state = () => ({
   all: [] as Product[],
-  current: localStorage.getItem('currentProduct')
-    ? (JSON.parse(<string>localStorage.getItem('currentProduct')) as Product)
-    : ({} as Product),
+  current: {} as Product,
 })
 
 export type ProductsState = ReturnType<typeof state>
@@ -34,16 +32,12 @@ export const actions = actionTree(
       }
     },
 
-    async search({ commit }, searchString: string): Promise<void> {
+    async search({ commit }, searchString): Promise<void> {
       const res = await this.$repositories.product.search(searchString)
       const { status, data } = res
 
       if (status === 200) {
         commit('setCurrent', data.data)
-        localStorage.setItem(
-          'currentProduct',
-          JSON.stringify(data.data as Product)
-        )
       }
     },
   }

@@ -49,7 +49,7 @@ export default class SearchPage extends Vue {
   private searchString: string = ''
 
   get products() {
-    return this.$accessor.products.current
+    return this.$accessor.products.search
   }
 
   async search() {
