@@ -7,7 +7,7 @@
           <input
             v-model="searchString"
             class="w-full focus:outline-none bg-white placeholder-blue-800 shadow-input rounded-3xl"
-            :class="version === 'main' ? 'py-3 px-5' : 'py-2 px-4'"
+            :class="variant === 'main' ? 'py-3 px-5' : 'py-2 px-4'"
             type="search"
             :placeholder="$t('pages.search.placeholder')"
             @keyup.enter="search()"
@@ -16,7 +16,7 @@
           <span
             class="absolute w-8 inset-y-0 right-0 flex items-center justify-center m-2"
             :class="
-              version === 'main'
+              variant === 'main'
                 ? 'bg-orange-500 text-white rounded-full'
                 : 'text-blue-500'
             "
@@ -27,7 +27,7 @@
           </span>
         </div>
 
-        <!-- <SearchBar name="main" version="main" :value.sync="searchString" /> -->
+        <!-- <SearchBar name="main" variant="main" :value.sync="searchString" /> -->
 
         <div v-if="products.length > 0">
           <h1 class="text-2xl mb-3">Producten</h1>
