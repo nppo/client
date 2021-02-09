@@ -1,6 +1,8 @@
 <template>
-  <nav class="flex items-center justify-between pt-5">
+  <nav class="flex items-center justify-between space-x-2 pt-5">
     <div class="text-white text-2xl">NPPO</div>
+
+    <slot />
 
     <div class="flex space-x-2">
       <button class="bg-white p-2 rounded flex items-center space-x-2">
