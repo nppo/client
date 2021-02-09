@@ -2,7 +2,7 @@
   <div class="relative text-gray-600 focus-within:text-gray-400 mb-6">
     <input
       v-model="localValue"
-      class="w-full focus:outline-none bg-white placeholder-blue-800 shadow-input rounded-3xl"
+      class="w-full focus:outline-none bg-white placeholder-blue-800 font-bold shadow-input rounded-3xl"
       :class="variant === 'main' ? 'py-3 px-5' : 'py-2 px-4'"
       type="search"
       :placeholder="$t('pages.search.placeholder')"

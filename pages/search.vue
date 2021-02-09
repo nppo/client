@@ -15,13 +15,13 @@
         </div>
         <div v-else>
           <div v-if="products.length > 0">
-            <h2 class="text-2xl mb-3">Producten</h2>
+            <h2 class="text-3xl mb-3">Producten</h2>
 
             <div class="grid grid-cols-3 gap-4">
               <div
                 v-for="product in products"
                 :key="product.id"
-                class="bg-white rounded-md shadow-md overflow-hidden"
+                class="bg-white rounded-md shadow-block overflow-hidden"
               >
                 <div class="flex flex-col h-full">
                   <div class="relative">
@@ -32,30 +32,33 @@
                     />
 
                     <div
-                      class="flex items-center absolute top-0 left-0 px-2 py-1 m-5 min-w-1/4 rounded-md bg-green-300"
+                      class="flex items-center absolute top-0 left-0 px-2 py-1 m-5 min-w-1/4 font-bold rounded-md bg-green-300"
                     >
                       tag
                     </div>
                   </div>
 
-                  <div class="flex justify-between px-4">
+                  <div class="flex justify-between px-4 text-tiny">
                     <span>21 sep 2020</span>
 
                     <span>Thema</span>
                   </div>
 
                   <div class="flex flex-col p-4">
-                    <h4 class="mb-2">{{ product.title }}</h4>
+                    <h4 class="text-base mb-1">{{ product.title }}</h4>
 
-                    <div>
+                    <div class="line-clamp-4 text-gray-300">
                       {{ product.description }}
                     </div>
                   </div>
 
                   <div class="flex justify-end px-4 pb-3 mt-auto">
                     <span class="text-blue-500">
-                      <font-awesome-icon :icon="['far', 'bookmark']"
-                    /></span>
+                      <font-awesome-icon
+                        :icon="['far', 'bookmark']"
+                        class="text-base"
+                      />
+                    </span>
                   </div>
                 </div>
               </div>

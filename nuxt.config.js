@@ -124,7 +124,7 @@ export default {
   googleFonts: {
     families: {
       'Baloo Tammudu 2': [400],
-      'Baloo Tama 2': [500, 700],
+      'Baloo Tamma 2': [500, 700],
     },
   },
 
