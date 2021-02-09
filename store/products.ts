@@ -22,8 +22,6 @@ export const actions = actionTree(
 
       if (status === 200) {
         commit('setAll', data.data)
-      } else {
-        // TODO:
       }
     },
   }
