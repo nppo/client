@@ -1,7 +1,7 @@
 <template>
   <div class="flex-1">
     <Header class="mb-8">
-      <div class="pb-32">
+      <div class="pb-2 lg:pb-32">
         <Navbar />
 
         <div class="text-white text-center mt-32">
@@ -11,7 +11,9 @@
           </h2>
         </div>
 
-        <div class="grid grid-cols-4 absolute bottom-0 gap-5 -mb-8">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 lg:absolute bottom-0 gap-5 -mb-8"
+        >
           <a
             v-for="(block, index) in searchBlocks"
             :key="index"
