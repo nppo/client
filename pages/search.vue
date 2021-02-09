@@ -48,9 +48,11 @@ export default class SearchPage extends Vue {
   async search() {
     this.loading = true
 
-    this.$store.commit('search/setCurrent', this.searchString)
+    if (this.searchString) {
+      this.$store.commit('search/setCurrent', this.searchString)
 
-    await this.$accessor.search.result(this.searchString)
+      await this.$accessor.search.result(this.searchString)
+    }
 
     this.loading = false
   }
