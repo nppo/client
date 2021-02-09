@@ -3,14 +3,14 @@ import { Product } from '~/types/entities'
 
 export const state = () => ({
   current: localStorage.getItem('currentSearch')
-    ? (JSON.parse(<string>localStorage.getItem('currentSearch')) as Product)
-    : ({} as Product),
+    ? (JSON.parse(<string>localStorage.getItem('currentSearch')) as Product[])
+    : ({} as Product[]),
 })
 
 export type ProductsState = ReturnType<typeof state>
 
 export const mutations = mutationTree(state, {
-  setCurrent(state, newValue: Product) {
+  setCurrent(state, newValue: Product[]) {
     state.current = newValue
   },
 })
@@ -26,7 +26,7 @@ export const actions = actionTree(
         commit('setCurrent', data.data)
         localStorage.setItem(
           'currentSearch',
-          JSON.stringify(data.data as Product)
+          JSON.stringify(data.data as Product[])
         )
       }
     },
