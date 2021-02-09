@@ -19,8 +19,9 @@
 
 <script lang="ts">
 import { NuxtVueI18n } from 'nuxt-i18n/types/nuxt-i18n'
-import { Vue } from 'vue-property-decorator'
+import { Component, Vue } from 'nuxt-property-decorator'
 
+@Component
 export default class LanguageSwitcher extends Vue {
   get currentLocale() {
     return this.$i18n.locale
