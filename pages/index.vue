@@ -23,25 +23,27 @@
               </svg>
             </button>
             <a href="/" class="bg-orange-600 p-2 text-white rounded">
-              Inloggen
+              {{ $t('login') }}
             </a>
           </nav>
 
           <div class="text-white text-center mt-32">
-            <h1 class="text-4xl font-bold">Samen creëren we impact!</h1>
+            <h1 class="text-4xl font-bold">{{ $t('pages.index.title') }}</h1>
             <h2 class="font-medium">
-              Kennis uit het hoger onderwijs in Nederland
+              {{ $t('pages.index.subtitle') }}
             </h2>
           </div>
 
           <div class="grid grid-cols-4 absolute bottom-0 gap-5 -mb-8">
             <a
-              href="/"
-              class="block bg-white p-5 rounded"
               v-for="(block, index) in searchBlocks"
               :key="index"
+              href="/"
+              class="block bg-white p-5 rounded"
             >
-              <div class="font-bold">Ik zoek</div>
+              <div class="font-bold">
+                {{ $t('pages.index.search_blocks.title') }}
+              </div>
               <h3 class="font-medium text-2xl">{{ block.title }}</h3>
               <p class="text-xs">
                 {{ block.description }}
@@ -70,26 +72,9 @@ import { Component, Vue } from 'nuxt-property-decorator'
 
 @Component
 export default class IndexPage extends Vue {
-  private searchBlocks: { title: string; description: string }[] = [
-    {
-      title: 'Projecten',
-      description:
-        'Onderzoeksprojecten en programma’s met onderliggende producten',
-    },
-    {
-      title: 'Resultaten',
-      description: 'Uitkomsten en resultaten van praktijkgerichte onderzoeken',
-    },
-    {
-      title: 'Personen',
-      description: 'Mensen die betrokken zijn bij praktijkgericht onderzoek',
-    },
-    {
-      title: 'Partijen',
-      description:
-        'Organisaties en instellingen die betrokken zijn bij praktijkgericht onderzoek ',
-    },
-  ]
+  private searchBlocks: { title: string; description: string }[] = this.$t(
+    'pages.index.search_blocks.items'
+  )
 
   mounted() {
     // this.redirect()
