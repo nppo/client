@@ -34,7 +34,11 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/mock-axios.ts', '~/plugins/axios.ts'],
+  plugins: [
+    '~/plugins/repositories.ts',
+    '~/plugins/mock-axios.ts',
+    '~/plugins/axios.ts',
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -51,6 +55,8 @@ export default {
     '@nuxtjs/dotenv',
     // Doc: https://github.com/nuxt-community/fontawesome-module
     '@nuxtjs/fontawesome',
+    // Doc: https://nuxt-typed-vuex.roe.dev
+    'nuxt-typed-vuex',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -68,7 +74,15 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: process.env.API_BASE_URL || 'http://surapp-api.localtest.me',
+    baseURL: process.env.PROXY === 'true' ? null : process.env.BACKEND_URL,
+    // eslint-disable-next-line no-unneeded-ternary
+    proxy: process.env.PROXY === 'true' ? true : false,
+  },
+
+  proxy: {
+    '/api': {
+      target: process.env.BACKEND_URL + '/',
+    },
   },
 
   /*
@@ -99,7 +113,9 @@ export default {
    ** See https://github.com/nuxt-community/fontawesome-module#readme
    */
   fontawesome: {
-    icons: {},
+    icons: {
+      solid: ['faSearch'],
+    },
   },
 
   /*
