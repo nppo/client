@@ -69,10 +69,11 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import { LocaleMessageArray } from 'vue-i18n/types'
 
 @Component
 export default class IndexPage extends Vue {
-  private searchBlocks: { title: string; description: string }[] = this.$t(
+  private searchBlocks: LocaleMessageArray = this.$t(
     'pages.index.search_blocks.items'
   )
 
