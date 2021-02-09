@@ -1,7 +1,7 @@
 <template>
   <div>
     <LanguageSwitcher />
-    
+
     <div class="grid grid-cols-4 gap-4 p-6">
       <div />
       <div class="col-span-3">
