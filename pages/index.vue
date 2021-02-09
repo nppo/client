@@ -25,7 +25,8 @@
                   />
                 </svg>
               </button>
-              <a href="/" class="bg-orange-600 p-2 text-white rounded">
+
+              <a href="/" class="bg-orange-600 px-4 py-2 text-white rounded">
                 {{ $t('login') }}
               </a>
             </div>
