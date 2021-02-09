@@ -22,6 +22,10 @@ module.exports = {
       boxShadow: {
         input: '0px 0px 20px rgba(137, 170, 205, 0.2)',
       },
+      fontFamily: {
+        balooTammadu: ['"Baloo Tammudu 2"', 'sans-serif'],
+        balooTamma: ['"Baloo Tamma 2"', 'sans-serif'],
+      },
       minWidth: {
         '1/4': '25%',
       },

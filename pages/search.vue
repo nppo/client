@@ -15,33 +15,47 @@
         </div>
         <div v-else>
           <div v-if="products.length > 0">
-            <h1 class="text-2xl mb-3">Producten</h1>
+            <h2 class="text-2xl mb-3">Producten</h2>
+
             <div class="grid grid-cols-3 gap-4">
               <div
                 v-for="product in products"
                 :key="product.id"
                 class="bg-white rounded-md shadow-md overflow-hidden"
               >
-                <div class="flex flex-col">
+                <div class="flex flex-col h-full">
                   <div class="relative">
                     <img
                       class="w-full mb-2"
                       src="https://picsum.photos/296/150"
-                      alt="Sunset in the mountains"
+                      alt="Product picture"
                     />
+
                     <div
-                      class="bg-green-300 rounded-md absolute top-0 left-0 px-2 py-1 m-5 min-w-1/4"
+                      class="flex items-center absolute top-0 left-0 px-2 py-1 m-5 min-w-1/4 rounded-md bg-green-300"
                     >
                       tag
                     </div>
                   </div>
+
                   <div class="flex justify-between px-4">
                     <span>21 sep 2020</span>
+
                     <span>Thema</span>
                   </div>
+
                   <div class="flex flex-col p-4">
-                    <span class="mb-2">{{ product.title }}</span>
-                    {{ product.description }}
+                    <h4 class="mb-2">{{ product.title }}</h4>
+
+                    <div>
+                      {{ product.description }}
+                    </div>
+                  </div>
+
+                  <div class="flex justify-end px-4 pb-3 mt-auto">
+                    <span class="text-blue-500">
+                      <font-awesome-icon :icon="['far', 'bookmark']"
+                    /></span>
                   </div>
                 </div>
               </div>
