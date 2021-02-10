@@ -1,26 +1,28 @@
 <template>
-  <div class="relative text-gray-600 focus-within:text-gray-400 mb-6">
+  <div
+    class="flex items-center h-12 px-2 py-2 space-x-2 bg-white rounded-full shadow-input focus-within:text-gray-400"
+  >
     <input
       v-model="localValue"
-      class="w-full focus:outline-none bg-white placeholder-blue-800 shadow-input rounded-3xl"
-      :class="variant === 'main' ? 'py-3 px-5' : 'py-2 px-4'"
-      type="search"
+      class="flex-1 py-2 ml-3 text-sm placeholder-blue-800 focus:outline-none"
       :placeholder="$t('pages.search.placeholder')"
       @keyup.enter="search()"
+      type="search"
     />
 
-    <span
-      class="absolute w-8 inset-y-0 right-0 flex items-center justify-center m-2"
+    <slot />
+
+    <button
+      class="p-2"
       :class="
         variant === 'main'
           ? 'bg-orange-500 text-white rounded-full'
           : 'text-blue-500'
       "
+      @click="search()"
     >
-      <button class="btn btn-primary" @click="search()">
-        <font-awesome-icon icon="search" />
-      </button>
-    </span>
+      <font-awesome-icon class="block" icon="search" />
+    </button>
   </div>
 </template>
 
@@ -33,6 +35,11 @@ export default class SearchBar extends Vue {
   @Prop({ type: String, required: true }) variant!: string
 
   localValue = this.value
+
+  @Watch('value')
+  onValueChanged(value: string) {
+    this.localValue = value
+  }
 
   @Watch('localValue')
   updateValue() {

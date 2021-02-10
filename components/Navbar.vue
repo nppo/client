@@ -1,14 +1,14 @@
 <template>
-  <nav class="flex items-center justify-between space-x-2 pt-5">
-    <div class="text-white text-2xl">NPPO</div>
+  <nav class="flex items-center justify-between pt-5 space-x-2">
+    <div class="text-2xl text-white">NPPO</div>
 
     <slot />
 
     <div class="flex space-x-2">
-      <button class="bg-white p-2 rounded flex items-center space-x-2">
+      <button class="flex items-center p-2 space-x-2 font-bold bg-white rounded">
         <span>NL</span>
         <svg
-          class="fill-current h-3 w-3"
+          class="w-3 h-3 fill-current"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 8 9"
         >
@@ -18,7 +18,7 @@
         </svg>
       </button>
 
-      <a href="/" class="bg-orange-600 px-4 py-2 text-white rounded">
+      <a href="/" class="px-4 py-2 text-white bg-orange-600 rounded">
         {{ $t('login') }}
       </a>
     </div>

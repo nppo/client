@@ -3,11 +3,11 @@
     <img
       src="~/assets/img/bg.jpg"
       alt=""
-      class="absolute h-full inset-0 object-cover w-full"
+      class="absolute inset-0 object-cover w-full h-full"
     />
 
-    <div class="relative bg-blue-800 bg-opacity-50 inset-0">
-      <div class="container h-full mx-auto relative">
+    <div class="relative inset-0 bg-blue-800 bg-opacity-50">
+      <div class="container relative h-full mx-auto">
         <slot />
       </div>
     </div>
