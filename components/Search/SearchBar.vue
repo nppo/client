@@ -10,6 +10,12 @@
     />
 
     <span
+      class="absolute inset-y-0 right-0 flex items-center justify-end mr-12"
+    >
+      <ThemeFilter />
+    </span>
+
+    <span
       class="absolute w-8 inset-y-0 right-0 flex items-center justify-center m-2"
       :class="
         variant === 'main'

@@ -18,6 +18,7 @@ module.exports = {
       },
       boxShadow: {
         input: '0px 0px 20px rgba(137, 170, 205, 0.2)',
+        lg: '0px 0px 20px rgba(137, 170, 205, 0.2)',
       },
     },
   },

@@ -4,6 +4,11 @@ export interface Product {
   description: string
 }
 
+export interface Theme {
+  id: number
+  label: string
+}
+
 export interface ErrorMessage {
   type: string
   message: string
