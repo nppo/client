@@ -28,7 +28,9 @@
           >
             <SearchBar :value.sync="searchQuery" variant="main">
               <div class="flex pr-6 space-x-2">
-                <div class="flex items-center px-2 py-1 space-x-5 font-bold shadow-input">
+                <div
+                  class="flex items-center px-2 py-1 space-x-5 font-bold shadow-input"
+                >
                   <span>Type</span>
                   <svg
                     class="w-3 h-3 fill-current"
@@ -41,7 +43,9 @@
                   </svg>
                 </div>
 
-                <div class="flex items-center px-2 py-1 space-x-5 font-bold shadow-input">
+                <div
+                  class="flex items-center px-2 py-1 space-x-5 font-bold shadow-input"
+                >
                   <span>Thema</span>
                   <svg
                     class="w-3 h-3 fill-current"

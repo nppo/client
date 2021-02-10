@@ -5,7 +5,9 @@
     <slot />
 
     <div class="flex space-x-2">
-      <button class="flex items-center p-2 space-x-2 font-bold bg-white rounded">
+      <button
+        class="flex items-center p-2 space-x-2 font-bold bg-white rounded"
+      >
         <span>NL</span>
         <svg
           class="w-3 h-3 fill-current"

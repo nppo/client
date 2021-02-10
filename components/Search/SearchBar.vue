@@ -6,8 +6,8 @@
       v-model="localValue"
       class="flex-1 py-2 ml-3 text-sm placeholder-blue-800 focus:outline-none"
       :placeholder="$t('pages.search.placeholder')"
-      @keyup.enter="search()"
       type="search"
+      @keyup.enter="search()"
     />
 
     <slot />
