@@ -11,8 +11,6 @@ import { Vue, Component } from 'nuxt-property-decorator'
 
 @Component
 export default class LoginPage extends Vue {
-  $auth: any
-
   mounted() {
     setTimeout(() => {
       if (!this.$auth.loggedIn && !this.$route.params.code) {
