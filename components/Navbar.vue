@@ -20,9 +20,11 @@
         </svg>
       </button>
 
-      <a href="/" class="px-4 py-2 text-white bg-orange-600 rounded">
-        {{ $t('login') }}
-      </a>
+      <NuxtLink
+        :to="$auth.loggedIn ? 'account' : 'login'"
+        class="px-4 py-2 text-white bg-orange-600 rounded"
+        >{{ $auth.loggedIn ? $t('my_account') : $t('login') }}</NuxtLink
+      >
     </div>
   </nav>
 </template>
