@@ -1,6 +1,6 @@
 <template>
   <div class="relative">
-    <div @click="active = !active">
+    <div ref="dropdown" @click="toggleDropdown">
       <slot name="button" />
     </div>
 
@@ -28,6 +28,36 @@ import { Component, Vue } from 'nuxt-property-decorator'
 
 @Component
 export default class Dropdown extends Vue {
-  active = false
+  private active: boolean = false
+
+  handleClickEvent(event: Event) {
+    const isInsideDropdown = (this.$refs.dropdown as Element).contains(
+      event.target as Node
+    )
+
+    if (isInsideDropdown) {
+      return
+    }
+
+    const isOutside = !(this.$refs.items as Element).contains(
+      event.target as Node
+    )
+
+    if (isOutside) {
+      this.active = false
+    }
+  }
+
+  toggleDropdown() {
+    this.active = !this.active
+  }
+
+  mounted() {
+    document.addEventListener('click', this.handleClickEvent)
+
+    this.$once('hook:beforeDestroy', () => {
+      document.removeEventListener('click', this.handleClickEvent)
+    })
+  }
 }
 </script>
