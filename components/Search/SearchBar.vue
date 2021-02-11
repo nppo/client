@@ -38,7 +38,10 @@ export default class SearchBar extends Vue {
   @Prop({ type: String, default: 'search' }) readonly ariaLabel!: string
   @Prop({ type: String, default: 'small' }) readonly variant!: 'large' | 'small'
 
-  localVue = this.value
+  @Watch('value')
+  onValueChanged(value: string) {
+    this.localValue = value
+  }
 
   @Watch('localValue')
   updateValue() {

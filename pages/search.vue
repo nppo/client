@@ -39,7 +39,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Vue, Watch } from 'nuxt-property-decorator'
 
 @Component
 export default class SearchPage extends Vue {
@@ -65,6 +65,7 @@ export default class SearchPage extends Vue {
   mounted() {
     if (this.$route.query.query) {
       this.searchString = this.$route.query.query.toString()
+      this.search()
     }
   }
 }
