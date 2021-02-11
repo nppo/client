@@ -67,10 +67,10 @@
         <div
           class="bottom-0 grid grid-cols-1 gap-5 -mb-8 md:grid-cols-2 lg:grid-cols-4 lg:absolute"
         >
-          <a
+          <NuxtLink
             v-for="(block, index) in searchBlocks"
             :key="index"
-            href="/"
+            to="/"
             class="block p-5 bg-white rounded"
           >
             <div class="font-bold">
@@ -94,7 +94,7 @@
                 />
               </svg>
             </div>
-          </a>
+          </NuxtLink>
         </div>
       </div>
     </Header>
