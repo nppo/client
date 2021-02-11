@@ -1,5 +1,7 @@
 <template>
-  <div></div>
+  <div>
+    <FilterList />
+  </div>
 </template>
 
 <script lang="ts">
@@ -12,7 +14,7 @@ export default class IndexPage extends Vue {
   }
 
   mounted() {
-    this.redirect()
+    // this.redirect()
   }
 }
 </script>

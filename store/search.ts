@@ -1,17 +1,21 @@
 import { actionTree, mutationTree } from 'nuxt-typed-vuex'
-import { Product } from '~/types/entities'
+import { Product, Filter } from '~/types/entities'
 
 export const state = () => ({
   current: localStorage.getItem('currentSearch')
     ? (JSON.parse(<string>localStorage.getItem('currentSearch')) as Product[])
     : ({} as Product[]),
+  filters: {} as any,
 })
 
-export type ProductsState = ReturnType<typeof state>
+export type SearchState = ReturnType<typeof state>
 
 export const mutations = mutationTree(state, {
   setCurrent(state, newValue: Product[]) {
     state.current = newValue
+  },
+  setFilter(state, filter: Filter) {
+    state.filters[filter.type] = filter.values
   },
 })
 
@@ -29,6 +33,10 @@ export const actions = actionTree(
           JSON.stringify(data.data as Product[])
         )
       }
+    },
+
+    setFilter({ commit }, data: Filter): void {
+      commit('setFilter', data)
     },
   }
 )

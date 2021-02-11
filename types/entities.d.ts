@@ -9,6 +9,11 @@ export interface Theme {
   label: string
 }
 
+export interface Filter {
+  type: string
+  values: string[]
+}
+
 export interface ErrorMessage {
   type: string
   message: string
