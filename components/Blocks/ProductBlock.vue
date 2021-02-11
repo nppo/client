@@ -11,12 +11,12 @@
       />
 
       <div class="flex justify-between items-center">
-        <div
-          class="flex items-center px-2 py-1 m-4 mb-5 w-1/4 font-bold rounded-md bg-green-300"
+        <span
+          class="m-4 mb-5 min-w-1/4"
           :class="{ 'absolute top-0 left-0': product.image }"
         >
-          type
-        </div>
+          <Badge icon-name="link" icon-style="fas" />
+        </span>
         <span v-if="!product.image" class="pr-4">
           {{ product.themes[0].label }}
         </span>

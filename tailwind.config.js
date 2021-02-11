@@ -22,8 +22,7 @@ module.exports = {
         },
       },
       boxShadow: {
-        block: '0px 0px 20px rgba(137, 170, 205, 0.2)',
-        input: '0px 0px 20px rgba(137, 170, 205, 0.2)',
+        default: '0px 0px 20px rgba(137, 170, 205, 0.2)',
       },
       fontFamily: {
         balooTammadu: ['"Baloo Tammudu 2"', 'sans-serif'],
