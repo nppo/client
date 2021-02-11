@@ -3,7 +3,7 @@
     <input
       v-model="localValue"
       class="w-full focus:outline-none bg-white placeholder-blue-800 font-bold shadow-input rounded-3xl"
-      :class="variant === 'large' ? 'py-3 pb-2 px-5' : 'py-2 px-4'"
+      :class="variant === 'large' ? 'py-4 px-5' : 'py-2 px-4'"
       type="search"
       :aria-label="ariaLabel"
       :placeholder="$t('pages.search.placeholder')"

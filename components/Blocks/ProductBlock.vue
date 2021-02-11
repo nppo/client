@@ -12,7 +12,7 @@
 
       <div class="flex justify-between items-center">
         <div
-          class="flex items-center px-2 py-1 pb-0 m-4 mb-5 w-1/4 font-bold rounded-md bg-green-300"
+          class="flex items-center px-2 py-1 m-4 mb-5 w-1/4 font-bold rounded-md bg-green-300"
           :class="{ 'absolute top-0 left-0': product.image }"
         >
           type

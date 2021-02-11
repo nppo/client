@@ -4,14 +4,14 @@
 
 body {
   /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
-  @apply font-balooTammadu text-xs;
+  @apply text-xs;
 }
 
 h1,
 h2,
 h3,
 h4 {
-  @apply font-balooTamma;
+
 }
 
 h2 {
