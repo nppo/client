@@ -12,7 +12,7 @@
     <span
       class="absolute inset-y-0 right-0 flex items-center justify-end mr-12"
     >
-      <ThemeFilter />
+      <ThemeFilter @set-filters="setFilters" />
     </span>
 
     <span
@@ -43,6 +43,10 @@ export default class SearchBar extends Vue {
   @Watch('localValue')
   updateValue() {
     this.$emit('update:value', this.localValue)
+  }
+
+  setFilters(type: string, filters: any[]) {
+    this.$emit('set-filters', type, filters)
   }
 
   search() {

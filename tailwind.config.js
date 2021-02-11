@@ -15,15 +15,24 @@ module.exports = {
         gray: {
           100: '#e5e5e5',
         },
+        yellow: {
+          brand: '#FFC800',
+        },
       },
       boxShadow: {
         input: '0px 0px 20px rgba(137, 170, 205, 0.2)',
-        lg: '0px 0px 20px rgba(137, 170, 205, 0.2)',
       },
     },
+    customForms: () => ({
+      default: {
+        checkbox: {
+          iconColor: '#000000',
+        },
+      },
+    }),
   },
   variants: {},
-  plugins: [],
+  plugins: [require('@tailwindcss/custom-forms')],
   purge: {
     // Learn more on https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css
     enabled: process.env.NODE_ENV === 'production',
