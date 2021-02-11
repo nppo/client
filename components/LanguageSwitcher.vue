@@ -24,7 +24,7 @@
         class="w-full py-1 text-sm text-left"
         :disabled="locale.code === currentLocale"
         :class="
-          locale.code === currentLocale ? 'text-gray-100' : 'hover:font-bold'
+          locale.code === currentLocale ? 'text-gray-500' : 'hover:font-bold'
         "
         @click="changeLocale(locale.code)"
       >

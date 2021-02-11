@@ -35,11 +35,7 @@ export default class Dropdown extends Vue {
       event.target as Node
     )
 
-    if (isInsideDropdown) {
-      return
-    }
-
-    if (!this.active) {
+    if (isInsideDropdown || !this.active) {
       return
     }
 
