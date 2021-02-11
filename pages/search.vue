@@ -12,10 +12,10 @@
       </div>
     </Header>
 
-    <div class="container mx-auto">
+    <div class="container mx-auto md:px-5 lg:px-0">
       <div class="grid grid-cols-4 gap-4">
         <div />
-        <div class="col-span-3">
+        <div class="col-span-4 lg:col-span-3">
           <div v-if="loading">
             <SearchSkeleton />
           </div>
@@ -23,7 +23,7 @@
             <div v-if="products.length > 0">
               <h2 class="text-3xl mb-3">Producten</h2>
 
-              <div class="grid grid-cols-3 gap-4">
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div v-for="product in products" :key="product.id">
                   <ProductBlock :product="product" />
                 </div>

@@ -32,11 +32,13 @@ import { Component, Vue, Prop, Watch } from 'nuxt-property-decorator'
 
 @Component
 export default class SearchBar extends Vue {
+  private localValue: string = ''
+
   @Prop({ type: String }) value!: string
   @Prop({ type: String, default: 'search' }) readonly ariaLabel!: string
   @Prop({ type: String, default: 'small' }) readonly variant!: 'large' | 'small'
 
-  localValue = this.value
+  localVue = this.value
 
   @Watch('localValue')
   updateValue() {
