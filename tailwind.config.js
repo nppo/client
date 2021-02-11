@@ -14,6 +14,7 @@ module.exports = {
         },
         gray: {
           100: '#e5e5e5',
+          200: '#e0e0e0',
           300: '#677279',
         },
         green: {
@@ -27,6 +28,7 @@ module.exports = {
       fontFamily: {
         balooTammadu: ['"Baloo Tammudu 2"', 'sans-serif'],
         balooTamma: ['"Baloo Tamma 2"', 'sans-serif'],
+        times: 'Times',
       },
       fontSize: {
         tiny: '0.625rem',

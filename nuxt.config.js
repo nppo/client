@@ -116,7 +116,7 @@ export default {
    */
   fontawesome: {
     icons: {
-      solid: ['faSearch'],
+      solid: ['faSearch', 'faMinus'],
       regular: ['faBookmark'],
     },
   },
