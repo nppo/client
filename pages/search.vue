@@ -55,5 +55,11 @@ export default class SearchPage extends Vue {
 
     this.loading = false
   }
+
+  mounted() {
+    if (this.$route.query.query) {
+      this.searchString = this.$route.query.query.toString()
+    }
+  }
 }
 </script>
