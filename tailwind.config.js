@@ -51,6 +51,7 @@ module.exports = {
       },
       fontSize: {
         tiny: '0.625rem',
+      },
     },
   },
   variants: {},

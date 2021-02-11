@@ -4,7 +4,7 @@
   >
     <font-awesome-icon :icon="[iconStyle, iconName]" class="text-xs mr-2" />
 
-    type
+    naam
   </div>
 </template>
 
@@ -15,5 +15,6 @@ import { Component, Vue, Prop } from 'nuxt-property-decorator'
 export default class Badge extends Vue {
   @Prop({ type: String }) iconName!: string
   @Prop({ type: String }) iconStyle!: string
+  @Prop({ type: Object }) entity!: object
 }
 </script>
