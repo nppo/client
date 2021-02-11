@@ -57,7 +57,7 @@ export default class ThemeFilter extends Vue {
     this.$emit('set-filters', 'themes', this.selected)
   }
 
-  onClick(event: Event) {
+  onDocumentClick(event: Event) {
     const target = event.target as HTMLBaseElement
     const ref = this.$refs.filterDropdown as HTMLBaseElement
     const onDropdownItem = target.classList.contains('search-filter')
@@ -69,7 +69,7 @@ export default class ThemeFilter extends Vue {
   }
 
   mounted() {
-    document.addEventListener('click', this.onClick)
+    document.addEventListener('click', this.onDocumentClick)
 
     if (this.themes.length < 1) {
       this.$accessor.themes.fetchAll()
