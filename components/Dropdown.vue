@@ -39,6 +39,10 @@ export default class Dropdown extends Vue {
       return
     }
 
+    if (!this.active) {
+      return
+    }
+
     const isOutside = !(this.$refs.items as Element).contains(
       event.target as Node
     )
