@@ -15,7 +15,7 @@
       <div
         v-if="active"
         ref="items"
-        class="absolute right-0 px-4 py-3 mt-2 text-blue-800 origin-top-right bg-white rounded shadow-input min-w-40"
+        class="absolute right-0 px-4 py-3 mt-2 text-blue-800 origin-top-right bg-white rounded shadow min-w-40"
       >
         <slot ref="items" class="" name="items" />
       </div>

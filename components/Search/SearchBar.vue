@@ -1,6 +1,7 @@
 <template>
   <div
-    class="flex items-center h-12 px-2 py-2 space-x-2 bg-white rounded-full shadow-input focus-within:text-gray-400"
+    class="flex items-center px-2 py-2 space-x-2 bg-white rounded-full shadow focus-within:text-gray-400"
+    :class="variant === 'large' ? 'h-12' : 'h-10'"
   >
     <input
       v-model="localValue"
@@ -15,7 +16,7 @@
     <button
       class="p-2"
       :class="
-        variant === 'main'
+        variant === 'large'
           ? 'bg-orange-brand text-white rounded-full'
           : 'text-blue-500'
       "
@@ -32,7 +33,7 @@ import { Component, Vue, Prop, Watch } from 'nuxt-property-decorator'
 @Component
 export default class SearchBar extends Vue {
   @Prop({ type: String }) value!: string
-  @Prop({ type: String, default: 'main' }) variant!: string
+  @Prop({ type: String, default: 'small' }) readonly variant!: 'large' | 'small'
 
   localValue = this.value
 

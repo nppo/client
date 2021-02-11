@@ -14,7 +14,7 @@
             class="col-span-6 col-start-2 mt-10 mb-20"
             @submit.prevent="handleSubmitEvent"
           >
-            <SearchBar :value.sync="searchQuery" />
+            <SearchBar :value.sync="searchQuery" variant="large" />
           </form>
         </div>
       </div>
@@ -26,7 +26,7 @@
           v-for="(block, index) in searchBlocks"
           :key="index"
           to="/"
-          class="block p-5 bg-white rounded"
+          class="block p-5 bg-white rounded shadow"
         >
           <div class="font-bold">
             {{ $t('pages.index.search_blocks.title') }}

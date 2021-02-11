@@ -32,7 +32,7 @@ module.exports = {
         28: '7rem',
       },
       boxShadow: {
-        input: '0px 0px 20px rgba(137, 170, 205, 0.2)',
+        default: '0px 0px 20px rgba(137, 170, 205, 0.2)',
       },
       minWidth: (theme) => ({
         40: theme('spacing.40'),
