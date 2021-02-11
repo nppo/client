@@ -69,6 +69,8 @@ export default {
     'nuxt-i18n',
     // Doc: https://github.com/nuxt-community/sentry-module
     '@nuxtjs/sentry',
+    // Doc: https://auth.nuxtjs.org/
+    '@nuxtjs/auth-next',
   ],
 
   /*
@@ -82,11 +84,51 @@ export default {
   },
 
   proxy: {
+    '/auth': {
+      target: process.env.BACKEND_URL + '/',
+    },
     '/api': {
       target: process.env.BACKEND_URL + '/',
     },
   },
 
+  auth: {
+    strategies: {
+      api: {
+        clientId: process.env.OAUTH_CLIENT_ID,
+        token: {
+          property: 'access_token',
+          type: 'Bearer',
+          name: 'Authorization',
+          maxAge: 1800,
+          global: true,
+          required: true,
+        },
+        state: 'UNIQUE_AND_NON_GUESSABLE',
+        responseMode: '',
+        acrValues: '',
+        autoLogout: true,
+        refreshToken: {
+          property: 'refresh_token',
+          maxAge: 2592000,
+        },
+        responseType: 'code',
+        codeChallengeMethod: 'S256',
+        scheme: 'oauth2',
+        endpoints: {
+          authorization: process.env.BACKEND_URL + '/auth/oauth/authorize',
+          token:
+            process.env.PROXY === 'true'
+              ? '/auth/oauth/token'
+              : process.env.BACKEND_URL + '/auth/oauth/token',
+          userInfo: '/api/user',
+          logout: process.env.BACKEND_URL + '/logout',
+        },
+        grantType: 'authorization_code',
+        scope: '',
+      },
+    },
+  },
   /*
    ** i18n module configuration
    ** See https://i18n.nuxtjs.org/options-reference.html
