@@ -7,7 +7,7 @@ export default {
       title: 'Together we create impact!',
       subtitle: 'Knowledge from higher education in the Netherlands',
       search_blocks: {
-        title: 'I\'m looking for',
+        title: "I'm looking for",
         items: [
           {
             title: 'Projects',
@@ -16,13 +16,11 @@ export default {
           },
           {
             title: 'Results',
-            description:
-              'Outcomes and results of practice-oriented studies',
+            description: 'Outcomes and results of practice-oriented studies',
           },
           {
             title: 'People',
-            description:
-              'People involved in practice-oriented research',
+            description: 'People involved in practice-oriented research',
           },
           {
             title: 'Parties',

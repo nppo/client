@@ -22,9 +22,9 @@
         :key="locale.code"
         type="button"
         class="w-full py-1 text-sm text-left"
-        :disabled="locale.code === currentLocale"
+        :disabled="isCurrentLocale(locale.code)"
         :class="
-          locale.code === currentLocale ? 'text-gray-500' : 'hover:font-bold'
+          isCurrentLocale(locale.code) ? 'text-gray-500' : 'hover:font-bold'
         "
         @click="changeLocale(locale.code)"
       >
@@ -50,6 +50,10 @@ export default class LanguageSwitcher extends Vue {
 
   get availableLocales() {
     return this.$i18n.locales! as NuxtVueI18n.Options.LocaleObject[]
+  }
+
+  isCurrentLocale(locale: string): boolean {
+    return locale === this.currentLocale
   }
 
   changeLocale(code: string) {
