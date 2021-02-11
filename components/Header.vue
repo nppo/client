@@ -8,6 +8,12 @@
 
     <div class="relative inset-0 bg-blue-800 bg-opacity-50">
       <div class="container relative h-full mx-auto">
+        <Navbar>
+          <div v-if="hasSearchBar" class="flex justify-end flex-1 pr-24">
+            <SearchBar />
+          </div>
+        </Navbar>
+
         <slot />
       </div>
     </div>
@@ -15,8 +21,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Vue, Prop } from 'nuxt-property-decorator'
 
 @Component
-export default class Header extends Vue {}
+export default class Header extends Vue {
+  @Prop({ type: Boolean, default: false }) readonly hasSearchBar!: boolean
+}
 </script>

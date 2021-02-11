@@ -31,15 +31,10 @@ import { Component, Vue, Prop, Watch } from 'nuxt-property-decorator'
 
 @Component
 export default class SearchBar extends Vue {
-  @Prop({ type: String, required: true }) value!: string
-  @Prop({ type: String, required: true }) variant!: string
+  @Prop({ type: String }) value!: string
+  @Prop({ type: String, default: 'main' }) variant!: string
 
   localValue = this.value
-
-  @Watch('value')
-  onValueChanged(value: string) {
-    this.localValue = value
-  }
 
   @Watch('localValue')
   updateValue() {

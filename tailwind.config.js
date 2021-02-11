@@ -28,6 +28,9 @@ module.exports = {
           brand: '#FFC800',
         },
       },
+      spacing: {
+        28: '7rem',
+      },
       boxShadow: {
         input: '0px 0px 20px rgba(137, 170, 205, 0.2)',
       },
