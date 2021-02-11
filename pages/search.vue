@@ -15,7 +15,7 @@
         </div>
         <div v-else>
           <div v-if="products.length > 0">
-            <h1 class="text-2xl mb-3">Producten</h1>
+            <h1 class="mb-3 text-2xl">Producten</h1>
             <div class="grid grid-cols-3 gap-4">
               <div v-for="product in products" :key="product.id">
                 <div class="flex flex-col">
@@ -55,6 +55,12 @@ export default class SearchPage extends Vue {
     }
 
     this.loading = false
+  }
+
+  mounted() {
+    if (this.$route.query.query) {
+      this.searchString = this.$route.query.query.toString()
+    }
   }
 }
 </script>
