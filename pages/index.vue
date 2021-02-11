@@ -26,41 +26,7 @@
             class="col-span-6 col-start-2 mt-10 mb-20"
             @submit.prevent="handleSubmitEvent"
           >
-            <SearchBar :value.sync="searchQuery" variant="main">
-              <div class="flex pr-6 space-x-2">
-                <button
-                  type="button"
-                  class="flex items-center px-2 py-1 space-x-5 font-bold shadow-input"
-                >
-                  <span>Type</span>
-                  <svg
-                    class="w-3 h-3 fill-current"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 8 9"
-                  >
-                    <path
-                      d="M7.464 3.827l.407.446a.513.513 0 010 .68L4.31 8.858a.411.411 0 01-.62 0L.128 4.953a.513.513 0 010-.68l.407-.446a.414.414 0 01.628.008l2.103 2.42V.482c0-.267.196-.482.44-.482h.586c.244 0 .44.215.44.482v5.773l2.103-2.42a.41.41 0 01.628-.008z"
-                    />
-                  </svg>
-                </button>
-
-                <button
-                  type="button"
-                  class="flex items-center px-2 py-1 space-x-5 font-bold shadow-input"
-                >
-                  <span>Thema</span>
-                  <svg
-                    class="w-3 h-3 fill-current"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 8 9"
-                  >
-                    <path
-                      d="M7.464 3.827l.407.446a.513.513 0 010 .68L4.31 8.858a.411.411 0 01-.62 0L.128 4.953a.513.513 0 010-.68l.407-.446a.414.414 0 01.628.008l2.103 2.42V.482c0-.267.196-.482.44-.482h.586c.244 0 .44.215.44.482v5.773l2.103-2.42a.41.41 0 01.628-.008z"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </SearchBar>
+            <SearchBar :value.sync="searchQuery" variant="main" />
           </form>
         </div>
 
@@ -86,7 +52,7 @@
             <div class="flex justify-end">
               <svg
                 viewBox="0 0 13 13"
-                class="w-3 h-3 text-orange-400 fill-current"
+                class="w-3 h-3 fill-current text-orange-brand"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path

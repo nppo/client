@@ -16,7 +16,7 @@
       class="p-2"
       :class="
         variant === 'main'
-          ? 'bg-orange-500 text-white rounded-full'
+          ? 'bg-orange-brand text-white rounded-full'
           : 'text-blue-500'
       "
       @click="search()"

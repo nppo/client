@@ -2,7 +2,7 @@
   <Dropdown>
     <button
       slot="button"
-      class="flex items-center p-2 space-x-2 font-bold bg-white rounded"
+      class="flex items-center p-2 space-x-4 text-sm font-bold bg-white rounded"
     >
       <span>{{ currentLocale.toUpperCase() }}</span>
       <svg
@@ -21,7 +21,7 @@
         v-for="locale in availableLocales"
         :key="locale.code"
         type="button"
-        class="w-full py-1 text-left"
+        class="w-full py-1 text-sm text-left"
         :disabled="locale.code === currentLocale"
         :class="
           locale.code === currentLocale ? 'text-gray-100' : 'hover:font-bold'
