@@ -1,7 +1,7 @@
 <template>
   <div class="relative">
     <img
-      src="~/assets/img/bg.jpg"
+      src="~/assets/img/header_bg.jpg"
       alt=""
       class="absolute inset-0 object-cover w-full h-full"
     />
