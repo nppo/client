@@ -15,7 +15,7 @@
       <div
         v-show="active"
         ref="items"
-        class="absolute right-0 px-4 py-3 mt-2 text-blue-800 origin-top-right bg-white rounded shadow min-w-40 max-h-48 overflow-y-auto z-10"
+        class="absolute right-0 px-4 py-3 mt-2 text-blue-800 origin-top-right bg-white rounded shadow min-w-40 max-h-48 overflow-y-auto z-10 break-words"
       >
         <slot ref="items" name="items" />
       </div>
