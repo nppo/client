@@ -1,6 +1,16 @@
 export default {
   welcome: 'Welcome',
-  login: 'Login',
+
+  account: {
+    login: 'Login',
+    profile: 'My account',
+  },
+
+  entities: {
+    theme: {
+      singular: 'Theme',
+    },
+  },
 
   pages: {
     index: {

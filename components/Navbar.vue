@@ -13,7 +13,7 @@
         :to="$auth.loggedIn ? 'account' : 'login'"
         class="px-4 py-2 text-sm text-white rounded bg-orange-brand"
       >
-        {{ $auth.loggedIn ? $t('my_account') : $t('login') }}
+        {{ $auth.loggedIn ? $t('account.profile') : $t('account.login') }}
       </NuxtLink>
     </div>
   </nav>

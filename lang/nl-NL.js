@@ -1,6 +1,16 @@
 export default {
   welcome: 'Welkom',
-  login: 'Inloggen',
+
+  account: {
+    login: 'Inloggen',
+    profile: 'Mijn Account',
+  },
+
+  entities: {
+    theme: {
+      singular: 'Thema',
+    },
+  },
 
   pages: {
     index: {
