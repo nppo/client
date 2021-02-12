@@ -3,31 +3,15 @@
     <button
       slot="button"
       type="button"
-<<<<<<< HEAD
-      class="px-2 py-1 mr-4 text-xs font-extrabold rounded-lg shadow cursor-pointer"
-=======
-      class="rounded-lg shadow px-2 py-1 text-xs font-extrabold cursor-pointer"
->>>>>>> origin/develop
+      class="px-2 py-1 text-xs font-extrabold rounded-lg shadow cursor-pointer"
       @click="toggleFilter()"
     >
-      {{ t('entities.theme.singular') }}
+      {{ $t('entities.theme.singular') }}
       <font-awesome-icon icon="arrow-down" class="ml-3" />
     </button>
 
     <div slot="items" class="w-64">
       <ul v-for="(theme, index) in themes" :key="'theme_' + theme.id">
-<<<<<<< HEAD
-        <li class="block py-2 text-sm">
-          <input
-            type="checkbox"
-            class="w-4 h-4 mr-2 bg-gray-100 form-checkbox text-yellow-brand"
-            :value="theme.id"
-            @change="toggleTheme(theme.id)"
-          />
-          {{ theme.label }}
-
-          <hr v-if="index < themes.length - 1" class="mt-4 text-gray-100" />
-=======
         <li
           class="block py-2 mb-2 text-sm hover:font-bold"
           :class="{
@@ -39,7 +23,7 @@
             <input
               :id="theme.id"
               type="checkbox"
-              class="form-checkbox mr-2 text-yellow-brand w-4 h-4 bg-gray-100"
+              class="w-4 h-4 mr-2 bg-gray-100 form-checkbox text-yellow-brand"
               :value="theme.id"
               @change="toggleTheme(theme.id)"
             />
@@ -47,7 +31,6 @@
               {{ theme.label }}
             </label>
           </div>
->>>>>>> origin/develop
         </li>
       </ul>
     </div>
