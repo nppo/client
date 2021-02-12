@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="bg-gray-brand-light flex flex-row flex-wrap px-24 py-64 justify-center"
-  >
+  <div class="bg-gray-brand-light flex flex-row flex-wrap justify-center">
     <div
       v-for="theme in themes"
       :key="'theme_shortcut_' + theme.id"
@@ -20,6 +18,15 @@ import { Component, Vue } from 'nuxt-property-decorator'
 export default class FilterList extends Vue {
   setFilter(themeId: number) {
     this.$accessor.search.setFilter({ type: 'themes', values: [themeId] })
+
+    const query = {
+      filters: encodeURIComponent(JSON.stringify({ themes: [themeId] })),
+    }
+
+    this.$router.push({
+      path: 'search',
+      query,
+    })
   }
 
   get themes() {

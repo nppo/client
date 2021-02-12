@@ -11,7 +11,7 @@ export interface Theme {
 
 export interface Filter {
   type: string
-  values: string[]
+  values: any[]
 }
 
 export interface ErrorMessage {

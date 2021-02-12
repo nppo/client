@@ -1,7 +1,7 @@
 <template>
   <div ref="filterDropdown" class="flex flex-row">
     <div
-      class="rounded-lg shadow-input px-2 py-1 text-xs font-extrabold mr-4 cursor-pointer"
+      class="rounded-lg shadow px-2 py-1 text-xs font-extrabold mr-4 cursor-pointer"
       @click="toggleFilter()"
     >
       Thema
@@ -10,7 +10,7 @@
 
     <div
       v-show="active"
-      class="search-filter bg-white rounded-lg shadow-input absolute right-0 mr-4 mt-8 w-64 h-64 p-4 overflow-y-scroll"
+      class="search-filter bg-white rounded-lg shadow absolute right-0 mt-8 w-64 h-64 p-4 overflow-y-scroll z-10"
     >
       <ul v-for="(theme, index) in themes" :key="'theme_' + theme.id">
         <li class="block py-2 text-sm">
