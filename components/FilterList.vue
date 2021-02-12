@@ -3,7 +3,7 @@
     <div
       v-for="theme in themes"
       :key="'theme_shortcut_' + theme.id"
-      class="rounded-md bg-green-brand px-3 py-1 m-1 text-xs font-extrabold cursor-pointer"
+      class="rounded-md bg-green-300 px-3 py-1 m-1 text-xs font-extrabold cursor-pointer"
       @click="setFilter(theme.id)"
     >
       {{ theme.label }}

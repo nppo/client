@@ -25,10 +25,6 @@ module.exports = {
           ...colors.green,
           300: '#49dcb1',
         },
-        green: {
-          ...colors.green,
-          brand: '#49DCB1',
-        },
         orange: {
           ...colors.orange,
           brand: '#FF8427',
