@@ -21,11 +21,11 @@ module.exports = {
         },
         orange: {
           ...colors.orange,
-          brand: '#FF8427',
+          brand: '#ff8427',
         },
         yellow: {
           ...colors.yellow,
-          brand: '#FFC800',
+          brand: '#ffc800',
         },
       },
       spacing: {
@@ -36,6 +36,9 @@ module.exports = {
       },
       minWidth: (theme) => ({
         40: theme('spacing.40'),
+      }),
+      maxHeight: (theme) => ({
+        48: theme('spacing.48'),
       }),
     },
     customForms: () => ({

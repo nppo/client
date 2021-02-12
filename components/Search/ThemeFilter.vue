@@ -12,16 +12,24 @@
 
     <div slot="items" class="w-64">
       <ul v-for="(theme, index) in themes" :key="'theme_' + theme.id">
-        <li class="block py-2 text-sm">
+        <li
+          class="block py-2 text-sm hover:font-bold hover:border-yellow-brand"
+        >
           <input
+            :id="theme.id"
             type="checkbox"
             class="form-checkbox mr-2 text-yellow-brand w-4 h-4 bg-gray-100"
             :value="theme.id"
             @change="toggleTheme(theme.id)"
           />
-          {{ theme.label }}
+          <label class="cursor-pointer" :for="theme.id">
+            {{ theme.label }}
+          </label>
 
-          <hr v-if="index < themes.length - 1" class="mt-4 text-gray-100" />
+          <hr
+            v-if="index < themes.length - 1"
+            class="mt-4 text-gray-100 hover:text-yellow-brand"
+          />
         </li>
       </ul>
     </div>
