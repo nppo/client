@@ -14,7 +14,9 @@
             class="col-span-6 col-start-2 mt-10 mb-20"
             @submit.prevent="handleSubmitEvent"
           >
-            <SearchBar :value.sync="searchQuery" variant="large" />
+            <SearchBar :value.sync="searchQuery" variant="large">
+              <ThemeFilter @set-filters="setFilters" />
+            </SearchBar>
           </form>
         </div>
       </div>
@@ -62,12 +64,30 @@ import { LocaleMessageArray } from 'vue-i18n/types'
 @Component
 export default class IndexPage extends Vue {
   private searchQuery: string = ''
+  private activeFilters: Array<any> = []
   private searchBlocks: LocaleMessageArray = this.$t(
     'pages.index.search_blocks.items'
   )
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  setFilters(type: string, filters: Array<any>) {
+    this.activeFilters = filters
+    // TODO implement store in SURAPP-173
+  }
+
   handleSubmitEvent() {
-    this.$router.push({ path: 'search', query: { query: this.searchQuery } })
+    const query = { query: this.searchQuery } as any
+
+    if (this.activeFilters.length) {
+      query.filters = encodeURIComponent(
+        JSON.stringify({ themes: this.activeFilters })
+      )
+    }
+
+    this.$router.push({
+      path: 'search',
+      query,
+    })
   }
 }
 </script>

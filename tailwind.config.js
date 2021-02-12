@@ -53,9 +53,19 @@ module.exports = {
         tiny: '0.625rem',
       },
     },
+    customForms: () => ({
+      default: {
+        checkbox: {
+          iconColor: '#000000',
+        },
+      },
+    }),
   },
   variants: {},
-  plugins: [require('@tailwindcss/line-clamp')],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+    require('@tailwindcss/custom-forms'),
+  ],
   purge: {
     // Learn more on https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css
     enabled: process.env.NODE_ENV === 'production',

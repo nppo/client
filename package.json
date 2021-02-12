@@ -23,6 +23,7 @@
     "@nuxtjs/axios": "^5.12.5",
     "@nuxtjs/sentry": "^5.0.0",
     "@tailwindcss/line-clamp": "^0.2.0",
+    "@tailwindcss/custom-forms": "^0.2.1",
     "core-js": "^3.8.3",
     "nuxt": "^2.14.12",
     "nuxt-i18n": "^6.19.0",
