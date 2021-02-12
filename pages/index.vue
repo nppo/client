@@ -74,6 +74,7 @@ export default class IndexPage extends Vue {
     'pages.index.search_blocks.items'
   )
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setFilters(type: string, filters: Array<any>) {
     this.activeFilters = filters
     this.$accessor.search.setFilter({ type, values: filters })
