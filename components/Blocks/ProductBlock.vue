@@ -15,7 +15,7 @@
           class="m-4 mb-5 min-w-1/4"
           :class="{ 'absolute top-0 left-0': product.image }"
         >
-          <Badge :entity="product" icon-name="link" icon-style="fas" />
+          <Badge :entity="product" icon-style="fas" icon-name="link" />
         </span>
         <span v-if="!product.image" class="pr-4">
           {{ product.themes[0].label }}

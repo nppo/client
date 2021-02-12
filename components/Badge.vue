@@ -3,8 +3,8 @@
     class="flex items-center px-2 py-1 w-full font-bold rounded-md bg-green-300"
   >
     <font-awesome-icon
-      v-if="iconName && iconStyle"
-      :icon="[iconName, iconStyle]"
+      v-if="iconStyle && iconName"
+      :icon="[iconStyle, iconName]"
       class="text-xs mr-2"
     />
 
