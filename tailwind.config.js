@@ -17,7 +17,7 @@ module.exports = {
         },
         gray: {
           ...colors.gray,
-          100: '#e5e5e5',
+          100: '#f4f4f4',
           200: '#e0e0e0',
           300: '#677279',
         },
@@ -64,7 +64,9 @@ module.exports = {
       },
     }),
   },
-  variants: {},
+  variants: {
+    borderWidth: ['responsive', 'hover'],
+  },
   plugins: [
     require('@tailwindcss/line-clamp'),
     require('@tailwindcss/custom-forms'),

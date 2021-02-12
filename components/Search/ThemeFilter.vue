@@ -3,7 +3,7 @@
     <button
       slot="button"
       type="button"
-      class="rounded-lg shadow px-2 py-1 text-xs font-extrabold mr-4 cursor-pointer"
+      class="rounded-lg shadow px-2 py-1 text-xs font-extrabold cursor-pointer"
       @click="toggleFilter()"
     >
       Thema
@@ -13,23 +13,24 @@
     <div slot="items" class="w-64">
       <ul v-for="(theme, index) in themes" :key="'theme_' + theme.id">
         <li
-          class="block py-2 text-sm hover:font-bold hover:border-yellow-brand"
+          class="block py-2 mb-2 text-sm hover:font-bold"
+          :class="{
+            'border-b border-gray-100 hover:border-b-2 hover:border-yellow-brand':
+              index < themes.length - 1,
+          }"
         >
-          <input
-            :id="theme.id"
-            type="checkbox"
-            class="form-checkbox mr-2 text-yellow-brand w-4 h-4 bg-gray-100"
-            :value="theme.id"
-            @change="toggleTheme(theme.id)"
-          />
-          <label class="cursor-pointer" :for="theme.id">
-            {{ theme.label }}
-          </label>
-
-          <hr
-            v-if="index < themes.length - 1"
-            class="mt-4 text-gray-100 hover:text-yellow-brand"
-          />
+          <div class="mb-2">
+            <input
+              :id="theme.id"
+              type="checkbox"
+              class="form-checkbox mr-2 text-yellow-brand w-4 h-4 bg-gray-100"
+              :value="theme.id"
+              @change="toggleTheme(theme.id)"
+            />
+            <label class="cursor-pointer" :for="theme.id">
+              {{ theme.label }}
+            </label>
+          </div>
         </li>
       </ul>
     </div>
