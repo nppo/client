@@ -56,7 +56,10 @@
     </div>
 
     <div class="container relative mx-auto py-24">
-      <h3 class="text-2xl font-bold text-center mb-12">Vinden op thema</h3>
+      <h3 class="text-2xl font-bold text-center mb-12">
+        {{ $t('pages.index.find_by_theme') }}
+      </h3>
+
       <FilterList />
     </div>
   </div>
