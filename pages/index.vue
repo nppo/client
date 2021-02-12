@@ -54,6 +54,14 @@
         </NuxtLink>
       </div>
     </div>
+
+    <div class="container relative mx-auto py-24">
+      <h3 class="text-2xl font-bold text-center mb-12">
+        {{ $t('pages.index.find_by_theme') }}
+      </h3>
+
+      <FilterList />
+    </div>
   </div>
 </template>
 
@@ -69,10 +77,9 @@ export default class IndexPage extends Vue {
     'pages.index.search_blocks.items'
   )
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setFilters(type: string, filters: Array<any>) {
     this.activeFilters = filters
-    // TODO implement store in SURAPP-173
+    this.$accessor.search.setFilter({ type, values: filters })
   }
 
   handleSubmitEvent() {

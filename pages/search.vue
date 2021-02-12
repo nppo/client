@@ -61,6 +61,8 @@ export default class SearchPage extends Vue {
         (filter) => (this.filterString += '&filters[' + type + '][]=' + filter)
       )
     }
+
+    this.$accessor.search.setFilter({ type, values: filters })
   }
 
   async search() {
