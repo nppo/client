@@ -1,6 +1,6 @@
 <template>
   <div class="flex-1">
-    <Header class="">
+    <Header>
       <div>
         <div class="mt-32 text-center text-white">
           <h1 class="text-4xl font-bold">{{ $t('pages.index.title') }}</h1>
