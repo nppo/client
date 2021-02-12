@@ -18,6 +18,12 @@ module.exports = {
         gray: {
           ...colors.gray,
           100: '#e5e5e5',
+          200: '#e0e0e0',
+          300: '#677279',
+        },
+        green: {
+          ...colors.green,
+          300: '#49dcb1',
         },
         orange: {
           ...colors.orange,
@@ -36,10 +42,19 @@ module.exports = {
       },
       minWidth: (theme) => ({
         40: theme('spacing.40'),
+        '1/4': '25%',
       }),
       maxHeight: (theme) => ({
         48: theme('spacing.48'),
       }),
+      fontFamily: {
+        balooTammadu: ['"Baloo Tammudu 2"', 'sans-serif'],
+        balooTamma: ['"Baloo Tamma 2"', 'sans-serif'],
+        times: 'Times',
+      },
+      fontSize: {
+        tiny: '0.625rem',
+      },
     },
     customForms: () => ({
       default: {
@@ -50,7 +65,10 @@ module.exports = {
     }),
   },
   variants: {},
-  plugins: [require('@tailwindcss/custom-forms')],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+    require('@tailwindcss/custom-forms'),
+  ],
   purge: {
     // Learn more on https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css
     enabled: process.env.NODE_ENV === 'production',

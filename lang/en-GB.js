@@ -6,6 +6,7 @@ export default {
     index: {
       title: 'Together we create impact!',
       subtitle: 'Knowledge from higher education in the Netherlands',
+      find_by_theme: 'Find by theme',
       search_blocks: {
         title: "I'm looking for",
         items: [
@@ -33,6 +34,7 @@ export default {
     search: {
       placeholder: 'Start your search...',
       no_results: 'No products found',
+      input_search: 'Start your search...',
     },
 
     login: {

@@ -2,11 +2,17 @@ export interface Product {
   id: number
   title: string
   description: string
+  image: string
 }
 
 export interface Theme {
   id: number
   label: string
+}
+
+export interface Filter {
+  type: string
+  values: any[]
 }
 
 export interface ErrorMessage {

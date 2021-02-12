@@ -6,6 +6,7 @@ export default {
     index: {
       title: 'Samen creëren we impact!',
       subtitle: 'Kennis uit het hoger onderwijs in Nederland',
+      find_by_theme: 'Vinden op thema',
       search_blocks: {
         title: 'Ik zoek',
         items: [
@@ -35,6 +36,7 @@ export default {
     search: {
       placeholder: 'Start je zoektocht...',
       no_results: 'Geen producten gevonden',
+      input_search: 'Start je zoektocht...',
     },
 
     login: {
