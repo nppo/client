@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex items-center px-2 py-2 space-x-2 bg-white rounded-3xl shadow focus-within:text-gray-400"
+    class="flex items-center px-2 py-2 bg-white rounded-3xl shadow focus-within:text-gray-400"
     :class="variant === 'large' ? 'h-12' : 'h-10'"
   >
     <input
@@ -14,7 +14,7 @@
     <slot />
 
     <button
-      class="p-2"
+      class="p-2 ml-4"
       :class="
         variant === 'large'
           ? 'bg-orange-brand text-white rounded-full'
