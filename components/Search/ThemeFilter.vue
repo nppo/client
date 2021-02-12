@@ -3,10 +3,10 @@
     <button
       slot="button"
       type="button"
-      class="rounded-lg shadow px-2 py-1 text-xs font-extrabold cursor-pointer"
+      class="px-2 py-1 text-xs font-extrabold rounded-lg shadow cursor-pointer"
       @click="toggleFilter()"
     >
-      Thema
+      {{ $t('entities.theme.singular') }}
       <font-awesome-icon icon="arrow-down" class="ml-3" />
     </button>
 
@@ -23,7 +23,7 @@
             <input
               :id="theme.id"
               type="checkbox"
-              class="form-checkbox mr-2 text-yellow-brand w-4 h-4 bg-gray-100"
+              class="w-4 h-4 mr-2 bg-gray-100 form-checkbox text-yellow-brand"
               :value="theme.id"
               @change="toggleTheme(theme.id)"
             />
