@@ -2,7 +2,11 @@
   <div
     class="flex items-center px-2 py-1 w-full font-bold rounded-md bg-green-300"
   >
-    <font-awesome-icon :icon="[iconStyle, iconName]" class="text-xs mr-2" />
+    <font-awesome-icon
+      v-if="iconName && iconStyle"
+      :icon="[iconName, iconStyle]"
+      class="text-xs mr-2"
+    />
 
     naam
   </div>
