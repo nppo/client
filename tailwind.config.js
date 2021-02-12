@@ -17,7 +17,7 @@ module.exports = {
         },
         gray: {
           ...colors.gray,
-          100: '#e5e5e5',
+          100: '#f4f4f4',
           200: '#e0e0e0',
           300: '#677279',
         },
@@ -27,11 +27,11 @@ module.exports = {
         },
         orange: {
           ...colors.orange,
-          brand: '#FF8427',
+          brand: '#ff8427',
         },
         yellow: {
           ...colors.yellow,
-          brand: '#FFC800',
+          brand: '#ffc800',
         },
       },
       spacing: {
@@ -43,6 +43,9 @@ module.exports = {
       minWidth: (theme) => ({
         40: theme('spacing.40'),
         '1/4': '25%',
+      }),
+      maxHeight: (theme) => ({
+        48: theme('spacing.48'),
       }),
       fontFamily: {
         balooTammadu: ['"Baloo Tammudu 2"', 'sans-serif'],
@@ -61,7 +64,9 @@ module.exports = {
       },
     }),
   },
-  variants: {},
+  variants: {
+    borderWidth: ['responsive', 'hover'],
+  },
   plugins: [
     require('@tailwindcss/line-clamp'),
     require('@tailwindcss/custom-forms'),
