@@ -2,6 +2,19 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+body {
+  /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+  @apply text-xs;
+}
+
+h2 {
+  @apply font-bold;
+}
+
+h4 {
+  @apply font-medium;
+}
+
 /* Hide scrollbar for IE, Edge and Firefox */
 .scrollbar-hidden {
   -ms-overflow-style: none; /* IE and Edge */

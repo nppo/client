@@ -1,0 +1,64 @@
+<template>
+  <div
+    class="flex flex-col h-full bg-white rounded-md shadow-block overflow-hidden"
+  >
+    <div class="relative">
+      <!-- TODO: When image available make image dynamic: v-if="product.image" -->
+      <img
+        v-if="productImage"
+        class="w-full mb-2"
+        :src="productImage"
+        alt="Product picture"
+      />
+
+      <div class="flex justify-between items-center">
+        <!-- TODO: When image available make image dynamic: product.image" -->
+        <span
+          class="m-4 mb-5 min-w-1/4"
+          :class="{ 'absolute top-0 left-0': productImage }"
+        >
+          <Badge :entity="product" icon-style="fas" icon-name="link" />
+        </span>
+
+        <!-- TODO: When image available make image dynamic: product.image" -->
+        <span v-if="!productImage" class="pr-4">
+          {{ product.themes[0].label }}
+        </span>
+      </div>
+    </div>
+
+    <div class="flex justify-between px-4 text-tiny">
+      <span>21 sep 2020</span>
+
+      <!-- TODO: When image available make image dynamic: product.image" -->
+      <span v-if="productImage">{{ product.themes[0].label }}</span>
+    </div>
+
+    <div class="flex flex-col p-4">
+      <h4 class="text-base mb-1">{{ product.title }}</h4>
+
+      <!-- TODO: When image available make image dynamic: product.image" -->
+      <div class="text-gray-300" :class="{ 'line-clamp-4': productImage }">
+        {{ product.description }}
+      </div>
+    </div>
+
+    <div class="flex justify-end px-4 pb-3 mt-auto">
+      <span class="text-blue-500">
+        <font-awesome-icon :icon="['far', 'bookmark']" class="text-base" />
+      </span>
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+import { Component, Vue, Prop } from 'nuxt-property-decorator'
+
+@Component
+export default class ProductBlock extends Vue {
+  // TODO: When image available make image dynamic: v-if="product.image"
+  public productImage: string = 'https://picsum.photos/296/150'
+
+  @Prop({ type: Object, required: true }) product!: object
+}
+</script>
