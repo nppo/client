@@ -3,21 +3,25 @@
     class="flex flex-col h-full bg-white rounded-md shadow-block overflow-hidden"
   >
     <div class="relative">
+      <!-- TODO: When image available make image dynamic: v-if="product.image" -->
       <img
-        v-if="product.image"
+        v-if="productImage"
         class="w-full mb-2"
-        :src="product.image"
+        :src="productImage"
         alt="Product picture"
       />
 
       <div class="flex justify-between items-center">
+        <!-- TODO: When image available make image dynamic: product.image" -->
         <span
           class="m-4 mb-5 min-w-1/4"
-          :class="{ 'absolute top-0 left-0': product.image }"
+          :class="{ 'absolute top-0 left-0': productImage }"
         >
           <Badge :entity="product" icon-style="fas" icon-name="link" />
         </span>
-        <span v-if="!product.image" class="pr-4">
+
+        <!-- TODO: When image available make image dynamic: product.image" -->
+        <span v-if="!productImage" class="pr-4">
           {{ product.themes[0].label }}
         </span>
       </div>
@@ -26,13 +30,15 @@
     <div class="flex justify-between px-4 text-tiny">
       <span>21 sep 2020</span>
 
-      <span v-if="product.image">{{ product.themes[0].label }}</span>
+      <!-- TODO: When image available make image dynamic: product.image" -->
+      <span v-if="productImage">{{ product.themes[0].label }}</span>
     </div>
 
     <div class="flex flex-col p-4">
       <h4 class="text-base mb-1">{{ product.title }}</h4>
 
-      <div class="text-gray-300" :class="{ 'line-clamp-4': product.image }">
+      <!-- TODO: When image available make image dynamic: product.image" -->
+      <div class="text-gray-300" :class="{ 'line-clamp-4': productImage }">
         {{ product.description }}
       </div>
     </div>
@@ -50,6 +56,9 @@ import { Component, Vue, Prop } from 'nuxt-property-decorator'
 
 @Component
 export default class ProductBlock extends Vue {
+  // TODO: When image available make image dynamic: v-if="product.image"
+  public productImage: string = 'https://picsum.photos/296/150'
+
   @Prop({ type: Object, required: true }) product!: object
 }
 </script>
