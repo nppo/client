@@ -57,6 +57,8 @@ export default {
     '@nuxtjs/fontawesome',
     // Doc: https://nuxt-typed-vuex.roe.dev
     'nuxt-typed-vuex',
+    // Doc: https://github.com/nuxt-community/google-fonts
+    '@nuxtjs/google-fonts',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -156,7 +158,15 @@ export default {
    */
   fontawesome: {
     icons: {
-      solid: ['faSearch'],
+      solid: ['faSearch', 'faMinus', 'faLink', 'faArrowDown'],
+      regular: ['faBookmark'],
+    },
+  },
+
+  googleFonts: {
+    families: {
+      'Baloo Tammudu 2': [400],
+      'Baloo Tamma 2': [500, 700],
     },
   },
 

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex items-center px-2 py-2 space-x-2 bg-white rounded-full shadow focus-within:text-gray-400"
+    class="flex items-center px-2 py-2 space-x-2 bg-white rounded-3xl shadow focus-within:text-gray-400"
     :class="variant === 'large' ? 'h-12' : 'h-10'"
   >
     <input
@@ -32,10 +32,16 @@ import { Component, Vue, Prop, Watch } from 'nuxt-property-decorator'
 
 @Component
 export default class SearchBar extends Vue {
+  private localValue: string = ''
+
   @Prop({ type: String }) value!: string
+  @Prop({ type: String, default: 'search' }) readonly ariaLabel!: string
   @Prop({ type: String, default: 'small' }) readonly variant!: 'large' | 'small'
 
-  localValue = this.value
+  @Watch('value')
+  onValueChanged(value: string) {
+    this.localValue = value
+  }
 
   @Watch('localValue')
   updateValue() {

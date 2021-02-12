@@ -1,32 +1,37 @@
 <template>
-  <div>
-    <div class="grid grid-cols-4 gap-4 p-6">
-      <div />
-      <div class="col-span-3">
+  <div class="flex-1">
+    <Header has-search-bar class="mb-10">
+      <div class="grid grid-cols-3 gap-4 h-56 relative">
         <SearchBar
-          name="main"
-          variant="main"
+          :aria-label="$t('pages.search.input_search')"
+          variant="large"
           :value.sync="searchString"
+          class="absolute bottom-0 right-0 w-9/12 -mt-28"
           @click="search()"
         />
+      </div>
+    </Header>
 
-        <div v-if="loading">
-          <SearchSkeleton />
-        </div>
-        <div v-else>
-          <div v-if="products.length > 0">
-            <h1 class="mb-3 text-2xl">Producten</h1>
-            <div class="grid grid-cols-3 gap-4">
-              <div v-for="product in products" :key="product.id">
-                <div class="flex flex-col">
-                  <span class="mb-3">{{ product.title }}</span>
-                  {{ product.description }}
+    <div class="container mx-auto md:px-5 lg:px-0">
+      <div class="grid grid-cols-4 gap-4">
+        <div />
+        <div class="col-span-4 lg:col-span-3">
+          <div v-if="loading">
+            <SearchSkeleton />
+          </div>
+          <div v-else>
+            <div v-if="products.length > 0">
+              <h2 class="text-3xl mb-3">Producten</h2>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div v-for="product in products" :key="product.id">
+                  <ProductBlock :product="product" />
                 </div>
               </div>
             </div>
-          </div>
 
-          <div v-else>{{ $t('pages.search.no_results') }}</div>
+            <div v-else>{{ $t('pages.search.no_results') }}</div>
+          </div>
         </div>
       </div>
     </div>
@@ -60,6 +65,7 @@ export default class SearchPage extends Vue {
   mounted() {
     if (this.$route.query.query) {
       this.searchString = this.$route.query.query.toString()
+      this.search()
     }
   }
 }
