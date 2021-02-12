@@ -1,17 +1,16 @@
 <template>
-  <div ref="filterDropdown" class="flex flex-row">
-    <div
+  <Dropdown>
+    <button
+      slot="button"
+      type="button"
       class="rounded-lg shadow px-2 py-1 text-xs font-extrabold mr-4 cursor-pointer"
       @click="toggleFilter()"
     >
       Thema
       <font-awesome-icon icon="arrow-down" class="ml-3" />
-    </div>
+    </button>
 
-    <div
-      v-show="active"
-      class="search-filter bg-white rounded-lg shadow absolute right-0 mt-8 w-64 h-64 p-4 overflow-y-scroll z-10"
-    >
+    <div slot="items" class="w-64">
       <ul v-for="(theme, index) in themes" :key="'theme_' + theme.id">
         <li class="block py-2 text-sm">
           <input
@@ -26,7 +25,7 @@
         </li>
       </ul>
     </div>
-  </div>
+  </Dropdown>
 </template>
 
 <script lang="ts">
@@ -57,20 +56,7 @@ export default class ThemeFilter extends Vue {
     this.$emit('set-filters', 'themes', this.selected)
   }
 
-  onDocumentClick(event: Event) {
-    const target = event.target as HTMLBaseElement
-    const ref = this.$refs.filterDropdown as HTMLBaseElement
-    const onDropdownItem = target.classList.contains('search-filter')
-    const onOutsideSelf = ref ? !ref.contains(target) : false
-
-    if (onDropdownItem || onOutsideSelf) {
-      this.active = false
-    }
-  }
-
   mounted() {
-    document.addEventListener('click', this.onDocumentClick)
-
     if (this.themes.length < 1) {
       this.$accessor.themes.fetchAll()
     }
