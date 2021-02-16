@@ -14,7 +14,9 @@
 
     <div class="container mx-auto md:px-5 lg:px-0">
       <div class="grid grid-cols-4 gap-4">
-        <div />
+        <div class="mr-10">
+          <CheckboxFilter @set-filters="setFilters" />
+        </div>
         <div class="col-span-4 lg:col-span-3">
           <div v-if="loading">
             <SearchSkeleton />
@@ -39,7 +41,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Vue, Watch } from 'nuxt-property-decorator'
 
 @Component
 export default class SearchPage extends Vue {
@@ -63,6 +65,16 @@ export default class SearchPage extends Vue {
     }
 
     this.$accessor.search.setFilter({ type, values: filters })
+
+    const query = {
+      filters: encodeURIComponent(JSON.stringify({ themes: [filters] })),
+    }
+
+    this.$router.push({
+      path: 'search',
+      query,
+    })
+    this.search()
   }
 
   async search() {
