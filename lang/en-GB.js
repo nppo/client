@@ -42,6 +42,7 @@ export default {
       },
     },
     search: {
+      title: 'Search results',
       placeholder: 'Start your search...',
       no_results: 'No products found',
       input_search: 'Start your search...',
