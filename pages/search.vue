@@ -2,14 +2,17 @@
   <div class="flex-1">
     <Header has-search-bar class>
       <div class="container pb-16">
-        <button
-          type="button"
-          class="flex items-center px-2 py-1 mt-8 space-x-2 text-white bg-blue-500 rounded"
-          @click="$router.back()"
+        <component
+          :is="navigatedInternal ? 'button' : 'NuxtLink'"
+          v-bind="{ ...(navigatedInternal ? { type: 'button' } : { to: '/' }) }"
+          class="inline-flex items-center px-2 py-1 mt-8 space-x-2 text-white bg-blue-500 rounded"
+          v-on="{
+            ...(navigatedInternal ? { click: () => this.$router.back() } : {}),
+          }"
         >
           <font-awesome-icon class="block" icon="arrow-left" />
           <span>terug</span>
-        </button>
+        </component>
 
         <h1 class="mt-8 text-4xl font-bold text-gray-100">
           {{ $t('pages.search.title') }}
@@ -54,6 +57,7 @@
 </template>
 
 <script lang="ts">
+import { RouteRecord } from 'vue-router/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
 @Component
@@ -61,6 +65,7 @@ export default class SearchPage extends Vue {
   private searchString: string = ''
   private filterString: string = ''
   private loading: boolean = false
+  public navigatedInternal: boolean = true
   private activeFilters: Array<any> = []
 
   get products() {
@@ -94,6 +99,12 @@ export default class SearchPage extends Vue {
     }
 
     await this.$accessor.search.result(requestString)
+  }
+
+  beforeRouteEnter(_to: RouteRecord, from: RouteRecord, next: Function) {
+    next((vm: SearchPage) => {
+      vm.navigatedInternal = from.name !== null
+    })
   }
 
   mounted() {
