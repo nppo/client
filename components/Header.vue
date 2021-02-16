@@ -9,9 +9,13 @@
     <div class="relative inset-0 bg-blue-800 bg-opacity-50">
       <div class="container relative h-full mx-auto">
         <Navbar>
-          <div v-if="hasSearchBar" class="flex justify-end flex-1 pr-24">
-            <SearchBar />
-          </div>
+          <form
+            v-if="hasSearchBar"
+            class="flex justify-end flex-1 pr-24"
+            @submit.prevent="handleSearchSubmit"
+          >
+            <SearchBar :value.sync="searchQuery" />
+          </form>
         </Navbar>
 
         <slot />
@@ -25,6 +29,29 @@ import { Component, Vue, Prop } from 'nuxt-property-decorator'
 
 @Component
 export default class Header extends Vue {
+  private searchQuery: string = ''
+
   @Prop({ type: Boolean, default: false }) readonly hasSearchBar!: boolean
+
+  async handleSearchSubmit() {
+    if ((this.$route.path as string) !== '/search') {
+      this.$router.push({
+        path: 'search',
+        query: { query: this.searchQuery },
+      })
+
+      return
+    }
+
+    const params = new URLSearchParams()
+
+    params.append('query', this.searchQuery)
+
+    if ((this.$route.query.query as string) !== this.searchQuery) {
+      this.$router.replace({ query: { query: this.searchQuery } })
+    }
+
+    await this.$accessor.search.result(params.toString())
+  }
 }
 </script>

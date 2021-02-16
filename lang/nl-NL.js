@@ -44,6 +44,7 @@ export default {
       },
     },
     search: {
+      title: 'Zoekresultaten',
       placeholder: 'Start je zoektocht...',
       no_results: 'Geen producten gevonden',
       input_search: 'Start je zoektocht...',

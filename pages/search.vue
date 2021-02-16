@@ -1,31 +1,46 @@
 <template>
   <div class="flex-1">
-    <Header has-search-bar class="mb-10">
-      <div class="grid grid-cols-3 gap-4 h-56 relative">
+    <Header has-search-bar class>
+      <div class="container pb-16">
+        <button
+          type="button"
+          class="flex items-center px-2 py-1 mt-8 space-x-2 text-white bg-blue-500 rounded"
+          @click="$router.back()"
+        >
+          <font-awesome-icon class="block" icon="arrow-left" />
+          <span>terug</span>
+        </button>
+
+        <h1 class="mt-8 text-4xl font-bold text-gray-100">
+          {{ $t('pages.search.title') }}
+        </h1>
+      </div>
+    </Header>
+
+    <div class="container mx-auto -mt-6">
+      <div class="relative grid grid-cols-4 gap-4 mb-2">
         <SearchBar
           :aria-label="$t('pages.search.input_search')"
           variant="large"
           :value.sync="searchString"
-          class="absolute bottom-0 right-0 w-9/12 -mt-28"
+          class="col-span-3 col-start-2"
           @click="search()"
         />
       </div>
-    </Header>
 
-    <div class="container mx-auto md:px-5 lg:px-0">
       <div class="grid grid-cols-4 gap-4">
         <div class="mr-10">
           <CheckboxFilter @set-filters="setFilters" />
         </div>
         <div class="col-span-4 lg:col-span-3">
-          <div v-if="loading">
+          <div v-if="isLoading">
             <SearchSkeleton />
           </div>
           <div v-else>
             <div v-if="products.length > 0">
-              <h2 class="text-3xl mb-3">Producten</h2>
+              <h2 class="mb-3 text-3xl">Producten</h2>
 
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 <div v-for="product in products" :key="product.id">
                   <ProductBlock :product="product" />
                 </div>
@@ -54,6 +69,10 @@ export default class SearchPage extends Vue {
     return this.$accessor.search.current
   }
 
+  get isLoading(): boolean {
+    return this.$accessor.search.isLoading
+  }
+
   setFilters(type: string, filters: Array<any>) {
     this.activeFilters = filters
     this.filterString = ''
@@ -78,23 +97,19 @@ export default class SearchPage extends Vue {
   }
 
   async search() {
-    this.loading = true
+    const requestString: string = this.searchString
+      ? 'query=' + this.searchString + this.filterString
+      : this.filterString.substring(1)
 
-    if (this.searchString || this.filterString) {
-      const requestString = this.searchString
-        ? 'query=' + this.searchString + this.filterString
-        : this.filterString.substring(1)
-
-      this.$store.commit('search/setCurrent', requestString)
-      await this.$accessor.search.result(requestString)
+    if ((this.$route.query.query as string) !== this.searchString) {
+      this.$router.replace({ query: { query: requestString } })
     }
 
-    this.loading = false
+    await this.$accessor.search.result(requestString)
   }
 
   mounted() {
     if (this.$route.query.query) {
-      // TODO Value isn't shown in input field
       this.searchString = this.$route.query.query.toString()
     }
 
