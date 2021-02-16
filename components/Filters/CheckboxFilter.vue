@@ -7,15 +7,19 @@
 
       <div class="flex items-center">
         <span class="px-1 mr-4 text-xs font-bold rounded-sm bg-yellow-brand">
-          12
+          {{ themes.length }}
         </span>
         <font-awesome-icon icon="minus" class="text-white" />
       </div>
     </div>
 
     <div class="p-4">
-      <ul v-for="theme in themes" :key="'theme_' + theme.id">
-        <li class="block text-sm">
+      <ul>
+        <li
+          v-for="theme in themes"
+          :key="'theme_' + theme.id"
+          class="block text-sm"
+        >
           <div class="mb-2">
             <input
               :id="theme.id"
@@ -35,12 +39,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Vue, Prop, Watch } from 'nuxt-property-decorator'
 
 @Component
 export default class CheckboxFilter extends Vue {
   public active: boolean = false
-  public selected: Array<number> = []
+  public filters = JSON.parse(<string>localStorage.getItem('currentFilters'))
+  public selected = this.filters
+    ? (this.filters.values as any)
+    : ([] as any)
 
   get themes() {
     return this.$accessor.themes.all

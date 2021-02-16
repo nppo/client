@@ -5,7 +5,9 @@ export const state = () => ({
   current: localStorage.getItem('currentSearch')
     ? (JSON.parse(<string>localStorage.getItem('currentSearch')) as Product[])
     : ({} as Product[]),
-  filters: {} as any,
+  filters: localStorage.getItem('currentFilters')
+    ? (JSON.parse(<string>localStorage.getItem('currentFilters')) as any)
+    : ({} as any),
   isLoading: false,
 })
 
@@ -44,6 +46,7 @@ export const actions = actionTree(
 
     setFilter({ commit }, data: Filter): void {
       commit('setFilter', data)
+      localStorage.setItem('currentFilters', JSON.stringify(data as any))
     },
   }
 )

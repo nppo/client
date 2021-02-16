@@ -26,9 +26,7 @@
           class="col-span-3 col-start-2"
           @click="search()"
         />
-      </div>
 
-      <div class="grid grid-cols-4 gap-4">
         <div class="mr-10">
           <CheckboxFilter @set-filters="setFilters" />
         </div>
@@ -56,7 +54,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'nuxt-property-decorator'
+import { Component, Vue } from 'nuxt-property-decorator'
 
 @Component
 export default class SearchPage extends Vue {
@@ -93,6 +91,7 @@ export default class SearchPage extends Vue {
       path: 'search',
       query,
     })
+
     this.search()
   }
 
