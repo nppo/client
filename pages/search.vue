@@ -89,7 +89,7 @@ export default class SearchPage extends Vue {
       ? 'query=' + this.searchString + this.filterString
       : this.filterString.substring(1)
 
-    if (<string>this.$route.query.query !== this.searchString) {
+    if ((this.$route.query.query as string) !== this.searchString) {
       this.$router.replace({ query: { query: requestString } })
     }
 

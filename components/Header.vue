@@ -25,7 +25,6 @@
 </template>
 
 <script lang="ts">
-import { Route } from '@nuxtjs/auth-next'
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 
 @Component
@@ -41,14 +40,14 @@ export default class Header extends Vue {
         query: { query: this.searchQuery },
       })
 
-      return;
+      return
     }
 
     const params = new URLSearchParams()
 
     params.append('query', this.searchQuery)
 
-    if (<string>this.$route.query.query !== this.searchQuery) {
+    if ((this.$route.query.query as string) !== this.searchQuery) {
       this.$router.replace({ query: { query: this.searchQuery } })
     }
 
