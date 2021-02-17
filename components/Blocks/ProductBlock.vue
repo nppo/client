@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col h-full bg-white rounded-md shadow-block overflow-hidden"
+    class="flex flex-col h-full overflow-hidden bg-white rounded-md shadow-block"
   >
     <div class="relative">
       <!-- TODO: When image available make image dynamic: v-if="product.image" -->
@@ -11,13 +11,14 @@
         alt="Product picture"
       />
 
-      <div class="flex justify-between items-center">
+      <div class="flex items-center justify-between">
         <!-- TODO: When image available make image dynamic: product.image" -->
         <span
           class="m-4 mb-5 min-w-1/4"
           :class="{ 'absolute top-0 left-0': productImage }"
         >
-          <Badge :entity="product" icon-style="fas" icon-name="link" />
+          <!-- TODO: Make sure the badge reflects information from the product -->
+          <Badge icon-style="fas" icon-name="link" text="TBA" />
         </span>
 
         <!-- TODO: When image available make image dynamic: product.image" -->
@@ -35,7 +36,7 @@
     </div>
 
     <div class="flex flex-col p-4">
-      <h4 class="text-base mb-1">{{ product.title }}</h4>
+      <h4 class="mb-1 text-base">{{ product.title }}</h4>
 
       <!-- TODO: When image available make image dynamic: product.image" -->
       <div class="text-gray-300" :class="{ 'line-clamp-4': productImage }">
