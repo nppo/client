@@ -2,34 +2,41 @@
   <div
     class="flex flex-col h-auto bg-white rounded-md shadow-block overflow-hidden"
   >
-    <div class="flex items-center justify-between px-4 py-3 bg-blue-800">
-      <span class="text-base text-white">Thema</span>
+    <div
+      class="flex items-center justify-between px-4 py-3 cursor-pointer bg-blue-800"
+      @click="toggleFilter()"
+    >
+      <span class="text-base text-white">{{ name }}</span>
 
       <div class="flex items-center">
         <span class="px-1 mr-4 text-xs font-bold rounded-sm bg-yellow-brand">
-          {{ themes.length }}
+          {{ entity.length }}
         </span>
-        <font-awesome-icon icon="minus" class="text-white" />
+
+        <font-awesome-icon v-if="active" icon="minus" class="text-white" />
+        <font-awesome-icon v-else icon="plus" class="text-white" />
       </div>
     </div>
 
-    <div class="p-4">
+    <div v-if="active || this.selected.length > 0" class="p-4">
       <ul>
         <li
-          v-for="theme in themes"
-          :key="'theme_' + theme.id"
+          v-for="item in entity"
+          :key="'item_' + item.id"
           class="block text-sm"
         >
           <div class="mb-2">
             <input
-              :id="theme.id"
+              :id="item.id"
               type="checkbox"
               class="w-4 h-4 mr-2 bg-gray-100 form-checkbox text-yellow-brand"
-              :value="theme.id"
-              @change="toggleTheme(theme.id)"
+              :value="item.id"
+              :checked="isChecked(item.id)"
+              @change="toggleItem(item.id)"
             />
-            <label class="cursor-pointer" :for="theme.id">
-              {{ theme.label }}
+            <label class="cursor-pointer" :for="item.id">
+              {{ item.label }}
+              {{ item.id }}
             </label>
           </div>
         </li>
@@ -39,21 +46,31 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Watch } from 'nuxt-property-decorator'
+import { Component, Vue, Prop } from 'nuxt-property-decorator'
 
 @Component
 export default class CheckboxFilter extends Vue {
   public active: boolean = false
-  public filters = JSON.parse(<string>localStorage.getItem('currentFilters'))
-  public selected = this.filters
-    ? (this.filters.values as any)
-    : ([] as any)
+  public selected: Array<number> = []
 
-  get themes() {
-    return this.$accessor.themes.all
+  @Prop({ type: String, required: true }) readonly name!: string
+  @Prop({ type: Array, required: true }) entity: any
+
+  get activeFilters() {
+    return this.$accessor.search.filters
   }
 
-  toggleTheme(id: number) {
+  toggleFilter() {
+    this.active = !this.active
+  }
+
+  isChecked(id: number) {
+    if (this.activeFilters.values) {
+      return this.activeFilters.values.includes(Number(id))
+    }
+  }
+
+  toggleItem(id: number) {
     const indexOf = this.selected.indexOf(id)
 
     if (indexOf >= 0) {
@@ -62,13 +79,7 @@ export default class CheckboxFilter extends Vue {
       this.selected.unshift(id)
     }
 
-    this.$emit('set-filters', 'themes', this.selected)
-  }
-
-  mounted() {
-    if (this.themes.length < 1) {
-      this.$accessor.themes.fetchAll()
-    }
+    this.$emit('set-filters', name, this.selected)
   }
 }
 </script>

@@ -28,7 +28,11 @@
         />
 
         <div class="mr-10">
-          <CheckboxFilter @set-filters="setFilters" />
+          <CheckboxFilter
+            name="Thema"
+            :entity="themes"
+            @set-filters="setFilters"
+          />
         </div>
         <div class="col-span-4 lg:col-span-3">
           <div v-if="isLoading">
@@ -67,6 +71,10 @@ export default class SearchPage extends Vue {
     return this.$accessor.search.current
   }
 
+  get themes() {
+    return this.$accessor.themes.all
+  }
+
   get isLoading(): boolean {
     return this.$accessor.search.isLoading
   }
@@ -82,15 +90,6 @@ export default class SearchPage extends Vue {
     }
 
     this.$accessor.search.setFilter({ type, values: filters })
-
-    const query = {
-      filters: encodeURIComponent(JSON.stringify({ themes: [filters] })),
-    }
-
-    this.$router.push({
-      path: 'search',
-      query,
-    })
 
     this.search()
   }
@@ -128,6 +127,10 @@ export default class SearchPage extends Vue {
 
     if (this.searchString || this.filterString) {
       this.search()
+    }
+
+    if (this.themes.length < 1) {
+      this.$accessor.themes.fetchAll()
     }
   }
 }
