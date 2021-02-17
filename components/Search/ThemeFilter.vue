@@ -58,6 +58,13 @@ export default class ThemeFilter extends Vue {
     this.active = !this.active
   }
 
+  isChecked(themeId: string) {
+    return (
+      this.activeFilters.themes &&
+      this.activeFilters.themes.includes(String(themeId))
+    )
+  }
+
   toggleTheme(id: number) {
     const indexOf = this.selected.indexOf(id)
 
@@ -68,12 +75,6 @@ export default class ThemeFilter extends Vue {
     }
 
     this.$emit('set-filters', 'themes', this.selected)
-  }
-
-  isChecked(themeId: string) {
-    if (this.activeFilters.themes) {
-      return this.activeFilters.themes.includes(String(themeId))
-    }
   }
 
   mounted() {
