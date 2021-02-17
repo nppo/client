@@ -33,7 +33,7 @@ export default class Header extends Vue {
 
   @Prop({ type: Boolean, default: false }) readonly hasSearchBar!: boolean
 
-  async handleSearchSubmit() {
+  handleSearchSubmit() {
     this.$router.push({
       path: 'search',
       query: { query: this.searchQuery },
