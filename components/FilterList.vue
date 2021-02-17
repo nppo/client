@@ -13,6 +13,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import qs from 'qs'
 
 @Component
 export default class FilterList extends Vue {
@@ -20,7 +21,7 @@ export default class FilterList extends Vue {
     this.$accessor.search.setFilter({ type: 'themes', values: [themeId] })
 
     const query = {
-      filters: encodeURIComponent(JSON.stringify({ themes: [themeId] })),
+      filters: qs.stringify({ themes: [themeId] }, { encode: false }),
     }
 
     this.$router.push({

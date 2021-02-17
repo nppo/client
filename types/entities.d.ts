@@ -1,8 +1,20 @@
+export interface Party {
+  id: number
+}
+
+export interface Person {
+  id: number
+}
+
 export interface Product {
   id: number
   title: string
   description: string
   image: string
+}
+
+export interface Project {
+  id: number
 }
 
 export interface Theme {
@@ -20,6 +32,15 @@ export interface ErrorMessage {
   message: string
 }
 
-export interface search extends Product {
-  id: number
+export interface Search {
+  results: number
+  parties?: Party[]
+  people?: Person[]
+  products?: Product[]
+  projects?: Project[]
+  filters?: Filter[]
+}
+
+export interface Type {
+  name: string
 }
