@@ -17,6 +17,6 @@ import { Component, Vue, Prop } from 'nuxt-property-decorator'
 
 @Component
 export default class BackButton extends Vue {
-  @Prop({ required: true}) readonly hasNavigatedInternal!: Boolean
+  @Prop({ required: true }) readonly hasNavigatedInternal!: Boolean
 }
 </script>
