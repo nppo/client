@@ -31,10 +31,6 @@ export default {
       singular: 'Project',
       plural: 'Projecten',
     },
-    product: {
-      singular: 'Product',
-      plural: 'Producten',
-    },
   },
 
   pages: {
