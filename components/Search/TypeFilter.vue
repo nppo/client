@@ -59,8 +59,8 @@ export default class TypeFilter extends Vue {
   }
 
   isChecked(type: string) {
-    if (this.activeFilters.type) {
-      return this.activeFilters.type.includes(String(type))
+    if (this.activeFilters.types) {
+      return this.activeFilters.types.includes(String(type))
     }
   }
 

@@ -102,20 +102,21 @@ export default class SearchPage extends Vue {
   }
 
   get filters() {
-    return this.$accessor.search.current
+    return this.$accessor.search.filters
   }
 
   setFilters(type: string, filters: Array<any>) {
-    this.activeFilters = filters
+    this.$accessor.search.setFilter({ type, values: filters })
     this.filterString = ''
 
-    if (filters.length) {
-      this.activeFilters.map(
-        (filter) => (this.filterString += '&filters[' + type + '][]=' + filter)
-      )
+    if (this.filters) {
+      for (const filter in this.filters) {
+        this.filters[filter].map(
+          (value: any) =>
+            (this.filterString += '&filters[' + filter + '][]=' + value)
+        )
+      }
     }
-
-    this.$accessor.search.setFilter({ type, values: filters })
   }
 
   async search() {

@@ -71,8 +71,8 @@ export default class ThemeFilter extends Vue {
   }
 
   isChecked(themeId: string) {
-    if (this.activeFilters.theme) {
-      return this.activeFilters.theme.includes(String(themeId))
+    if (this.activeFilters.themes) {
+      return this.activeFilters.themes.includes(String(themeId))
     }
   }
 
