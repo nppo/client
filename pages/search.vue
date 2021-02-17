@@ -1,7 +1,7 @@
 <template>
   <div class="flex-1">
     <Header has-search-bar class="mb-10">
-      <div class="grid grid-cols-3 gap-4 h-56 relative">
+      <div class="relative grid h-56 grid-cols-3 gap-4">
         <SearchBar
           :aria-label="$t('pages.search.input_search')"
           variant="large"
@@ -21,9 +21,9 @@
           </div>
           <div v-else>
             <div v-if="products.length > 0">
-              <h2 class="text-3xl mb-3">Producten</h2>
+              <h2 class="mb-3 text-3xl">{{ $t('entities.product.plural') }}</h2>
 
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 <div v-for="product in products" :key="product.id">
                   <ProductBlock :product="product" />
                 </div>
