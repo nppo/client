@@ -7,6 +7,10 @@ export default {
   },
 
   entities: {
+    type: {
+      singular: 'Type',
+      plural: 'Types',
+    },
     theme: {
       singular: 'Thema',
       plural: "Thema's",

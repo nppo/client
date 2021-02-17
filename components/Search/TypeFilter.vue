@@ -6,7 +6,7 @@
       class="px-2 py-1 text-xs font-extrabold rounded-lg shadow cursor-pointer"
       @click="toggleFilter()"
     >
-      Type
+      {{ $t('entities.type.singular') }}
       <font-awesome-icon icon="arrow-down" class="ml-3" />
     </button>
 
