@@ -82,7 +82,7 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
       : this.filterString.substring(1)
 
     if ((this.$route.query.query as string) !== this.searchString) {
-      this.$router.replace({ query: { query: requestString } })
+      this.$router.replace({ path: `${this.$route.path}?${requestString}` })
     }
 
     await this.$accessor.search.result(requestString)
