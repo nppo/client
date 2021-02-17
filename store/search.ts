@@ -32,10 +32,8 @@ export const actions = actionTree(
     async result({ commit }, searchString): Promise<void> {
       commit('setLoading', true)
 
-      const {
-        status,
-        data: { data },
-      } = await this.$repositories.search.result(searchString)
+      const res = await this.$repositories.search.result(searchString)
+      const { status, data } = res
 
       if (status === 200) {
         commit('setCurrent', data.data)
