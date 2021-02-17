@@ -1,6 +1,6 @@
 <template>
   <div class="flex-1">
-    <Header has-search-bar class>
+    <Header>
       <div class="container pb-16">
         <component
           :is="navigatedInternal ? 'button' : 'NuxtLink'"
@@ -64,16 +64,12 @@ import { Component, Vue } from 'nuxt-property-decorator'
 export default class SearchPage extends Vue {
   private searchString: string = ''
   private filterString: string = ''
-  private loading: boolean = false
+  private isLoading: boolean = false
   public navigatedInternal: boolean = true
   private activeFilters: Array<any> = []
 
   get products() {
     return this.$accessor.search.current
-  }
-
-  get isLoading(): boolean {
-    return this.$accessor.search.isLoading
   }
 
   setFilters(type: string, filters: Array<any>) {
@@ -90,6 +86,8 @@ export default class SearchPage extends Vue {
   }
 
   async search() {
+    this.isLoading = true
+
     const requestString: string = this.searchString
       ? 'query=' + this.searchString + this.filterString
       : this.filterString.substring(1)
@@ -99,6 +97,8 @@ export default class SearchPage extends Vue {
     }
 
     await this.$accessor.search.result(requestString)
+
+    this.isLoading = false
   }
 
   beforeRouteEnter(_to: RouteRecord, from: RouteRecord, next: Function) {
