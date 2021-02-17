@@ -18,12 +18,7 @@
           :class="{ 'absolute top-0 left-0': productImage }"
         >
           <!-- TODO: Make sure the badge reflects information from the product -->
-          <Badge
-            :entity="product"
-            icon-style="fas"
-            icon-name="link"
-            text="TBA"
-          />
+          <Badge icon-style="fas" icon-name="link" text="TBA" />
         </span>
 
         <!-- TODO: When image available make image dynamic: product.image" -->

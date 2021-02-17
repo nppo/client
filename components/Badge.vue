@@ -19,7 +19,6 @@ import { Component, Vue, Prop } from 'nuxt-property-decorator'
 export default class Badge extends Vue {
   @Prop({ type: String }) iconName!: string
   @Prop({ type: String }) iconStyle!: string
-  @Prop({ type: Object }) entity!: object
   @Prop({ type: String }) text!: string
 }
 </script>
