@@ -1,9 +1,7 @@
 import { NuxtAxiosInstance } from '@nuxtjs/axios'
 import { AxiosResponse } from 'axios'
-import { Product } from '~/types/entities'
-import { MultipleResults } from '~/types/repositories'
-
-const resource = 'products'
+import { Search } from '~/types/entities'
+import { SingleResult } from '~/types/repositories'
 
 export default class ProductRepository {
   axios: NuxtAxiosInstance
@@ -12,9 +10,7 @@ export default class ProductRepository {
     this.axios = axios
   }
 
-  result(
-    searchString: string
-  ): Promise<AxiosResponse<MultipleResults<Product>>> {
-    return this.axios.get(`/api/${resource}/search?${searchString}`)
+  result(searchString: string): Promise<AxiosResponse<SingleResult<Search>>> {
+    return this.axios.get(`/api/search?${searchString}`)
   }
 }

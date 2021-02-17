@@ -15,6 +15,7 @@
             @submit.prevent="handleSubmitEvent"
           >
             <SearchBar :value.sync="searchQuery" variant="large">
+              <TypeFilter @set-filters="setFilters" />
               <ThemeFilter @set-filters="setFilters" />
             </SearchBar>
           </form>
@@ -68,33 +69,37 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import { LocaleMessageArray } from 'vue-i18n/types'
+import qs from 'qs'
 
 @Component
 export default class IndexPage extends Vue {
   private searchQuery: string = ''
-  private activeFilters: Array<any> = []
   private searchBlocks: LocaleMessageArray = this.$t(
     'pages.index.search_blocks.items'
   )
 
+  get filters() {
+    return this.$accessor.search.filters
+  }
+
   setFilters(type: string, filters: Array<any>) {
-    this.activeFilters = filters
     this.$accessor.search.setFilter({ type, values: filters })
   }
 
   handleSubmitEvent() {
-    const query = { query: this.searchQuery } as any
-
-    if (this.activeFilters.length) {
-      query.filters = encodeURIComponent(
-        JSON.stringify({ themes: this.activeFilters })
-      )
+    const query = {
+      query: this.searchQuery,
+      filters: qs.stringify(this.filters, { encode: false }),
     }
 
     this.$router.push({
       path: 'search',
       query,
     })
+  }
+
+  mounted() {
+    this.$accessor.search.resetSearch()
   }
 }
 </script>

@@ -21,7 +21,7 @@
           </div>
           <div v-else>
             <div v-if="products.length > 0">
-              <h2 class="text-3xl mb-3">Producten</h2>
+              <h2 class="text-3xl mb-3">{{ $t('entities.product.plural') }}</h2>
 
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div v-for="product in products" :key="product.id">
@@ -30,7 +30,39 @@
               </div>
             </div>
 
-            <div v-else>{{ $t('pages.search.no_results') }}</div>
+            <div v-if="people.length > 0">
+              <h2 class="text-3xl mb-3">{{ $t('entities.person.plural') }}</h2>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div v-for="person in people" :key="person.id">
+                  {{ person.id }}
+                </div>
+              </div>
+            </div>
+
+            <div v-if="projects.length > 0">
+              <h2 class="text-3xl mb-3">{{ $t('entities.project.plural') }}</h2>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div v-for="project in projects" :key="project.id">
+                  {{ project.id }}
+                </div>
+              </div>
+            </div>
+
+            <div v-if="parties.length > 0">
+              <h2 class="text-3xl mb-3">{{ $t('entities.party.plural') }}</h2>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div v-for="party in parties" :key="party.id">
+                  {{ party.id }}
+                </div>
+              </div>
+            </div>
+
+            <div v-if="current.results === 0">
+              {{ $t('pages.search.no_results') }}
+            </div>
           </div>
         </div>
       </div>
@@ -40,6 +72,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import qs from 'qs'
 
 @Component
 export default class SearchPage extends Vue {
@@ -48,7 +81,27 @@ export default class SearchPage extends Vue {
   private loading: boolean = false
   private activeFilters: Array<any> = []
 
+  get people() {
+    return this.$accessor.search.current.people
+  }
+
+  get parties() {
+    return this.$accessor.search.current.parties
+  }
+
   get products() {
+    return this.$accessor.search.current.products
+  }
+
+  get projects() {
+    return this.$accessor.search.current.projects
+  }
+
+  get current() {
+    return this.$accessor.search.current
+  }
+
+  get filters() {
     return this.$accessor.search.current
   }
 
@@ -74,6 +127,7 @@ export default class SearchPage extends Vue {
         : this.filterString.substring(1)
 
       this.$store.commit('search/setCurrent', requestString)
+
       await this.$accessor.search.result(requestString)
     }
 
@@ -81,26 +135,25 @@ export default class SearchPage extends Vue {
   }
 
   mounted() {
-    if (this.$route.query.query) {
-      // TODO Value isn't shown in input field
-      this.searchString = this.$route.query.query.toString()
+    const queryString = this.$route.fullPath.replace('/search?', '')
+
+    const query = qs.parse(queryString) as any
+
+    if (query.query) {
+      this.searchString = this.$route.query.query as string
     }
 
-    if (this.$route.query.filters) {
-      const filterString = decodeURIComponent(
-        this.$route.query.filters as string
-      )
-
-      const filters = JSON.parse(filterString)
+    if (query.filters) {
+      const filters = qs.parse(query.filters)
 
       for (const type in filters) {
         if (Object.prototype.hasOwnProperty.call(filters, type)) {
-          this.setFilters(type, filters[type])
+          this.setFilters(type, filters[type] as any)
         }
       }
     }
 
-    if (this.searchString || this.filterString) {
+    if (this.searchString || this.filters) {
       this.search()
     }
   }
