@@ -2,17 +2,7 @@
   <div class="flex-1">
     <Header>
       <div class="container pb-16">
-        <component
-          :is="navigatedInternal ? 'button' : 'NuxtLink'"
-          v-bind="{ ...(navigatedInternal ? { type: 'button' } : { to: '/' }) }"
-          class="inline-flex items-center px-2 py-1 mt-8 space-x-2 text-white bg-blue-500 rounded"
-          v-on="{
-            ...(navigatedInternal ? { click: () => this.$router.back() } : {}),
-          }"
-        >
-          <font-awesome-icon class="block" icon="arrow-left" />
-          <span>{{ $t('page.back') }}</span>
-        </component>
+        <BackButton :has-navigated-internal="hasNavigatedInternal" />
 
         <h1 class="mt-8 text-4xl font-bold text-gray-100">
           {{ $t('pages.search.title') }}
@@ -57,15 +47,14 @@
 </template>
 
 <script lang="ts">
-import { RouteRecord } from 'vue-router/types'
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, mixins } from 'nuxt-property-decorator'
+import NavigationRouterHook from '~/mixins/navigation-router-hook'
 
 @Component
-export default class SearchPage extends Vue {
+export default class SearchPage extends mixins(NavigationRouterHook) {
   private searchString: string = ''
   private filterString: string = ''
   private isLoading: boolean = false
-  public navigatedInternal: boolean = true
   private activeFilters: Array<any> = []
 
   get products() {
@@ -99,12 +88,6 @@ export default class SearchPage extends Vue {
     await this.$accessor.search.result(requestString)
 
     this.isLoading = false
-  }
-
-  beforeRouteEnter(_to: RouteRecord, from: RouteRecord, next: Function) {
-    next((vm: SearchPage) => {
-      vm.navigatedInternal = from.name !== null
-    })
   }
 
   mounted() {
