@@ -29,7 +29,7 @@
           </div>
           <div v-else>
             <div v-if="products.length > 0">
-              <h2 class="mb-3 text-3xl">Producten</h2>
+              <h2 class="mb-3 text-3xl">{{ $t('entities.product.plural') }}</h2>
 
               <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 <div v-for="product in products" :key="product.id">

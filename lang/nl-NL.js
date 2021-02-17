@@ -14,6 +14,10 @@ export default {
     theme: {
       singular: 'Thema',
     },
+    product: {
+      singular: 'Product',
+      plural: 'Producten',
+    },
   },
 
   pages: {
