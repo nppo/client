@@ -29,7 +29,7 @@
 
         <div class="mr-10">
           <CheckboxFilter
-            name="Thema"
+            :name="$t('entities.theme.singular')"
             :entity="themes"
             @set-filters="setFilters"
           />

@@ -18,7 +18,7 @@
       </div>
     </div>
 
-    <div v-if="active || this.selected.length > 0" class="p-4">
+    <div v-if="active || activeFilters.length > 0" class="p-4">
       <ul>
         <li
           v-for="item in entity"
@@ -36,7 +36,6 @@
             />
             <label class="cursor-pointer" :for="item.id">
               {{ item.label }}
-              {{ item.id }}
             </label>
           </div>
         </li>
@@ -65,8 +64,8 @@ export default class CheckboxFilter extends Vue {
   }
 
   isChecked(id: number) {
-    if (this.activeFilters.values) {
-      return this.activeFilters.values.includes(Number(id))
+    if (this.activeFilters.themes) {
+      return this.activeFilters.themes.includes(Number(id))
     }
   }
 
@@ -79,7 +78,7 @@ export default class CheckboxFilter extends Vue {
       this.selected.unshift(id)
     }
 
-    this.$emit('set-filters', name, this.selected)
+    this.$emit('set-filters', 'items', this.selected)
   }
 }
 </script>
