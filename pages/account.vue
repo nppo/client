@@ -11,7 +11,7 @@ import { Component, Vue } from 'nuxt-property-decorator'
 @Component({
   middleware: 'auth',
 })
-export default class Account extends Vue {
+export default class AccountPage extends Vue {
   get user() {
     return this.$auth.user
   }
