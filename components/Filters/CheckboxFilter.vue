@@ -18,7 +18,14 @@
       </div>
     </div>
 
-    <div v-if="active || activeFilters.length > 0" class="p-4">
+    <div
+      v-if="
+        active ||
+        activeFilters.themes.length > 0 ||
+        activeFilters.items.length > 0
+      "
+      class="p-4"
+    >
       <ul>
         <li
           v-for="item in entity"
@@ -63,10 +70,11 @@ export default class CheckboxFilter extends Vue {
     this.active = !this.active
   }
 
-  isChecked(id: number) {
-    if (this.activeFilters.themes) {
-      return this.activeFilters.themes.includes(Number(id))
-    }
+  isChecked(themeId: string) {
+    return (
+      this.activeFilters.themes &&
+      this.activeFilters.themes.includes(String(themeId))
+    )
   }
 
   toggleItem(id: number) {
