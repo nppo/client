@@ -1,6 +1,10 @@
 export default {
   welcome: 'Welcome',
 
+  page: {
+    back: 'Back',
+  },
+
   account: {
     login: 'Login',
     profile: 'My account',

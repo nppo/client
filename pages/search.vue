@@ -11,7 +11,7 @@
           }"
         >
           <font-awesome-icon class="block" icon="arrow-left" />
-          <span>terug</span>
+          <span>{{ $t('page.back') }}</span>
         </component>
 
         <h1 class="mt-8 text-4xl font-bold text-gray-100">
