@@ -30,7 +30,7 @@
           <div v-else>
             <SearchCollapse
               v-if="products && products.length > 0"
-              :show-header="!hasSpecificTypeFilter"
+              :show-header="!hasSpecificTypeFilter()"
               :header="$t('entities.product.plural')"
               @show-all="typesFilter('product')"
             >
@@ -173,7 +173,7 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
     }
   }
 
-  get hasSpecificTypeFilter(): boolean {
+  hasSpecificTypeFilter(): boolean {
     if (!this.filters.types) {
       return false
     }

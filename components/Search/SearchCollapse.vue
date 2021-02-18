@@ -18,13 +18,13 @@
         <font-awesome-icon
           v-if="localOpen"
           class="block cursor-pointer"
-          icon="plus"
+          icon="minus"
           @click="toggleOpen"
         />
         <font-awesome-icon
-          v-if="!localOpen"
+          v-else
           class="block cursor-pointer"
-          icon="minus"
+          icon="plus"
           @click="toggleOpen"
         />
       </div>
