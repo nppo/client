@@ -70,14 +70,6 @@ export default class CheckboxFilter extends Vue {
   }
 
   toggleItem(id: number) {
-    const indexOf = this.activeFilters[this.name].indexOf(id)
-
-    if (indexOf >= 0) {
-      this.activeFilters[this.name].splice(indexOf, 1)
-    } else {
-      this.activeFilters[this.name].unshift(id)
-    }
-
     this.$emit('toggle-filter', this.name, id.toString())
   }
 }

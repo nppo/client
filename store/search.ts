@@ -18,13 +18,19 @@ export const mutations = mutationTree(state, {
     state.filters[filter.type] = filter.values
   },
   toggleFilter(state, filter: any) {
-    const indexOf = state.filters[filter.type].indexOf(filter.value)
+    if (state.filters[filter.type]) {
+      const indexOf = state.filters[filter.type].indexOf(filter.value)
 
-    if (indexOf >= 0) {
-      state.filters[filter.type].splice(indexOf, 1)
-    } else {
-      state.filters[filter.type] = [...state.filters[filter.type], filter.value]
+      if (indexOf >= 0) {
+        state.filters[filter.type].splice(indexOf, 1)
+        return
+      }
+
+      state.filters[filter.type].push(filter.value)
+      return
     }
+
+    state.filters[filter.type] = [filter.value]
   },
   reset(state) {
     state.filters = {} as any

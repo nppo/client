@@ -17,7 +17,7 @@
           variant="large"
           :value.sync="searchString"
           class="col-span-3 col-start-2"
-          @click="search()"
+          @click="search(true)"
         />
 
         <div class="mr-10">
@@ -134,7 +134,7 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
 
   toggleFilter(type: string, value: string) {
     this.$accessor.search.toggleFilter({ type, value })
-    this.search()
+    this.search(true)
   }
 
   setFilters(type: string, filters: Array<any>) {
@@ -190,7 +190,7 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
     }
 
     if (this.searchString || this.filters) {
-      this.search(false)
+      this.search(true)
     }
 
     if (this.themes.length < 1) {
