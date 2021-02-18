@@ -3,6 +3,7 @@
     <div
       v-if="showHeader"
       class="flex items-center justify-between mb-5 border-b border-gray-200"
+      @click="toggleOpen"
     >
       <h2 class="mb-2 text-3xl">
         {{ header }}
@@ -11,7 +12,7 @@
       <div class="flex items-center space-x-3">
         <div
           class="px-2 py-1 font-bold text-blue-500 border border-blue-500 rounded-md cursor-pointer"
-          @click.prevent="applyFilters"
+          @click="applyFilters"
         >
           {{ $t('pages.search.items.show_all') }}
         </div>
@@ -19,14 +20,8 @@
           v-if="localOpen"
           class="block cursor-pointer"
           icon="minus"
-          @click="toggleOpen"
         />
-        <font-awesome-icon
-          v-else
-          class="block cursor-pointer"
-          icon="plus"
-          @click="toggleOpen"
-        />
+        <font-awesome-icon v-else class="block cursor-pointer" icon="plus" />
       </div>
     </div>
     <div v-show="localOpen">
