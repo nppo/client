@@ -55,9 +55,6 @@ module.exports = {
       fontSize: {
         tiny: '0.625rem',
       },
-      borderWidth: {
-        1: '1px',
-      },
     },
     customForms: () => ({
       default: {

@@ -29,7 +29,7 @@
           </div>
           <div v-else>
             <SearchAccordion
-              v-if="products.length > 0"
+              v-if="products && products.length > 0"
               :show-header="!hasSpecificTypeFilter"
               :header="$t('entities.product.plural')"
               @showAll="typesFilter('product')"
@@ -41,7 +41,7 @@
               </div>
             </SearchAccordion>
 
-            <div v-if="people.length > 0">
+            <div v-if="people && people.length > 0">
               <h2 class="mb-3 text-3xl">{{ $t('entities.person.plural') }}</h2>
 
               <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -51,7 +51,7 @@
               </div>
             </div>
 
-            <div v-if="projects.length > 0">
+            <div v-if="projects && projects.length > 0">
               <h2 class="mb-3 text-3xl">{{ $t('entities.project.plural') }}</h2>
 
               <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -61,7 +61,7 @@
               </div>
             </div>
 
-            <div v-if="parties.length > 0">
+            <div v-if="parties && parties.length > 0">
               <h2 class="mb-3 text-3xl">{{ $t('entities.party.plural') }}</h2>
 
               <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">

@@ -2,15 +2,15 @@
   <div>
     <div
       v-if="showHeader"
-      class="flex items-center justify-between mb-5 border-gray-200 border-b-1"
+      class="flex items-center justify-between mb-5 border-b border-gray-200"
     >
-      <h2 class="text-3xl">
+      <h2 class="mb-2 text-3xl">
         {{ header }}
       </h2>
 
       <div class="flex items-center space-x-3">
         <div
-          class="px-2 py-1 font-bold text-blue-500 border-blue-500 rounded-md cursor-pointer border-1"
+          class="px-2 py-1 font-bold text-blue-500 border border-blue-500 rounded-md cursor-pointer"
           @click.prevent="applyFilters"
         >
           {{ $t('pages.search.items.show_all') }}
@@ -29,9 +29,9 @@
         />
       </div>
     </div>
-    <Hide :hide="!localOpen">
+    <div :v-show="localOpen">
       <slot />
-    </Hide>
+    </div>
   </div>
 </template>
 
