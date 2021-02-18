@@ -158,7 +158,7 @@ export default {
    */
   fontawesome: {
     icons: {
-      solid: ['faSearch', 'faMinus', 'faLink', 'faArrowDown', 'faArrowLeft'],
+      solid: ['faSearch', 'faMinus', 'faLink', 'faArrowDown', 'faArrowLeft', 'faBookmark'],
       regular: ['faBookmark'],
     },
   },
