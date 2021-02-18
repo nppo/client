@@ -34,7 +34,7 @@
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 
 @Component
-export default class Accordion extends Vue {
+export default class SearchCollapse extends Vue {
   @Prop({ type: Boolean, default: true }) open!: boolean
   @Prop({ type: Boolean, default: false }) showHeader!: boolean
   @Prop({ type: String }) header!: string
