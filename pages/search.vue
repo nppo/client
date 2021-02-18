@@ -34,7 +34,7 @@
             @toggle-filter="toggleFilter"
           />
         </div>
-        <div class="col-span-4 lg:col-span-3">
+        <div class="col-span-4 lg:col-span-3 pt-10">
           <div v-if="isLoading">
             <SearchSkeleton />
           </div>
@@ -143,7 +143,7 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
 
   async search(replaceUrl: boolean = false) {
     this.isLoading = true
-    
+
     if (this.searchString || this.filters) {
       this.filterString = ''
 
@@ -156,9 +156,9 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
         }
       }
 
-    const requestString: string = this.searchString
-      ? 'query=' + this.searchString + this.filterString
-      : this.filterString.substring(1)
+      const requestString: string = this.searchString
+        ? 'query=' + this.searchString + this.filterString
+        : this.filterString.substring(1)
 
       await this.$accessor.search.result(requestString)
 

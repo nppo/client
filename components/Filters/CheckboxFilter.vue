@@ -50,7 +50,6 @@ import { Component, Vue, Prop } from 'nuxt-property-decorator'
 @Component
 export default class CheckboxFilter extends Vue {
   public active: boolean = false
-  public selected: Array<number> = []
 
   @Prop({ type: String, required: true }) readonly name!: string
   @Prop({ type: Array, required: true }) entity: any
@@ -71,12 +70,12 @@ export default class CheckboxFilter extends Vue {
   }
 
   toggleItem(id: number) {
-    const indexOf = this.selected.indexOf(id)
+    const indexOf = this.activeFilters[this.name].indexOf(id)
 
     if (indexOf >= 0) {
-      this.selected.splice(indexOf, 1)
+      this.activeFilters[this.name].splice(indexOf, 1)
     } else {
-      this.selected.unshift(id)
+      this.activeFilters[this.name].unshift(id)
     }
 
     this.$emit('toggle-filter', this.name, id.toString())

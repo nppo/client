@@ -17,12 +17,6 @@ export const mutations = mutationTree(state, {
   setFilter(state, filter: Filter) {
     state.filters[filter.type] = filter.values
   },
-  addFilter(state, filter: Filter) {
-    state.filters[filter.type] = [
-      ...state.filters[filter.type],
-      ...filter.values,
-    ]
-  },
   toggleFilter(state, filter: any) {
     const indexOf = state.filters[filter.type].indexOf(filter.value)
 
@@ -41,15 +35,14 @@ export const actions = actionTree(
   { state, mutations },
   {
     async result({ commit }, searchString): Promise<void> {
-      const res = await this.$repositories.search.result(searchString)
-      const { status, data } = res
+      const {
+        status,
+        data: { data },
+      } = await this.$repositories.search.result(searchString)
 
       if (status === 200) {
-        commit('setCurrent', data.data)
-        localStorage.setItem(
-          'currentSearch',
-          JSON.stringify(data.data as Search)
-        )
+        commit('setCurrent', data)
+        localStorage.setItem('currentSearch', JSON.stringify(data as Search))
       }
     },
 
