@@ -80,8 +80,8 @@
 
 <script lang="ts">
 import { Component, mixins } from 'nuxt-property-decorator'
-import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import qs from 'qs'
+import NavigationRouterHook from '~/mixins/navigation-router-hook'
 
 @Component
 export default class SearchPage extends mixins(NavigationRouterHook) {
@@ -131,16 +131,14 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
   async search() {
     this.isLoading = true
 
-    const requestString: string = this.searchString
-      ? 'query=' + this.searchString + this.filterString
-      : this.filterString.substring(1)
+    if (this.searchString || this.filterString) {
+      const requestString: string = this.searchString
+        ? 'query=' + this.searchString + this.filterString
+        : this.filterString.substring(1)
 
-    if ((this.$route.query.query as string) !== this.searchString) {
-      this.$router.replace({ path: `${this.$route.path}?${requestString}` })
-    }
-
-    await this.$accessor.search.result(requestString)
-      this.$store.commit('search/setCurrent', requestString)
+      if ((this.$route.query.query as string) !== this.searchString) {
+        this.$router.replace({ path: `${this.$route.path}?${requestString}` })
+      }
 
       await this.$accessor.search.result(requestString)
     }
@@ -154,8 +152,6 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
     const query = qs.parse(queryString) as any
 
     if (query.query) {
-      this.searchString = this.$route.query.query as string
-    if (this.$route.query.query) {
       this.searchString = this.$route.query.query.toString()
     }
 
