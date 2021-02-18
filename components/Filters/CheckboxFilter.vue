@@ -18,7 +18,7 @@
       </div>
     </div>
 
-    <div v-if="active || Object.keys(activeFilters).length > 0" class="p-4">
+    <div v-if="active" class="p-4">
       <ul>
         <li
           v-for="item in entity"
@@ -49,7 +49,7 @@ import { Component, Vue, Prop } from 'nuxt-property-decorator'
 
 @Component
 export default class CheckboxFilter extends Vue {
-  public active: boolean = false
+  public active: boolean = true
 
   @Prop({ type: String, required: true }) readonly name!: string
   @Prop({ type: Array, required: true }) entity: any
