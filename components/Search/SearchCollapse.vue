@@ -51,7 +51,7 @@ export default class Accordion extends Vue {
   }
 
   applyFilters(): void {
-    this.$emit('showAll')
+    this.$emit('show-all')
   }
 }
 </script>

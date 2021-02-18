@@ -28,7 +28,7 @@
             <SearchSkeleton />
           </div>
           <div v-else>
-            <SearchAccordion
+            <SearchCollapse
               v-if="products && products.length > 0"
               :show-header="!hasSpecificTypeFilter"
               :header="$t('entities.product.plural')"
@@ -39,7 +39,7 @@
                   <ProductBlock :product="product" />
                 </div>
               </div>
-            </SearchAccordion>
+            </SearchCollapse>
 
             <div v-if="people && people.length > 0">
               <h2 class="mb-3 text-3xl">{{ $t('entities.person.plural') }}</h2>
