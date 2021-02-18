@@ -32,7 +32,7 @@
               v-if="products && products.length > 0"
               :show-header="!hasSpecificTypeFilter"
               :header="$t('entities.product.plural')"
-              @showAll="typesFilter('product')"
+              @show-all="typesFilter('product')"
             >
               <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 <div v-for="product in products.slice(0, 6)" :key="product.id">
