@@ -4,7 +4,7 @@
       v-if="showHeader"
       class="flex items-center justify-between mb-5 border-gray-200 border-b-1"
     >
-      <h2 class="text-3xl font-balooTamma">
+      <h2 class="text-3xl">
         {{ $t('entities.product.plural') }}
       </h2>
 
