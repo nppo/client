@@ -4,6 +4,7 @@ import { getAccessorType } from 'typed-vuex'
 import * as products from '~/store/products'
 import * as themes from '~/store/themes'
 import * as search from '~/store/search'
+import * as types from '~/store/types'
 import * as errors from '~/store/errors'
 
 export const state = () => ({})
@@ -16,6 +17,7 @@ export const accessorType = getAccessorType({
     products,
     themes,
     search,
+    types,
     errors,
   },
 })

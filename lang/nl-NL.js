@@ -11,12 +11,29 @@ export default {
   },
 
   entities: {
+    type: {
+      singular: 'Type',
+      plural: 'Types',
+    },
     theme: {
       singular: 'Thema',
+      plural: "Thema's",
+    },
+    person: {
+      singular: 'Persoon',
+      plural: 'Personen',
+    },
+    party: {
+      singular: 'Partij',
+      plural: 'Partijen',
     },
     product: {
       singular: 'Product',
       plural: 'Producten',
+    },
+    project: {
+      singular: 'Project',
+      plural: 'Projecten',
     },
   },
 
@@ -55,7 +72,7 @@ export default {
     search: {
       title: 'Zoekresultaten',
       placeholder: 'Start je zoektocht...',
-      no_results: 'Geen producten gevonden',
+      no_results: 'Geen resultaten gevonden',
       input_search: 'Start je zoektocht...',
     },
 

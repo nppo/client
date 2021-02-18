@@ -11,12 +11,29 @@ export default {
   },
 
   entities: {
+    type: {
+      singular: 'Type',
+      plural: 'Types',
+    },
     theme: {
       singular: 'Theme',
+      plural: 'Themes',
+    },
+    person: {
+      singular: 'Person',
+      plural: 'People',
+    },
+    party: {
+      singular: 'Party',
+      plural: 'Parties',
     },
     product: {
       singular: 'Product',
       plural: 'Products',
+    },
+    project: {
+      singular: 'Project',
+      plural: 'Projects',
     },
   },
 
