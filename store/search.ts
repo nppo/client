@@ -23,15 +23,14 @@ export const actions = actionTree(
   { state, mutations },
   {
     async result({ commit }, searchString): Promise<void> {
-      const res = await this.$repositories.search.result(searchString)
-      const { status, data } = res
+      const {
+        status,
+        data: { data },
+      } = await this.$repositories.search.result(searchString)
 
       if (status === 200) {
-        commit('setCurrent', data.data)
-        localStorage.setItem(
-          'currentSearch',
-          JSON.stringify(data.data as Product[])
-        )
+        commit('setCurrent', data)
+        localStorage.setItem('currentSearch', JSON.stringify(data as Product[]))
       }
     },
 

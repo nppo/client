@@ -1,22 +1,30 @@
 <template>
   <div class="flex-1">
-    <Header has-search-bar class="mb-10">
-      <div class="relative grid h-56 grid-cols-3 gap-4">
+    <Header>
+      <div class="container pb-16">
+        <BackButton :has-navigated-internal="hasNavigatedInternal" />
+
+        <h1 class="mt-8 text-4xl font-bold text-gray-100">
+          {{ $t('pages.search.title') }}
+        </h1>
+      </div>
+    </Header>
+
+    <div class="container mx-auto -mt-6">
+      <div class="relative grid grid-cols-4 gap-4 mb-2">
         <SearchBar
           :aria-label="$t('pages.search.input_search')"
           variant="large"
           :value.sync="searchString"
-          class="absolute bottom-0 right-0 w-9/12 -mt-28"
+          class="col-span-3 col-start-2"
           @click="search()"
         />
       </div>
-    </Header>
 
-    <div class="container mx-auto md:px-5 lg:px-0">
       <div class="grid grid-cols-4 gap-4">
         <div />
         <div class="col-span-4 lg:col-span-3">
-          <div v-if="loading">
+          <div v-if="isLoading">
             <SearchSkeleton />
           </div>
           <div v-else>
@@ -39,13 +47,14 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, mixins } from 'nuxt-property-decorator'
+import NavigationRouterHook from '~/mixins/navigation-router-hook'
 
 @Component
-export default class SearchPage extends Vue {
+export default class SearchPage extends mixins(NavigationRouterHook) {
   private searchString: string = ''
   private filterString: string = ''
-  private loading: boolean = false
+  private isLoading: boolean = false
   private activeFilters: Array<any> = []
 
   get products() {
@@ -66,23 +75,23 @@ export default class SearchPage extends Vue {
   }
 
   async search() {
-    this.loading = true
+    this.isLoading = true
 
-    if (this.searchString || this.filterString) {
-      const requestString = this.searchString
-        ? 'query=' + this.searchString + this.filterString
-        : this.filterString.substring(1)
+    const requestString: string = this.searchString
+      ? 'query=' + this.searchString + this.filterString
+      : this.filterString.substring(1)
 
-      this.$store.commit('search/setCurrent', requestString)
-      await this.$accessor.search.result(requestString)
+    if ((this.$route.query.query as string) !== this.searchString) {
+      this.$router.replace({ path: `${this.$route.path}?${requestString}` })
     }
 
-    this.loading = false
+    await this.$accessor.search.result(requestString)
+
+    this.isLoading = false
   }
 
   mounted() {
     if (this.$route.query.query) {
-      // TODO Value isn't shown in input field
       this.searchString = this.$route.query.query.toString()
     }
 
