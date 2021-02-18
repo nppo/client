@@ -28,40 +28,43 @@
             <SearchSkeleton />
           </div>
           <div v-else>
-            <div v-if="products.length > 0">
-              <h2 class="mb-3 text-3xl">{{ $t('entities.product.plural') }}</h2>
-
+            <SearchCollapse
+              v-if="products && products.length > 0"
+              :show-header="!hasSpecificTypeFilter()"
+              :header="$t('entities.product.plural')"
+              @show-all="typesFilter('product')"
+            >
               <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-                <div v-for="product in products" :key="product.id">
+                <div v-for="product in products.slice(0, 6)" :key="product.id">
                   <ProductBlock :product="product" />
                 </div>
               </div>
-            </div>
+            </SearchCollapse>
 
-            <div v-if="people.length > 0">
-              <h2 class="text-3xl mb-3">{{ $t('entities.person.plural') }}</h2>
+            <div v-if="people && people.length > 0">
+              <h2 class="mb-3 text-3xl">{{ $t('entities.person.plural') }}</h2>
 
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 <div v-for="person in people" :key="person.id">
                   {{ person.id }}
                 </div>
               </div>
             </div>
 
-            <div v-if="projects.length > 0">
-              <h2 class="text-3xl mb-3">{{ $t('entities.project.plural') }}</h2>
+            <div v-if="projects && projects.length > 0">
+              <h2 class="mb-3 text-3xl">{{ $t('entities.project.plural') }}</h2>
 
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 <div v-for="project in projects" :key="project.id">
                   {{ project.id }}
                 </div>
               </div>
             </div>
 
-            <div v-if="parties.length > 0">
-              <h2 class="text-3xl mb-3">{{ $t('entities.party.plural') }}</h2>
+            <div v-if="parties && parties.length > 0">
+              <h2 class="mb-3 text-3xl">{{ $t('entities.party.plural') }}</h2>
 
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 <div v-for="party in parties" :key="party.id">
                   {{ party.id }}
                 </div>
@@ -168,6 +171,19 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
     if (this.searchString || this.filters) {
       this.search()
     }
+  }
+
+  hasSpecificTypeFilter(): boolean {
+    if (this.filters.types) {
+      return this.filters.types.length > 0
+    }
+
+    return false
+  }
+
+  typesFilter(type: string): void {
+    this.setFilters('types', [type])
+    this.search()
   }
 }
 </script>

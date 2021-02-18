@@ -71,6 +71,10 @@ export default {
       placeholder: 'Start your search...',
       no_results: 'No products found',
       input_search: 'Start your search...',
+
+      items: {
+        show_all: 'toon alles',
+      },
     },
 
     login: {
