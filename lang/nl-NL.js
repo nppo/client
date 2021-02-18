@@ -1,6 +1,10 @@
 export default {
   welcome: 'Welkom',
 
+  page: {
+    back: 'Terug',
+  },
+
   account: {
     login: 'Inloggen',
     profile: 'Mijn Account',

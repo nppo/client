@@ -8,7 +8,7 @@
           @click="$router.back()"
         >
           <font-awesome-icon class="block" icon="arrow-left" />
-          <span>terug</span>
+          <span>{{ $t('page.back') }}</span>
         </button>
 
         <h1 class="mt-8 text-4xl font-bold text-gray-100">
@@ -29,9 +29,13 @@
 
         <div class="mr-10">
           <CheckboxFilter
-            :name="$t('entities.theme.singular')"
-            :entity="themes"
-            @set-filters="setFilters"
+            :name="'themes'"
+            :entity="
+              [...themes].sort((f, s) => {
+                return isActive(f.id) ? -1 : 1
+              })
+            "
+            @toggle-filter="toggleFilter"
           />
         </div>
         <div class="col-span-4 lg:col-span-3">
@@ -98,7 +102,6 @@ export default class SearchPage extends Vue {
   private searchString: string = ''
   private filterString: string = ''
   private loading: boolean = false
-  private activeFilters: Array<any> = []
 
   get people() {
     return this.$accessor.search.current.people
@@ -132,31 +135,41 @@ export default class SearchPage extends Vue {
     return this.$accessor.search.filters
   }
 
-  setFilters(type: string, filters: Array<any>) {
-    this.$accessor.search.setFilter({ type, values: filters })
-    this.filterString = ''
+  isActive(id: any) {
+    return this.filters.themes && this.filters.themes.includes(String(id))
+  }
 
-    if (this.filters) {
-      for (const filter in this.filters) {
-        this.filters[filter].map(
-          (value: any) =>
-            (this.filterString += '&filters[' + filter + '][]=' + value)
-        )
-      }
-    }
-
+  toggleFilter(type: string, value: string) {
+    this.$accessor.search.toggleFilter({ type, value })
     this.search()
   }
 
-  async search() {
-    if (this.searchString || this.filterString) {
+  setFilters(type: string, filters: Array<any>) {
+    this.$accessor.search.setFilter({ type, values: filters })
+  }
+
+  async search(replaceUrl: boolean = false) {
+    if (this.searchString || this.filters) {
+      this.filterString = ''
+
+      if (this.filters) {
+        for (const filter in this.filters) {
+          this.filters[filter].map(
+            (value: any) =>
+              (this.filterString += '&filters[' + filter + '][]=' + value)
+          )
+        }
+      }
+
       const requestString = this.searchString
         ? 'query=' + this.searchString + this.filterString
         : this.filterString.substring(1)
 
-      this.$store.commit('search/setCurrent', requestString)
-
       await this.$accessor.search.result(requestString)
+
+      if (replaceUrl) {
+        await this.$router.replace('/search?' + requestString)
+      }
     }
   }
 
@@ -180,7 +193,7 @@ export default class SearchPage extends Vue {
     }
 
     if (this.searchString || this.filters) {
-      this.search()
+      this.search(false)
     }
 
     if (this.themes.length < 1) {

@@ -20,15 +20,13 @@
 
     <div
       v-if="
-        active ||
-        activeFilters.themes.length > 0 ||
-        activeFilters.items.length > 0
+        active || (activeFilters[name] ? activeFilters[name].length > 0 : false)
       "
       class="p-4"
     >
       <ul>
         <li
-          v-for="item in entity"
+          v-for="item in sortedFilters"
           :key="'item_' + item.id"
           class="block text-sm"
         >
@@ -70,11 +68,19 @@ export default class CheckboxFilter extends Vue {
     this.active = !this.active
   }
 
-  isChecked(themeId: string) {
+  isChecked(id: string) {
     return (
-      this.activeFilters.themes &&
-      this.activeFilters.themes.includes(String(themeId))
+      this.activeFilters[this.name] &&
+      this.activeFilters[this.name].includes(String(id))
     )
+  }
+
+  get sortedFilters() {
+    const filters = [...this.entity]
+
+    return filters.sort((filter) => {
+      return this.isChecked(filter) ? -1 : 1
+    })
   }
 
   toggleItem(id: number) {
@@ -86,7 +92,7 @@ export default class CheckboxFilter extends Vue {
       this.selected.unshift(id)
     }
 
-    this.$emit('set-filters', 'items', this.selected)
+    this.$emit('toggle-filter', this.name, id.toString())
   }
 }
 </script>
