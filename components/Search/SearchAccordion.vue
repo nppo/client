@@ -29,7 +29,7 @@
         />
       </div>
     </div>
-    <div :v-show="localOpen">
+    <div v-show="localOpen">
       <slot />
     </div>
   </div>
