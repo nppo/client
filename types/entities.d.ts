@@ -42,5 +42,6 @@ export interface Search {
 }
 
 export interface Type {
-  name: string
+  id: number
+  label: string
 }

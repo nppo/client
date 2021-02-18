@@ -24,11 +24,24 @@
           <h3 class="text-2xl mb-4">
             {{ $t('pages.search.filters.heading') }}
           </h3>
+
+          <CheckboxFilter
+            :name="'types'"
+            :requires-translation="true"
+            :entity="
+              [...types].sort((type) => {
+                return isActive(type.id, 'types') ? -1 : 1
+              })
+            "
+            class="mb-2"
+            @toggle-filter="toggleFilter"
+          />
+
           <CheckboxFilter
             :name="'themes'"
             :entity="
-              [...themes].sort((firstTheme, secondTheme) => {
-                return isActive(firstTheme.id) ? -1 : 1
+              [...themes].sort((theme) => {
+                return isActive(theme.id, 'themes') ? -1 : 1
               })
             "
             @toggle-filter="toggleFilter"
@@ -39,7 +52,7 @@
             <SearchSkeleton />
           </div>
           <div v-else>
-            <div v-if="products.length > 0">
+            <div v-if="products && products.length > 0">
               <h2 class="mb-3 text-3xl">{{ $t('entities.product.plural') }}</h2>
 
               <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -49,7 +62,7 @@
               </div>
             </div>
 
-            <div v-if="people.length > 0">
+            <div v-if="people && people.length > 0">
               <h2 class="text-3xl mb-3">{{ $t('entities.person.plural') }}</h2>
 
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -59,7 +72,7 @@
               </div>
             </div>
 
-            <div v-if="projects.length > 0">
+            <div v-if="projects && projects.length > 0">
               <h2 class="text-3xl mb-3">{{ $t('entities.project.plural') }}</h2>
 
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -69,7 +82,7 @@
               </div>
             </div>
 
-            <div v-if="parties.length > 0">
+            <div v-if="parties && parties.length > 0">
               <h2 class="text-3xl mb-3">{{ $t('entities.party.plural') }}</h2>
 
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -124,12 +137,16 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
     return this.$accessor.themes.all
   }
 
+  get types() {
+    return this.$accessor.types.all
+  }
+
   get filters() {
     return this.$accessor.search.filters
   }
 
-  isActive(id: any) {
-    return this.filters.themes && this.filters.themes.includes(String(id))
+  isActive(id: any, type: string) {
+    return this.filters[type] && this.filters[type].includes(String(id))
   }
 
   toggleFilter(type: string, value: string) {
@@ -190,7 +207,7 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
     }
 
     if (this.searchString || this.filters) {
-      this.search(true)
+      this.search()
     }
 
     if (this.themes.length < 1) {
