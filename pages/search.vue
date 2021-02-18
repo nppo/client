@@ -28,11 +28,14 @@
         />
 
         <div class="mr-10">
+          <h3 class="text-2xl mb-4">
+            {{ $t('pages.search.filters.heading') }}
+          </h3>
           <CheckboxFilter
             :name="'themes'"
             :entity="
-              [...themes].sort((f, s) => {
-                return isActive(f.id) ? -1 : 1
+              [...themes].sort((firstTheme, secondTheme) => {
+                return isActive(firstTheme.id) ? -1 : 1
               })
             "
             @toggle-filter="toggleFilter"

@@ -18,15 +18,10 @@
       </div>
     </div>
 
-    <div
-      v-if="
-        active || (activeFilters[name] ? activeFilters[name].length > 0 : false)
-      "
-      class="p-4"
-    >
+    <div v-if="active || Object.keys(activeFilters).length > 0" class="p-4">
       <ul>
         <li
-          v-for="item in sortedFilters"
+          v-for="item in entity"
           :key="'item_' + item.id"
           class="block text-sm"
         >
@@ -73,14 +68,6 @@ export default class CheckboxFilter extends Vue {
       this.activeFilters[this.name] &&
       this.activeFilters[this.name].includes(String(id))
     )
-  }
-
-  get sortedFilters() {
-    const filters = [...this.entity]
-
-    return filters.sort((filter) => {
-      return this.isChecked(filter) ? -1 : 1
-    })
   }
 
   toggleItem(id: number) {
