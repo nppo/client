@@ -90,6 +90,10 @@ export default {
       no_results: 'Geen resultaten gevonden',
       input_search: 'Start je zoektocht...',
 
+      items: {
+        show_all: 'toon alles',
+      },
+
       filters: {
         heading: 'Filters',
       },

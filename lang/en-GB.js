@@ -87,6 +87,10 @@ export default {
       no_results: 'No products found',
       input_search: 'Start your search...',
 
+      items: {
+        show_all: 'show all',
+      },
+
       filters: {
         heading: 'Filters',
       },

@@ -160,8 +160,8 @@ export default {
     icons: {
       solid: [
         'faSearch',
-        'faPlus',
         'faMinus',
+        'faPlus',
         'faLink',
         'faArrowDown',
         'faArrowLeft',
