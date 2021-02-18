@@ -1,6 +1,10 @@
 export default {
   welcome: 'Welkom',
 
+  page: {
+    back: 'Terug',
+  },
+
   account: {
     login: 'Inloggen',
     profile: 'Mijn Account',
@@ -64,7 +68,9 @@ export default {
         ],
       },
     },
+
     search: {
+      title: 'Zoekresultaten',
       placeholder: 'Start je zoektocht...',
       no_results: 'Geen resultaten gevonden',
       input_search: 'Start je zoektocht...',
