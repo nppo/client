@@ -72,6 +72,7 @@ export default {
         ],
       },
     },
+
     search: {
       title: 'Zoekresultaten',
       placeholder: 'Start je zoektocht...',

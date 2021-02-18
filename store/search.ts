@@ -6,7 +6,6 @@ export const state = () => ({
     ? (JSON.parse(<string>localStorage.getItem('currentSearch')) as Search)
     : ({} as Search),
   filters: {} as any,
-  isLoading: false,
 })
 
 export type SearchState = ReturnType<typeof state>
@@ -33,9 +32,6 @@ export const mutations = mutationTree(state, {
       state.filters[filter.type] = [...state.filters[filter.type], filter.value]
     }
   },
-  setLoading(state, isLoading: boolean) {
-    state.isLoading = isLoading
-  },
   reset(state) {
     state.filters = {} as any
   },
@@ -45,8 +41,6 @@ export const actions = actionTree(
   { state, mutations },
   {
     async result({ commit }, searchString): Promise<void> {
-      commit('setLoading', true)
-
       const res = await this.$repositories.search.result(searchString)
       const { status, data } = res
 
@@ -57,8 +51,6 @@ export const actions = actionTree(
           JSON.stringify(data.data as Search)
         )
       }
-
-      commit('setLoading', false)
     },
 
     setFilter({ commit }, data: Filter): void {

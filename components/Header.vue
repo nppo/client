@@ -33,25 +33,11 @@ export default class Header extends Vue {
 
   @Prop({ type: Boolean, default: false }) readonly hasSearchBar!: boolean
 
-  async handleSearchSubmit() {
-    if ((this.$route.path as string) !== '/search') {
-      this.$router.push({
-        path: 'search',
-        query: { query: this.searchQuery },
-      })
-
-      return
-    }
-
-    const params = new URLSearchParams()
-
-    params.append('query', this.searchQuery)
-
-    if ((this.$route.query.query as string) !== this.searchQuery) {
-      this.$router.replace({ query: { query: this.searchQuery } })
-    }
-
-    await this.$accessor.search.result(params.toString())
+  handleSearchSubmit() {
+    this.$router.push({
+      path: 'search',
+      query: { query: this.searchQuery },
+    })
   }
 }
 </script>

@@ -1,15 +1,8 @@
 <template>
   <div class="flex-1">
-    <Header has-search-bar class="mb-10">
+    <Header class="mb-10">
       <div class="container pb-16">
-        <button
-          type="button"
-          class="flex items-center px-2 py-1 mt-8 space-x-2 text-white bg-blue-500 rounded"
-          @click="$router.back()"
-        >
-          <font-awesome-icon class="block" icon="arrow-left" />
-          <span>{{ $t('page.back') }}</span>
-        </button>
+        <BackButton :has-navigated-internal="hasNavigatedInternal" />
 
         <h1 class="mt-8 text-4xl font-bold text-gray-100">
           {{ $t('pages.search.title') }}
@@ -97,14 +90,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, mixins } from 'nuxt-property-decorator'
 import qs from 'qs'
+import NavigationRouterHook from '~/mixins/navigation-router-hook'
 
 @Component
-export default class SearchPage extends Vue {
+export default class SearchPage extends mixins(NavigationRouterHook) {
   private searchString: string = ''
   private filterString: string = ''
-  private loading: boolean = false
+  private isLoading: boolean = false
 
   get people() {
     return this.$accessor.search.current.people
@@ -130,10 +124,6 @@ export default class SearchPage extends Vue {
     return this.$accessor.themes.all
   }
 
-  get isLoading(): boolean {
-    return this.$accessor.search.isLoading
-  }
-
   get filters() {
     return this.$accessor.search.filters
   }
@@ -152,6 +142,8 @@ export default class SearchPage extends Vue {
   }
 
   async search(replaceUrl: boolean = false) {
+    this.isLoading = true
+    
     if (this.searchString || this.filters) {
       this.filterString = ''
 
@@ -164,9 +156,9 @@ export default class SearchPage extends Vue {
         }
       }
 
-      const requestString = this.searchString
-        ? 'query=' + this.searchString + this.filterString
-        : this.filterString.substring(1)
+    const requestString: string = this.searchString
+      ? 'query=' + this.searchString + this.filterString
+      : this.filterString.substring(1)
 
       await this.$accessor.search.result(requestString)
 
@@ -174,6 +166,8 @@ export default class SearchPage extends Vue {
         await this.$router.replace('/search?' + requestString)
       }
     }
+
+    this.isLoading = false
   }
 
   mounted() {
@@ -182,7 +176,7 @@ export default class SearchPage extends Vue {
     const query = qs.parse(queryString) as any
 
     if (query.query) {
-      this.searchString = this.$route.query.query as string
+      this.searchString = this.$route.query.query.toString()
     }
 
     if (query.filters) {
