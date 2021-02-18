@@ -20,20 +20,22 @@
             <SearchSkeleton />
           </div>
           <div v-else>
-            <div v-if="products.length > 0">
-              <h2 class="mb-3 text-3xl">{{ $t('entities.product.plural') }}</h2>
-
+            <SearchAccordion
+              v-if="products.length > 0"
+              :show-header="!hasSpecificTypeFilter"
+              @showAll="typesFilter('product')"
+            >
               <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 <div v-for="product in products" :key="product.id">
                   <ProductBlock :product="product" />
                 </div>
               </div>
-            </div>
+            </SearchAccordion>
 
             <div v-if="people.length > 0">
-              <h2 class="text-3xl mb-3">{{ $t('entities.person.plural') }}</h2>
+              <h2 class="mb-3 text-3xl">{{ $t('entities.person.plural') }}</h2>
 
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 <div v-for="person in people" :key="person.id">
                   {{ person.id }}
                 </div>
@@ -41,9 +43,9 @@
             </div>
 
             <div v-if="projects.length > 0">
-              <h2 class="text-3xl mb-3">{{ $t('entities.project.plural') }}</h2>
+              <h2 class="mb-3 text-3xl">{{ $t('entities.project.plural') }}</h2>
 
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 <div v-for="project in projects" :key="project.id">
                   {{ project.id }}
                 </div>
@@ -51,9 +53,9 @@
             </div>
 
             <div v-if="parties.length > 0">
-              <h2 class="text-3xl mb-3">{{ $t('entities.party.plural') }}</h2>
+              <h2 class="mb-3 text-3xl">{{ $t('entities.party.plural') }}</h2>
 
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 <div v-for="party in parties" :key="party.id">
                   {{ party.id }}
                 </div>
@@ -157,6 +159,19 @@ export default class SearchPage extends Vue {
     if (this.searchString || this.filters) {
       this.search()
     }
+  }
+
+  get hasSpecificTypeFilter(): boolean {
+    if (!this.filters.types) {
+      return false
+    }
+
+    return this.filters.types.length === 1
+  }
+
+  typesFilter(type: string): void {
+    this.setFilters('types', [type])
+    this.search()
   }
 }
 </script>

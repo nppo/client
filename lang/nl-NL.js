@@ -68,6 +68,10 @@ export default {
       placeholder: 'Start je zoektocht...',
       no_results: 'Geen resultaten gevonden',
       input_search: 'Start je zoektocht...',
+
+      items: {
+        show_all: 'toon alles',
+      },
     },
 
     login: {
