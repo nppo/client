@@ -6,7 +6,7 @@
       class="flex items-center justify-between px-4 py-3 cursor-pointer bg-blue-800"
       @click="toggleFilter()"
     >
-      <span class="text-base text-white">{{ name }}</span>
+      <span class="text-base text-white">{{ $t('filters.' + name) }}</span>
 
       <div class="flex items-center">
         <span class="px-1 mr-4 text-xs font-bold rounded-sm bg-yellow-brand">

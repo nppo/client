@@ -37,6 +37,10 @@ export default {
     },
   },
 
+  filters: {
+    themes: "Thema's",
+  },
+
   pages: {
     index: {
       title: 'Samen creëren we impact!',

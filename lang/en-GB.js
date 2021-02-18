@@ -37,6 +37,10 @@ export default {
     },
   },
 
+  filters: {
+    themes: 'Themes',
+  },
+
   pages: {
     index: {
       title: 'Together we create impact!',
