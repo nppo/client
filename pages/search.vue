@@ -35,8 +35,8 @@
               @showAll="typesFilter('product')"
             >
               <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-                <div v-for="product in products" :key="product.id">
-                  <ProductBlock :product="product" />
+                <div v-for="(product, index) in products" :key="product.id">
+                  <ProductBlock v-if="index < 6" :product="product" />
                 </div>
               </div>
             </SearchAccordion>
