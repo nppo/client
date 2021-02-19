@@ -21,7 +21,7 @@
         />
 
         <div class="mr-10">
-          <h3 class="text-2xl mb-4">
+          <h3 class="mb-4 text-2xl">
             {{ $t('pages.search.filters.heading') }}
           </h3>
 
@@ -47,7 +47,7 @@
             @toggle-filter="toggleFilter"
           />
         </div>
-        <div class="col-span-4 lg:col-span-3 pt-10">
+        <div class="col-span-4 pt-10 lg:col-span-3">
           <div v-if="isLoading">
             <SearchSkeleton />
           </div>
@@ -56,7 +56,13 @@
               v-if="products && products.length > 0"
               :show-header="!hasSpecificTypeFilter()"
               :header="$t('entities.product.plural')"
-              @show-all="typesFilter('product')"
+              @show-all="
+                typesFilter(
+                  types.find((type) => {
+                    return type.label === 'product'
+                  }).id
+                )
+              "
             >
               <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 <div
