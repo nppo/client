@@ -227,11 +227,11 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
         ? 'query=' + this.searchString + this.filterString
         : this.filterString.substring(1)
 
-      await this.$accessor.search.result(requestString)
-
       if (replaceUrl) {
-        await this.$router.replace('/search?' + requestString)
+        this.$router.replace('/search?' + requestString)
       }
+
+      await this.$accessor.search.result(requestString)
     }
 
     this.isLoading = false
