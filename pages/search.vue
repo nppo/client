@@ -55,7 +55,7 @@
           <div v-else>
             <SearchCollapse
               v-if="products && products.length > 0"
-              :show-header="!hasSpecificTypeFilter()"
+              :show-header="!hasSpecificTypeFilter"
               :header="$t('entities.product.plural')"
               @show-all="setFilterByLabel('product')"
             >
@@ -109,7 +109,7 @@
 
             <SearchCollapse
               v-if="parties && parties.length > 0"
-              :show-header="!hasSpecificTypeFilter()"
+              :show-header="!hasSpecificTypeFilter"
               :header="$t('entities.party.plural')"
               @show-all="setFilterByLabel('party')"
             >
@@ -257,12 +257,8 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
     }
   }
 
-  hasSpecificTypeFilter(): boolean {
-    if (this.filters.types) {
-      return this.filters.types.length === 1
-    }
-
-    return false
+  get hasSpecificTypeFilter(): boolean {
+    return this.filters.types?.length === 1
   }
 
   setFilterByLabel(label: string): void {
@@ -281,7 +277,7 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
   }
 
   getMaxEntities(entities: Array<any>, max: number): Array<any> {
-    return this.hasSpecificTypeFilter() ? entities : entities.slice(0, max)
+    return this.hasSpecificTypeFilter ? entities : entities.slice(0, max)
   }
 }
 </script>
