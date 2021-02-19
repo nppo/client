@@ -39,7 +39,7 @@ export default {
 
   filters: {
     themes: {
-      title: "Thema's",
+      title: 'Thema',
     },
     types: {
       title: 'Type resultaat',

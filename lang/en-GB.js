@@ -39,7 +39,7 @@ export default {
 
   filters: {
     themes: {
-      title: 'Themes',
+      title: 'Theme',
     },
     types: {
       title: 'Type  of result',
