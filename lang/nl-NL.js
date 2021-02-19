@@ -38,7 +38,18 @@ export default {
   },
 
   filters: {
-    themes: "Thema's",
+    themes: {
+      title: 'Thema',
+    },
+    types: {
+      title: 'Type resultaat',
+      labels: {
+        party: 'Partij',
+        product: 'Product',
+        person: 'Persoon',
+        project: 'Project',
+      },
+    },
   },
 
   pages: {

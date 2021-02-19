@@ -38,7 +38,18 @@ export default {
   },
 
   filters: {
-    themes: 'Themes',
+    themes: {
+      title: 'Theme',
+    },
+    types: {
+      title: 'Type of result',
+      labels: {
+        party: 'Party',
+        product: 'Product',
+        person: 'Person',
+        project: 'Project',
+      },
+    },
   },
 
   pages: {

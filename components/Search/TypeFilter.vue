@@ -21,15 +21,15 @@
         >
           <div class="mb-2">
             <input
-              :id="type.name"
+              :id="'type_' + type.id"
               type="checkbox"
               class="w-4 h-4 mr-2 bg-gray-100 form-checkbox text-yellow-brand"
-              :value="type.name"
-              :checked="isChecked(type.name)"
-              @change="toggleType(type.name)"
+              :value="type.id"
+              :checked="isChecked(type.id)"
+              @change="toggleType(type.id)"
             />
-            <label class="cursor-pointer" :for="type.name">
-              {{ $t('entities.' + type.name + '.singular') }}
+            <label class="cursor-pointer" :for="'type_' + type.id">
+              {{ $t('entities.' + type.label + '.singular') }}
             </label>
           </div>
         </li>

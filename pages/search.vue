@@ -24,11 +24,24 @@
           <h3 class="text-2xl mb-4">
             {{ $t('pages.search.filters.heading') }}
           </h3>
+
+          <CheckboxFilter
+            :name="'types'"
+            :requires-translation="true"
+            :entity="
+              [...types].sort((type) => {
+                return isActive(type.id, 'types') ? -1 : 1
+              })
+            "
+            class="mb-1"
+            @toggle-filter="toggleFilter"
+          />
+
           <CheckboxFilter
             :name="'themes'"
             :entity="
-              [...themes].sort((firstTheme, secondTheme) => {
-                return isActive(firstTheme.id) ? -1 : 1
+              [...themes].sort((theme) => {
+                return isActive(theme.id, 'themes') ? -1 : 1
               })
             "
             @toggle-filter="toggleFilter"
@@ -130,12 +143,16 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
     return this.$accessor.themes.all
   }
 
+  get types() {
+    return this.$accessor.types.all
+  }
+
   get filters() {
     return this.$accessor.search.filters
   }
 
-  isActive(id: any) {
-    return this.filters.themes && this.filters.themes.includes(String(id))
+  isActive(id: any, type: string) {
+    return this.filters[type] && this.filters[type].includes(String(id))
   }
 
   toggleFilter(type: string, value: string) {
@@ -196,7 +213,7 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
     }
 
     if (this.searchString || this.filters) {
-      this.search(true)
+      this.search()
     }
 
     if (this.themes.length < 1) {
