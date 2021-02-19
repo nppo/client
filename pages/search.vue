@@ -33,7 +33,7 @@
                 return isActive(type.id, 'types') ? -1 : 1
               })
             "
-            class="mb-2"
+            class="mb-1"
             @toggle-filter="toggleFilter"
           />
 
