@@ -109,7 +109,7 @@
             >
               <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 <div
-                  v-for="party in parties.slice(0, getmaxParties())"
+                  v-for="party in parties.slice(0, getMaxParties())"
                   :key="party.id"
                 >
                   <PartyBlock :party="party" />
