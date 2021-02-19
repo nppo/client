@@ -1,9 +1,9 @@
 <template>
   <div
-    class="flex flex-col h-auto bg-white rounded-md shadow-block overflow-hidden"
+    class="flex flex-col h-auto overflow-hidden bg-white rounded-md shadow-block"
   >
     <div
-      class="flex items-center justify-between px-4 py-3 cursor-pointer bg-blue-800"
+      class="flex items-center justify-between px-4 py-3 bg-blue-800 cursor-pointer"
       @click="toggleFilter()"
     >
       <span class="text-base text-white">

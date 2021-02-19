@@ -236,7 +236,7 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
   }
 
   typesFilter(type: string): void {
-    this.setFilters('types', [type])
+    this.setFilters('types', [String(type)])
     this.search()
   }
 
