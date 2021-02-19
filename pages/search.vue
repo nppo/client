@@ -99,7 +99,13 @@
               v-if="parties && parties.length > 0"
               :show-header="!hasSpecificTypeFilter()"
               :header="$t('entities.party.plural')"
-              @show-all="typesFilter('party')"
+              @show-all="
+                typesFilter(
+                  types.find((type) => {
+                    return type.label === 'product'
+                  }).id
+                )
+              "
             >
               <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 <div v-for="party in parties" :key="party.id">
