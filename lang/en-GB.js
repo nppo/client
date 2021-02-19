@@ -37,6 +37,10 @@ export default {
     },
   },
 
+  filters: {
+    themes: 'Themes',
+  },
+
   pages: {
     index: {
       title: 'Together we create impact!',
@@ -73,7 +77,11 @@ export default {
       input_search: 'Start your search...',
 
       items: {
-        show_all: 'toon alles',
+        show_all: 'show all',
+      },
+
+      filters: {
+        heading: 'Filters',
       },
     },
 

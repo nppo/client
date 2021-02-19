@@ -1,6 +1,6 @@
 <template>
   <div class="flex-1">
-    <Header>
+    <Header class="mb-10">
       <div class="container pb-16">
         <BackButton :has-navigated-internal="hasNavigatedInternal" />
 
@@ -17,13 +17,24 @@
           variant="large"
           :value.sync="searchString"
           class="col-span-3 col-start-2"
-          @click="search()"
+          @click="search(true)"
         />
-      </div>
 
-      <div class="grid grid-cols-4 gap-4">
-        <div />
-        <div class="col-span-4 lg:col-span-3">
+        <div class="mr-10">
+          <h3 class="text-2xl mb-4">
+            {{ $t('pages.search.filters.heading') }}
+          </h3>
+          <CheckboxFilter
+            :name="'themes'"
+            :entity="
+              [...themes].sort((firstTheme, secondTheme) => {
+                return isActive(firstTheme.id) ? -1 : 1
+              })
+            "
+            @toggle-filter="toggleFilter"
+          />
+        </div>
+        <div class="col-span-4 lg:col-span-3 pt-10">
           <div v-if="isLoading">
             <SearchSkeleton />
           </div>
@@ -94,7 +105,6 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
   private searchString: string = ''
   private filterString: string = ''
   private isLoading: boolean = false
-  private activeFilters: Array<any> = []
 
   get people() {
     return this.$accessor.search.current.people
@@ -116,37 +126,51 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
     return this.$accessor.search.current
   }
 
+  get themes() {
+    return this.$accessor.themes.all
+  }
+
   get filters() {
     return this.$accessor.search.filters
   }
 
-  setFilters(type: string, filters: Array<any>) {
-    this.$accessor.search.setFilter({ type, values: filters })
-    this.filterString = ''
-
-    if (this.filters) {
-      for (const filter in this.filters) {
-        this.filters[filter].map(
-          (value: any) =>
-            (this.filterString += '&filters[' + filter + '][]=' + value)
-        )
-      }
-    }
+  isActive(id: any) {
+    return this.filters.themes && this.filters.themes.includes(String(id))
   }
 
-  async search() {
+  toggleFilter(type: string, value: string) {
+    this.$accessor.search.toggleFilter({ type, value })
+    this.search(true)
+  }
+
+  setFilters(type: string, filters: Array<any>) {
+    this.$accessor.search.setFilter({ type, values: filters })
+  }
+
+  async search(replaceUrl: boolean = false) {
     this.isLoading = true
 
-    if (this.searchString || this.filterString) {
+    if (this.searchString || this.filters) {
+      this.filterString = ''
+
+      if (this.filters) {
+        for (const filter in this.filters) {
+          this.filters[filter].map(
+            (value: any) =>
+              (this.filterString += '&filters[' + filter + '][]=' + value)
+          )
+        }
+      }
+
       const requestString: string = this.searchString
         ? 'query=' + this.searchString + this.filterString
         : this.filterString.substring(1)
 
-      if ((this.$route.query.query as string) !== this.searchString) {
-        this.$router.replace({ path: `${this.$route.path}?${requestString}` })
-      }
-
       await this.$accessor.search.result(requestString)
+
+      if (replaceUrl) {
+        await this.$router.replace('/search?' + requestString)
+      }
     }
 
     this.isLoading = false
@@ -172,7 +196,11 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
     }
 
     if (this.searchString || this.filters) {
-      this.search()
+      this.search(true)
+    }
+
+    if (this.themes.length < 1) {
+      this.$accessor.themes.fetchAll()
     }
   }
 

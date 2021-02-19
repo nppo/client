@@ -11,8 +11,10 @@
     </button>
 
     <div slot="items" class="w-64">
-      <ul v-for="(theme, index) in themes" :key="'theme_' + theme.id">
+      <ul>
         <li
+          v-for="(theme, index) in themes"
+          :key="'theme_' + theme.id"
           class="block py-2 mb-2 text-sm hover:font-bold"
           :class="{
             'border-b border-gray-100 hover:border-b-2 hover:border-yellow-brand':

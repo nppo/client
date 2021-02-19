@@ -87,15 +87,17 @@ export default class IndexPage extends Vue {
   }
 
   handleSubmitEvent() {
-    const query = {
-      query: this.searchQuery,
-      filters: qs.stringify(this.filters, { encode: false }),
-    }
+    if (this.searchQuery || this.filters) {
+      const query = {
+        query: this.searchQuery,
+        filters: qs.stringify({ ...this.filters }, { encode: false }),
+      }
 
-    this.$router.push({
-      path: 'search',
-      query,
-    })
+      this.$router.push({
+        path: 'search',
+        query,
+      })
+    }
   }
 
   mounted() {

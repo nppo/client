@@ -22,7 +22,7 @@
         </span>
 
         <!-- TODO: When image available make image dynamic: product.image" -->
-        <span v-if="!productImage" class="pr-4">
+        <span v-if="!productImage && product.themes.length > 0" class="pr-4">
           {{ product.themes[0].label }}
         </span>
       </div>
@@ -32,7 +32,9 @@
       <span>21 sep 2020</span>
 
       <!-- TODO: When image available make image dynamic: product.image" -->
-      <span v-if="productImage">{{ product.themes[0].label }}</span>
+      <span v-if="productImage && product.themes.length > 0">{{
+        product.themes[0].label
+      }}</span>
     </div>
 
     <div class="flex flex-col p-4">
