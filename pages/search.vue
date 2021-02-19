@@ -56,6 +56,7 @@
               v-if="products && products.length > 0"
               :show-header="!hasSpecificTypeFilter()"
               :header="$t('entities.product.plural')"
+              class="mb-20"
               @show-all="
                 typesFilter(
                   types.find((type) => {
@@ -74,7 +75,7 @@
               </div>
             </SearchCollapse>
 
-            <div v-if="people && people.length > 0">
+            <div v-if="people && people.length > 0" class="mb-20">
               <h2 class="mb-3 text-3xl">{{ $t('entities.person.plural') }}</h2>
 
               <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -84,7 +85,7 @@
               </div>
             </div>
 
-            <div v-if="projects && projects.length > 0">
+            <div v-if="projects && projects.length > 0" class="mb-20">
               <h2 class="mb-3 text-3xl">{{ $t('entities.project.plural') }}</h2>
 
               <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -94,15 +95,18 @@
               </div>
             </div>
 
-            <div v-if="parties && parties.length > 0">
-              <h2 class="mb-3 text-3xl">{{ $t('entities.party.plural') }}</h2>
-
+            <SearchCollapse
+              v-if="parties && parties.length > 0"
+              :show-header="!hasSpecificTypeFilter()"
+              :header="$t('entities.party.plural')"
+              @show-all="typesFilter('party')"
+            >
               <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 <div v-for="party in parties" :key="party.id">
-                  {{ party.id }}
+                  <PartyBlock :party="party" />
                 </div>
               </div>
-            </div>
+            </SearchCollapse>
 
             <div v-if="current.results === 0">
               {{ $t('pages.search.no_results') }}
