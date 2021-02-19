@@ -6,7 +6,7 @@
         v-if="partyImage"
         class="w-24 h-24 mb-2 rounded-full inline shadow"
         :src="partyImage"
-        alt="Product picture"
+        alt="Party picture"
       />
     </div>
 
