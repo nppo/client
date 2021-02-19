@@ -25,9 +25,8 @@
         <li
           v-for="item in entity"
           :key="'filter_' + name + '_' + item.id"
-          class="block text-sm"
+          class="flex items-center mb-2 text-sm"
         >
-          <div class="mb-2">
             <input
               :id="'filter_' + name + '_' + item.id"
               type="checkbox"
@@ -37,7 +36,7 @@
               @change="toggleItem(item.id)"
             />
             <label
-              class="cursor-pointer"
+              class="flex-1 cursor-pointer"
               :for="'filter_' + name + '_' + item.id"
             >
               {{
@@ -46,7 +45,6 @@
                   : item.label
               }}
             </label>
-          </div>
         </li>
       </ul>
     </div>
