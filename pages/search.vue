@@ -238,6 +238,10 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
     if (this.themes.length < 1) {
       this.$accessor.themes.fetchAll()
     }
+
+    if (this.types.length < 1) {
+      this.$accessor.types.fetchAll()
+    }
   }
 
   hasSpecificTypeFilter(): boolean {
