@@ -1,6 +1,6 @@
 <template>
   <div class="flex-1">
-    <Header class="mb-10">
+    <Header>
       <div class="container pb-16">
         <BackButton :has-navigated-internal="hasNavigatedInternal" />
 
@@ -21,7 +21,7 @@
         />
 
         <div class="mr-10">
-          <h3 class="text-2xl mb-4">
+          <h3 class="mb-4 text-2xl">
             {{ $t('pages.search.filters.heading') }}
           </h3>
 
@@ -47,7 +47,7 @@
             @toggle-filter="toggleFilter"
           />
         </div>
-        <div class="col-span-4 lg:col-span-3 pt-10">
+        <div class="col-span-4 pt-10 lg:col-span-3">
           <div v-if="isLoading">
             <SearchSkeleton />
           </div>
