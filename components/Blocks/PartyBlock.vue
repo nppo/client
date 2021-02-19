@@ -11,22 +11,22 @@
     </div>
 
     <div class="flex flex-col text-center p-4">
-      <h4 class="text-base">{{ party.name }}</h4>
-      <span class="mb-2 text-xs text-gray-500">Subtitel?</span>
+      <h4 class="text-base font-bold">{{ party.name }}</h4>
+      <span class="mb-2 text-xs text-gray-300">Subtitel?</span>
 
-      <div class="text-gray-500 text-xs text-center mb-4">DESCRIPTION</div>
+      <div class="text-gray-300 line-clamp-4 mb-4">DESCRIPTION</div>
 
       <div class="flex items-center justify-evenly">
         <div class="flex flex-col">
-          <span class="text-gray-300">projecten</span>
+          <span class="text-gray-300 font-bold">projecten</span>
           <span>43</span>
         </div>
         <div class="flex flex-col">
-          <span class="text-gray-300">producten</span>
+          <span class="text-gray-300 font-bold">producten</span>
           <span>125</span>
         </div>
         <div class="flex flex-col">
-          <span class="text-gray-300">personen</span>
+          <span class="text-gray-300 font-bold">personen</span>
           <span>135</span>
         </div>
       </div>

@@ -62,13 +62,20 @@
             </div>
 
             <div v-if="parties && parties.length > 0">
-              <h2 class="mb-3 text-3xl">{{ $t('entities.party.plural') }}</h2>
-
-              <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-                <div v-for="party in parties" :key="party.id">
-                  <PartyBlock :party="party" />
+              <SearchCollapse
+                v-if="parties && parties.length > 0"
+                :show-header="!hasSpecificTypeFilter()"
+                :header="$t('entities.party.plural')"
+                @show-all="typesFilter('party')"
+              >
+                <div
+                  class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"
+                >
+                  <div v-for="party in parties" :key="party.id">
+                    <PartyBlock :party="party" />
+                  </div>
                 </div>
-              </div>
+              </SearchCollapse>
             </div>
 
             <div v-if="current.results === 0">
