@@ -1,6 +1,6 @@
 <template>
   <div class="flex-1">
-    <Header class="mb-10">
+    <Header>
       <div class="container pb-16">
         <BackButton :has-navigated-internal="hasNavigatedInternal" />
 
@@ -16,7 +16,7 @@
           :aria-label="$t('pages.search.input_search')"
           variant="large"
           :value.sync="searchString"
-          class="col-span-3 col-start-2"
+          class="col-span-3 col-start-2 mb-10"
           @click="search(true)"
         />
 
