@@ -246,7 +246,7 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
 
   hasSpecificTypeFilter(): boolean {
     if (this.filters.types) {
-      return this.filters.types.length === 0
+      return this.filters.types.length === 1
     }
 
     return false
