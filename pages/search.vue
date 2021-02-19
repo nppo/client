@@ -46,7 +46,10 @@
               @show-all="typesFilter('product')"
             >
               <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-                <div v-for="product in products.slice(0, 6)" :key="product.id">
+                <div
+                  v-for="product in products.slice(0, getMaxProducts())"
+                  :key="product.id"
+                >
                   <ProductBlock :product="product" />
                 </div>
               </div>
@@ -212,6 +215,14 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
   typesFilter(type: string): void {
     this.setFilters('types', [type])
     this.search()
+  }
+
+  getMaxProducts(): number {
+    if (this.hasSpecificTypeFilter()) {
+      return this.products ? this.products.length : 0
+    }
+
+    return 6
   }
 }
 </script>
