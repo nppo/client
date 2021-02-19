@@ -6,15 +6,15 @@
         v-if="partyImage"
         class="w-24 h-24 mb-2 rounded-full inline shadow"
         :src="partyImage"
-        alt="Party picture"
+        :alt="party.name + '_logo'"
       />
     </div>
 
     <div class="flex flex-col text-center p-4">
       <h4 class="text-base font-bold">{{ party.name }}</h4>
-      <span class="mb-2 text-xs text-gray-300">Subtitel?</span>
+      <span class="mb-2 text-xs text-gray-300">Subtitel</span>
 
-      <div class="text-gray-300 line-clamp-4 mb-4">DESCRIPTION</div>
+      <div class="text-gray-300 line-clamp-4 mb-4">{{ party.description }}</div>
 
       <div class="flex items-center justify-evenly">
         <div class="flex flex-col">

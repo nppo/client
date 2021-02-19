@@ -6,7 +6,7 @@
         v-if="productImage"
         class="w-full mb-2"
         :src="productImage"
-        alt="Product picture"
+        :alt="product.title + '_image'"
       />
 
       <div class="flex items-center justify-between">
