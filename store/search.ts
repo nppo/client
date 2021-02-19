@@ -16,7 +16,7 @@ export const mutations = mutationTree(state, {
     state.current = newValue
   },
   setFilter(state, filter: Filter) {
-    Vue.set(state.filters, filter.type, filter.values)
+    Vue.set(state.filters, filter.type, [...filter.values])
   },
   toggleFilter(state, filter: any) {
     const filters = state.filters[filter.type]
