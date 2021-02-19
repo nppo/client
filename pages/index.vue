@@ -28,7 +28,7 @@
         <NuxtLink
           v-for="(block, index) in searchBlocks"
           :key="index"
-          to="/"
+          :to="localePath('/')"
           class="block p-5 bg-white rounded shadow"
         >
           <div class="font-bold">
@@ -56,8 +56,8 @@
       </div>
     </div>
 
-    <div class="container relative mx-auto py-24">
-      <h3 class="text-2xl font-bold text-center mb-12">
+    <div class="container relative py-24 mx-auto">
+      <h3 class="mb-12 text-2xl font-bold text-center">
         {{ $t('pages.index.find_by_theme') }}
       </h3>
 
