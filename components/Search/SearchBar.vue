@@ -14,10 +14,10 @@
     <slot />
 
     <button
-      class="p-2 ml-4"
+      class="p-3 ml-4"
       :class="
         variant === 'large'
-          ? 'bg-orange-brand text-white rounded-full'
+          ? 'bg-orange-brand text-white text-sm rounded-full'
           : 'text-blue-500'
       "
       @click="search()"

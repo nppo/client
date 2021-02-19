@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="flex flex-col h-full overflow-hidden bg-white rounded-md shadow-block"
-  >
+  <div class="flex flex-col h-full overflow-hidden bg-white rounded-md shadow">
     <div class="relative">
       <!-- TODO: When image available make image dynamic: v-if="product.image" -->
       <img
