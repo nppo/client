@@ -108,7 +108,10 @@
               "
             >
               <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-                <div v-for="party in parties" :key="party.id">
+                <div
+                  v-for="party in parties.slice(0, getmaxParties())"
+                  :key="party.id"
+                >
                   <PartyBlock :party="party" />
                 </div>
               </div>
@@ -256,6 +259,14 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
     }
 
     return 6
+  }
+
+  getMaxParties(): number {
+    if (this.hasSpecificTypeFilter()) {
+      return this.parties ? this.parties.length : 0
+    }
+
+    return 3
   }
 }
 </script>
