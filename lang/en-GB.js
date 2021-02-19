@@ -42,7 +42,7 @@ export default {
       title: 'Theme',
     },
     types: {
-      title: 'Type  of result',
+      title: 'Type of result',
       labels: {
         party: 'Party',
         product: 'Product',
