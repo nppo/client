@@ -102,7 +102,7 @@
               @show-all="
                 typesFilter(
                   types.find((type) => {
-                    return type.label === 'product'
+                    return type.label === 'party'
                   }).id
                 )
               "
