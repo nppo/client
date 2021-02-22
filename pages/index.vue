@@ -25,10 +25,10 @@
 
     <div class="container relative mx-auto">
       <div class="grid grid-cols-1 gap-5 -mt-28 md:grid-cols-2 lg:grid-cols-4">
-        <NuxtLink
+        <LocaleLink
           v-for="(type, index) in [...types].reverse()"
           :key="index"
-          :to="{ path: '/search?filters[types][]=' + type.id }"
+          :path="'/search?filters[types][]=' + type.id"
           class="block p-5 bg-white rounded shadow"
         >
           <div class="font-bold">
@@ -54,12 +54,12 @@
               />
             </svg>
           </div>
-        </NuxtLink>
+        </LocaleLink>
       </div>
     </div>
 
-    <div class="container relative mx-auto py-24">
-      <h3 class="text-2xl font-bold text-center mb-12">
+    <div class="container relative py-24 mx-auto">
+      <h3 class="mb-12 text-2xl font-bold text-center">
         {{ $t('pages.index.find_by_theme') }}
       </h3>
 
