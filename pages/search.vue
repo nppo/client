@@ -271,7 +271,7 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
     if (!id) {
       return
     }
-    
+
     this.typesFilter(String(id))
   }
 
