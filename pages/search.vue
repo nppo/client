@@ -75,15 +75,18 @@
               </div>
             </SearchCollapse>
 
-            <div v-if="people && people.length > 0" class="mb-20">
-              <h2 class="mb-3 text-3xl">{{ $t('entities.person.plural') }}</h2>
-
+            <SearchCollapse
+              v-if="people && people.length > 0"
+              :show-header="!hasSpecificTypeFilter()"
+              :header="$t('entities.person.plural')"
+              class="mb-20"
+            >
               <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 <div v-for="person in people" :key="person.id">
-                  {{ person.id }}
+                  <PersonBlock :person="person" />
                 </div>
               </div>
-            </div>
+            </SearchCollapse>
 
             <div v-if="projects && projects.length > 0" class="mb-20">
               <h2 class="mb-3 text-3xl">{{ $t('entities.project.plural') }}</h2>
@@ -109,7 +112,7 @@
             >
               <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 <div
-                  v-for="party in getMaxEntities(products, 3)"
+                  v-for="party in getMaxEntities(parties, 3)"
                   :key="party.id"
                 >
                   <PartyBlock :party="party" />
@@ -144,7 +147,6 @@ import {
 @Component({
   async fetch(this: SearchPage) {
     this.$accessor.themes.fetchAll()
-
     this.$accessor.types.fetchAll()
 
     await this.search()

@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col h-full overflow-hidden bg-white rounded-md shadow">
-    <div class="relative pt-8 text-center">
+    <div class="flex flex-col items-center p-4">
       <!-- TODO: When image available make image dynamic: v-if="party.image" -->
       <img
         v-if="partyImage"
@@ -8,29 +8,29 @@
         :src="partyImage"
         :alt="party.name + '_logo'"
       />
-    </div>
 
-    <div class="flex flex-col text-center p-4">
       <h4 class="text-base font-bold">{{ party.name }}</h4>
       <span class="mb-2 text-xs text-gray-300">Subtitel</span>
 
       <div class="text-gray-300 line-clamp-4 mb-4">{{ party.description }}</div>
 
-      <div class="flex items-center justify-evenly">
-        <div class="flex flex-col">
+      <div class="flex justify-evenly w-full">
+        <div class="flex flex-col items-center">
           <span class="text-gray-300 font-bold">projecten</span>
           <span>43</span>
         </div>
-        <div class="flex flex-col">
+        <div class="flex flex-col items-center">
           <span class="text-gray-300 font-bold">producten</span>
           <span>125</span>
         </div>
-        <div class="flex flex-col">
+        <div class="flex flex-col items-center">
           <span class="text-gray-300 font-bold">personen</span>
           <span>135</span>
         </div>
       </div>
     </div>
+
+    <hr class="border-gray-100 mb-10" />
 
     <div class="flex justify-end px-4 pb-3 mt-auto">
       <span class="text-blue-500">
