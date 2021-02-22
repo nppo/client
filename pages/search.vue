@@ -47,6 +47,7 @@
             @toggle-filter="toggleFilter"
           />
         </div>
+
         <div class="col-span-4 pt-10 lg:col-span-3">
           <div v-if="isLoading">
             <SearchSkeleton />
@@ -56,16 +57,11 @@
               v-if="products && products.length > 0"
               :show-header="!hasSpecificTypeFilter()"
               :header="$t('entities.product.plural')"
-              class="mb-20"
-              @show-all="
-                typesFilter(
-                  types.find((type) => {
-                    return type.label === 'product'
-                  }).id
-                )
-              "
+              @show-all="setFilterByLabel('product')"
             >
-              <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+              <div
+                class="grid grid-cols-1 gap-4 mb-5 md:grid-cols-2 lg:grid-cols-3"
+              >
                 <div
                   v-for="product in getMaxEntities(products, 6)"
                   :key="product.id"
@@ -80,37 +76,46 @@
               :show-header="!hasSpecificTypeFilter()"
               :header="$t('entities.person.plural')"
               class="mb-20"
+              @show-all="setFilterByLabel('person')"
+            >
             >
               <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-                <div v-for="person in people" :key="person.id">
+                <div
+                  v-for="person in getMaxEntities(people, 3)"
+                  :key="person.id"
+                >
                   <PersonBlock :person="person" />
                 </div>
               </div>
             </SearchCollapse>
 
-            <div v-if="projects && projects.length > 0" class="mb-20">
-              <h2 class="mb-3 text-3xl">{{ $t('entities.project.plural') }}</h2>
-
-              <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-                <div v-for="project in projects" :key="project.id">
+            <SearchCollapse
+              v-if="projects && projects.length > 0"
+              :show-header="!hasSpecificTypeFilter()"
+              :header="$t('entities.project.plural')"
+              @show-all="setFilterByLabel('project')"
+            >
+              <div
+                class="grid grid-cols-1 gap-4 mb-5 md:grid-cols-2 lg:grid-cols-3"
+              >
+                <div
+                  v-for="project in getMaxEntities(projects, 6)"
+                  :key="project.id"
+                >
                   {{ project.id }}
                 </div>
               </div>
-            </div>
+            </SearchCollapse>
 
             <SearchCollapse
               v-if="parties && parties.length > 0"
               :show-header="!hasSpecificTypeFilter()"
               :header="$t('entities.party.plural')"
-              @show-all="
-                typesFilter(
-                  types.find((type) => {
-                    return type.label === 'party'
-                  }).id
-                )
-              "
+              @show-all="setFilterByLabel('party')"
             >
-              <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+              <div
+                class="grid grid-cols-1 gap-4 mb-5 md:grid-cols-2 lg:grid-cols-3"
+              >
                 <div
                   v-for="party in getMaxEntities(parties, 3)"
                   :key="party.id"
@@ -259,9 +264,19 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
     return false
   }
 
+  setFilterByLabel(label: string): void {
+    const id = this.types.find((type) => type.label === label)?.id
+
+    if (!id) {
+      return
+    }
+
+    this.typesFilter(String(id))
+  }
+
   typesFilter(type: string): void {
     this.setFilters('types', [String(type)])
-    this.search()
+    this.search(true)
   }
 
   getMaxEntities(entities: Array<any>, max: number): Array<any> {
