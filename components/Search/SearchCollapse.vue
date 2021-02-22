@@ -2,7 +2,7 @@
   <div>
     <div
       v-if="showHeader"
-      class="flex items-center justify-between mb-5 border-b border-gray-200"
+      class="flex items-center justify-between mb-5 border-b border-gray-200 cursor-pointer"
       @click="toggleOpen"
     >
       <h2 class="mb-2 text-3xl">
@@ -21,7 +21,7 @@
           class="block cursor-pointer"
           icon="minus"
         />
-        <font-awesome-icon v-else class="block cursor-pointer" icon="plus" />
+        <font-awesome-icon v-else class="block" icon="plus" />
       </div>
     </div>
     <div v-show="localOpen">
