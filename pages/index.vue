@@ -71,24 +71,31 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import qs from 'qs'
+import { Filter, Type } from '~/types/entities'
 
-@Component
+@Component({
+  async fetch(this: IndexPage) {
+    if (this.$accessor.types.all.length < 1) {
+      await this.$accessor.types.fetchAll()
+    }
+  },
+})
 export default class IndexPage extends Vue {
   private searchQuery: string = ''
 
-  get filters() {
+  get filters(): Array<Filter[]> {
     return this.$accessor.search.filters
   }
 
-  get types() {
+  get types(): Type[] {
     return this.$accessor.types.all
   }
 
-  setFilters(type: string, filters: Array<any>) {
+  setFilters(type: string, filters: Array<any>): void {
     this.$accessor.search.setFilter({ type, values: filters })
   }
 
-  handleSubmitEvent() {
+  handleSubmitEvent(): void {
     if (this.searchQuery || this.filters) {
       const query = {
         query: this.searchQuery,
@@ -102,7 +109,7 @@ export default class IndexPage extends Vue {
     }
   }
 
-  mounted() {
+  mounted(): void {
     this.$accessor.search.resetSearch()
   }
 }
