@@ -259,7 +259,7 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
 
   typesFilter(type: string): void {
     this.setFilters('types', [String(type)])
-    this.search()
+    this.search(true)
   }
 
   getMaxEntities(entities: Array<any>, max: number): Array<any> {
