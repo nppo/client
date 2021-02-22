@@ -161,6 +161,7 @@ export default {
       solid: [
         'faArrowDown',
         'faArrowLeft',
+        'faArrowRight',
         'faLink',
         'faMinus',
         'faPlus',
