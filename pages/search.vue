@@ -131,38 +131,55 @@
 import { Component, mixins } from 'nuxt-property-decorator'
 import qs from 'qs'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
+import {
+  Party,
+  Person,
+  Product,
+  Project,
+  Search,
+  Theme,
+  Type,
+} from '~/types/entities'
 
-@Component
+@Component({
+  async fetch(this: SearchPage) {
+    this.$accessor.themes.fetchAll()
+
+    this.$accessor.types.fetchAll()
+
+    await this.search()
+  },
+})
 export default class SearchPage extends mixins(NavigationRouterHook) {
   private searchString: string = ''
   private filterString: string = ''
   private isLoading: boolean = false
 
-  get people() {
-    return this.$accessor.search.current.people
-  }
-
-  get parties() {
-    return this.$accessor.search.current.parties
-  }
-
-  get products() {
-    return this.$accessor.search.current.products
-  }
-
-  get projects() {
-    return this.$accessor.search.current.projects
-  }
-
-  get current() {
+  get current(): Search {
     return this.$accessor.search.current
   }
 
-  get themes() {
+  get people(): Array<Person> | undefined {
+    return this.current.people
+  }
+
+  get parties(): Array<Party> | undefined {
+    return this.current.parties
+  }
+
+  get products(): Array<Product> | undefined {
+    return this.current.products
+  }
+
+  get projects(): Array<Project> | undefined {
+    return this.current.projects
+  }
+
+  get themes(): Array<Theme> {
     return this.$accessor.themes.all
   }
 
-  get types() {
+  get types(): Array<Type> {
     return this.$accessor.types.all
   }
 
@@ -170,20 +187,20 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
     return this.$accessor.search.filters
   }
 
-  isActive(id: any, type: string) {
+  isActive(id: any, type: string): boolean {
     return this.filters[type] && this.filters[type].includes(String(id))
   }
 
-  toggleFilter(type: string, value: string) {
+  toggleFilter(type: string, value: string): void {
     this.$accessor.search.toggleFilter({ type, value })
     this.search(true)
   }
 
-  setFilters(type: string, filters: Array<any>) {
+  setFilters(type: string, filters: Array<any>): void {
     this.$accessor.search.setFilter({ type, values: filters })
   }
 
-  async search(replaceUrl: boolean = false) {
+  async search(replaceUrl: boolean = false): Promise<void> {
     this.isLoading = true
 
     if (this.searchString || this.filters) {
@@ -212,7 +229,7 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
     this.isLoading = false
   }
 
-  mounted() {
+  mounted(): void {
     const queryString = this.$route.fullPath.replace('/search?', '')
 
     const query = qs.parse(queryString) as any
@@ -229,18 +246,6 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
           this.setFilters(type, filters[type] as any)
         }
       }
-    }
-
-    if (this.searchString || this.filters) {
-      this.search()
-    }
-
-    if (this.themes.length < 1) {
-      this.$accessor.themes.fetchAll()
-    }
-
-    if (this.types.length < 1) {
-      this.$accessor.types.fetchAll()
     }
   }
 
