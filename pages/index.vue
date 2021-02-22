@@ -26,19 +26,21 @@
     <div class="container relative mx-auto">
       <div class="grid grid-cols-1 gap-5 -mt-28 md:grid-cols-2 lg:grid-cols-4">
         <NuxtLink
-          v-for="(block, index) in searchBlocks"
+          v-for="(type, index) in [...types].reverse()"
           :key="index"
-          to="/"
+          :to="{ path: '/search?filters[types][]=' + type.id }"
           class="block p-5 bg-white rounded shadow"
         >
           <div class="font-bold">
             {{ $t('pages.index.search_blocks.title') }}
           </div>
 
-          <h3 class="text-2xl font-medium">{{ block.title }}</h3>
+          <h3 class="text-2xl font-medium">
+            {{ $t('pages.index.search_blocks.' + type.label + '.title') }}
+          </h3>
 
           <p class="text-xs">
-            {{ block.description }}
+            {{ $t('pages.index.search_blocks.' + type.label + '.description') }}
           </p>
 
           <div class="flex justify-end">
@@ -68,18 +70,18 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import { LocaleMessageArray } from 'vue-i18n/types'
 import qs from 'qs'
 
 @Component
 export default class IndexPage extends Vue {
   private searchQuery: string = ''
-  private searchBlocks: LocaleMessageArray = this.$t(
-    'pages.index.search_blocks.items'
-  )
 
   get filters() {
     return this.$accessor.search.filters
+  }
+
+  get types() {
+    return this.$accessor.types.all
   }
 
   setFilters(type: string, filters: Array<any>) {

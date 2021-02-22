@@ -109,7 +109,7 @@
             >
               <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 <div
-                  v-for="party in getMaxEntities(products, 3)"
+                  v-for="party in getMaxEntities(parties, 3)"
                   :key="party.id"
                 >
                   <PartyBlock :party="party" />
@@ -146,6 +146,8 @@ import {
     this.$accessor.themes.fetchAll()
 
     this.$accessor.types.fetchAll()
+
+    this.prepareFilters()
 
     await this.search()
   },
@@ -229,7 +231,7 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
     this.isLoading = false
   }
 
-  mounted(): void {
+  prepareFilters(): void {
     const queryString = this.$route.fullPath.replace('/search?', '')
 
     const query = qs.parse(queryString) as any
