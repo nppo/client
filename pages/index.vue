@@ -25,10 +25,10 @@
 
     <div class="container relative mx-auto">
       <div class="grid grid-cols-1 gap-5 -mt-28 md:grid-cols-2 lg:grid-cols-4">
-        <NuxtLink
+        <LocaleLink
           v-for="(block, index) in searchBlocks"
           :key="index"
-          :to="localePath('/')"
+          path="/"
           class="block p-5 bg-white rounded shadow"
         >
           <div class="font-bold">
@@ -52,7 +52,7 @@
               />
             </svg>
           </div>
-        </NuxtLink>
+        </LocaleLink>
       </div>
     </div>
 
