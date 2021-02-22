@@ -59,7 +59,12 @@
     </div>
 
     <ThemeFilterSection :themes="themes" />
-    <DiscoverSection :types="types" :products="products" />
+    <DiscoverSection
+      :types="types"
+      :products="products"
+      :people="people"
+      :parties="parties"
+    />
   </div>
 </template>
 
@@ -81,6 +86,14 @@ import { Filter, Type } from '~/types/entities'
     if (this.$accessor.products.all.length < 1) {
       await this.$accessor.products.fetchAll()
     }
+
+    if (this.$accessor.person.all.length < 1) {
+      await this.$accessor.person.fetchAll()
+    }
+
+    if (this.$accessor.party.all.length < 1) {
+      await this.$accessor.party.fetchAll()
+    }
   },
 })
 export default class IndexPage extends Vue {
@@ -100,6 +113,14 @@ export default class IndexPage extends Vue {
 
   get products() {
     return this.$accessor.products.firstFive
+  }
+
+  get people() {
+    return this.$accessor.person.firstFive
+  }
+
+  get parties() {
+    return this.$accessor.party.firstFive
   }
 
   setFilters(type: string, filters: Array<any>): void {

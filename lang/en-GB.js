@@ -65,7 +65,7 @@ export default {
             'Research projects and programs with underlying products',
         },
         product: {
-          title: 'Results',
+          title: 'Products',
           description: 'Outcomes and results of practice-oriented studies',
         },
         person: {
@@ -77,6 +77,12 @@ export default {
           description:
             'Organizations and institutions involved in practice-oriented research',
         },
+      },
+      types: {
+        project: 'Projects',
+        product: 'Products',
+        person: 'Persons',
+        party: 'Parties',
       },
     },
     search: {

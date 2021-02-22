@@ -5,7 +5,7 @@
         <div class="flex items-start justify-between">
           <nav class="flex mb-8 space-x-16" aria-label="Tabs">
             <a
-              v-for="(type, index) in [...types].reverse()"
+              v-for="(type, index) in [...types]"
               :key="index"
               href="#"
               class="pb-5 text-sm font-medium text-white border-b-2 border-transparent hover:text-white hover:border-yellow-brand whitespace-nowrap"
@@ -51,6 +51,38 @@
             </div>
           </VueSlickCarousel>
         </div>
+
+        <div v-if="isActive('person')">
+          <VueSlickCarousel
+            v-if="people.length > 0"
+            ref="carousel"
+            :arrows="false"
+            :infinite="true"
+            :speed="500"
+            :slides-to-show="4"
+            :slides-to-scroll="1"
+          >
+            <div v-for="person in people" :key="person.id">
+              <PersonBlock :person="person" class="h-auto mr-4" />
+            </div>
+          </VueSlickCarousel>
+        </div>
+
+        <div v-if="isActive('party')">
+          <VueSlickCarousel
+            v-if="parties.length > 0"
+            ref="carousel"
+            :arrows="false"
+            :infinite="true"
+            :speed="500"
+            :slides-to-show="4"
+            :slides-to-scroll="1"
+          >
+            <div v-for="party in parties" :key="party.id">
+              <PartyBlock :party="party" class="h-auto mr-4" />
+            </div>
+          </VueSlickCarousel>
+        </div>
       </div>
     </div>
   </div>
@@ -71,6 +103,8 @@ export default class DiscoverSection extends Vue {
 
   @Prop({ type: Array, required: true }) types!: any
   @Prop({ type: Array, required: true }) products!: any
+  @Prop({ type: Array, required: true }) people!: any
+  @Prop({ type: Array, required: true }) parties!: any
 
   isActive(menuItem: String): boolean {
     return this.activeTab === String(menuItem)

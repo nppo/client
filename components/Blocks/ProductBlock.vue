@@ -32,7 +32,7 @@
       <div
         class="text-gray-300"
         :class="{ 'line-clamp-4': productImage }"
-        style="min-height: 4.5rem"
+        style="height: 4.5rem"
       >
         {{ product.description }}
       </div>

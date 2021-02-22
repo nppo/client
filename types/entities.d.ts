@@ -1,9 +1,16 @@
 export interface Party {
   id: number
+  name: string
+  description: string
 }
 
 export interface Person {
   id: number
+  firstName: string
+  lastName: string
+  email: string
+  function: string
+  phone: string
 }
 
 export interface Product {
