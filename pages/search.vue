@@ -57,13 +57,7 @@
               v-if="products && products.length > 0"
               :show-header="!hasSpecificTypeFilter()"
               :header="$t('entities.product.plural')"
-              @show-all="
-                typesFilter(
-                  types.find((type) => {
-                    return type.label === 'product'
-                  }).id
-                )
-              "
+              @show-all="setFilterByLabel('product')"
             >
               <div
                 class="grid grid-cols-1 gap-4 mb-5 md:grid-cols-2 lg:grid-cols-3"
@@ -81,13 +75,7 @@
               v-if="people && people.length > 0"
               :show-header="!hasSpecificTypeFilter()"
               :header="$t('entities.person.plural')"
-              @show-all="
-                typesFilter(
-                  types.find((type) => {
-                    return type.label === 'person'
-                  }).id
-                )
-              "
+              @show-all="setFilterByLabel('person')"
             >
               <div
                 class="grid grid-cols-1 gap-4 mb-5 md:grid-cols-2 lg:grid-cols-3"
@@ -105,13 +93,7 @@
               v-if="projects && projects.length > 0"
               :show-header="!hasSpecificTypeFilter()"
               :header="$t('entities.project.plural')"
-              @show-all="
-                typesFilter(
-                  types.find((type) => {
-                    return type.label === 'project'
-                  }).id
-                )
-              "
+              @show-all="setFilterByLabel('project')"
             >
               <div
                 class="grid grid-cols-1 gap-4 mb-5 md:grid-cols-2 lg:grid-cols-3"
@@ -129,13 +111,7 @@
               v-if="parties && parties.length > 0"
               :show-header="!hasSpecificTypeFilter()"
               :header="$t('entities.party.plural')"
-              @show-all="
-                typesFilter(
-                  types.find((type) => {
-                    return type.label === 'party'
-                  }).id
-                )
-              "
+              @show-all="setFilterByLabel('party')"
             >
               <div
                 class="grid grid-cols-1 gap-4 mb-5 md:grid-cols-2 lg:grid-cols-3"
@@ -287,6 +263,16 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
     }
 
     return false
+  }
+
+  setFilterByLabel(label: string): void {
+    const id = this.types.find((type) => type.label === label)?.id
+
+    if (!id) {
+      return
+    }
+    
+    this.typesFilter(String(id))
   }
 
   typesFilter(type: string): void {
