@@ -46,10 +46,7 @@
             :slides-to-show="4"
             :slides-to-scroll="1"
           >
-            <div
-              v-for="product in getMaxEntities(products, 5)"
-              :key="product.id"
-            >
+            <div v-for="product in products" :key="product.id">
               <ProductBlock :product="product" class="h-auto mr-4" />
             </div>
           </VueSlickCarousel>
@@ -74,10 +71,6 @@ export default class DiscoverSection extends Vue {
 
   @Prop({ type: Array, required: true }) types!: any
   @Prop({ type: Array, required: true }) products!: any
-
-  getMaxEntities(entities: Array<any>, max: number): Array<any> {
-    return entities.slice(0, max)
-  }
 
   isActive(menuItem: String): boolean {
     return this.activeTab === String(menuItem)
