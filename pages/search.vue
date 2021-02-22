@@ -159,20 +159,20 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
     return this.$accessor.search.current
   }
 
-  get people(): Array<Person> {
-    return this.current.people ?? []
+  get people(): Array<Person> | undefined {
+    return this.current.people
   }
 
-  get parties(): Array<Party> {
-    return this.current.parties ?? []
+  get parties(): Array<Party> | undefined {
+    return this.current.parties
   }
 
-  get products(): Array<Product> {
-    return this.current.products ?? []
+  get products(): Array<Product> | undefined {
+    return this.current.products
   }
 
-  get projects(): Array<Project> {
-    return this.current.projects ?? []
+  get projects(): Array<Project> | undefined {
+    return this.current.projects
   }
 
   get themes(): Array<Theme> {
