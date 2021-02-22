@@ -1,4 +1,4 @@
-import { actionTree, mutationTree } from 'nuxt-typed-vuex'
+import { actionTree, mutationTree, getterTree } from 'nuxt-typed-vuex'
 import { Product } from '~/types/entities'
 
 export const state = () => ({
@@ -6,6 +6,10 @@ export const state = () => ({
 })
 
 export type ProductsState = ReturnType<typeof state>
+
+export const getters = getterTree(state, {
+  firstFive: (state) => state.all.slice(0, 5),
+})
 
 export const mutations = mutationTree(state, {
   setAll(state, newValue: Product[]) {

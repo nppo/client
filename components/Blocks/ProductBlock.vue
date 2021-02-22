@@ -18,21 +18,11 @@
           <!-- TODO: Make sure the badge reflects information from the product -->
           <Badge icon-style="fas" icon-name="link" text="TBA" />
         </span>
-
-        <!-- TODO: When image available make image dynamic: product.image" -->
-        <span v-if="!productImage && product.themes.length > 0" class="pr-4">
-          {{ product.themes[0].label }}
-        </span>
       </div>
     </div>
 
     <div class="flex justify-between px-4 text-tiny">
       <span>21 sep 2020</span>
-
-      <!-- TODO: When image available make image dynamic: product.image" -->
-      <span v-if="productImage && product.themes.length > 0">{{
-        product.themes[0].label
-      }}</span>
     </div>
 
     <div class="flex flex-col p-4">

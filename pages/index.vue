@@ -16,7 +16,7 @@
           >
             <SearchBar :value.sync="searchQuery" variant="large">
               <TypeFilter @set-filters="setFilters" />
-              <ThemeFilter @set-filters="setFilters" />
+              <ThemeFilter :themes="themes" @set-filters="setFilters" />
             </SearchBar>
           </form>
         </div>
@@ -58,13 +58,8 @@
       </div>
     </div>
 
-    <div class="container relative py-24 mx-auto">
-      <h3 class="mb-12 text-2xl font-bold text-center">
-        {{ $t('pages.index.find_by_theme') }}
-      </h3>
-
-      <FilterList />
-    </div>
+    <ThemeFilterSection :themes="themes" />
+    <DiscoverSection :types="types" :products="products" />
   </div>
 </template>
 
@@ -78,6 +73,14 @@ import { Filter, Type } from '~/types/entities'
     if (this.$accessor.types.all.length < 1) {
       await this.$accessor.types.fetchAll()
     }
+
+    if (this.$accessor.themes.all.length < 1) {
+      await this.$accessor.themes.fetchAll()
+    }
+
+    if (this.$accessor.products.all.length < 1) {
+      await this.$accessor.products.fetchAll()
+    }
   },
 })
 export default class IndexPage extends Vue {
@@ -89,6 +92,14 @@ export default class IndexPage extends Vue {
 
   get types(): Type[] {
     return this.$accessor.types.all
+  }
+
+  get themes() {
+    return this.$accessor.themes.all
+  }
+
+  get products() {
+    return this.$accessor.products.firstFive
   }
 
   setFilters(type: string, filters: Array<any>): void {

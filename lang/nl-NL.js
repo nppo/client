@@ -65,7 +65,7 @@ export default {
             'Onderzoeksprojecten en programma’s met onderliggende producten',
         },
         product: {
-          title: 'Resultaten',
+          title: 'Producten',
           description:
             'Uitkomsten en resultaten van praktijkgerichte onderzoeken',
         },
@@ -79,6 +79,12 @@ export default {
           description:
             'Organisaties en instellingen die betrokken zijn bij praktijkgericht onderzoek ',
         },
+      },
+      types: {
+        project: 'Projecten',
+        product: 'Producten',
+        person: 'Personen',
+        party: 'Partijen',
       },
     },
 

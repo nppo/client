@@ -41,16 +41,14 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Vue, Prop } from 'nuxt-property-decorator'
 
 @Component
 export default class ThemeFilter extends Vue {
   public active: boolean = false
   public selected: Array<number> = []
 
-  get themes() {
-    return this.$accessor.themes.all
-  }
+  @Prop({ type: Array, required: true }) themes!: any
 
   get activeFilters() {
     return this.$accessor.search.filters
@@ -77,12 +75,6 @@ export default class ThemeFilter extends Vue {
     }
 
     this.$emit('set-filters', 'themes', this.selected)
-  }
-
-  mounted() {
-    if (this.themes.length < 1) {
-      this.$accessor.themes.fetchAll()
-    }
   }
 }
 </script>
