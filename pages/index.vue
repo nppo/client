@@ -26,19 +26,21 @@
     <div class="container relative mx-auto">
       <div class="grid grid-cols-1 gap-5 -mt-28 md:grid-cols-2 lg:grid-cols-4">
         <LocaleLink
-          v-for="(block, index) in searchBlocks"
+          v-for="(type, index) in [...types].reverse()"
           :key="index"
-          path="/"
+          :path="'/search?filters[types][]=' + type.id"
           class="block p-5 bg-white rounded shadow"
         >
           <div class="font-bold">
             {{ $t('pages.index.search_blocks.title') }}
           </div>
 
-          <h3 class="text-2xl font-medium">{{ block.title }}</h3>
+          <h3 class="text-2xl font-medium">
+            {{ $t('pages.index.search_blocks.' + type.label + '.title') }}
+          </h3>
 
           <p class="text-xs">
-            {{ block.description }}
+            {{ $t('pages.index.search_blocks.' + type.label + '.description') }}
           </p>
 
           <div class="flex justify-end">
@@ -68,25 +70,32 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import { LocaleMessageArray } from 'vue-i18n/types'
 import qs from 'qs'
+import { Filter, Type } from '~/types/entities'
 
-@Component
+@Component({
+  async fetch(this: IndexPage) {
+    if (this.$accessor.types.all.length < 1) {
+      await this.$accessor.types.fetchAll()
+    }
+  },
+})
 export default class IndexPage extends Vue {
   private searchQuery: string = ''
-  private searchBlocks: LocaleMessageArray = this.$t(
-    'pages.index.search_blocks.items'
-  )
 
-  get filters() {
+  get filters(): Array<Filter[]> {
     return this.$accessor.search.filters
   }
 
-  setFilters(type: string, filters: Array<any>) {
+  get types(): Type[] {
+    return this.$accessor.types.all
+  }
+
+  setFilters(type: string, filters: Array<any>): void {
     this.$accessor.search.setFilter({ type, values: filters })
   }
 
-  handleSubmitEvent() {
+  handleSubmitEvent(): void {
     if (this.searchQuery || this.filters) {
       const query = {
         query: this.searchQuery,
@@ -100,7 +109,7 @@ export default class IndexPage extends Vue {
     }
   }
 
-  mounted() {
+  mounted(): void {
     this.$accessor.search.resetSearch()
   }
 }
