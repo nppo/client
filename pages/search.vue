@@ -57,6 +57,7 @@
               v-if="products && products.length > 0"
               :show-header="!hasSpecificTypeFilter()"
               :header="$t('entities.product.plural')"
+              class="mb-20"
               @show-all="setFilterByLabel('product')"
             >
               <div
@@ -92,6 +93,7 @@
               v-if="projects && projects.length > 0"
               :show-header="!hasSpecificTypeFilter()"
               :header="$t('entities.project.plural')"
+              class="mb-20"
               @show-all="setFilterByLabel('project')"
             >
               <div
