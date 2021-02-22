@@ -67,7 +67,7 @@
             >
               <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 <div
-                  v-for="product in products.slice(0, getMaxProducts())"
+                  v-for="product in getMaxEntities(products, 6)"
                   :key="product.id"
                 >
                   <ProductBlock :product="product" />
@@ -109,7 +109,7 @@
             >
               <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 <div
-                  v-for="party in parties.slice(0, getMaxParties())"
+                  v-for="party in getMaxEntities(products, 3)"
                   :key="party.id"
                 >
                   <PartyBlock :party="party" />
@@ -257,20 +257,12 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
     this.search()
   }
 
-  getMaxProducts(): number {
+  getMaxEntities(entities: Array<any>, max: number): Array<any> {
     if (this.hasSpecificTypeFilter()) {
-      return this.products ? this.products.length : 0
+      return entities
     }
 
-    return 6
-  }
-
-  getMaxParties(): number {
-    if (this.hasSpecificTypeFilter()) {
-      return this.parties ? this.parties.length : 0
-    }
-
-    return 3
+    return entities.slice(0, max)
   }
 }
 </script>
