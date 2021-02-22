@@ -59,26 +59,24 @@ export default {
       find_by_theme: 'Find by theme',
       search_blocks: {
         title: "I'm looking for",
-        items: [
-          {
-            title: 'Projects',
-            description:
-              'Research projects and programs with underlying products',
-          },
-          {
-            title: 'Results',
-            description: 'Outcomes and results of practice-oriented studies',
-          },
-          {
-            title: 'People',
-            description: 'People involved in practice-oriented research',
-          },
-          {
-            title: 'Parties',
-            description:
-              'Organizations and institutions involved in practice-oriented research',
-          },
-        ],
+        project: {
+          title: 'Projects',
+          description:
+            'Research projects and programs with underlying products',
+        },
+        product: {
+          title: 'Results',
+          description: 'Outcomes and results of practice-oriented studies',
+        },
+        person: {
+          title: 'People',
+          description: 'People involved in practice-oriented research',
+        },
+        party: {
+          title: 'Parties',
+          description:
+            'Organizations and institutions involved in practice-oriented research',
+        },
       },
     },
     search: {

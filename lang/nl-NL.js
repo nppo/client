@@ -59,28 +59,26 @@ export default {
       find_by_theme: 'Vinden op thema',
       search_blocks: {
         title: 'Ik zoek',
-        items: [
-          {
-            title: 'Projecten',
-            description:
-              'Onderzoeksprojecten en programma’s met onderliggende producten',
-          },
-          {
-            title: 'Resultaten',
-            description:
-              'Uitkomsten en resultaten van praktijkgerichte onderzoeken',
-          },
-          {
-            title: 'Personen',
-            description:
-              'Mensen die betrokken zijn bij praktijkgericht onderzoek',
-          },
-          {
-            title: 'Partijen',
-            description:
-              'Organisaties en instellingen die betrokken zijn bij praktijkgericht onderzoek ',
-          },
-        ],
+        project: {
+          title: 'Projecten',
+          description:
+            'Onderzoeksprojecten en programma’s met onderliggende producten',
+        },
+        product: {
+          title: 'Resultaten',
+          description:
+            'Uitkomsten en resultaten van praktijkgerichte onderzoeken',
+        },
+        person: {
+          title: 'Personen',
+          description:
+            'Mensen die betrokken zijn bij praktijkgericht onderzoek',
+        },
+        party: {
+          title: 'Partijen',
+          description:
+            'Organisaties en instellingen die betrokken zijn bij praktijkgericht onderzoek ',
+        },
       },
     },
 
