@@ -73,7 +73,7 @@
 
             <SearchCollapse
               v-if="people && people.length > 0"
-              :show-header="!hasSpecificTypeFilter()"
+              :show-header="!hasSpecificTypeFilter"
               :header="$t('entities.person.plural')"
               @show-all="setFilterByLabel('person')"
             >
@@ -91,7 +91,7 @@
 
             <SearchCollapse
               v-if="projects && projects.length > 0"
-              :show-header="!hasSpecificTypeFilter()"
+              :show-header="!hasSpecificTypeFilter"
               :header="$t('entities.project.plural')"
               @show-all="setFilterByLabel('project')"
             >
