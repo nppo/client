@@ -258,11 +258,7 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
   }
 
   getMaxEntities(entities: Array<any>, max: number): Array<any> {
-    if (this.hasSpecificTypeFilter()) {
-      return entities
-    }
-
-    return entities.slice(0, max)
+    return this.hasSpecificTypeFilter() ? entities : entities.slice(0, max)
   }
 }
 </script>
