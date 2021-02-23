@@ -14,26 +14,32 @@ export default {
     type: {
       singular: 'Type',
       plural: 'Types',
+      default: 'type | types',
     },
     theme: {
       singular: 'Theme',
       plural: 'Themes',
+      default: 'theme | themes',
     },
     person: {
       singular: 'Person',
       plural: 'People',
+      default: 'person | people',
     },
     party: {
       singular: 'Party',
       plural: 'Parties',
+      default: 'party | parties',
     },
     product: {
       singular: 'Product',
       plural: 'Products',
+      default: 'product | products',
     },
     project: {
       singular: 'Project',
       plural: 'Projects',
+      default: 'project | projects',
     },
   },
 
@@ -57,6 +63,7 @@ export default {
       title: 'Together we create impact!',
       subtitle: 'Knowledge from higher education in the Netherlands',
       find_by_theme: 'Find by theme',
+      statistics_title: 'On this platform',
       search_blocks: {
         title: "I'm looking for",
         project: {

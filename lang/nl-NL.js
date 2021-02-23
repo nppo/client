@@ -14,26 +14,32 @@ export default {
     type: {
       singular: 'Type',
       plural: 'Types',
+      default: 'type | types',
     },
     theme: {
       singular: 'Thema',
       plural: "Thema's",
+      default: "thema | thema's",
     },
     person: {
       singular: 'Persoon',
       plural: 'Personen',
+      default: 'persoon | personen',
     },
     party: {
       singular: 'Partij',
       plural: 'Partijen',
+      default: 'partij | partijen',
     },
     product: {
       singular: 'Product',
       plural: 'Producten',
+      default: 'product | producten',
     },
     project: {
       singular: 'Project',
       plural: 'Projecten',
+      default: 'project | projecten',
     },
   },
 
@@ -57,6 +63,7 @@ export default {
       title: 'Samen creëren we impact!',
       subtitle: 'Kennis uit het hoger onderwijs in Nederland',
       find_by_theme: 'Vinden op thema',
+      statistics_title: 'Op dit platform',
       search_blocks: {
         title: 'Ik zoek',
         project: {
