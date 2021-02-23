@@ -27,7 +27,7 @@
     </div>
 
     <div class="flex justify-between px-4 text-tiny">
-      <span>21 sep 2020</span>
+      <span>{{ publishedAt }}</span>
 
       <!-- TODO: When image available make image dynamic: product.image" -->
       <span v-if="productImage && product.themes.length > 0">{{
@@ -54,12 +54,19 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import { Product } from '~/types/entities'
 
 @Component
 export default class ProductBlock extends Vue {
   // TODO: When image available make image dynamic: v-if="product.image"
   public productImage: string = 'https://picsum.photos/296/150'
 
-  @Prop({ type: Object, required: true }) product!: object
+  @Prop({ type: Object, required: true }) readonly product!: Product
+
+  get publishedAt(): string {
+    const date = this.$dayjs(this.product.publishedAt)
+
+    return date.locale(this.$i18n.locale).format('D MMM YYYY')
+  }
 }
 </script>
