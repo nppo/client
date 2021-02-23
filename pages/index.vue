@@ -81,7 +81,7 @@
             class="text-4xl font-bold text-blue-500"
             :title="statistic.count"
           >
-            {{ statistic.count_display }}
+            {{ statistic.countDisplay }}
           </div>
           <div class="text-base capitalize">
             {{ $tc(`entities.${statistic.name}.default`, statistic.count) }}
