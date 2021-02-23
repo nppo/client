@@ -55,7 +55,7 @@
           <div v-else>
             <SearchCollapse
               v-if="products && products.length > 0"
-              :show-header="!hasSpecificTypeFilter()"
+              :show-header="!hasSpecificTypeFilter"
               :header="$t('entities.product.plural')"
               class="mb-20"
               @show-all="setFilterByLabel('product')"
@@ -74,7 +74,7 @@
 
             <SearchCollapse
               v-if="people && people.length > 0"
-              :show-header="!hasSpecificTypeFilter()"
+              :show-header="!hasSpecificTypeFilter"
               :header="$t('entities.person.plural')"
               class="mb-20"
               @show-all="setFilterByLabel('person')"
@@ -91,7 +91,7 @@
 
             <SearchCollapse
               v-if="projects && projects.length > 0"
-              :show-header="!hasSpecificTypeFilter()"
+              :show-header="!hasSpecificTypeFilter"
               :header="$t('entities.project.plural')"
               class="mb-20"
               @show-all="setFilterByLabel('project')"
@@ -110,7 +110,7 @@
 
             <SearchCollapse
               v-if="parties && parties.length > 0"
-              :show-header="!hasSpecificTypeFilter()"
+              :show-header="!hasSpecificTypeFilter"
               :header="$t('entities.party.plural')"
               @show-all="setFilterByLabel('party')"
             >
@@ -229,11 +229,11 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
         ? 'query=' + this.searchString + this.filterString
         : this.filterString.substring(1)
 
-      await this.$accessor.search.result(requestString)
-
       if (replaceUrl) {
-        await this.$router.replace('/search?' + requestString)
+        this.$router.replace('/search?' + requestString)
       }
+
+      await this.$accessor.search.result(requestString)
     }
 
     this.isLoading = false
@@ -259,12 +259,8 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
     }
   }
 
-  hasSpecificTypeFilter(): boolean {
-    if (this.filters.types) {
-      return this.filters.types.length === 1
-    }
-
-    return false
+  get hasSpecificTypeFilter(): boolean {
+    return this.filters.types?.length === 1
   }
 
   setFilterByLabel(label: string): void {
@@ -283,7 +279,7 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
   }
 
   getMaxEntities(entities: Array<any>, max: number): Array<any> {
-    return this.hasSpecificTypeFilter() ? entities : entities.slice(0, max)
+    return this.hasSpecificTypeFilter ? entities : entities.slice(0, max)
   }
 }
 </script>

@@ -19,7 +19,7 @@
               index < types.length - 1,
           }"
         >
-          <div class="mb-2">
+          <div class="flex items-center mb-2">
             <input
               :id="'type_' + type.id"
               type="checkbox"
@@ -28,7 +28,7 @@
               :checked="isChecked(type.id)"
               @change="toggleType(type.id)"
             />
-            <label class="cursor-pointer" :for="'type_' + type.id">
+            <label class="flex-1 cursor-pointer" :for="'type_' + type.id">
               {{ $t('entities.' + type.label + '.singular') }}
             </label>
           </div>

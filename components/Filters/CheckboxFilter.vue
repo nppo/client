@@ -25,28 +25,26 @@
         <li
           v-for="item in entity"
           :key="'filter_' + name + '_' + item.id"
-          class="block text-sm"
+          class="flex items-center mb-2 text-sm"
         >
-          <div class="mb-2">
-            <input
-              :id="'filter_' + name + '_' + item.id"
-              type="checkbox"
-              class="w-4 h-4 mr-2 bg-gray-100 form-checkbox text-yellow-brand"
-              :value="item.id"
-              :checked="isChecked(item.id)"
-              @change="toggleItem(item.id)"
-            />
-            <label
-              class="cursor-pointer"
-              :for="'filter_' + name + '_' + item.id"
-            >
-              {{
-                requiresTranslation
-                  ? $t('filters.' + name + '.labels.' + item.label)
-                  : item.label
-              }}
-            </label>
-          </div>
+          <input
+            :id="'filter_' + name + '_' + item.id"
+            type="checkbox"
+            class="w-4 h-4 mr-2 bg-gray-100 form-checkbox text-yellow-brand"
+            :value="item.id"
+            :checked="isChecked(item.id)"
+            @change="toggleItem(item.id)"
+          />
+          <label
+            class="flex-1 cursor-pointer"
+            :for="'filter_' + name + '_' + item.id"
+          >
+            {{
+              requiresTranslation
+                ? $t('filters.' + name + '.labels.' + item.label)
+                : item.label
+            }}
+          </label>
         </li>
       </ul>
     </div>
