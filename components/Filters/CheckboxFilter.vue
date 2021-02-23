@@ -23,7 +23,7 @@
     <div v-if="active" class="p-4">
       <ul>
         <li
-          v-for="item in entity"
+          v-for="item in sortedEntity"
           :key="'filter_' + name + '_' + item.id"
           class="flex items-center mb-2 text-sm"
         >
@@ -47,6 +47,16 @@
           </label>
         </li>
       </ul>
+
+      <div v-if="entity.length > maxFilters" class="block text-center mt-3">
+        <span class="underline text-blue-400" @click="showingAll = !showingAll">
+          {{
+            showingAll
+              ? $t('filters.show_less')
+              : $t('filters.show_more', { number: showMoreNumber })
+          }}
+        </span>
+      </div>
     </div>
   </div>
 </template>
@@ -57,27 +67,66 @@ import { Component, Vue, Prop } from 'nuxt-property-decorator'
 @Component
 export default class CheckboxFilter extends Vue {
   public active: boolean = true
+  public showingAll: boolean = false
+  public maxFilters: number = 5
+  public checkedFilters: number = 0
 
   @Prop({ type: String, required: true }) readonly name!: string
-  @Prop({ type: Array, required: true }) entity: any
-  @Prop({ type: Boolean, default: false }) requiresTranslation: any
+  @Prop({ type: Array, required: true }) entity!: Array<any>
+  @Prop({ type: Boolean, default: false }) requiresTranslation!: boolean
 
   get activeFilters() {
     return this.$accessor.search.filters
   }
 
-  toggleFilter() {
+  get sortedEntity(): Array<any> {
+    let visibleAmount
+    this.checkedFilters = 0
+
+    const sorted = [...this.entity].sort((entity: any) => {
+      return this.isChecked(entity.id) ? -1 : 1
+    })
+
+    sorted.forEach((entity: any) => {
+      if (this.isChecked(entity.id)) {
+        this.checkedFilters++
+      }
+    })
+
+    if (this.showingAll) {
+      visibleAmount = this.entity.length
+    } else if (this.checkedFilters > 0) {
+      visibleAmount =
+        this.checkedFilters > this.maxFilters
+          ? this.checkedFilters
+          : this.maxFilters
+    } else {
+      visibleAmount = this.maxFilters
+    }
+
+    return sorted.slice(0, visibleAmount)
+  }
+
+  get showMoreNumber(): number {
+    if (this.checkedFilters > this.maxFilters) {
+      return this.entity.length - this.checkedFilters
+    }
+
+    return this.entity.length - this.maxFilters
+  }
+
+  toggleFilter(): void {
     this.active = !this.active
   }
 
-  isChecked(id: string) {
+  isChecked(id: string): boolean {
     return (
       this.activeFilters[this.name] &&
       this.activeFilters[this.name].includes(String(id))
     )
   }
 
-  toggleItem(id: number) {
+  toggleItem(id: number): void {
     this.$emit('toggle-filter', this.name, id.toString())
   }
 }

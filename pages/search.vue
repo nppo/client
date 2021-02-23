@@ -28,22 +28,14 @@
           <CheckboxFilter
             :name="'types'"
             :requires-translation="true"
-            :entity="
-              [...types].sort((type) => {
-                return isActive(type.id, 'types') ? -1 : 1
-              })
-            "
+            :entity="types"
             class="mb-1"
             @toggle-filter="toggleFilter"
           />
 
           <CheckboxFilter
             :name="'themes'"
-            :entity="
-              [...themes].sort((theme) => {
-                return isActive(theme.id, 'themes') ? -1 : 1
-              })
-            "
+            :entity="themes"
             @toggle-filter="toggleFilter"
           />
         </div>
