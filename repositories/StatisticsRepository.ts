@@ -10,6 +10,6 @@ export default class StatisticsRepository {
   }
 
   entities(): Promise<AxiosResponse<MultipleResults<Object>>> {
-    return this.axios.get('/api/entity-statistics')
+    return this.axios.get('/api/statistics/entities')
   }
 }
