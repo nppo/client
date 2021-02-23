@@ -71,6 +71,8 @@ export default {
     '@nuxtjs/sentry',
     // Doc: https://auth.nuxtjs.org/
     '@nuxtjs/auth-next',
+    // Doc: https://github.com/nuxt-community/dayjs-module
+    '@nuxtjs/dayjs',
   ],
 
   /*
@@ -150,6 +152,13 @@ export default {
     defaultLocale: 'nl',
     lazy: true,
     langDir: 'lang/',
+  },
+
+  dayjs: {
+    locales: ['en', 'nl'],
+    defaultLocale: 'nl',
+    defaultTimeZone: 'Europe/Amsterdam',
+    plugins: ['utc', 'timezone'],
   },
 
   /*

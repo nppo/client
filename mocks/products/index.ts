@@ -8,6 +8,7 @@ const products: Product[] = [
     description:
       'Laboriosam quae temporibus ipsa et dicta porro tempore qui. Sapiente quasi et et est. Occaecati qui eos pariatur sapiente reiciendis earum voluptatem.',
     image: 'https://picsum.photos/296/150',
+    publishedAt: new Date().toDateString(),
   },
   {
     id: 2,
@@ -15,6 +16,7 @@ const products: Product[] = [
     description:
       'Laboriosam quae temporibus ipsa et dicta porro tempore qui. Sapiente quasi et et est. Occaecati qui eos pariatur sapiente reiciendis earum voluptatem.',
     image: 'https://picsum.photos/296/150',
+    publishedAt: new Date().toDateString(),
   },
   {
     id: 3,
@@ -22,6 +24,7 @@ const products: Product[] = [
     description:
       'Laboriosam quae temporibus ipsa et dicta porro tempore qui. Sapiente quasi et et est. Occaecati qui eos pariatur sapiente reiciendis earum voluptatem.',
     image: '',
+    publishedAt: new Date().toDateString(),
   },
   {
     id: 4,
@@ -29,6 +32,7 @@ const products: Product[] = [
     description:
       'Laboriosam quae temporibus ipsa et dicta porro tempore qui. Sapiente quasi et et est. Occaecati qui eos pariatur sapiente reiciendis earum voluptatem.',
     image: 'https://picsum.photos/296/150',
+    publishedAt: new Date().toDateString(),
   },
   {
     id: 5,
@@ -36,6 +40,7 @@ const products: Product[] = [
     description:
       'Laboriosam quae temporibus ipsa edt dicta porro tempore qui. Sapiente quasi et et est. Occaecati qui eos pariatur sapiente reiciendis earum voluptatem.',
     image: 'https://picsum.photos/296/150',
+    publishedAt: new Date().toDateString(),
   },
   {
     id: 6,
@@ -43,6 +48,7 @@ const products: Product[] = [
     description:
       'Laboriosam quae temporibus ipsa et dicta porro tempore qui. Sapiente quasi et et est. Occaecati qui eos pariatur sapiente reiciendis earum voluptatem.',
     image: 'https://picsum.photos/296/150',
+    publishedAt: new Date().toDateString(),
   },
   {
     id: 7,
@@ -50,6 +56,7 @@ const products: Product[] = [
     description:
       'Laboriosam quae temporibus ipsa et dicta porro tempore qui. Sapiente quasi et et est. Occaecati qui eos pariatur sapiente reiciendis earum voluptatem.',
     image: '',
+    publishedAt: new Date().toDateString(),
   },
   {
     id: 8,
@@ -57,6 +64,7 @@ const products: Product[] = [
     description:
       'Laboriosam quae temporibus ipsa et dicta porro tempore qui. Sapiente quasi et et est. Occaecati qui eos pariatur sapiente reiciendis earum voluptatem.',
     image: 'https://picsum.photos/296/150',
+    publishedAt: new Date().toDateString(),
   },
 ]
 
