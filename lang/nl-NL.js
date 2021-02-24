@@ -85,7 +85,7 @@ export default {
     product: {
       share: 'Delen',
       bookmark: 'Opslaan',
-      download_entities: {
+      types: {
         video: 'video',
       },
     },

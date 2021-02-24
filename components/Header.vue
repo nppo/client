@@ -42,7 +42,7 @@ export default class Header extends Vue {
 
   handleSearchSubmit() {
     this.$router.push({
-      path: 'search',
+      path: this.localePath('/search'),
       query: { query: this.searchQuery },
     })
   }

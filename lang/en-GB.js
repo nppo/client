@@ -83,7 +83,7 @@ export default {
     product: {
       share: 'Share',
       bookmark: 'Save',
-      download_entities: {
+      types: {
         video: 'video',
       },
     },
