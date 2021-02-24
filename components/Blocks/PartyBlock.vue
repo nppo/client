@@ -44,12 +44,13 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import { Party } from '~/types/entities'
 
 @Component
 export default class PartyBlock extends Vue {
   // TODO: When image available make image dynamic: v-if="party.image"
   public partyImage: string = 'https://picsum.photos/200/200'
 
-  @Prop({ type: Object, required: true }) party!: object
+  @Prop({ type: Object, required: true }) party!: Party
 }
 </script>

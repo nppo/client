@@ -1,9 +1,9 @@
 <template>
   <div class="container w-4/5 py-24 mx-auto">
     <div class="flex flex-col items-center">
-      <h3 class="mb-12 text-2xl font-bold">
+      <h2 class="mb-12 text-3xl font-bold">
         {{ $t('pages.index.find_by_theme') }}
-      </h3>
+      </h2>
 
       <div class="flex flex-wrap justify-center">
         <div

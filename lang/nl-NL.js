@@ -57,6 +57,7 @@ export default {
       title: 'Samen creëren we impact!',
       subtitle: 'Kennis uit het hoger onderwijs in Nederland',
       find_by_theme: 'Vinden op thema',
+      discover_heading: 'Ontdekken',
       search_blocks: {
         title: 'Ik zoek',
         project: {

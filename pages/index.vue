@@ -26,7 +26,7 @@
     <div class="container relative mx-auto">
       <div class="grid grid-cols-1 gap-5 -mt-28 md:grid-cols-2 lg:grid-cols-4">
         <LocaleLink
-          v-for="(type, index) in [...types].reverse()"
+          v-for="(type, index) in types"
           :key="index"
           :path="'/search?filters[types][]=' + type.id"
           class="block p-5 bg-white rounded shadow"
@@ -62,8 +62,9 @@
     <DiscoverSection
       :types="types"
       :products="products"
-      :people="people"
+      :persons="persons"
       :parties="parties"
+      :projects="projects"
     />
   </div>
 </template>
@@ -71,7 +72,7 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import qs from 'qs'
-import { Filter, Type } from '~/types/entities'
+import { Type, Filter } from '~/types/entities'
 
 @Component({
   async fetch(this: IndexPage) {
@@ -87,12 +88,16 @@ import { Filter, Type } from '~/types/entities'
       await this.$accessor.products.fetchAll()
     }
 
-    if (this.$accessor.person.all.length < 1) {
-      await this.$accessor.person.fetchAll()
+    if (this.$accessor.persons.all.length < 1) {
+      await this.$accessor.persons.fetchAll()
     }
 
-    if (this.$accessor.party.all.length < 1) {
-      await this.$accessor.party.fetchAll()
+    if (this.$accessor.parties.all.length < 1) {
+      await this.$accessor.parties.fetchAll()
+    }
+
+    if (this.$accessor.projects.all.length < 1) {
+      await this.$accessor.projects.fetchAll()
     }
   },
 })
@@ -112,15 +117,19 @@ export default class IndexPage extends Vue {
   }
 
   get products() {
-    return this.$accessor.products.firstFive
+    return this.$accessor.products.firstTen
   }
 
-  get people() {
-    return this.$accessor.person.firstFive
+  get persons() {
+    return this.$accessor.persons.firstTen
   }
 
   get parties() {
-    return this.$accessor.party.firstFive
+    return this.$accessor.parties.firstTen
+  }
+
+  get projects() {
+    return this.$accessor.projects.firstTen
   }
 
   setFilters(type: string, filters: Array<any>): void {

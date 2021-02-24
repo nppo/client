@@ -5,6 +5,7 @@ import ThemeRepository from '~/repositories/ThemeRepository'
 import TypeRepository from '~/repositories/TypeRepository'
 import PersonRepository from '~/repositories/PersonRepository'
 import PartyRepository from '~/repositories/PartyRepository'
+import ProjectRepository from '~/repositories/ProjectRepository'
 
 export default class Repositories {
   product: ProductRepository
@@ -13,6 +14,7 @@ export default class Repositories {
   type: TypeRepository
   person: PersonRepository
   party: PartyRepository
+  project: ProjectRepository
 
   constructor($axios: NuxtAxiosInstance) {
     this.product = new ProductRepository($axios)
@@ -21,5 +23,6 @@ export default class Repositories {
     this.type = new TypeRepository($axios)
     this.person = new PersonRepository($axios)
     this.party = new PartyRepository($axios)
+    this.project = new ProjectRepository($axios)
   }
 }

@@ -48,12 +48,13 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import { Product } from '~/types/entities'
 
 @Component
 export default class ProductBlock extends Vue {
   // TODO: When image available make image dynamic: v-if="product.image"
   public productImage: string = 'https://picsum.photos/296/150'
 
-  @Prop({ type: Object, required: true }) product!: object
+  @Prop({ type: Object, required: true }) product!: Product
 }
 </script>

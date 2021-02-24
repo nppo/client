@@ -57,6 +57,7 @@ export default {
       title: 'Together we create impact!',
       subtitle: 'Knowledge from higher education in the Netherlands',
       find_by_theme: 'Find by theme',
+      discover_heading: 'Discover',
       search_blocks: {
         title: "I'm looking for",
         project: {
