@@ -103,7 +103,7 @@
                   v-for="project in getMaxEntities(projects, 6)"
                   :key="project.id"
                 >
-                  {{ project.id }}
+                  <ProjectBlock :project="project" />
                 </div>
               </div>
             </SearchCollapse>
