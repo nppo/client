@@ -117,19 +117,19 @@ export default class IndexPage extends Vue {
   }
 
   get products() {
-    return this.$accessor.products.firstTen
+    return this.$accessor.products.all
   }
 
   get persons() {
-    return this.$accessor.persons.firstTen
+    return this.$accessor.persons.all
   }
 
   get parties() {
-    return this.$accessor.parties.firstTen
+    return this.$accessor.parties.all
   }
 
   get projects() {
-    return this.$accessor.projects.firstTen
+    return this.$accessor.projects.all
   }
 
   setFilters(type: string, filters: Array<any>): void {

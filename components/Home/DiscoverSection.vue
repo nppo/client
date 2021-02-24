@@ -144,9 +144,7 @@ export default class DiscoverSection extends Vue {
   }
 
   nextSlide(ref: any) {
-    if ((this.activeTab = String(ref))) {
-      this.$refs[ref].next()
-    }
+    this.$refs[ref].next()
   }
 
   previousSlide(ref: any) {

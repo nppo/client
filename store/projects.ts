@@ -1,17 +1,11 @@
-import { actionTree, mutationTree, getterTree } from 'nuxt-typed-vuex'
+import { actionTree, mutationTree } from 'nuxt-typed-vuex'
 import { Project } from '~/types/entities'
 
 export const state = () => ({
-  all: localStorage.getItem('projects')
-    ? (JSON.parse(<string>localStorage.getItem('projects')) as Project[])
-    : ([] as Project[]),
+  all: [] as Project[],
 })
 
 export type ProjectsState = ReturnType<typeof state>
-
-export const getters = getterTree(state, {
-  firstTen: (state) => state.all.slice(0, 10),
-})
 
 export const mutations = mutationTree(state, {
   setAll(state, newValue: Project[]) {
@@ -28,7 +22,6 @@ export const actions = actionTree(
 
       if (status === 200) {
         commit('setAll', data.data)
-        localStorage.setItem('projects', JSON.stringify(data.data as Project[]))
       }
     },
   }
