@@ -4,6 +4,7 @@ import { Product } from '~/types/entities'
 
 export const state = () => ({
   all: [] as Product[],
+  current: {} as Product,
 })
 
 export type ProductsState = ReturnType<typeof state>
@@ -12,8 +13,8 @@ export const mutations = mutationTree(state, {
   setAll(state, newValue: Product[]) {
     state.all = newValue
   },
-  setItem(state, product: Product) {
-    Vue.set(state.all, product.id, product)
+  setCurrent(state, product: Product) {
+    state.current = product
   },
 })
 
@@ -28,11 +29,11 @@ export const actions = actionTree(
         commit('setAll', data.data)
       }
     },
-    async fetchItem({ commit }, id: number): Promise<void> {
+    async fetchCurrent({ commit }, id: number): Promise<void> {
       const { status, data } = await this.$repositories.product.show(id)
 
       if (status === 200) {
-        commit('setItem', data.data)
+        commit('setCurrent', data.data)
       }
     },
   }

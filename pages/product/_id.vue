@@ -32,7 +32,7 @@ import { Product } from '~/types/entities'
   async fetch(this: ProductDetailPage) {
     const { id } = this.$route.params
 
-    await this.$accessor.products.fetchItem(Number(id))
+    await this.$accessor.products.fetchCurrent(Number(id))
   },
 })
 export default class ProductDetailPage extends mixins(NavigationRouterHook) {
@@ -49,7 +49,7 @@ export default class ProductDetailPage extends mixins(NavigationRouterHook) {
   }
 
   get product(): Product {
-    return this.$accessor.products.all[this.id]
+    return this.$accessor.products.current
   }
 }
 </script>
