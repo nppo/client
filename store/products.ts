@@ -1,5 +1,4 @@
 import { actionTree, mutationTree } from 'nuxt-typed-vuex'
-import { Vue } from 'nuxt-property-decorator'
 import { Product } from '~/types/entities'
 
 export const state = () => ({
