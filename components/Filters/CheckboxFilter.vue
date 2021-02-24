@@ -23,7 +23,7 @@
     <div v-if="active" class="p-4">
       <ul>
         <li
-          v-for="item in sortedEntity"
+          v-for="item in sortedEntities"
           :key="'filter_' + name + '_' + item.id"
           class="flex items-center mb-2 text-sm"
         >
@@ -85,7 +85,7 @@ export default class CheckboxFilter extends Vue {
     return this.$accessor.search.filters
   }
 
-  get sortedEntity(): Array<any> {
+  get sortedEntities(): Array<any> {
     const sorted = [...this.entities].sort((entity: any) => {
       return this.isChecked(entity.id) ? -1 : 1
     })
