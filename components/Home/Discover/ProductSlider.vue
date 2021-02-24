@@ -3,14 +3,14 @@
     <div class="flex justify-end mb-12">
       <div
         class="flex justify-center w-8 h-8 p-2 mr-3 text-blue-800 rounded-full cursor-pointer bg-yellow-brand"
-        @click="previousSlide(activeTab)"
+        @click="previousSlide()"
       >
         <font-awesome-icon class="text-base" icon="arrow-left" />
       </div>
 
       <div
         class="flex justify-center w-8 h-8 p-2 text-blue-800 rounded-full cursor-pointer bg-yellow-brand"
-        @click="nextSlide(activeTab)"
+        @click="nextSlide()"
       >
         <font-awesome-icon class="text-base" icon="arrow-right" />
       </div>
