@@ -5,7 +5,7 @@
       has-dark-header
       has-search-bar
     >
-      <div class="pb-96">
+      <div class="mt-8 pb-96">
         <BackButton :has-navigated-internal="hasNavigatedInternal" />
       </div>
     </Header>

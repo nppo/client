@@ -2,7 +2,7 @@
   <div class="flex-1">
     <Header>
       <div class="container pb-16">
-        <BackButton :has-navigated-internal="hasNavigatedInternal" />
+        <BackButton class="mt-8" :has-navigated-internal="hasNavigatedInternal" />
 
         <h1 class="mt-8 text-4xl font-bold text-gray-100">
           {{ $t('pages.search.title') }}
@@ -11,7 +11,7 @@
     </Header>
 
     <div class="container mx-auto -mt-6">
-      <div class="relative grid grid-cols-4 gap-4 mb-2">
+      <div class="grid relative grid-cols-4 gap-4 mb-2">
         <SearchBar
           :aria-label="$t('pages.search.input_search')"
           variant="large"
