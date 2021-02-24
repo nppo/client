@@ -90,24 +90,21 @@ export default class CheckboxFilter extends Vue {
       return this.isChecked(entity.id) ? -1 : 1
     })
 
-    return sorted.slice(0, this.numberVisibileFilters)
+    return sorted.slice(0, this.numberVisibleFilters)
   }
 
-  get numberVisibileFilters(): number {
-    let visibleAmount
-
+  get numberVisibleFilters(): number {
     if (this.showingAll) {
-      visibleAmount = this.entities.length
-    } else if (this.checkedFilters > 0) {
-      visibleAmount =
-        this.checkedFilters > this.maxFilters
-          ? this.checkedFilters
-          : this.maxFilters
-    } else {
-      visibleAmount = this.maxFilters
+      return this.entities.length
     }
 
-    return visibleAmount
+    if (this.checkedFilters > 0) {
+      return this.checkedFilters > this.maxFilters
+        ? this.checkedFilters
+        : this.maxFilters
+    }
+
+    return this.maxFilters
   }
 
   get showMoreNumber(): number {
