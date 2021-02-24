@@ -28,14 +28,14 @@
           <CheckboxFilter
             :name="'types'"
             :requires-translation="true"
-            :entity="types"
+            :entities="types"
             class="mb-1"
             @toggle-filter="toggleFilter"
           />
 
           <CheckboxFilter
             :name="'themes'"
-            :entity="themes"
+            :entities="themes"
             @toggle-filter="toggleFilter"
           />
         </div>

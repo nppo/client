@@ -1,9 +1,9 @@
 <template>
   <div
-    class="flex flex-col h-auto overflow-hidden bg-white rounded-md shadow-block"
+    class="flex overflow-hidden flex-col h-auto bg-white rounded-md shadow-block"
   >
     <div
-      class="flex items-center justify-between px-4 py-3 bg-blue-800 cursor-pointer"
+      class="flex justify-between items-center py-3 px-4 bg-blue-800 cursor-pointer"
       @click="toggleFilter()"
     >
       <span class="text-base text-white">
@@ -12,7 +12,7 @@
 
       <div class="flex items-center">
         <span class="px-1 mr-4 text-xs font-bold rounded-sm bg-yellow-brand">
-          {{ entity.length }}
+          {{ entities.length }}
         </span>
 
         <font-awesome-icon v-if="active" icon="minus" class="text-white" />
@@ -30,7 +30,7 @@
           <input
             :id="'filter_' + name + '_' + item.id"
             type="checkbox"
-            class="w-4 h-4 mr-2 bg-gray-100 form-checkbox text-yellow-brand"
+            class="mr-2 w-4 h-4 bg-gray-100 form-checkbox text-yellow-brand"
             :value="item.id"
             :checked="isChecked(item.id)"
             @change="toggleItem(item.id)"
@@ -48,8 +48,14 @@
         </li>
       </ul>
 
-      <div v-if="entity.length > maxFilters" class="block text-center mt-3">
-        <span class="underline text-blue-400" @click="showingAll = !showingAll">
+      <div
+        v-if="entities.length > maxFilters && checkedFilters < entities.length"
+        class="block mt-3 text-center"
+      >
+        <span
+          class="text-blue-400 underline cursor-pointer"
+          @click="showingAll = !showingAll"
+        >
           {{
             showingAll
               ? $t('filters.show_less')
@@ -68,11 +74,11 @@ import { Component, Vue, Prop } from 'nuxt-property-decorator'
 export default class CheckboxFilter extends Vue {
   public active: boolean = true
   public showingAll: boolean = false
-  public maxFilters: number = 5
   public checkedFilters: number = 0
 
   @Prop({ type: String, required: true }) readonly name!: string
-  @Prop({ type: Array, required: true }) entity!: Array<any>
+  @Prop({ type: Array, required: true }) entities!: Array<any>
+  @Prop({ type: Number, default: 5 }) maxFilters!: number
   @Prop({ type: Boolean, default: false }) requiresTranslation!: boolean
 
   get activeFilters() {
@@ -80,21 +86,18 @@ export default class CheckboxFilter extends Vue {
   }
 
   get sortedEntity(): Array<any> {
-    let visibleAmount
-    this.checkedFilters = 0
-
-    const sorted = [...this.entity].sort((entity: any) => {
+    const sorted = [...this.entities].sort((entity: any) => {
       return this.isChecked(entity.id) ? -1 : 1
     })
 
-    sorted.forEach((entity: any) => {
-      if (this.isChecked(entity.id)) {
-        this.checkedFilters++
-      }
-    })
+    return sorted.slice(0, this.numberVisibileFilters)
+  }
+
+  get numberVisibileFilters(): number {
+    let visibleAmount
 
     if (this.showingAll) {
-      visibleAmount = this.entity.length
+      visibleAmount = this.entities.length
     } else if (this.checkedFilters > 0) {
       visibleAmount =
         this.checkedFilters > this.maxFilters
@@ -104,15 +107,25 @@ export default class CheckboxFilter extends Vue {
       visibleAmount = this.maxFilters
     }
 
-    return sorted.slice(0, visibleAmount)
+    return visibleAmount
   }
 
   get showMoreNumber(): number {
     if (this.checkedFilters > this.maxFilters) {
-      return this.entity.length - this.checkedFilters
+      return this.entities.length - this.checkedFilters
     }
 
-    return this.entity.length - this.maxFilters
+    return this.entities.length - this.maxFilters
+  }
+
+  setCheckedFilters(): void {
+    this.checkedFilters = 0
+
+    this.entities.forEach((entity: any) => {
+      if (this.isChecked(entity.id)) {
+        this.checkedFilters++
+      }
+    })
   }
 
   toggleFilter(): void {
@@ -128,6 +141,11 @@ export default class CheckboxFilter extends Vue {
 
   toggleItem(id: number): void {
     this.$emit('toggle-filter', this.name, id.toString())
+    this.setCheckedFilters()
+  }
+
+  mounted() {
+    this.setCheckedFilters()
   }
 }
 </script>
