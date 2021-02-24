@@ -1,0 +1,60 @@
+<template>
+  <div class="-mt-20">
+    <div class="flex justify-end mb-12">
+      <div
+        class="flex justify-center w-8 h-8 p-2 mr-3 text-blue-800 rounded-full cursor-pointer bg-yellow-brand"
+        @click="previousSlide(activeTab)"
+      >
+        <font-awesome-icon class="text-base" icon="arrow-left" />
+      </div>
+
+      <div
+        class="flex justify-center w-8 h-8 p-2 text-blue-800 rounded-full cursor-pointer bg-yellow-brand"
+        @click="nextSlide(activeTab)"
+      >
+        <font-awesome-icon class="text-base" icon="arrow-right" />
+      </div>
+    </div>
+
+    <VueSlickCarousel
+      v-if="products.length > 0"
+      ref="product"
+      :arrows="false"
+      :infinite="true"
+      :speed="500"
+      :slides-to-show="4"
+      :slides-to-scroll="1"
+    >
+      <div v-for="product in products" :key="product.id">
+        <ProductBlock :product="product" class="ml-2 mr-2 shadow-none" />
+      </div>
+    </VueSlickCarousel>
+  </div>
+</template>
+
+<script lang="ts">
+import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import VueSlickCarousel from 'vue-slick-carousel'
+import ProductBlock from '../../Blocks/ProductBlock.vue'
+import { Product } from '~/types/entities'
+
+import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+
+@Component({
+  components: {
+    ProductBlock,
+    VueSlickCarousel,
+  },
+})
+export default class ProductSlider extends Vue {
+  @Prop({ type: Array, required: true }) products!: Product[]
+
+  nextSlide() {
+    this.$refs.product.next()
+  }
+
+  previousSlide() {
+    this.$refs.product.prev()
+  }
+}
+</script>
