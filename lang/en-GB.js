@@ -79,6 +79,15 @@ export default {
         },
       },
     },
+
+    product: {
+      share: 'Share',
+      bookmark: 'Save',
+      download_entities: {
+        video: 'video',
+      },
+    },
+
     search: {
       title: 'Search results',
       placeholder: 'Start your search...',

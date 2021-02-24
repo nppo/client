@@ -2,7 +2,10 @@
   <div class="flex-1">
     <Header>
       <div class="container pb-16">
-        <BackButton class="mt-8" :has-navigated-internal="hasNavigatedInternal" />
+        <BackButton
+          class="mt-8"
+          :has-navigated-internal="hasNavigatedInternal"
+        />
 
         <h1 class="mt-8 text-4xl font-bold text-gray-100">
           {{ $t('pages.search.title') }}
