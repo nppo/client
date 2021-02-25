@@ -9,9 +9,8 @@
     <div class="flex justify-between p-6 space-x-6">
       <div class="flex items-center space-x-6">
         <Badge
-          icon-name="video"
-          icon-style="fas"
-          :text="$t(`pages.product.types.${type}`)"
+          v-bind="{ ...icon }"
+          :text="$t(`pages.product_show.types.${type}`)"
         />
 
         <div>{{ product.title }}</div>
@@ -37,5 +36,25 @@ export default class ProductTypeBaseCard extends Vue {
   @Prop({ type: String, required: true }) type!: string
   @Prop({ type: Object, required: true }) product!: Product
   @Prop({ type: Array }) buttons!: ProductTypeButton[]
+
+  get icon(): { iconName: string; iconStyle: string } | null {
+    let iconName = ''
+    let iconStyle = ''
+
+    switch (this.type) {
+      case 'video':
+        iconName = 'video'
+        iconStyle = 'fas'
+        break
+
+      default:
+        return null
+    }
+
+    return {
+      iconName,
+      iconStyle,
+    }
+  }
 }
 </script>

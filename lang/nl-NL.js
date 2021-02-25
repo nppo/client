@@ -82,7 +82,7 @@ export default {
       },
     },
 
-    product: {
+    product_show: {
       share: 'Delen',
       bookmark: 'Opslaan',
       types: {

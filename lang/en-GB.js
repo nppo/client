@@ -80,7 +80,7 @@ export default {
       },
     },
 
-    product: {
+    product_show: {
       share: 'Share',
       bookmark: 'Save',
       types: {

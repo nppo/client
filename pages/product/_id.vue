@@ -10,10 +10,7 @@
       </div>
     </Header>
 
-    <div
-      v-if="!$fetchState.pending"
-      class="container grid grid-cols-12 mx-auto -mt-104"
-    >
+    <div class="container grid grid-cols-12 mx-auto -mt-104">
       <component
         v-bind="{ product, type }"
         :is="typeComponent"
@@ -24,23 +21,20 @@
 </template>
 
 <script lang="ts">
+import { Context } from '@nuxt/types'
 import { Component, mixins, Prop } from 'nuxt-property-decorator'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import { Product } from '~/types/entities'
 
 @Component({
-  async fetch(this: ProductDetailPage) {
-    const { id } = this.$route.params
+  async asyncData({ params, $accessor }: Context) {
+    const { id } = params
 
-    await this.$accessor.products.fetchCurrent(Number(id))
+    await $accessor.products.fetchCurrent(Number(id))
   },
 })
 export default class ProductDetailPage extends mixins(NavigationRouterHook) {
-  @Prop({ type: String, default: 'video' }) type!: string
-
-  get id(): number {
-    return Number(this.$route.params.id)
-  }
+  private type: string = 'video'
 
   get typeComponent() {
     const type = this.type.charAt(0).toUpperCase() + this.type.slice(1)
