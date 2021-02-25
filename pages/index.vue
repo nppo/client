@@ -59,14 +59,19 @@
     </div>
 
     <ThemeFilterSection :themes="themes" />
-    <DiscoverSection :types="types" :entities="entities" />
+
+    <DiscoverSection
+      :types="types"
+      :entities="entities"
+      :fetch="$fetchState.pending"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import qs from 'qs'
-import { Type, Filter, Discover } from '~/types/entities'
+import { Type, Filter } from '~/types/entities'
 
 @Component({
   async fetch(this: IndexPage) {
@@ -74,13 +79,8 @@ import { Type, Filter, Discover } from '~/types/entities'
       await this.$accessor.types.fetchAll()
     }
 
-    if (this.$accessor.themes.all.length < 1) {
-      await this.$accessor.themes.fetchAll()
-    }
-
-    if (this.$accessor.discover.all.length < 1) {
-      await this.$accessor.discover.fetchAll()
-    }
+    await this.$accessor.themes.fetchAll()
+    await this.$accessor.discover.fetchAll()
   },
 })
 export default class IndexPage extends Vue {

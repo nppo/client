@@ -26,16 +26,12 @@
     </div>
 
     <div class="flex flex-col p-4">
-      <h4 class="mb-1 text-base" style="min-height: 3rem">
+      <h4 class="mb-1 text-base line-clamp-1">
         {{ product.title }}
       </h4>
 
       <!-- TODO: When image available make image dynamic: product.image" -->
-      <div
-        class="text-gray-300"
-        :class="{ 'line-clamp-4': productImage }"
-        style="height: 4.5rem"
-      >
+      <div class="text-gray-300 h-18" :class="{ 'line-clamp-4': productImage }">
         {{ product.description }}
       </div>
     </div>

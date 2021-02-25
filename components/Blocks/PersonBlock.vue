@@ -52,9 +52,11 @@
 
     <hr class="mb-3 border-gray-100" />
 
-    <div class="flex flex-row flex-wrap justify-center px-4 mb-4">
+    <div
+      class="flex flex-row flex-wrap items-start justify-center h-16 px-4 mb-4 overflow-x-hidden"
+    >
       <div
-        v-for="tag in person.tags"
+        v-for="tag in slicedTags"
         :key="'tag_shortcut_' + tag.id"
         class="px-3 py-1 m-1 text-xs font-extrabold bg-green-300 rounded-md cursor-pointer"
       >
@@ -84,5 +86,9 @@ export default class PersonBlock extends Vue {
   public personImage: string = 'https://picsum.photos/200/200'
 
   @Prop({ type: Object, required: true }) person!: Person
+
+  get slicedTags() {
+    return this.person.tags.slice(0, 5)
+  }
 }
 </script>

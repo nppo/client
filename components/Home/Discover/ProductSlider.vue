@@ -17,7 +17,7 @@
     </div>
 
     <VueSlickCarousel
-      v-if="products.length > 0"
+      v-if="products"
       ref="product"
       :arrows="false"
       :infinite="true"

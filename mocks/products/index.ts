@@ -8,6 +8,10 @@ const products: Product[] = [
     description:
       'Laboriosam quae temporibus ipsa et dicta porro tempore qui. Sapiente quasi et et est. Occaecati qui eos pariatur sapiente reiciendis earum voluptatem.',
     image: 'https://picsum.photos/296/150',
+    likes: '8',
+    publishedAt: '01-10-1990',
+    themes: [],
+    tags: [],
   },
   {
     id: 2,
@@ -15,6 +19,10 @@ const products: Product[] = [
     description:
       'Laboriosam quae temporibus ipsa et dicta porro tempore qui. Sapiente quasi et et est. Occaecati qui eos pariatur sapiente reiciendis earum voluptatem.',
     image: 'https://picsum.photos/296/150',
+    likes: '8',
+    publishedAt: '01-10-1990',
+    themes: [],
+    tags: [],
   },
   {
     id: 3,
@@ -22,6 +30,10 @@ const products: Product[] = [
     description:
       'Laboriosam quae temporibus ipsa et dicta porro tempore qui. Sapiente quasi et et est. Occaecati qui eos pariatur sapiente reiciendis earum voluptatem.',
     image: '',
+    likes: '8',
+    publishedAt: '01-10-1990',
+    themes: [],
+    tags: [],
   },
   {
     id: 4,
@@ -29,6 +41,10 @@ const products: Product[] = [
     description:
       'Laboriosam quae temporibus ipsa et dicta porro tempore qui. Sapiente quasi et et est. Occaecati qui eos pariatur sapiente reiciendis earum voluptatem.',
     image: 'https://picsum.photos/296/150',
+    likes: '8',
+    publishedAt: '01-10-1990',
+    themes: [],
+    tags: [],
   },
   {
     id: 5,
@@ -36,27 +52,10 @@ const products: Product[] = [
     description:
       'Laboriosam quae temporibus ipsa edt dicta porro tempore qui. Sapiente quasi et et est. Occaecati qui eos pariatur sapiente reiciendis earum voluptatem.',
     image: 'https://picsum.photos/296/150',
-  },
-  {
-    id: 6,
-    title: 'Product 6',
-    description:
-      'Laboriosam quae temporibus ipsa et dicta porro tempore qui. Sapiente quasi et et est. Occaecati qui eos pariatur sapiente reiciendis earum voluptatem.',
-    image: 'https://picsum.photos/296/150',
-  },
-  {
-    id: 7,
-    title: 'Product 7',
-    description:
-      'Laboriosam quae temporibus ipsa et dicta porro tempore qui. Sapiente quasi et et est. Occaecati qui eos pariatur sapiente reiciendis earum voluptatem.',
-    image: '',
-  },
-  {
-    id: 8,
-    title: 'Product 8',
-    description:
-      'Laboriosam quae temporibus ipsa et dicta porro tempore qui. Sapiente quasi et et est. Occaecati qui eos pariatur sapiente reiciendis earum voluptatem.',
-    image: 'https://picsum.photos/296/150',
+    likes: '8',
+    publishedAt: '01-10-1990',
+    themes: [],
+    tags: [],
   },
 ]
 

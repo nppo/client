@@ -17,7 +17,7 @@
     </div>
 
     <VueSlickCarousel
-      v-if="entity.length > 0"
+      v-if="projects"
       ref="project"
       :arrows="false"
       :infinite="true"
@@ -25,7 +25,7 @@
       :slides-to-show="4"
       :slides-to-scroll="1"
     >
-      <div v-for="project in entity" :key="project.id" class="text-white">
+      <div v-for="project in projects" :key="project.id" class="text-white">
         {{ project.title }} <br />
         {{ project.description }}
       </div>
@@ -46,7 +46,7 @@ import 'vue-slick-carousel/dist/vue-slick-carousel.css'
   },
 })
 export default class ProjecttSlider extends Vue {
-  @Prop({ type: Array, required: true }) entity!: Project[]
+  @Prop({ type: Array, required: true }) projects!: Project[]
 
   nextSlide() {
     this.$refs.project.next()

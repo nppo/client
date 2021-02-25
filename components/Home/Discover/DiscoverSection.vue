@@ -25,16 +25,21 @@
           </nav>
         </div>
 
-        <ProductSlider
-          v-show="isActive('product')"
-          :products="entities.products"
-        />
-        <!-- <ProjectSlider
-          v-show="isActive('project')"
-          :entity="entities.projects"
-        />
-        <PersonSlider v-show="isActive('person')" :entity="entities.people" />
-        <PartySlider v-show="isActive('party')" :entity="entities.parties" /> -->
+        <div v-if="fetch">
+          <DiscoverSkeleton />
+        </div>
+        <div v-else>
+          <ProductSlider
+            v-show="isActive('product')"
+            :products="entities.products"
+          />
+          <ProjectSlider
+            v-show="isActive('project')"
+            :projects="entities.projects"
+          />
+          <PersonSlider v-show="isActive('person')" :people="entities.people" />
+          <PartySlider v-show="isActive('party')" :parties="entities.parties" />
+        </div>
       </div>
     </div>
   </div>
@@ -50,6 +55,7 @@ export default class DiscoverSection extends Vue {
 
   @Prop({ type: Array, required: true }) types!: Type[]
   @Prop({ type: Object, required: true }) entities!: Discover
+  @Prop({ type: Boolean, default: false }) readonly fetch!: boolean
 
   isActive(menuItem: String): boolean {
     return this.activeTab === String(menuItem)

@@ -11,6 +11,7 @@ export interface Person {
   email: string
   function: string
   phone: string
+  tags?: Tag[]
 }
 
 export interface Product {
@@ -18,6 +19,10 @@ export interface Product {
   title: string
   description: string
   image: string
+  likes: string
+  publishedAt: string
+  themes?: Theme[]
+  tags?: Tag[]
 }
 
 export interface Project {

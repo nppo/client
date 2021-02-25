@@ -17,7 +17,7 @@
     </div>
 
     <VueSlickCarousel
-      v-if="entity.length > 0"
+      v-if="people"
       ref="person"
       :arrows="false"
       :infinite="true"
@@ -25,7 +25,7 @@
       :slides-to-show="4"
       :slides-to-scroll="1"
     >
-      <div v-for="person in entity" :key="person.id">
+      <div v-for="person in people" :key="person.id">
         <PersonBlock :person="person" class="ml-2 mr-2 shadow-none" />
       </div>
     </VueSlickCarousel>
@@ -48,7 +48,7 @@ import 'vue-slick-carousel/dist/vue-slick-carousel.css'
   },
 })
 export default class PersonSlider extends Vue {
-  @Prop({ type: Array, required: true }) entity!: Person[]
+  @Prop({ type: Array, required: true }) people!: Person[]
 
   nextSlide() {
     this.$refs.person.next()
