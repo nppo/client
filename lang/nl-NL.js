@@ -89,6 +89,14 @@ export default {
       },
     },
 
+    product_show: {
+      share: 'Delen',
+      bookmark: 'Opslaan',
+      types: {
+        video: 'video',
+      },
+    },
+
     search: {
       title: 'Zoekresultaten',
       placeholder: 'Start je zoektocht...',

@@ -86,6 +86,15 @@ export default {
         },
       },
     },
+
+    product_show: {
+      share: 'Share',
+      bookmark: 'Save',
+      types: {
+        video: 'video',
+      },
+    },
+
     search: {
       title: 'Search results',
       placeholder: 'Start your search...',
