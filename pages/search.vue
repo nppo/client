@@ -23,7 +23,10 @@
           @click="search(true)"
         />
 
-        <div class="mr-10">
+        <div v-if="$fetchState.pending">
+          <FilterSkeleton class="mb-1 mr-10" />
+        </div>
+        <div v-else class="mr-10">
           <h3 class="mb-4 text-2xl">
             {{ $t('pages.search.filters.heading') }}
           </h3>
@@ -31,28 +34,20 @@
           <CheckboxFilter
             :name="'types'"
             :requires-translation="true"
-            :entity="
-              [...types].sort((type) => {
-                return isActive(type.id, 'types') ? -1 : 1
-              })
-            "
+            :entities="types"
             class="mb-1"
             @toggle-filter="toggleFilter"
           />
 
           <CheckboxFilter
             :name="'themes'"
-            :entity="
-              [...themes].sort((theme) => {
-                return isActive(theme.id, 'themes') ? -1 : 1
-              })
-            "
+            :entities="themes"
             @toggle-filter="toggleFilter"
           />
         </div>
 
         <div class="col-span-4 pt-10 lg:col-span-3">
-          <div v-if="isLoading">
+          <div v-if="$fetchState.pending || isLoading">
             <SearchSkeleton />
           </div>
           <div v-else>
@@ -155,8 +150,8 @@ import {
 
 @Component({
   async fetch(this: SearchPage) {
-    this.$accessor.themes.fetchAll()
-    this.$accessor.types.fetchAll()
+    await this.$accessor.themes.fetchAll()
+    await this.$accessor.types.fetchAll()
 
     this.prepareFilters()
 

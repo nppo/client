@@ -44,6 +44,8 @@ export default {
   },
 
   filters: {
+    show_more: 'Show {number} more',
+    show_less: 'Show less',
     themes: {
       title: 'Theme',
     },
