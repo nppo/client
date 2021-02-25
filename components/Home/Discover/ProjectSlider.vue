@@ -48,6 +48,10 @@ import 'vue-slick-carousel/dist/vue-slick-carousel.css'
   },
 })
 export default class ProjecttSlider extends Vue {
+  $refs!: {
+    project: typeof VueSlickCarousel
+  }
+
   @Prop({ type: Array, required: true }) projects!: Project[]
 
   nextSlide() {

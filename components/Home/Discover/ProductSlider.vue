@@ -47,6 +47,10 @@ import 'vue-slick-carousel/dist/vue-slick-carousel.css'
   },
 })
 export default class ProductSlider extends Vue {
+  $refs!: {
+    product: typeof VueSlickCarousel
+  }
+
   @Prop({ type: Array, required: true }) products!: Product
 
   nextSlide() {

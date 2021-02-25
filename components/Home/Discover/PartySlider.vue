@@ -47,6 +47,10 @@ import 'vue-slick-carousel/dist/vue-slick-carousel.css'
   },
 })
 export default class PartySlider extends Vue {
+  $refs!: {
+    party: typeof VueSlickCarousel
+  }
+
   @Prop({ type: Array, required: true }) parties!: Party[]
 
   nextSlide() {

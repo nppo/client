@@ -88,7 +88,7 @@ export default class PersonBlock extends Vue {
   @Prop({ type: Object, required: true }) person!: Person
 
   get slicedTags() {
-    return this.person.tags.slice(0, 5)
+    return this.person.tags?.slice(0, 5)
   }
 }
 </script>

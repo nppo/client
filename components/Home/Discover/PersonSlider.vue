@@ -48,6 +48,10 @@ import 'vue-slick-carousel/dist/vue-slick-carousel.css'
   },
 })
 export default class PersonSlider extends Vue {
+  $refs!: {
+    person: typeof VueSlickCarousel
+  }
+
   @Prop({ type: Array, required: true }) people!: Person[]
 
   nextSlide() {
