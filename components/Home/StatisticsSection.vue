@@ -6,7 +6,7 @@
 
     <div class="flex justify-around space-x-5">
       <div
-        v-for="statistic in entityStatistics"
+        v-for="statistic in statistics"
         :key="statistic.name"
         class="flex flex-col items-center"
       >
@@ -26,6 +26,6 @@ import { Component, Vue, Prop } from 'nuxt-property-decorator'
 
 @Component
 export default class StatisticsSection extends Vue {
-  @Prop({ type: Object, required: true }) entityStatistics!: any
+  @Prop({ type: Array, required: true }) statistics!: any
 }
 </script>

@@ -18,28 +18,18 @@
           <!-- TODO: Make sure the badge reflects information from the product -->
           <Badge icon-style="fas" icon-name="link" text="TBA" />
         </span>
-
-        <!-- TODO: When image available make image dynamic: project.image" -->
-        <span v-if="!projectImage && project.themes.length > 0" class="pr-4">
-          {{ project.themes[0].label }}
-        </span>
       </div>
     </div>
 
     <div class="flex justify-between px-4 text-tiny">
       <span>{{ publishedAt }}</span>
-
-      <!-- TODO: When image available make image dynamic: product.image" -->
-      <span v-if="projectImage && project.themes.length > 0">{{
-        project.themes[0].label
-      }}</span>
     </div>
 
     <div class="flex flex-col p-4">
-      <h4 class="mb-1 text-base">{{ project.title }}</h4>
+      <h4 class="mb-1 text-base line-clamp-1">{{ project.title }}</h4>
 
       <!-- TODO: When image available make image dynamic: product.image" -->
-      <div class="text-gray-300" :class="{ 'line-clamp-4': projectImage }">
+      <div class="text-gray-300 h-18" :class="{ 'line-clamp-4': projectImage }">
         {{ project.description }}
       </div>
     </div>
