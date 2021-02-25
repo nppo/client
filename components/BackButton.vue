@@ -4,7 +4,7 @@
     v-bind="{
       ...(hasNavigatedInternal ? { type: 'button' } : { to: localePath('/') }),
     }"
-    class="inline-flex items-center px-2 py-1 mt-8 space-x-2 text-white bg-blue-500 rounded-md"
+    class="inline-flex items-center px-2 py-1 space-x-2 text-white bg-blue-500 rounded-md"
     v-on="{
       ...(hasNavigatedInternal ? { click: () => this.$router.back() } : {}),
     }"

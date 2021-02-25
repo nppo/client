@@ -1,7 +1,7 @@
 import { NuxtAxiosInstance } from '@nuxtjs/axios'
 import { AxiosResponse } from 'axios'
 import { Product } from '~/types/entities'
-import { MultipleResults } from '~/types/repositories'
+import { MultipleResults, SingleResult } from '~/types/repositories'
 
 const resource = 'products'
 
@@ -14,5 +14,9 @@ export default class ProductRepository {
 
   all(): Promise<AxiosResponse<MultipleResults<Product>>> {
     return this.axios.get(`/api/${resource}`)
+  }
+
+  show(id: number): Promise<AxiosResponse<SingleResult<Product>>> {
+    return this.axios.get(`/api/${resource}/${id}`)
   }
 }

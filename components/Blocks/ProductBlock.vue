@@ -1,5 +1,8 @@
 <template>
-  <div class="flex flex-col h-full overflow-hidden bg-white rounded-md shadow">
+  <LocaleLink
+    :path="`/product/${product.id}`"
+    class="flex flex-col h-full overflow-hidden bg-white rounded-md shadow"
+  >
     <div class="relative">
       <!-- TODO: When image available make image dynamic: v-if="product.image" -->
       <img
@@ -16,7 +19,7 @@
           :class="{ 'absolute top-0 left-0': productImage }"
         >
           <!-- TODO: Make sure the badge reflects information from the product -->
-          <Badge icon-style="fas" icon-name="link" text="TBA" />
+          <Badge class="w-full" icon-style="fas" icon-name="link" text="TBA" />
         </span>
 
         <!-- TODO: When image available make image dynamic: product.image" -->
@@ -30,9 +33,9 @@
       <span>{{ publishedAt }}</span>
 
       <!-- TODO: When image available make image dynamic: product.image" -->
-      <span v-if="productImage && product.themes.length > 0">{{
-        product.themes[0].label
-      }}</span>
+      <span v-if="productImage && product.themes.length > 0">
+        {{ product.themes[0].label }}
+      </span>
     </div>
 
     <div class="flex flex-col p-4">
@@ -49,7 +52,7 @@
         <font-awesome-icon :icon="['far', 'bookmark']" class="text-base" />
       </span>
     </div>
-  </div>
+  </LocaleLink>
 </template>
 
 <script lang="ts">

@@ -44,6 +44,8 @@ export default {
   },
 
   filters: {
+    show_more: 'Toon {number} meer',
+    show_less: 'Toon minder',
     themes: {
       title: 'Thema',
     },
@@ -86,6 +88,14 @@ export default {
           description:
             'Organisaties en instellingen die betrokken zijn bij praktijkgericht onderzoek ',
         },
+      },
+    },
+
+    product_show: {
+      share: 'Delen',
+      bookmark: 'Opslaan',
+      types: {
+        video: 'video',
       },
     },
 

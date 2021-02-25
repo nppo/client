@@ -10,7 +10,7 @@
       <LanguageSwitcher />
 
       <LocaleLink
-        :path="$auth.loggedIn ? 'account' : 'login'"
+        :path="$auth.loggedIn ? '/account' : '/login'"
         class="px-4 py-2 text-sm text-white rounded bg-orange-brand"
       >
         {{ $auth.loggedIn ? $t('account.profile') : $t('account.login') }}
