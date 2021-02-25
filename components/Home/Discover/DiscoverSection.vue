@@ -25,10 +25,16 @@
           </nav>
         </div>
 
-        <ProductSlider v-show="isActive('product')" :products="products" />
-        <ProjectSlider v-show="isActive('project')" :projects="projects" />
-        <PersonSlider v-show="isActive('person')" :persons="persons" />
-        <PartySlider v-show="isActive('party')" :parties="parties" />
+        <ProductSlider
+          v-show="isActive('product')"
+          :products="entities.products"
+        />
+        <!-- <ProjectSlider
+          v-show="isActive('project')"
+          :entity="entities.projects"
+        />
+        <PersonSlider v-show="isActive('person')" :entity="entities.people" />
+        <PartySlider v-show="isActive('party')" :entity="entities.parties" /> -->
       </div>
     </div>
   </div>
@@ -36,24 +42,14 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
-import VueSlickCarousel from 'vue-slick-carousel'
-import { Party, Person, Product, Project, Type } from '~/types/entities'
+import { Discover, Type } from '~/types/entities'
 
-import 'vue-slick-carousel/dist/vue-slick-carousel.css'
-
-@Component({
-  components: {
-    VueSlickCarousel,
-  },
-})
+@Component
 export default class DiscoverSection extends Vue {
   public activeTab: String = 'product'
 
   @Prop({ type: Array, required: true }) types!: Type[]
-  @Prop({ type: Array, required: true }) products!: Product[]
-  @Prop({ type: Array, required: true }) persons!: Person[]
-  @Prop({ type: Array, required: true }) parties!: Party[]
-  @Prop({ type: Array, required: true }) projects!: Project[]
+  @Prop({ type: Object, required: true }) entities!: Discover
 
   isActive(menuItem: String): boolean {
     return this.activeTab === String(menuItem)
@@ -61,14 +57,6 @@ export default class DiscoverSection extends Vue {
 
   setActive(menuItem: String) {
     this.activeTab = menuItem
-  }
-
-  nextSlide(ref: any) {
-    this.$refs[ref].next()
-  }
-
-  previousSlide(ref: any) {
-    this.$refs[ref].prev()
   }
 }
 </script>

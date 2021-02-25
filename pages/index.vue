@@ -59,20 +59,14 @@
     </div>
 
     <ThemeFilterSection :themes="themes" />
-    <DiscoverSection
-      :types="types"
-      :products="products"
-      :persons="persons"
-      :parties="parties"
-      :projects="projects"
-    />
+    <DiscoverSection :types="types" :entities="entities" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import qs from 'qs'
-import { Type, Filter } from '~/types/entities'
+import { Type, Filter, Discover } from '~/types/entities'
 
 @Component({
   async fetch(this: IndexPage) {
@@ -84,20 +78,8 @@ import { Type, Filter } from '~/types/entities'
       await this.$accessor.themes.fetchAll()
     }
 
-    if (this.$accessor.products.all.length < 1) {
-      await this.$accessor.products.fetchAll()
-    }
-
-    if (this.$accessor.persons.all.length < 1) {
-      await this.$accessor.persons.fetchAll()
-    }
-
-    if (this.$accessor.parties.all.length < 1) {
-      await this.$accessor.parties.fetchAll()
-    }
-
-    if (this.$accessor.projects.all.length < 1) {
-      await this.$accessor.projects.fetchAll()
+    if (this.$accessor.discover.all.length < 1) {
+      await this.$accessor.discover.fetchAll()
     }
   },
 })
@@ -116,20 +98,8 @@ export default class IndexPage extends Vue {
     return this.$accessor.themes.all
   }
 
-  get products() {
-    return this.$accessor.products.all
-  }
-
-  get persons() {
-    return this.$accessor.persons.all
-  }
-
-  get parties() {
-    return this.$accessor.parties.all
-  }
-
-  get projects() {
-    return this.$accessor.projects.all
+  get entities() {
+    return this.$accessor.discover.all
   }
 
   setFilters(type: string, filters: Array<any>): void {

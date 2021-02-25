@@ -17,7 +17,7 @@
     </div>
 
     <VueSlickCarousel
-      v-if="parties.length > 0"
+      v-if="entity.length > 0"
       ref="party"
       :arrows="false"
       :infinite="true"
@@ -25,7 +25,7 @@
       :slides-to-show="4"
       :slides-to-scroll="1"
     >
-      <div v-for="party in parties" :key="party.id">
+      <div v-for="party in entity" :key="party.id">
         <PartyBlock :party="party" class="ml-2 mr-2 shadow-none" />
       </div>
     </VueSlickCarousel>
@@ -47,7 +47,7 @@ import 'vue-slick-carousel/dist/vue-slick-carousel.css'
   },
 })
 export default class PartySlider extends Vue {
-  @Prop({ type: Array, required: true }) parties!: Party[]
+  @Prop({ type: Array, required: true }) entity!: Party[]
 
   nextSlide() {
     this.$refs.party.next()

@@ -50,6 +50,14 @@ export interface Search {
   filters?: Filter[]
 }
 
+export interface Discover {
+  results: number
+  parties?: Party[]
+  people?: Person[]
+  products?: Product[]
+  projects?: Project[]
+}
+
 export interface Type {
   id: number
   label: string
