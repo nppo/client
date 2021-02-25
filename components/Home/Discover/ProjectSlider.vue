@@ -26,8 +26,7 @@
       :slides-to-scroll="1"
     >
       <div v-for="project in projects" :key="project.id" class="text-white">
-        {{ project.title }} <br />
-        {{ project.description }}
+        <ProjectBlock :project="project" class="ml-2 mr-2 shadow-none" />
       </div>
     </VueSlickCarousel>
   </div>
