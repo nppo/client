@@ -44,7 +44,7 @@ import { Component, Vue } from 'nuxt-property-decorator'
 @Component
 export default class TypeFilter extends Vue {
   public active: boolean = false
-  public selected: Array<number> = []
+  public selected: Array<string> = []
 
   get types() {
     return this.$accessor.types.all
@@ -66,12 +66,12 @@ export default class TypeFilter extends Vue {
   }
 
   toggleType(id: number) {
-    const indexOf = this.selected.indexOf(id)
+    const indexOf = this.selected.indexOf(String(id))
 
     if (indexOf >= 0) {
       this.selected.splice(indexOf, 1)
     } else {
-      this.selected.unshift(id)
+      this.selected.unshift(String(id))
     }
 
     this.$emit('set-filters', 'types', this.selected)
