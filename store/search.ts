@@ -1,4 +1,5 @@
 import { actionTree, mutationTree } from 'nuxt-typed-vuex'
+import { Vue } from 'nuxt-property-decorator'
 import { Filter, Search } from '~/types/entities'
 
 export const state = () => ({
@@ -15,22 +16,26 @@ export const mutations = mutationTree(state, {
     state.current = newValue
   },
   setFilter(state, filter: Filter) {
-    state.filters[filter.type] = filter.values
+    Vue.set(state.filters, filter.type, [...filter.values])
   },
   toggleFilter(state, filter: any) {
-    if (state.filters[filter.type]) {
-      const indexOf = state.filters[filter.type].indexOf(filter.value)
+    const filters = state.filters[filter.type]
 
-      if (indexOf >= 0) {
-        state.filters[filter.type].splice(indexOf, 1)
-        return
-      }
+    if (!filters) {
+      Vue.set(state.filters, filter.type, [filter.value])
 
-      state.filters[filter.type].push(filter.value)
       return
     }
 
-    state.filters[filter.type] = [filter.value]
+    const indexOf = filters.indexOf(filter.value)
+
+    if (indexOf >= 0) {
+      filters.splice(indexOf, 1)
+    } else {
+      filters.push(filter.value)
+    }
+
+    Vue.set(state.filters, filter.type, filters)
   },
   reset(state) {
     state.filters = {} as any

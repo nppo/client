@@ -3,6 +3,7 @@ import { Product } from '~/types/entities'
 
 export const state = () => ({
   all: [] as Product[],
+  current: {} as Product,
 })
 
 export type ProductsState = ReturnType<typeof state>
@@ -10,6 +11,9 @@ export type ProductsState = ReturnType<typeof state>
 export const mutations = mutationTree(state, {
   setAll(state, newValue: Product[]) {
     state.all = newValue
+  },
+  setCurrent(state, product: Product) {
+    state.current = product
   },
 })
 
@@ -22,6 +26,13 @@ export const actions = actionTree(
 
       if (status === 200) {
         commit('setAll', data.data)
+      }
+    },
+    async fetchCurrent({ commit }, id: number): Promise<void> {
+      const { status, data } = await this.$repositories.product.show(id)
+
+      if (status === 200) {
+        commit('setCurrent', data.data)
       }
     },
   }

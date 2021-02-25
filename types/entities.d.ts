@@ -67,3 +67,11 @@ export interface Type {
   id: number
   label: string
 }
+
+export interface ProductTypeButton {
+  iconName: string
+  iconStyle: string
+  text: string
+  textColor?: string
+  color?: string
+}

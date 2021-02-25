@@ -2,7 +2,10 @@
   <div class="flex-1">
     <Header>
       <div class="container pb-16">
-        <BackButton :has-navigated-internal="hasNavigatedInternal" />
+        <BackButton
+          class="mt-8"
+          :has-navigated-internal="hasNavigatedInternal"
+        />
 
         <h1 class="mt-8 text-4xl font-bold text-gray-100">
           {{ $t('pages.search.title') }}
@@ -11,7 +14,7 @@
     </Header>
 
     <div class="container mx-auto -mt-6">
-      <div class="relative grid grid-cols-4 gap-4 mb-2">
+      <div class="grid relative grid-cols-4 gap-4 mb-2">
         <SearchBar
           :aria-label="$t('pages.search.input_search')"
           variant="large"
@@ -20,7 +23,10 @@
           @click="search(true)"
         />
 
-        <div class="mr-10">
+        <div v-if="$fetchState.pending">
+          <FilterSkeleton class="mb-1 mr-10" />
+        </div>
+        <div v-else class="mr-10">
           <h3 class="mb-4 text-2xl">
             {{ $t('pages.search.filters.heading') }}
           </h3>
@@ -28,34 +34,26 @@
           <CheckboxFilter
             :name="'types'"
             :requires-translation="true"
-            :entity="
-              [...types].sort((type) => {
-                return isActive(type.id, 'types') ? -1 : 1
-              })
-            "
+            :entities="types"
             class="mb-1"
             @toggle-filter="toggleFilter"
           />
 
           <CheckboxFilter
             :name="'themes'"
-            :entity="
-              [...themes].sort((theme) => {
-                return isActive(theme.id, 'themes') ? -1 : 1
-              })
-            "
+            :entities="themes"
             @toggle-filter="toggleFilter"
           />
         </div>
 
         <div class="col-span-4 pt-10 lg:col-span-3">
-          <div v-if="isLoading">
+          <div v-if="$fetchState.pending || isLoading">
             <SearchSkeleton />
           </div>
           <div v-else>
             <SearchCollapse
               v-if="products && products.length > 0"
-              :show-header="!hasSpecificTypeFilter()"
+              :show-header="!hasSpecificTypeFilter"
               :header="$t('entities.product.plural')"
               class="mb-20"
               @show-all="setFilterByLabel('product')"
@@ -74,7 +72,7 @@
 
             <SearchCollapse
               v-if="people && people.length > 0"
-              :show-header="!hasSpecificTypeFilter()"
+              :show-header="!hasSpecificTypeFilter"
               :header="$t('entities.person.plural')"
               class="mb-20"
               @show-all="setFilterByLabel('person')"
@@ -91,7 +89,7 @@
 
             <SearchCollapse
               v-if="projects && projects.length > 0"
-              :show-header="!hasSpecificTypeFilter()"
+              :show-header="!hasSpecificTypeFilter"
               :header="$t('entities.project.plural')"
               class="mb-20"
               @show-all="setFilterByLabel('project')"
@@ -110,7 +108,7 @@
 
             <SearchCollapse
               v-if="parties && parties.length > 0"
-              :show-header="!hasSpecificTypeFilter()"
+              :show-header="!hasSpecificTypeFilter"
               :header="$t('entities.party.plural')"
               @show-all="setFilterByLabel('party')"
             >
@@ -152,8 +150,8 @@ import {
 
 @Component({
   async fetch(this: SearchPage) {
-    this.$accessor.themes.fetchAll()
-    this.$accessor.types.fetchAll()
+    await this.$accessor.themes.fetchAll()
+    await this.$accessor.types.fetchAll()
 
     this.prepareFilters()
 
@@ -229,11 +227,11 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
         ? 'query=' + this.searchString + this.filterString
         : this.filterString.substring(1)
 
-      await this.$accessor.search.result(requestString)
-
       if (replaceUrl) {
-        await this.$router.replace('/search?' + requestString)
+        this.$router.replace('/search?' + requestString)
       }
+
+      await this.$accessor.search.result(requestString)
     }
 
     this.isLoading = false
@@ -259,12 +257,8 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
     }
   }
 
-  hasSpecificTypeFilter(): boolean {
-    if (this.filters.types) {
-      return this.filters.types.length === 1
-    }
-
-    return false
+  get hasSpecificTypeFilter(): boolean {
+    return this.filters.types?.length === 1
   }
 
   setFilterByLabel(label: string): void {
@@ -283,7 +277,7 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
   }
 
   getMaxEntities(entities: Array<any>, max: number): Array<any> {
-    return this.hasSpecificTypeFilter() ? entities : entities.slice(0, max)
+    return this.hasSpecificTypeFilter ? entities : entities.slice(0, max)
   }
 }
 </script>

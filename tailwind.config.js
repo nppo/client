@@ -34,9 +34,15 @@ module.exports = {
           brand: '#ffc800',
         },
       },
+      opacity: {
+        90: '0.9',
+      },
+      backgroundOpacity: (theme) => theme('opacity'),
       spacing: {
         18: '4.5rem',
         28: '7rem',
+        96: '24rem',
+        104: '26rem',
       },
       boxShadow: {
         default: '0px 0px 20px rgba(137, 170, 205, 0.2)',

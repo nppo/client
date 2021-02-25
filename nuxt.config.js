@@ -71,6 +71,8 @@ export default {
     '@nuxtjs/sentry',
     // Doc: https://auth.nuxtjs.org/
     '@nuxtjs/auth-next',
+    // Doc: https://github.com/nuxt-community/dayjs-module
+    '@nuxtjs/dayjs',
   ],
 
   /*
@@ -152,6 +154,13 @@ export default {
     langDir: 'lang/',
   },
 
+  dayjs: {
+    locales: ['en', 'nl'],
+    defaultLocale: 'nl',
+    defaultTimeZone: 'Europe/Amsterdam',
+    plugins: ['utc', 'timezone'],
+  },
+
   /*
    ** Font Awesome module configuration
    ** See https://github.com/nuxt-community/fontawesome-module#readme
@@ -166,8 +175,11 @@ export default {
         'faMinus',
         'faPlus',
         'faSearch',
+        'faVideo',
+        'faShareAlt',
+        'faBookmark',
       ],
-      regular: ['faBookmark'],
+      regular: ['faBookmark', 'faPlayCircle'],
       brands: ['faLinkedin', 'faResearchgate', 'faTwitterSquare'],
     },
   },

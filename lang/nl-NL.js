@@ -14,30 +14,38 @@ export default {
     type: {
       singular: 'Type',
       plural: 'Types',
+      default: 'type | types',
     },
     theme: {
       singular: 'Thema',
       plural: "Thema's",
+      default: "thema | thema's",
     },
     person: {
       singular: 'Persoon',
       plural: 'Personen',
+      default: 'persoon | personen',
     },
     party: {
       singular: 'Partij',
       plural: 'Partijen',
+      default: 'partij | partijen',
     },
     product: {
       singular: 'Product',
       plural: 'Producten',
+      default: 'product | producten',
     },
     project: {
       singular: 'Project',
       plural: 'Projecten',
+      default: 'project | projecten',
     },
   },
 
   filters: {
+    show_more: 'Toon {number} meer',
+    show_less: 'Toon minder',
     themes: {
       title: 'Thema',
     },
@@ -58,6 +66,7 @@ export default {
       subtitle: 'Kennis uit het hoger onderwijs in Nederland',
       find_by_theme: 'Vinden op thema',
       discover_heading: 'Ontdekken',
+      statistics_title: 'Op dit platform',
       search_blocks: {
         title: 'Ik zoek',
         project: {
@@ -86,6 +95,14 @@ export default {
         product: 'Producten',
         person: 'Personen',
         party: 'Partijen',
+      },
+    },
+
+    product_show: {
+      share: 'Delen',
+      bookmark: 'Opslaan',
+      types: {
+        video: 'video',
       },
     },
 

@@ -14,30 +14,38 @@ export default {
     type: {
       singular: 'Type',
       plural: 'Types',
+      default: 'type | types',
     },
     theme: {
       singular: 'Theme',
       plural: 'Themes',
+      default: 'theme | themes',
     },
     person: {
       singular: 'Person',
       plural: 'People',
+      default: 'person | people',
     },
     party: {
       singular: 'Party',
       plural: 'Parties',
+      default: 'party | parties',
     },
     product: {
       singular: 'Product',
       plural: 'Products',
+      default: 'product | products',
     },
     project: {
       singular: 'Project',
       plural: 'Projects',
+      default: 'project | projects',
     },
   },
 
   filters: {
+    show_more: 'Show {number} more',
+    show_less: 'Show less',
     themes: {
       title: 'Theme',
     },
@@ -58,6 +66,7 @@ export default {
       subtitle: 'Knowledge from higher education in the Netherlands',
       find_by_theme: 'Find by theme',
       discover_heading: 'Discover',
+      statistics_title: 'On this platform',
       search_blocks: {
         title: "I'm looking for",
         project: {
@@ -86,6 +95,15 @@ export default {
         party: 'Parties',
       },
     },
+
+    product_show: {
+      share: 'Share',
+      bookmark: 'Save',
+      types: {
+        video: 'video',
+      },
+    },
+
     search: {
       title: 'Search results',
       placeholder: 'Start your search...',
