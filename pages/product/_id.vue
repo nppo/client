@@ -22,7 +22,7 @@
 
 <script lang="ts">
 import { Context } from '@nuxt/types'
-import { Component, mixins, Prop } from 'nuxt-property-decorator'
+import { Component, mixins } from 'nuxt-property-decorator'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import { Product } from '~/types/entities'
 
