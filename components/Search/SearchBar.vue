@@ -35,6 +35,7 @@ export default class SearchBar extends Vue {
   private localValue: string = ''
 
   @Prop({ type: String }) value!: string
+  @Prop({ type: Boolean, default: false }) resetsFilters!: boolean
   @Prop({ type: String, default: 'search' }) readonly ariaLabel!: string
   @Prop({ type: String, default: 'small' }) readonly variant!: 'large' | 'small'
 
@@ -49,6 +50,10 @@ export default class SearchBar extends Vue {
   }
 
   search() {
+    if (this.resetsFilters) {
+      this.$accessor.search.reset()
+    }
+
     this.$emit('click')
   }
 }
