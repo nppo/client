@@ -27,7 +27,7 @@
     </div>
 
     <div class="flex justify-between px-4 text-tiny">
-      <span>{{ publishedAt }}</span>
+      <span>{{ createdAt }}</span>
 
       <!-- TODO: When image available make image dynamic: product.image" -->
       <span v-if="projectImage && project.themes.length > 0">{{
@@ -74,8 +74,8 @@ export default class ProjectBlock extends Vue {
 
   @Prop({ type: Object, required: true }) readonly project!: Project
 
-  get publishedAt(): string {
-    const date = this.$dayjs(this.project.publishedAt)
+  get createdAt(): string {
+    const date = this.$dayjs(this.project.createdAt)
 
     return date.locale(this.$i18n.locale).format('D MMM YYYY')
   }
