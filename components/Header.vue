@@ -16,7 +16,7 @@
             class="flex justify-end flex-1 pr-24"
             @submit.prevent="handleSearchSubmit"
           >
-            <SearchBar :value.sync="searchQuery" />
+            <SearchBar :value.sync="searchQuery" :resets-filters="true" />
           </form>
         </Navbar>
 
