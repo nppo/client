@@ -238,7 +238,16 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
   }
 
   prepareFilters(): void {
-    const queryString = this.$route.fullPath.replace('/search?', '')
+    let queryString: string
+
+    if (this.$i18n.locale !== this.$i18n.defaultLocale) {
+      queryString = this.$route.fullPath.replace(
+        '/' + this.$i18n.locale + '/search?',
+        ''
+      )
+    } else {
+      queryString = this.$route.fullPath.replace('/search?', '')
+    }
 
     const query = qs.parse(queryString) as any
 
