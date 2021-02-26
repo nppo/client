@@ -65,6 +65,7 @@ export default {
       title: 'Samen creëren we impact!',
       subtitle: 'Kennis uit het hoger onderwijs in Nederland',
       find_by_theme: 'Vinden op thema',
+      discover_heading: 'Ontdekken',
       statistics_title: 'Op dit platform',
       search_blocks: {
         title: 'Ik zoek',
@@ -74,7 +75,7 @@ export default {
             'Onderzoeksprojecten en programma’s met onderliggende producten',
         },
         product: {
-          title: 'Resultaten',
+          title: 'Producten',
           description:
             'Uitkomsten en resultaten van praktijkgerichte onderzoeken',
         },
@@ -88,6 +89,12 @@ export default {
           description:
             'Organisaties en instellingen die betrokken zijn bij praktijkgericht onderzoek ',
         },
+      },
+      types: {
+        project: 'Projecten',
+        product: 'Producten',
+        person: 'Personen',
+        party: 'Partijen',
       },
     },
 

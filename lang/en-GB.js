@@ -65,6 +65,7 @@ export default {
       title: 'Together we create impact!',
       subtitle: 'Knowledge from higher education in the Netherlands',
       find_by_theme: 'Find by theme',
+      discover_heading: 'Discover',
       statistics_title: 'On this platform',
       search_blocks: {
         title: "I'm looking for",
@@ -74,7 +75,7 @@ export default {
             'Research projects and programs with underlying products',
         },
         product: {
-          title: 'Results',
+          title: 'Products',
           description: 'Outcomes and results of practice-oriented studies',
         },
         person: {
@@ -86,6 +87,12 @@ export default {
           description:
             'Organizations and institutions involved in practice-oriented research',
         },
+      },
+      types: {
+        project: 'Projects',
+        product: 'Products',
+        person: 'Persons',
+        party: 'Parties',
       },
     },
 

@@ -4,7 +4,7 @@
       <!-- TODO: When image available make image dynamic: v-if="person.image" -->
       <img
         v-if="personImage"
-        class="w-24 h-24 mb-2 rounded-full inline shadow"
+        class="inline w-24 h-24 mb-2 rounded-full shadow"
         :src="personImage"
         :alt="person.firstName + '_avatar'"
       />
@@ -14,20 +14,20 @@
       </h4>
       <span class="mb-2 text-xs text-gray-300">{{ person.function }}</span>
 
-      <div class="flex justify-evenly w-full mb-2">
+      <div class="flex w-full mb-2 justify-evenly">
         <div class="flex flex-col items-center">
-          <span class="uppercase font-bold">projecten</span>
+          <span class="font-bold uppercase">projecten</span>
           <span>43</span>
         </div>
         <div class="flex flex-col items-center">
-          <span class="uppercase font-bold">producten</span>
+          <span class="font-bold uppercase">producten</span>
           <span>125</span>
         </div>
       </div>
 
       <div class="flex items-center justify-center">
         <div
-          class="flex justify-center rounded-full p-2 mr-2 bg-blue-500 text-white h-8 w-8"
+          class="flex justify-center w-8 h-8 p-2 mr-2 text-white bg-blue-500 rounded-full"
         >
           <font-awesome-icon
             :icon="['fab', 'twitter-square']"
@@ -35,12 +35,12 @@
           />
         </div>
         <div
-          class="flex justify-center rounded-full p-2 mr-2 bg-blue-500 text-white h-8 w-8"
+          class="flex justify-center w-8 h-8 p-2 mr-2 text-white bg-blue-500 rounded-full"
         >
           <font-awesome-icon :icon="['fab', 'linkedin']" class="text-base" />
         </div>
         <div
-          class="flex justify-center rounded-full p-2 bg-blue-500 text-white h-8 w-8"
+          class="flex justify-center w-8 h-8 p-2 text-white bg-blue-500 rounded-full"
         >
           <font-awesome-icon
             :icon="['fab', 'researchgate']"
@@ -50,13 +50,16 @@
       </div>
     </div>
 
-    <hr class="border-gray-100 mb-3" />
+    <hr class="mb-3 border-gray-100" />
 
-    <div class="flex flex-row flex-wrap justify-center mb-4">
+    <div
+      class="flex flex-row flex-wrap items-start justify-center px-4 mb-4"
+      :class="{ 'h-16 overflox-x-hidden': fixedHeight }"
+    >
       <div
-        v-for="tag in person.tags"
+        v-for="tag in slicedTags"
         :key="'tag_shortcut_' + tag.id"
-        class="rounded-md bg-green-300 px-3 py-1 m-1 text-xs font-extrabold cursor-pointer"
+        class="px-3 py-1 m-1 text-xs font-extrabold bg-green-300 rounded-md cursor-pointer"
       >
         {{ tag.label }}
       </div>
@@ -65,7 +68,7 @@
     <div class="flex justify-end px-4 pb-3 mt-auto">
       <button
         type="button"
-        class="inline-flex items-center px-2 py-1 space-x-2 text-blue-500 border border-blue-500 rounded-md font-bold"
+        class="inline-flex items-center px-2 py-1 space-x-2 font-bold text-blue-500 border border-blue-500 rounded-md"
       >
         <font-awesome-icon class="block" icon="plus" />
         <span>Volgen</span>
@@ -76,12 +79,18 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import { Person } from '~/types/entities'
 
 @Component
 export default class PersonBlock extends Vue {
   // TODO: When image available make image dynamic: v-if="party.image"
   public personImage: string = 'https://picsum.photos/200/200'
 
-  @Prop({ type: Object, required: true }) person!: object
+  @Prop({ type: Object, required: true }) person!: Person
+  @Prop({ type: Boolean, default: false }) readonly fixedHeight!: boolean
+
+  get slicedTags(): Array<any> | undefined {
+    return this.person.tags?.slice(0, 5)
+  }
 }
 </script>

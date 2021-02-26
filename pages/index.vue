@@ -16,7 +16,7 @@
           >
             <SearchBar :value.sync="searchQuery" variant="large">
               <TypeFilter @set-filters="setFilters" />
-              <ThemeFilter @set-filters="setFilters" />
+              <ThemeFilter :themes="themes" @set-filters="setFilters" />
             </SearchBar>
           </form>
         </div>
@@ -26,7 +26,7 @@
     <div class="container relative mx-auto">
       <div class="grid grid-cols-1 gap-5 -mt-28 md:grid-cols-2 lg:grid-cols-4">
         <LocaleLink
-          v-for="(type, index) in [...types].reverse()"
+          v-for="(type, index) in types"
           :key="index"
           :path="'/search?filters[types][]=' + type.id"
           class="block p-5 bg-white rounded shadow"
@@ -58,44 +58,22 @@
       </div>
     </div>
 
-    <div class="container relative py-24 mx-auto">
-      <h3 class="mb-12 text-2xl font-bold text-center">
-        {{ $t('pages.index.find_by_theme') }}
-      </h3>
+    <ThemeFilterSection :themes="themes" />
 
-      <FilterList />
-    </div>
+    <DiscoverSection
+      :types="types"
+      :entities="entities"
+      :is-fetching="$fetchState.pending"
+    />
 
-    <div class="container relative py-24 mx-auto">
-      <h3 class="mb-12 text-2xl font-bold text-center">
-        {{ $t('pages.index.statistics_title') }}
-      </h3>
-
-      <div class="flex justify-around space-x-5">
-        <div
-          v-for="statistic in entityStatistics"
-          :key="statistic.name"
-          class="flex flex-col items-center"
-        >
-          <div
-            class="text-4xl font-bold text-blue-500"
-            :title="statistic.count"
-          >
-            {{ statistic.count.toLocaleString($i18n.locale) }}
-          </div>
-          <div class="text-base capitalize">
-            {{ $tc(`entities.${statistic.name}.default`, statistic.count) }}
-          </div>
-        </div>
-      </div>
-    </div>
+    <StatisticsSection :statistics="entityStatistics" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import qs from 'qs'
-import { Filter, Type } from '~/types/entities'
+import { Type, Filter, Theme, Discover } from '~/types/entities'
 
 @Component({
   async fetch(this: IndexPage) {
@@ -107,6 +85,9 @@ import { Filter, Type } from '~/types/entities'
     if (this.$accessor.types.all.length < 1) {
       await this.$accessor.types.fetchAll()
     }
+
+    await this.$accessor.themes.fetchAll()
+    await this.$accessor.discover.fetchAll()
   },
 })
 export default class IndexPage extends Vue {
@@ -119,6 +100,14 @@ export default class IndexPage extends Vue {
 
   get types(): Type[] {
     return this.$accessor.types.all
+  }
+
+  get themes(): Theme[] {
+    return this.$accessor.themes.all
+  }
+
+  get entities(): Discover[] {
+    return this.$accessor.discover.all
   }
 
   setFilters(type: string, filters: Array<any>): void {

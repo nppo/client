@@ -1,5 +1,7 @@
 export interface Party {
   id: number
+  name: string
+  description: string
 }
 
 export interface Tag {
@@ -14,6 +16,12 @@ export interface Theme {
 
 export interface Person {
   id: number
+  firstName: string
+  lastName: string
+  email: string
+  function: string
+  phone: string
+  tags?: Tag[]
 }
 
 export interface Product {
@@ -21,7 +29,10 @@ export interface Product {
   title: string
   description: string
   image: string
+  likes: string
   publishedAt: string
+  themes?: Theme[]
+  tags?: Tag[]
 }
 
 export interface Project {
@@ -51,6 +62,14 @@ export interface Search {
   products?: Product[]
   projects?: Project[]
   filters?: Filter[]
+}
+
+export interface Discover {
+  results: number
+  parties?: Party[]
+  people?: Person[]
+  products?: Product[]
+  projects?: Project[]
 }
 
 export interface Type {
