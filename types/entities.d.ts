@@ -2,6 +2,16 @@ export interface Party {
   id: number
 }
 
+export interface Tag {
+  id: number
+  label: string
+}
+
+export interface Theme {
+  id: number
+  label: string
+}
+
 export interface Person {
   id: number
 }
@@ -16,11 +26,12 @@ export interface Product {
 
 export interface Project {
   id: number
-}
-
-export interface Theme {
-  id: number
-  label: string
+  title: string
+  description: string
+  likes: string
+  createdAt: string
+  tags?: Tag[]
+  themes?: Theme[]
 }
 
 export interface Filter {
