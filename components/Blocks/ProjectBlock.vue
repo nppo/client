@@ -16,13 +16,13 @@
           :class="{ 'absolute top-0 left-0': projectImage }"
         >
           <!-- TODO: Make sure the badge reflects information from the product -->
-          <Badge icon-style="fas" icon-name="link" text="TBA" />
+          <Badge text="TBA" />
         </span>
       </div>
     </div>
 
     <div class="flex justify-between px-4 text-tiny">
-      <span>{{ publishedAt }}</span>
+      <span>{{ createdAt }}</span>
     </div>
 
     <div class="flex flex-col p-4">
@@ -39,7 +39,18 @@
       </div>
     </div>
 
-    <div class="flex justify-end px-4 pb-3 mt-auto">
+    <div class="flex justify-between px-4 pb-3 mt-auto">
+      <div class="flex space-x-5">
+        <div class="flex items-center space-x-1">
+          <font-awesome-icon :icon="['fas', 'thumbs-up']" class="text-base" />
+          <span>{{ project.likes }}</span>
+        </div>
+        <div class="flex items-center space-x-1">
+          <font-awesome-icon :icon="['fas', 'eye']" class="text-base" />
+          <span>123</span>
+        </div>
+      </div>
+
       <span class="text-blue-500">
         <font-awesome-icon :icon="['far', 'bookmark']" class="text-base" />
       </span>
@@ -59,8 +70,8 @@ export default class ProjectBlock extends Vue {
   @Prop({ type: Object, required: true }) readonly project!: Project
   @Prop({ type: Boolean, default: false }) readonly fixedHeight!: boolean
 
-  get publishedAt(): string {
-    const date = this.$dayjs(this.project.publishedAt)
+  get createdAt(): string {
+    const date = this.$dayjs(this.project.createdAt)
 
     return date.locale(this.$i18n.locale).format('D MMM YYYY')
   }

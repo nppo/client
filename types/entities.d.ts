@@ -40,7 +40,7 @@ export interface Project {
   title: string
   description: string
   likes: string
-  publishedAt: string
+  createdAt: string
   tags?: Tag[]
   themes?: Theme[]
 }

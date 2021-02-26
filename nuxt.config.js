@@ -178,6 +178,8 @@ export default {
         'faVideo',
         'faShareAlt',
         'faBookmark',
+        'faThumbsUp',
+        'faEye',
       ],
       regular: ['faBookmark', 'faPlayCircle'],
       brands: ['faLinkedin', 'faResearchgate', 'faTwitterSquare'],
