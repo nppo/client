@@ -1,10 +1,10 @@
 <template>
-  <div class="flex flex-col h-full overflow-hidden bg-white rounded-md shadow">
+  <div class="flex overflow-hidden flex-col h-full bg-white rounded-md shadow">
     <div class="flex flex-col items-center p-4">
       <!-- TODO: When image available make image dynamic: v-if="party.image" -->
       <img
         v-if="partyImage"
-        class="inline w-24 h-24 mb-2 rounded-full shadow"
+        class="inline mb-2 w-24 h-24 rounded-full shadow"
         :src="partyImage"
         :alt="party.name + '_logo'"
       />
@@ -13,13 +13,13 @@
       <span class="mb-2 text-xs text-gray-300">Subtitel</span>
 
       <div
-        class="mb-4 text-gray-300 line-clamp-4"
+        class="mb-4 text-center text-gray-300 line-clamp-4"
         :class="{ 'h-18': fixedHeight }"
       >
         {{ party.description }}
       </div>
 
-      <div class="flex w-full justify-evenly">
+      <div class="flex justify-evenly w-full">
         <div class="flex flex-col items-center">
           <span class="font-bold text-gray-300">projecten</span>
           <span>43</span>
