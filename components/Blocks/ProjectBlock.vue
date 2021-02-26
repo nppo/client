@@ -16,7 +16,7 @@
           :class="{ 'absolute top-0 left-0': projectImage }"
         >
           <!-- TODO: Make sure the badge reflects information from the product -->
-          <Badge icon-style="fas" icon-name="link" text="TBA" />
+          <Badge text="TBA" />
         </span>
 
         <!-- TODO: When image available make image dynamic: project.image" -->
@@ -44,7 +44,18 @@
       </div>
     </div>
 
-    <div class="flex justify-end px-4 pb-3 mt-auto">
+    <div class="flex justify-between px-4 pb-3 mt-auto">
+      <div class="flex space-x-5">
+        <div class="flex items-center space-x-1">
+          <font-awesome-icon :icon="['fas', 'thumbs-up']" class="text-base" />
+          <span>{{ project.likes }}</span>
+        </div>
+        <div class="flex items-center space-x-1">
+          <font-awesome-icon :icon="['fas', 'eye']" class="text-base" />
+          <span>123</span>
+        </div>
+      </div>
+
       <span class="text-blue-500">
         <font-awesome-icon :icon="['far', 'bookmark']" class="text-base" />
       </span>
