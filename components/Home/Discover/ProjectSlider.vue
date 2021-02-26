@@ -26,7 +26,11 @@
       :slides-to-scroll="1"
     >
       <div v-for="project in projects" :key="project.id">
-        <ProjectBlock :project="project" class="ml-2 mr-2 shadow-none" />
+        <ProjectBlock
+          :project="project"
+          class="ml-2 mr-2 shadow-none"
+          :fixed-height="true"
+        />
       </div>
     </VueSlickCarousel>
   </div>
@@ -35,7 +39,6 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 import VueSlickCarousel from 'vue-slick-carousel'
-import ProjectBlock from '../../Blocks/ProjectBlock.vue'
 
 import { Project } from '~/types/entities'
 
@@ -43,7 +46,6 @@ import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 
 @Component({
   components: {
-    ProjectBlock,
     VueSlickCarousel,
   },
 })

@@ -63,7 +63,7 @@
     <DiscoverSection
       :types="types"
       :entities="entities"
-      :fetch="$fetchState.pending"
+      :is-fetching="$fetchState.pending"
     />
 
     <StatisticsSection :statistics="entityStatistics" />
@@ -73,7 +73,7 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import qs from 'qs'
-import { Type, Filter } from '~/types/entities'
+import { Type, Filter, Theme, Discover } from '~/types/entities'
 
 @Component({
   async fetch(this: IndexPage) {
@@ -102,11 +102,11 @@ export default class IndexPage extends Vue {
     return this.$accessor.types.all
   }
 
-  get themes() {
+  get themes(): Theme[] {
     return this.$accessor.themes.all
   }
 
-  get entities() {
+  get entities(): Discover[] {
     return this.$accessor.discover.all
   }
 

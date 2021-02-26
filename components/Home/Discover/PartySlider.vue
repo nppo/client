@@ -26,7 +26,11 @@
       :slides-to-scroll="1"
     >
       <div v-for="party in parties" :key="party.id">
-        <PartyBlock :party="party" class="ml-2 mr-2 shadow-none" />
+        <PartyBlock
+          :party="party"
+          class="ml-2 mr-2 shadow-none"
+          :fixed-height="true"
+        />
       </div>
     </VueSlickCarousel>
   </div>
@@ -35,14 +39,12 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 import VueSlickCarousel from 'vue-slick-carousel'
-import PartyBlock from '../../Blocks/PartyBlock.vue'
 import { Party } from '~/types/entities'
 
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 
 @Component({
   components: {
-    PartyBlock,
     VueSlickCarousel,
   },
 })

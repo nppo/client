@@ -25,7 +25,7 @@
           </nav>
         </div>
 
-        <div v-if="fetch">
+        <div v-if="isFetching">
           <DiscoverSkeleton />
         </div>
         <div v-else>
@@ -55,14 +55,14 @@ export default class DiscoverSection extends Vue {
 
   @Prop({ type: Array, required: true }) types!: Type[]
   @Prop({ type: Object, required: true }) entities!: Discover
-  @Prop({ type: Boolean, default: false }) readonly fetch!: boolean
+  @Prop({ type: Boolean, default: false }) readonly isFetching!: boolean
 
-  isActive(menuItem: String): boolean {
-    return this.activeTab === String(menuItem)
+  isActive(tabItem: String): boolean {
+    return this.activeTab === String(tabItem)
   }
 
-  setActive(menuItem: String) {
-    this.activeTab = menuItem
+  setActive(tabItem: String) {
+    this.activeTab = tabItem
   }
 }
 </script>

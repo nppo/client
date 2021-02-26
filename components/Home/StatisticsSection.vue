@@ -26,6 +26,6 @@ import { Component, Vue, Prop } from 'nuxt-property-decorator'
 
 @Component
 export default class StatisticsSection extends Vue {
-  @Prop({ type: Array, required: true }) statistics!: any
+  @Prop({ type: Array, required: true }) statistics!: Array<any>
 }
 </script>

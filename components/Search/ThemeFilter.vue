@@ -48,7 +48,7 @@ export default class ThemeFilter extends Vue {
   public active: boolean = false
   public selected: Array<number> = []
 
-  @Prop({ type: Array, required: true }) themes!: any
+  @Prop({ type: Array, required: true }) themes!: Array<any>
 
   get activeFilters() {
     return this.$accessor.search.filters

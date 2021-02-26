@@ -26,7 +26,11 @@
       :slides-to-scroll="1"
     >
       <div v-for="product in products" :key="product.id">
-        <ProductBlock :product="product" class="ml-2 mr-2 shadow-none" />
+        <ProductBlock
+          :product="product"
+          class="ml-2 mr-2 shadow-none"
+          :fixed-height="true"
+        />
       </div>
     </VueSlickCarousel>
   </div>
@@ -35,14 +39,12 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 import VueSlickCarousel from 'vue-slick-carousel'
-import ProductBlock from '../../Blocks/ProductBlock.vue'
 import { Product } from '~/types/entities'
 
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 
 @Component({
   components: {
-    ProductBlock,
     VueSlickCarousel,
   },
 })

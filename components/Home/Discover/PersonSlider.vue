@@ -26,7 +26,11 @@
       :slides-to-scroll="1"
     >
       <div v-for="person in people" :key="person.id">
-        <PersonBlock :person="person" class="ml-2 mr-2 shadow-none" />
+        <PersonBlock
+          :person="person"
+          class="ml-2 mr-2 shadow-none"
+          :fixed-height="true"
+        />
       </div>
     </VueSlickCarousel>
   </div>
@@ -35,7 +39,6 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 import VueSlickCarousel from 'vue-slick-carousel'
-import PersonBlock from '../../Blocks/PersonBlock.vue'
 
 import { Person } from '~/types/entities'
 
@@ -43,7 +46,6 @@ import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 
 @Component({
   components: {
-    PersonBlock,
     VueSlickCarousel,
   },
 })

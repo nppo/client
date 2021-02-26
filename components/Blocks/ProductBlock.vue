@@ -29,12 +29,15 @@
     </div>
 
     <div class="flex flex-col p-4">
-      <h4 class="mb-1 text-base line-clamp-1">
+      <h4 class="mb-1 text-base" :class="{ 'line-clamp-1': fixedHeight }">
         {{ product.title }}
       </h4>
 
       <!-- TODO: When image available make image dynamic: product.image" -->
-      <div class="text-gray-300 h-18" :class="{ 'line-clamp-4': productImage }">
+      <div
+        class="text-gray-300"
+        :class="{ 'line-clamp-4': productImage, 'h-18': fixedHeight }"
+      >
         {{ product.description }}
       </div>
     </div>
@@ -57,6 +60,7 @@ export default class ProductBlock extends Vue {
   public productImage: string = 'https://picsum.photos/296/150'
 
   @Prop({ type: Object, required: true }) readonly product!: Product
+  @Prop({ type: Boolean, default: false }) readonly fixedHeight!: boolean
 
   get publishedAt(): string {
     const date = this.$dayjs(this.product.publishedAt)

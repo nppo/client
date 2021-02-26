@@ -25,7 +25,7 @@ import qs from 'qs'
 
 @Component
 export default class ThemeFilterSection extends Vue {
-  @Prop({ type: Array, required: true }) themes!: any
+  @Prop({ type: Array, required: true }) themes!: Array<any>
 
   setFilter(themeId: number) {
     this.$accessor.search.setFilter({ type: 'themes', values: [themeId] })

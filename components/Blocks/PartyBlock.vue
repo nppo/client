@@ -12,7 +12,10 @@
       <h4 class="text-base font-bold">{{ party.name }}</h4>
       <span class="mb-2 text-xs text-gray-300">Subtitel</span>
 
-      <div class="mb-4 text-gray-300 line-clamp-4" style="height: 4.5rem">
+      <div
+        class="mb-4 text-gray-300 line-clamp-4"
+        :class="{ 'h-18': fixedHeight }"
+      >
         {{ party.description }}
       </div>
 
@@ -52,5 +55,6 @@ export default class PartyBlock extends Vue {
   public partyImage: string = 'https://picsum.photos/200/200'
 
   @Prop({ type: Object, required: true }) party!: Party
+  @Prop({ type: Boolean, default: false }) readonly fixedHeight!: boolean
 }
 </script>
