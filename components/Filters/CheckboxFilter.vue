@@ -86,9 +86,19 @@ export default class CheckboxFilter extends Vue {
   }
 
   get sortedEntities(): Array<any> {
-    const sorted = [...this.entities].sort((entity: any) => {
-      return this.isChecked(entity.id) ? -1 : 1
-    })
+    const checkedFilters = [...this.entities]
+      .filter((entity: any) => {
+        return this.isChecked(entity.id)
+      })
+      .sort()
+
+    const unCheckedFilters = [...this.entities]
+      .filter((entity: any) => {
+        return !this.isChecked(entity.id)
+      })
+      .sort()
+
+    const sorted = checkedFilters.concat(unCheckedFilters)
 
     return sorted.slice(0, this.numberVisibleFilters)
   }
