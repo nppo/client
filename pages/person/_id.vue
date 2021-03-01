@@ -7,12 +7,12 @@
 
       <div class="flex justify-between space-x-32 mt-18">
         <div class="w-4/12">
-          <!-- PROFILE INFO -->
+          <!-- TODO: Profile info (https://way2web.atlassian.net/browse/SURAPP-216) -->
         </div>
 
         <div class="w-8/12">
           <h2 class="text-4xl font-bold">
-            {{ $t('pages.person_show.about') }}
+            {{ $t('pages.person._id.about') }}
           </h2>
           <p class="mt-4">
             {{ person.about }}

@@ -106,8 +106,10 @@ export default {
       },
     },
 
-    person_show: {
-      about: 'Over',
+    person: {
+      _id: {
+        about: 'Over',
+      },
     },
 
     search: {

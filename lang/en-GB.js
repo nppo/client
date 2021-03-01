@@ -104,8 +104,10 @@ export default {
       },
     },
 
-    person_show: {
-      about: 'About',
+    person: {
+      _id: {
+        about: 'About',
+      },
     },
 
     search: {
