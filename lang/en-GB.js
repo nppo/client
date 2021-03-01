@@ -106,7 +106,9 @@ export default {
 
     person: {
       _id: {
-        about: 'About',
+        about: {
+          title: 'About',
+        },
       },
     },
 

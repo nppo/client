@@ -12,7 +12,7 @@
 
         <div class="w-8/12">
           <h2 class="text-4xl font-bold">
-            {{ $t('pages.person._id.about') }}
+            {{ $t('pages.person._id.about.title') }}
           </h2>
           <p class="mt-4">
             {{ person.about }}

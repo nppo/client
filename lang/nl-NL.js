@@ -108,7 +108,9 @@ export default {
 
     person: {
       _id: {
-        about: 'Over',
+        about: {
+          title: 'Over',
+        },
       },
     },
 
