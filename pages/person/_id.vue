@@ -4,6 +4,21 @@
 
     <div class="container mx-auto mt-6">
       <BackButton :has-navigated-internal="hasNavigatedInternal" />
+
+      <div class="flex justify-between space-x-32 mt-18">
+        <div class="w-4/12">
+          <!-- PROFILE INFO -->
+        </div>
+
+        <div class="w-8/12">
+          <h2 class="text-4xl font-bold">
+            {{ $t('pages.person_show.about') }}
+          </h2>
+          <p class="mt-4">
+            {{ person.about }}
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </template>

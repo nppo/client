@@ -106,6 +106,10 @@ export default {
       },
     },
 
+    person_show: {
+      about: 'Over',
+    },
+
     search: {
       title: 'Zoekresultaten',
       placeholder: 'Start je zoektocht...',

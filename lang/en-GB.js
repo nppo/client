@@ -104,6 +104,10 @@ export default {
       },
     },
 
+    person_show: {
+      about: 'About',
+    },
+
     search: {
       title: 'Search results',
       placeholder: 'Start your search...',
