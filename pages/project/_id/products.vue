@@ -15,25 +15,25 @@
         <nav class="flex space-x-16" aria-label="Tabs">
           <NuxtLink
             class="pt-5 pb-5 text-base font-bold border-b-2 border-transparent outline-none border-yellow-brand hover:border-yellow-brand whitespace-nowrap"
-            :to="'/project/' + $route.params.id"
+            :to="'/projects/' + $route.params.id"
           >
             <span> Project </span>
           </NuxtLink>
           <NuxtLink
             class="pt-5 pb-5 text-base font-medium border-b-2 border-transparent outline-none hover:border-yellow-brand whitespace-nowrap"
-            :to="'/project/' + $route.params.id + '/products'"
+            :to="'/projects/' + $route.params.id + '/products'"
           >
             <span> Producten </span>
           </NuxtLink>
           <NuxtLink
             class="pt-5 pb-5 text-base font-medium border-b-2 border-transparent outline-none hover:border-yellow-brand whitespace-nowrap"
-            :to="'/project/' + $route.params.id + '/people'"
+            :to="'/projects/' + $route.params.id + '/people'"
           >
             <span> Personen </span>
           </NuxtLink>
           <NuxtLink
             class="pt-5 pb-5 text-base font-medium border-b-2 border-transparent outline-none hover:border-yellow-brand whitespace-nowrap"
-            :to="'/project/' + $route.params.id + '/parties'"
+            :to="'/projects/' + $route.params.id + '/parties'"
           >
             <span> Partijen </span>
           </NuxtLink>
@@ -44,19 +44,11 @@
     <div class="container relative h-full px-16 mx-auto">
       <div class="grid grid-cols-4 gap-4 mb-2">
         <div class="col-span-3 mr-10">
-          <ProjectContent :project="project" />
-          <div v-show="isActive('product')">Producten</div>
-          <div v-show="isActive('person')">Personen</div>
-          <div v-show="isActive('party')">Partijen</div>
+          <div>Producten</div>
         </div>
         <div />
       </div>
     </div>
-
-    <NuxtChild
-      :key="'project/' + $route.params.id + '/' + activePage"
-      keep-alive
-    />
   </div>
 </template>
 
@@ -64,7 +56,7 @@
 import { Context } from '@nuxt/types'
 import { Component, mixins } from 'nuxt-property-decorator'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
-import { Project, Type } from '~/types/entities'
+import { Project } from '~/types/entities'
 
 @Component({
   async asyncData({ params, $accessor }: Context) {
@@ -77,35 +69,9 @@ import { Project, Type } from '~/types/entities'
     }
   },
 })
-export default class ProjectDetailPage extends mixins(NavigationRouterHook) {
-  public activeTab: String = 'project'
-
+export default class ProjectProductsPage extends mixins(NavigationRouterHook) {
   get project(): Project {
     return this.$accessor.projects.current
-  }
-
-  get types(): Type[] {
-    return this.$accessor.types.all
-  }
-
-  get activePage() {
-    if (
-      this.$route.path.includes(
-        '/project/' + this.$route.params.id + '/products'
-      )
-    ) {
-      return 'products'
-    }
-
-    return ''
-  }
-
-  isActive(tabItem: String): boolean {
-    return this.activeTab === String(tabItem)
-  }
-
-  setActive(tabItem: String) {
-    this.activeTab = tabItem
   }
 }
 </script>

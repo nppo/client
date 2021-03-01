@@ -10,6 +10,6 @@ import { Project } from '~/types/entities'
 
 @Component
 export default class ProjectContent extends Vue {
-  @Prop({ type: String, required: true }) project!: Project[]
+  @Prop({ type: Object, required: true }) project!: Project
 }
 </script>
