@@ -106,6 +106,10 @@ export default {
       },
     },
 
+    project_show: {
+      main_tab: 'Project',
+    },
+
     search: {
       title: 'Zoekresultaten',
       placeholder: 'Start je zoektocht...',

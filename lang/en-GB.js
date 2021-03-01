@@ -104,6 +104,10 @@ export default {
       },
     },
 
+    project_show: {
+      main_tab: 'Project',
+    },
+
     search: {
       title: 'Search results',
       placeholder: 'Start your search...',
