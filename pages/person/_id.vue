@@ -9,19 +9,19 @@
 </template>
 
 <script lang="ts">
-// import { Context } from '@nuxt/types'
+import { Context } from '@nuxt/types'
 import { Component, mixins } from 'nuxt-property-decorator'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import { Person } from '~/types/entities'
 
 @Component({
-  //   async asyncData({ params, $accessor }: Context) {
-  //     const { id } = params
-  //     await $accessor.people.fetchCurrent(Number(id))
-  //   },
+  async asyncData({ params, $accessor }: Context) {
+    const { id } = params
+    await $accessor.people.fetchCurrent(Number(id))
+  },
 })
 export default class PersonDetailPage extends mixins(NavigationRouterHook) {
-  get people(): Person {
+  get person(): Person {
     return this.$accessor.people.current
   }
 }
