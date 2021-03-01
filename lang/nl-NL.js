@@ -106,6 +106,14 @@ export default {
       },
     },
 
+    person: {
+      _id: {
+        about: {
+          title: 'Over',
+        },
+      },
+    },
+
     search: {
       title: 'Zoekresultaten',
       placeholder: 'Start je zoektocht...',
