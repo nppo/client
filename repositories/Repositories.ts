@@ -1,6 +1,7 @@
 import { NuxtAxiosInstance } from '@nuxtjs/axios'
 import StatisticsRepository from '~/repositories/StatisticsRepository'
 import ProductRepository from '~/repositories/ProductRepository'
+import ProjectRepository from '~/repositories/ProjectRepository'
 import SearchRepository from '~/repositories/SearchRepository'
 import ThemeRepository from '~/repositories/ThemeRepository'
 import TypeRepository from '~/repositories/TypeRepository'
@@ -9,6 +10,7 @@ import DiscoverRepository from '~/repositories/DiscoverRepository'
 export default class Repositories {
   statistics: StatisticsRepository
   product: ProductRepository
+  project: ProjectRepository
   search: SearchRepository
   theme: ThemeRepository
   type: TypeRepository
@@ -17,6 +19,7 @@ export default class Repositories {
   constructor($axios: NuxtAxiosInstance) {
     this.statistics = new StatisticsRepository($axios)
     this.product = new ProductRepository($axios)
+    this.project = new ProjectRepository($axios)
     this.search = new SearchRepository($axios)
     this.theme = new ThemeRepository($axios)
     this.type = new TypeRepository($axios)
