@@ -17,6 +17,12 @@
           <p class="mt-4">
             {{ person.about }}
           </p>
+
+          <h2 class="my-10 text-4xl font-bold">
+            {{ $t('pages.person._id.projects.title') }}
+          </h2>
+
+          <project-slider :slides-to-show="3" :projects="person.projects" />
         </div>
       </div>
     </div>

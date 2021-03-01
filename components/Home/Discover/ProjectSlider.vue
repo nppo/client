@@ -22,7 +22,7 @@
       :arrows="false"
       :infinite="true"
       :speed="500"
-      :slides-to-show="4"
+      :slides-to-show="SlidesToShow"
       :slides-to-scroll="1"
     >
       <div v-for="project in projects" :key="project.id">
@@ -55,6 +55,7 @@ export default class ProjecttSlider extends Vue {
   }
 
   @Prop({ type: Array, required: true }) projects!: Project[]
+  @Prop({ type: Number, default: 4 }) SlidesToShow!: number
 
   nextSlide() {
     this.$refs.project.next()
