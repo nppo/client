@@ -51,6 +51,40 @@
               <ProjectBlock :project="project" />
             </div>
           </BlockSlider>
+
+          <div class="flex items-center justify-between mt-10 mb-6">
+            <div class="flex items-center space-x-5">
+              <h2 class="text-4xl font-bold">
+                {{ $t('entities.product.plural') }}
+              </h2>
+              <Badge :text="`${person.products.length}`" color="yellow-brand" />
+            </div>
+
+            <div class="flex space-x-1">
+              <div
+                class="flex justify-center w-8 h-8 p-2 text-blue-800 rounded-full cursor-pointer bg-yellow-brand"
+                @click="$refs.productSlider.previous()"
+              >
+                <font-awesome-icon class="text-base" icon="arrow-left" />
+              </div>
+              <div
+                class="flex justify-center w-8 h-8 p-2 text-blue-800 rounded-full cursor-pointer bg-yellow-brand"
+                @click="$refs.productSlider.next()"
+              >
+                <font-awesome-icon class="text-base" icon="arrow-right" />
+              </div>
+            </div>
+          </div>
+
+          <BlockSlider ref="productSlider" :slides-to-show="3">
+            <div
+              v-for="product in person.products"
+              :key="product.id"
+              class="h-full px-2"
+            >
+              <ProductBlock :product="product" />
+            </div>
+          </BlockSlider>
         </div>
       </div>
     </div>
