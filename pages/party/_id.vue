@@ -20,8 +20,8 @@
               {{ party.name }}
             </h4>
 
-            <div class="flex items-center justify-center">
-              <FollowButton class="mb-6" />
+            <div class="flex items-center justify-center mt-6 mb-5">
+              <FollowButton />
             </div>
 
             <div class="flex items-center justify-center">
