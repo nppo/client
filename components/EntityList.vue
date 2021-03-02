@@ -8,7 +8,11 @@
             v-if="entityImage"
             class="inline w-10 h-10 mr-4 rounded-full"
             :src="entityImage"
-            :alt="entity.firstName + '_avatar'"
+            :alt="
+              entity.firstName
+                ? entity.firstName + '_avatar'
+                : entity.name + '_logo'
+            "
           />
 
           <div class="flex flex-col">
