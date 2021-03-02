@@ -7,6 +7,7 @@ export default {
 
   general: {
     follow: 'Volgen',
+    skills: 'Skills',
   },
 
   account: {
