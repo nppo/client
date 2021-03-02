@@ -109,9 +109,6 @@ export default {
         about: {
           title: 'About',
         },
-        projects: {
-          title: 'Porjects',
-        },
       },
     },
 

@@ -21,7 +21,7 @@
           <div class="flex items-center justify-between mt-10 mb-6">
             <div class="flex items-center space-x-5">
               <h2 class="text-4xl font-bold">
-                {{ $t('pages.person._id.projects.title') }}
+                {{ $t('entities.project.plural') }}
               </h2>
               <Badge :text="`${person.projects.length}`" color="yellow-brand" />
             </div>
