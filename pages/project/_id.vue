@@ -13,42 +13,21 @@
     <div class="mb-16 border-b border-gray-200">
       <div class="container relative h-full mx-auto">
         <nav class="flex space-x-16" aria-label="Tabs">
-          <NuxtLink
+          <LocaleLink
+            v-for="(page, index) in pages"
+            :key="index"
             class="pt-5 pb-5 text-base font-medium border-b-2 border-transparent outline-none hover:border-yellow-brand whitespace-nowrap"
             :class="{
-              'border-yellow-brand font-bold': activePage === 'project',
+              'border-yellow-brand font-bold': activePage === page,
             }"
-            :to="'/project/' + $route.params.id"
+            :path="
+              page === 'project'
+                ? '/project/' + $route.params.id
+                : '/project/' + $route.params.id + '/' + page
+            "
           >
-            {{ $t('pages.project_show.project') }}
-          </NuxtLink>
-          <NuxtLink
-            class="pt-5 pb-5 text-base font-medium border-b-2 border-transparent outline-none hover:border-yellow-brand whitespace-nowrap"
-            :class="{
-              'border-yellow-brand font-bold': activePage === 'products',
-            }"
-            :to="'/project/' + $route.params.id + '/products'"
-          >
-            {{ $t('types.product') }}
-          </NuxtLink>
-          <NuxtLink
-            class="pt-5 pb-5 text-base font-medium border-b-2 border-transparent outline-none hover:border-yellow-brand whitespace-nowrap"
-            :class="{
-              'border-yellow-brand font-bold': activePage === 'people',
-            }"
-            :to="'/project/' + $route.params.id + '/people'"
-          >
-            {{ $t('types.person') }}
-          </NuxtLink>
-          <NuxtLink
-            class="pt-5 pb-5 text-base font-medium border-b-2 border-transparent outline-none hover:border-yellow-brand whitespace-nowrap"
-            :class="{
-              'border-yellow-brand font-bold': activePage === 'parties',
-            }"
-            :to="'/project/' + $route.params.id + '/parties'"
-          >
-            {{ $t('types.party') }}
-          </NuxtLink>
+            {{ $t('pages.project_show.types.' + page) }}
+          </LocaleLink>
         </nav>
       </div>
     </div>
@@ -88,6 +67,9 @@ import { Project, Type } from '~/types/entities'
   },
 })
 export default class ProjectDetailPage extends mixins(NavigationRouterHook) {
+  // TODO: When image available make image dynamic: v-if="party.image" public
+  personImage: string = 'https://picsum.photos/200/200'
+
   get project(): Project {
     return this.$accessor.projects.current
   }
@@ -106,6 +88,10 @@ export default class ProjectDetailPage extends mixins(NavigationRouterHook) {
     }
 
     return this.project.products
+  }
+
+  get pages(): Array<string> {
+    return ['project', 'products', 'people', 'parties']
   }
 
   get activePage() {
