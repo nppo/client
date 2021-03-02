@@ -26,7 +26,7 @@
               <Badge :text="`${person.projects.length}`" color="yellow-brand" />
             </div>
 
-            <div class="flex space-x-1">
+            <div class="flex space-x-1" v-if="person.projects.length > 3">
               <div
                 class="flex justify-center w-8 h-8 p-2 text-blue-800 rounded-full cursor-pointer bg-yellow-brand"
                 @click="$refs.projectSlider.previous()"
