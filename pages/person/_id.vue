@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-1">
+  <div class="flex-1 pb-24">
     <Header has-dark-header has-search-bar :has-image="false" />
 
     <div class="container mx-auto mt-6">
@@ -18,11 +18,39 @@
             {{ person.about }}
           </p>
 
-          <h2 class="my-10 text-4xl font-bold">
-            {{ $t('pages.person._id.projects.title') }}
-          </h2>
+          <div class="flex items-center justify-between mt-10 mb-6">
+            <div class="flex items-center space-x-5">
+              <h2 class="text-4xl font-bold">
+                {{ $t('pages.person._id.projects.title') }}
+              </h2>
+              <Badge :text="`${person.projects.length}`" color="yellow-brand" />
+            </div>
 
-          <project-slider :slides-to-show="3" :projects="person.projects" />
+            <div class="flex space-x-1">
+              <div
+                class="flex justify-center w-8 h-8 p-2 text-blue-800 rounded-full cursor-pointer bg-yellow-brand"
+                @click="$refs.projectSlider.previous()"
+              >
+                <font-awesome-icon class="text-base" icon="arrow-left" />
+              </div>
+              <div
+                class="flex justify-center w-8 h-8 p-2 text-blue-800 rounded-full cursor-pointer bg-yellow-brand"
+                @click="$refs.projectSlider.next()"
+              >
+                <font-awesome-icon class="text-base" icon="arrow-right" />
+              </div>
+            </div>
+          </div>
+
+          <BlockSlider ref="projectSlider" :slides-to-show="3">
+            <div
+              v-for="project in person.projects"
+              :key="project.id"
+              class="h-full px-2"
+            >
+              <ProjectBlock :project="project" />
+            </div>
+          </BlockSlider>
         </div>
       </div>
     </div>
