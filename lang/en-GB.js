@@ -104,12 +104,14 @@ export default {
       },
     },
 
-    project_show: {
-      types: {
-        project: 'Project',
-        parties: 'Parties',
-        products: 'Products',
-        people: 'People',
+    project: {
+      _id: {
+        types: {
+          project: 'Project',
+          parties: 'Parties',
+          products: 'Products',
+          people: 'People',
+        },
       },
     },
 

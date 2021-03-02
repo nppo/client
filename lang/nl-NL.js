@@ -106,12 +106,14 @@ export default {
       },
     },
 
-    project_show: {
-      types: {
-        project: 'Project',
-        parties: 'Partijen',
-        products: 'Producten',
-        people: 'Personen',
+    project: {
+      _id: {
+        types: {
+          project: 'Project',
+          parties: 'Partijen',
+          products: 'Producten',
+          people: 'Personen',
+        },
       },
     },
 

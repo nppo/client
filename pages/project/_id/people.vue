@@ -2,7 +2,7 @@
   <div>
     <div class="flex items-center justify-between mb-5">
       <h2 class="mb-2 text-3xl">
-        {{ $t('pages.project_show.types.people') }}
+        {{ $t('pages.project._id.types.people') }}
       </h2>
     </div>
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
