@@ -86,7 +86,7 @@
 
           <hr class="mb-8 border-gray-200" />
 
-          <div>
+          <div class="mb-8">
             <h2 class="text-3xl mb-8 block font-normal">
               {{ $t('general.skills') }}
             </h2>
@@ -96,6 +96,23 @@
                 v-for="skill in person.tags"
                 :key="'person_skill_' + skill.id"
                 :text="skill.label"
+                class="mr-2 mb-2"
+              />
+            </div>
+          </div>
+
+          <hr class="mb-8 border-gray-200" />
+
+          <div>
+            <h2 class="text-3xl mb-8 block font-normal">
+              {{ $t('entities.theme.plural') }}
+            </h2>
+
+            <div class="flex flex-wrap">
+              <Badge
+                v-for="theme in person.themes"
+                :key="'person_theme_' + theme.id"
+                :text="theme.label"
                 class="mr-2 mb-2"
               />
             </div>
