@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-1">
+  <div class="flex-1 pb-24">
     <Header has-search-bar>
       <BackButton class="mt-8" :has-navigated-internal="hasNavigatedInternal" />
 
@@ -20,7 +20,7 @@
             }"
             :to="'/project/' + $route.params.id"
           >
-            {{ $t('types.project') }}
+            {{ $t('pages.project_show.project') }}
           </NuxtLink>
           <NuxtLink
             class="pt-5 pb-5 text-base font-medium border-b-2 border-transparent outline-none hover:border-yellow-brand whitespace-nowrap"
@@ -53,7 +53,7 @@
       </div>
     </div>
 
-    <div class="container relative px-20 mx-auto mb-16">
+    <div class="container relative px-20 mx-auto">
       <div v-if="activePage === 'project'" class="grid grid-cols-4 gap-4 mb-2">
         <div class="col-span-3 mr-10">
           {{ project.description }}
