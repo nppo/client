@@ -53,23 +53,20 @@
       </div>
     </div>
 
-    <div
-      v-if="activePage === 'project'"
-      class="container relative h-full px-16 mx-auto"
-    >
-      <div class="grid grid-cols-4 gap-4 mb-2">
+    <div class="container relative px-20 mx-auto mb-16">
+      <div v-if="activePage === 'project'" class="grid grid-cols-4 gap-4 mb-2">
         <div class="col-span-3 mr-10">
           {{ project.description }}
         </div>
         <div />
       </div>
-    </div>
 
-    <NuxtChild
-      :key="'project/' + $route.params.id + '/' + activePage"
-      :project="projectContent"
-      keep-alive
-    />
+      <NuxtChild
+        :key="'project/' + $route.params.id + '/' + activePage"
+        :project-content="projectContent"
+        keep-alive
+      />
+    </div>
   </div>
 </template>
 
@@ -99,7 +96,7 @@ export default class ProjectDetailPage extends mixins(NavigationRouterHook) {
     return this.$accessor.types.all
   }
 
-  get projectContent(): Project {
+  get projectContent(): Array<any> | undefined {
     if (this.activePage === 'people') {
       return this.project.people
     }

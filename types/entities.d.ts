@@ -43,6 +43,10 @@ export interface Project {
   createdAt: string
   tags?: Tag[]
   themes?: Theme[]
+  parties?: Party[]
+  people?: Person[]
+  products?: Product[]
+  projects?: Project[]
 }
 
 export interface Filter {
