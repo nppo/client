@@ -90,12 +90,6 @@ export default {
             'Organisaties en instellingen die betrokken zijn bij praktijkgericht onderzoek ',
         },
       },
-      types: {
-        project: 'Projecten',
-        product: 'Producten',
-        person: 'Personen',
-        party: 'Partijen',
-      },
     },
 
     product_show: {
@@ -104,10 +98,6 @@ export default {
       types: {
         video: 'video',
       },
-    },
-
-    project_show: {
-      main_tab: 'Project',
     },
 
     search: {
@@ -128,5 +118,12 @@ export default {
     login: {
       please_wait: 'Een moment geduld terwijl wij je proberen in te loggen',
     },
+  },
+
+  types: {
+    project: 'Projecten',
+    product: 'Producten',
+    person: 'Personen',
+    party: 'Partijen',
   },
 }

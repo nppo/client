@@ -20,7 +20,7 @@
               }"
               @click.prevent="setActive(String(type.label))"
             >
-              {{ $t('pages.index.types.' + type.label) }}
+              {{ $t('types.' + type.label) }}
             </a>
           </nav>
         </div>

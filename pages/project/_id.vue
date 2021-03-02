@@ -14,40 +14,52 @@
       <div class="container relative h-full mx-auto">
         <nav class="flex space-x-16" aria-label="Tabs">
           <NuxtLink
-            class="pt-5 pb-5 text-base font-bold border-b-2 border-transparent outline-none border-yellow-brand hover:border-yellow-brand whitespace-nowrap"
+            class="pt-5 pb-5 text-base font-medium border-b-2 border-transparent outline-none hover:border-yellow-brand whitespace-nowrap"
+            :class="{
+              'border-yellow-brand font-bold': activePage === 'project',
+            }"
             :to="'/project/' + $route.params.id"
           >
-            <span> Project </span>
+            {{ $t('types.project') }}
           </NuxtLink>
           <NuxtLink
             class="pt-5 pb-5 text-base font-medium border-b-2 border-transparent outline-none hover:border-yellow-brand whitespace-nowrap"
+            :class="{
+              'border-yellow-brand font-bold': activePage === 'products',
+            }"
             :to="'/project/' + $route.params.id + '/products'"
           >
-            <span> Producten </span>
+            {{ $t('types.product') }}
           </NuxtLink>
           <NuxtLink
             class="pt-5 pb-5 text-base font-medium border-b-2 border-transparent outline-none hover:border-yellow-brand whitespace-nowrap"
+            :class="{
+              'border-yellow-brand font-bold': activePage === 'people',
+            }"
             :to="'/project/' + $route.params.id + '/people'"
           >
-            <span> Personen </span>
+            {{ $t('types.person') }}
           </NuxtLink>
           <NuxtLink
             class="pt-5 pb-5 text-base font-medium border-b-2 border-transparent outline-none hover:border-yellow-brand whitespace-nowrap"
+            :class="{
+              'border-yellow-brand font-bold': activePage === 'parties',
+            }"
             :to="'/project/' + $route.params.id + '/parties'"
           >
-            <span> Partijen </span>
+            {{ $t('types.party') }}
           </NuxtLink>
         </nav>
       </div>
     </div>
 
-    <div class="container relative h-full px-16 mx-auto">
+    <div
+      v-if="activePage === 'project'"
+      class="container relative h-full px-16 mx-auto"
+    >
       <div class="grid grid-cols-4 gap-4 mb-2">
         <div class="col-span-3 mr-10">
-          <ProjectContent :project="project" />
-          <div v-show="isActive('product')">Producten</div>
-          <div v-show="isActive('person')">Personen</div>
-          <div v-show="isActive('party')">Partijen</div>
+          {{ project.description }}
         </div>
         <div />
       </div>
@@ -55,6 +67,7 @@
 
     <NuxtChild
       :key="'project/' + $route.params.id + '/' + activePage"
+      :project="projectContent"
       keep-alive
     />
   </div>
@@ -78,14 +91,24 @@ import { Project, Type } from '~/types/entities'
   },
 })
 export default class ProjectDetailPage extends mixins(NavigationRouterHook) {
-  public activeTab: String = 'project'
-
   get project(): Project {
     return this.$accessor.projects.current
   }
 
   get types(): Type[] {
     return this.$accessor.types.all
+  }
+
+  get projectContent(): Project {
+    if (this.activePage === 'people') {
+      return this.project.people
+    }
+
+    if (this.activePage === 'parties') {
+      return this.project.parties
+    }
+
+    return this.project.products
   }
 
   get activePage() {
@@ -97,15 +120,21 @@ export default class ProjectDetailPage extends mixins(NavigationRouterHook) {
       return 'products'
     }
 
-    return ''
-  }
+    if (
+      this.$route.path.includes('/project/' + this.$route.params.id + '/people')
+    ) {
+      return 'people'
+    }
 
-  isActive(tabItem: String): boolean {
-    return this.activeTab === String(tabItem)
-  }
+    if (
+      this.$route.path.includes(
+        '/project/' + this.$route.params.id + '/parties'
+      )
+    ) {
+      return 'parties'
+    }
 
-  setActive(tabItem: String) {
-    this.activeTab = tabItem
+    return 'project'
   }
 }
 </script>

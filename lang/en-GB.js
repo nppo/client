@@ -88,12 +88,6 @@ export default {
             'Organizations and institutions involved in practice-oriented research',
         },
       },
-      types: {
-        project: 'Projects',
-        product: 'Products',
-        person: 'Persons',
-        party: 'Parties',
-      },
     },
 
     product_show: {
@@ -126,5 +120,12 @@ export default {
     login: {
       please_wait: 'Please wait while we try to log you in',
     },
+  },
+
+  types: {
+    project: 'Projects',
+    product: 'Products',
+    person: 'Persons',
+    party: 'Parties',
   },
 }
