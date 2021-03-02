@@ -109,29 +109,12 @@ export default class ProjectDetailPage extends mixins(NavigationRouterHook) {
   }
 
   get activePage() {
-    if (
-      this.$route.path.includes(
-        '/project/' + this.$route.params.id + '/products'
-      )
-    ) {
-      return 'products'
-    }
+    const basePath =
+      this.$i18n.defaultLocale !== this.$i18n.locale
+        ? '/' + this.$i18n.locale + '/project/' + this.$route.params.id + '/'
+        : '/project/' + this.$route.params.id + '/'
 
-    if (
-      this.$route.path.includes('/project/' + this.$route.params.id + '/people')
-    ) {
-      return 'people'
-    }
-
-    if (
-      this.$route.path.includes(
-        '/project/' + this.$route.params.id + '/parties'
-      )
-    ) {
-      return 'parties'
-    }
-
-    return 'project'
+    return this.$route.path.substring(basePath.length) || 'project'
   }
 }
 </script>
