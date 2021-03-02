@@ -20,7 +20,7 @@
             }"
             :to="'/project/' + $route.params.id"
           >
-            {{ $t('types.project') }}
+            {{ $t('pages.project_show.project') }}
           </NuxtLink>
           <NuxtLink
             class="pt-5 pb-5 text-base font-medium border-b-2 border-transparent outline-none hover:border-yellow-brand whitespace-nowrap"

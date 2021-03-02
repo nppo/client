@@ -100,6 +100,10 @@ export default {
       },
     },
 
+    project_show: {
+      project: 'Project',
+    },
+
     person: {
       _id: {
         about: {
