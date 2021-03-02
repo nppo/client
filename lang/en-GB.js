@@ -98,8 +98,12 @@ export default {
       },
     },
 
-    project_show: {
-      main_tab: 'Project',
+    person: {
+      _id: {
+        about: {
+          title: 'About',
+        },
+      },
     },
 
     search: {

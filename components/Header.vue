@@ -1,6 +1,7 @@
 <template>
   <div class="relative">
     <img
+      v-if="hasImage"
       :src="require(`~/assets/img/${imageFilename}`)"
       class="absolute inset-0 object-cover w-full h-full"
     />
@@ -37,6 +38,7 @@ export default class Header extends Vue {
 
   @Prop({ type: Boolean, default: false }) readonly hasDarkHeader!: boolean
   @Prop({ type: Boolean, default: false }) readonly hasSearchBar!: boolean
+  @Prop({ type: Boolean, default: true }) readonly hasImage!: boolean
   @Prop({ type: String, default: DEFAULT_HEADER_IMAGE })
   readonly imageFilename!: string
 

@@ -1,5 +1,5 @@
 <template>
-  <nav class="flex items-center justify-between pt-5 space-x-2">
+  <nav class="flex items-center justify-between py-5 space-x-2">
     <div class="text-2xl text-white">
       <NuxtLink :to="localePath('/')"> NPPO</NuxtLink>
     </div>
