@@ -100,6 +100,7 @@ export default {
 
     project_show: {
       project: 'Project',
+      contact_heading: 'Contact',
     },
 
     person: {

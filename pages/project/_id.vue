@@ -58,7 +58,19 @@
         <div class="col-span-3 mr-10">
           {{ project.description }}
         </div>
-        <div />
+        <div class="flex flex-col">
+          <h3 class="mb-4 text-2xl font-bold">
+            {{ $t('pages.project_show.contact_heading') }}
+          </h3>
+
+          <PersonBlock
+            v-if="project.people"
+            :person="project.people[0]"
+            class="mb-8"
+          />
+
+          <hr class="mb-8 border-gray-200" />
+        </div>
       </div>
 
       <NuxtChild
