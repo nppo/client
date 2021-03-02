@@ -1,6 +1,10 @@
 export default {
   welcome: 'Welcome',
 
+  action: {
+    follow: 'Follow',
+  },
+
   page: {
     back: 'Back',
   },
@@ -111,7 +115,11 @@ export default {
         products: 'Products',
         people: 'People',
       },
-      contact_heading: 'Contact',
+      headings: {
+        contact: 'Contact',
+        people: 'People',
+        parties: 'Parties',
+      },
     },
 
     person: {

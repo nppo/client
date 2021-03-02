@@ -71,7 +71,7 @@
         class="inline-flex items-center px-2 py-1 space-x-2 font-bold text-blue-500 border border-blue-500 rounded-md"
       >
         <font-awesome-icon class="block" icon="plus" />
-        <span>Volgen</span>
+        <span>{{ $t('action.follow') }}</span>
       </button>
     </div>
   </div>

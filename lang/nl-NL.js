@@ -1,6 +1,10 @@
 export default {
   welcome: 'Welkom',
 
+  action: {
+    follow: 'Volgen',
+  },
+
   page: {
     back: 'Terug',
   },
@@ -113,7 +117,11 @@ export default {
         products: 'Producten',
         people: 'Personen',
       },
-      contact_heading: 'Contactpersoon',
+      headings: {
+        contact: 'Contactpersoon',
+        people: 'Personen',
+        parties: 'Partijen',
+      },
     },
 
     person: {
