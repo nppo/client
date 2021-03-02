@@ -58,7 +58,7 @@
 
           <hr class="mb-8 border-gray-200" />
 
-          <div class="grid grid-cols-2 items-center">
+          <div class="grid grid-cols-2 items-center mb-4">
             <div v-if="person.identifier" class="flex flex-col mb-4">
               <span class="font-bold uppercase">
                 {{ $t('pages.person._id.profile.identifier') }}
@@ -81,6 +81,23 @@
               </span>
 
               <span class="underline">{{ person.email }}</span>
+            </div>
+          </div>
+
+          <hr class="mb-8 border-gray-200" />
+
+          <div>
+            <h2 class="text-3xl mb-8 block font-normal">
+              {{ $t('general.skills') }}
+            </h2>
+
+            <div class="flex flex-wrap">
+              <Badge
+                v-for="skill in person.tags"
+                :key="'person_skill_' + skill.id"
+                :text="skill.label"
+                class="mr-2 mb-2"
+              />
             </div>
           </div>
         </div>
