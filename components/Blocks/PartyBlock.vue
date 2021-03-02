@@ -1,10 +1,13 @@
 <template>
-  <div class="flex overflow-hidden flex-col h-full bg-white rounded-md shadow">
+  <LocaleLink
+    :path="`/party/${party.id}`"
+    class="flex flex-col h-full overflow-hidden bg-white rounded-md shadow"
+  >
     <div class="flex flex-col items-center p-4">
       <!-- TODO: When image available make image dynamic: v-if="party.image" -->
       <img
         v-if="partyImage"
-        class="inline mb-2 w-24 h-24 rounded-full shadow"
+        class="inline w-24 h-24 mb-2 rounded-full shadow"
         :src="partyImage"
         :alt="party.name + '_logo'"
       />
@@ -19,7 +22,7 @@
         {{ party.description }}
       </div>
 
-      <div class="flex justify-evenly w-full">
+      <div class="flex w-full justify-evenly">
         <div class="flex flex-col items-center">
           <span class="font-bold text-gray-300">projecten</span>
           <span>43</span>
@@ -42,7 +45,7 @@
         <font-awesome-icon :icon="['far', 'bookmark']" class="text-base" />
       </span>
     </div>
-  </div>
+  </LocaleLink>
 </template>
 
 <script lang="ts">
