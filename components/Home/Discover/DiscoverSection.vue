@@ -8,37 +8,73 @@
 
         <div class="flex items-start justify-between ml-2 mr-2">
           <nav class="flex mb-8 space-x-16" aria-label="Tabs">
-            <a
+            <button
               v-for="(type, index) in types"
               :key="index"
-              href="#"
-              class="pb-5 text-base font-medium text-white border-b-2 border-transparent outline-none hover:text-white hover:border-yellow-brand whitespace-nowrap"
+              type="button"
+              class="pb-5 text-base font-medium text-white border-b-2 border-transparent outline-none focus:outline-none hover:text-white hover:border-yellow-brand whitespace-nowrap"
               :class="{
                 'font-bold border-yellow-brand': isActive(
                   type.label.toString()
                 ),
               }"
-              @click.prevent="setActive(String(type.label))"
+              @click="setActive(String(type.label))"
             >
               {{ $t('pages.index.types.' + type.label) }}
-            </a>
+            </button>
           </nav>
+
+          <SliderArrows
+            v-if="!isFetching"
+            @previous-slide="$refs[`${activeTab}Slider`].previous()"
+            @next-slide="$refs[`${activeTab}Slider`].next()"
+          />
         </div>
 
         <div v-if="isFetching">
           <DiscoverSkeleton />
         </div>
+
         <div v-else>
-          <ProductSlider
-            v-show="isActive('product')"
-            :products="entities.products"
-          />
-          <ProjectSlider
-            v-show="isActive('project')"
-            :projects="entities.projects"
-          />
-          <PersonSlider v-show="isActive('person')" :people="entities.people" />
-          <PartySlider v-show="isActive('party')" :parties="entities.parties" />
+          <BlockSlider v-show="isActive('product')" ref="productSlider">
+            <div
+              v-for="product in entities.products"
+              :key="product.id"
+              class="h-full px-2"
+            >
+              <ProductBlock class="shadow-none" :product="product" />
+            </div>
+          </BlockSlider>
+
+          <BlockSlider v-show="isActive('project')" ref="projectSlider">
+            <div
+              v-for="project in entities.projects"
+              :key="project.id"
+              class="h-full px-2"
+            >
+              <ProjectBlock class="shadow-none" :project="project" />
+            </div>
+          </BlockSlider>
+
+          <BlockSlider v-show="isActive('person')" ref="personSlider">
+            <div
+              v-for="person in entities.people"
+              :key="person.id"
+              class="h-full px-2"
+            >
+              <PersonBlock class="shadow-none" :person="person" />
+            </div>
+          </BlockSlider>
+
+          <BlockSlider v-show="isActive('party')" ref="partySlider">
+            <div
+              v-for="party in entities.parties"
+              :key="party.id"
+              class="h-full px-2"
+            >
+              <PartyBlock class="shadow-none" :party="party" />
+            </div>
+          </BlockSlider>
         </div>
       </div>
     </div>

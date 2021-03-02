@@ -26,23 +26,14 @@
               <Badge :text="`${person.projects.length}`" color="yellow-brand" />
             </div>
 
-            <div v-if="person.projects.length > 3" class="flex space-x-1">
-              <div
-                class="flex justify-center w-8 h-8 p-2 text-blue-800 rounded-full cursor-pointer bg-yellow-brand"
-                @click="$refs.projectSlider.previous()"
-              >
-                <font-awesome-icon class="text-base" icon="arrow-left" />
-              </div>
-              <div
-                class="flex justify-center w-8 h-8 p-2 text-blue-800 rounded-full cursor-pointer bg-yellow-brand"
-                @click="$refs.projectSlider.next()"
-              >
-                <font-awesome-icon class="text-base" icon="arrow-right" />
-              </div>
-            </div>
+            <SliderArrows
+              v-if="person.projects.length > sliderShowMax"
+              @previous-slide="$refs.projectSlider.previous()"
+              @next-slide="$refs.projectSlider.next()"
+            />
           </div>
 
-          <BlockSlider ref="projectSlider" :slides-to-show="3">
+          <BlockSlider ref="projectSlider" :slides-to-show="sliderShowMax">
             <div
               v-for="project in person.projects"
               :key="project.id"
@@ -70,6 +61,8 @@ import { Person } from '~/types/entities'
   },
 })
 export default class PersonDetailPage extends mixins(NavigationRouterHook) {
+  private sliderShowMax: number = 3
+
   get person(): Person {
     return this.$accessor.people.current
   }
