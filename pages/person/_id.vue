@@ -127,7 +127,10 @@
             {{ person.about }}
           </p>
 
-          <div class="flex items-center justify-between mt-10 mb-6" v-if="person.projects.length > 0">
+          <div
+            v-if="person.projects.length > 0"
+            class="flex items-center justify-between mt-10 mb-6"
+          >
             <div class="flex items-center space-x-5">
               <h2 class="text-4xl font-bold">
                 {{ $t('entities.project.plural') }}

@@ -9,7 +9,7 @@
     :slides-to-scroll="1"
   >
     <slot>
-      <div/>
+      <div />
     </slot>
   </VueSlickCarousel>
 </template>
