@@ -19,6 +19,6 @@ import { Person } from '~/types/entities'
 
 @Component
 export default class ProjectPeoplePage extends Vue {
-  @Prop({ type: Array, required: true }) projectContent!: Person
+  @Prop({ type: Array, required: true }) projectContent!: Person[]
 }
 </script>

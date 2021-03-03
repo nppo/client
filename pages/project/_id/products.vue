@@ -19,6 +19,6 @@ import { Product } from '~/types/entities'
 
 @Component
 export default class ProjectProductsPage extends Vue {
-  @Prop({ type: Array, required: true }) projectContent!: Product
+  @Prop({ type: Array, required: true }) projectContent!: Product[]
 }
 </script>

@@ -19,6 +19,6 @@ import { Party } from '~/types/entities'
 
 @Component
 export default class ProjectPartyPage extends Vue {
-  @Prop({ type: Array, required: true }) projectContent!: Party
+  @Prop({ type: Array, required: true }) projectContent!: Party[]
 }
 </script>
