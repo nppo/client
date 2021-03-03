@@ -117,6 +117,7 @@ export default {
           contact: 'Contactpersoon',
           people: 'Personen',
           parties: 'Partijen',
+          tags: 'Trefwoorden',
         },
         types: {
           project: 'Project',
