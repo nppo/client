@@ -186,6 +186,36 @@
               </div>
             </BlockSlider>
           </template>
+
+          <template v-if="!person.parties || person.parties.length > 0">
+            <div class="flex items-center justify-between mt-10 mb-6">
+              <div class="flex items-center space-x-5">
+                <h2 class="text-4xl font-bold">
+                  {{ $t('entities.party.plural') }}
+                </h2>
+                <Badge
+                  :text="`${person.parties.length}`"
+                  color="yellow-brand"
+                />
+              </div>
+
+              <SliderArrows
+                v-if="person.parties.length > sliderShowMax"
+                @previous-slide="$refs.partySlider.previous()"
+                @next-slide="$refs.partySlider.next()"
+              />
+            </div>
+
+            <BlockSlider ref="partySlider" :slides-to-show="3">
+              <div
+                v-for="party in person.parties"
+                :key="party.id"
+                class="h-full px-2"
+              >
+                <PartyBlock :party="party" />
+              </div>
+            </BlockSlider>
+          </template>
         </div>
       </div>
     </div>
