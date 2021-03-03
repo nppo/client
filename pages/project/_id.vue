@@ -85,7 +85,7 @@
             <hr class="mb-8 border-gray-200" />
           </div>
 
-          <div v-if="project.themes">
+          <div v-if="project.themes && project.themes.length > 0">
             <h3 class="mb-5 text-2xl font-bold">
               {{ $t('pages.project._id.headings.themes') }}
             </h3>
