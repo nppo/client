@@ -103,6 +103,18 @@ export default {
       },
     },
 
+    project: {
+      _id: {
+        types: {
+          project: 'Project',
+          parties: 'Parties',
+          products: 'Products',
+          people: 'People',
+        },
+        no_result: 'This project has no {entity}',
+      },
+    },
+
     person: {
       _id: {
         about: {

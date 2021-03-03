@@ -1,5 +1,8 @@
 <template>
-  <div class="flex flex-col h-full overflow-hidden bg-white rounded-md shadow">
+  <LocaleLink
+    :path="`/project/${project.id}`"
+    class="flex flex-col h-full overflow-hidden bg-white rounded-md shadow"
+  >
     <div class="relative">
       <!-- TODO: When image available make image dynamic: v-if="product.image" -->
       <img
@@ -52,7 +55,7 @@
         <font-awesome-icon :icon="['far', 'bookmark']" class="text-base" />
       </span>
     </div>
-  </div>
+  </LocaleLink>
 </template>
 
 <script lang="ts">

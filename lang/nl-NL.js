@@ -105,6 +105,18 @@ export default {
       },
     },
 
+    project: {
+      _id: {
+        types: {
+          project: 'Project',
+          parties: 'Partijen',
+          products: 'Producten',
+          people: 'Personen',
+        },
+        no_result: 'Dit project heeft geen {entity}',
+      },
+    },
+
     person: {
       _id: {
         about: {
