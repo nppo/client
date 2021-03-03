@@ -45,6 +45,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
+import { Party } from '~/types/entities'
 
 @Component
 export default class PartiesList extends Vue {
@@ -53,7 +54,7 @@ export default class PartiesList extends Vue {
   public showingAll: boolean = false
 
   @Prop({ type: Number, default: 3 }) maxEntities!: number
-  @Prop({ type: Array, required: true }) parties!: Array<any>
+  @Prop({ type: Array, required: true }) parties!: Party[]
 
   get numberVisibleListItems(): number {
     if (this.showingAll) {
@@ -67,7 +68,7 @@ export default class PartiesList extends Vue {
     return this.parties.length - this.maxEntities
   }
 
-  get slicedListItems(): Array<any> {
+  get slicedListItems(): Party[] {
     return this.parties.slice(0, this.numberVisibleListItems)
   }
 }

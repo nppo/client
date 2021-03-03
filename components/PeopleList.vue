@@ -48,6 +48,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
+import { Person } from '~/types/entities'
 
 @Component
 export default class PeopleList extends Vue {
@@ -56,7 +57,7 @@ export default class PeopleList extends Vue {
   public showingAll: boolean = false
 
   @Prop({ type: Number, default: 3 }) maxFilters!: number
-  @Prop({ type: Array, required: true }) people!: Array<any>
+  @Prop({ type: Array, required: true }) people!: Person[]
 
   get numberVisibleListItems(): number {
     if (this.showingAll) {
@@ -70,7 +71,7 @@ export default class PeopleList extends Vue {
     return this.people.length - this.maxFilters
   }
 
-  get slicedListItems(): Array<any> {
+  get slicedListItems(): Person[] {
     return this.people.slice(0, this.numberVisibleListItems)
   }
 }
