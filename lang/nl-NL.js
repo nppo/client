@@ -118,6 +118,14 @@ export default {
       },
     },
 
+    party: {
+      _id: {
+        about: {
+          title: 'Over',
+        },
+      },
+    },
+
     search: {
       title: 'Zoekresultaten',
       placeholder: 'Start je zoektocht...',

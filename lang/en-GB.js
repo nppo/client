@@ -116,6 +116,14 @@ export default {
       },
     },
 
+    party: {
+      _id: {
+        about: {
+          title: 'About',
+        },
+      },
+    },
+
     search: {
       title: 'Search results',
       placeholder: 'Start your search...',
