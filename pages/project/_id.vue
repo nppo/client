@@ -10,7 +10,7 @@
       </div>
     </Header>
 
-    <div class="mb-16 border-b border-gray-200">
+    <div class="mb-12 border-b border-gray-200">
       <div class="container relative h-full mx-auto">
         <nav class="flex space-x-16" aria-label="Tabs">
           <LocaleLink

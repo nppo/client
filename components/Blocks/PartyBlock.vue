@@ -1,5 +1,8 @@
 <template>
-  <div class="flex flex-col h-full overflow-hidden bg-white rounded-md shadow">
+  <LocaleLink
+    :path="`/party/${party.id}`"
+    class="flex flex-col h-full overflow-hidden bg-white rounded-md shadow"
+  >
     <div class="flex flex-col items-center p-4">
       <!-- TODO: When image available make image dynamic: v-if="party.image" -->
       <img
@@ -12,10 +15,7 @@
       <h4 class="text-base font-bold break-all">{{ party.name }}</h4>
       <span class="mb-2 text-xs text-gray-300">Subtitel</span>
 
-      <div
-        class="mb-4 text-center text-gray-300 line-clamp-4"
-        :class="{ 'h-18': fixedHeight }"
-      >
+      <div class="mb-4 text-center text-gray-300 line-clamp-4">
         {{ party.description }}
       </div>
 
@@ -42,7 +42,7 @@
         <font-awesome-icon :icon="['far', 'bookmark']" class="text-base" />
       </span>
     </div>
-  </div>
+  </LocaleLink>
 </template>
 
 <script lang="ts">
@@ -55,6 +55,5 @@ export default class PartyBlock extends Vue {
   public partyImage: string = 'https://picsum.photos/200/200'
 
   @Prop({ type: Object, required: true }) party!: Party
-  @Prop({ type: Boolean, default: false }) readonly fixedHeight!: boolean
 }
 </script>
