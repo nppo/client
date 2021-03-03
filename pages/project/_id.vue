@@ -35,7 +35,20 @@
     <div class="container relative px-12 mx-auto">
       <div v-if="activePage === 'project'" class="grid grid-cols-4 gap-4 mb-2">
         <div class="col-span-3 mr-10">
-          {{ project.description }}
+          <div class="mb-10">
+            <h2 class="mb-3 text-3xl font-bold">
+              {{ $t('pages.project._id.headings.purpose') }}
+            </h2>
+
+            {{ project.purpose }}
+          </div>
+          <div>
+            <h3 class="mb-3 text-2xl font-bold">
+              {{ $t('pages.project._id.headings.description') }}
+            </h3>
+
+            {{ project.description }}
+          </div>
         </div>
         <div>
           <div v-if="project.owner">

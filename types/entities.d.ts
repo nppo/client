@@ -50,6 +50,7 @@ export interface Owner {
 export interface Project {
   id: number
   title: string
+  purpose: string
   description: string
   likes: string
   createdAt: string

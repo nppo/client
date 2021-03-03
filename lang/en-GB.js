@@ -109,6 +109,8 @@ export default {
           contact: 'Contact',
           people: 'People',
           parties: 'Parties',
+          description: 'Description',
+          purpose: 'Purpose of the project',
         },
         types: {
           project: 'Project',
