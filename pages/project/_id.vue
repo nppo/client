@@ -68,7 +68,7 @@
             <hr class="mb-8 border-gray-200" />
           </div>
 
-          <div v-if="project.tags">
+          <div v-if="project.tags && project.tags.length > 0">
             <h3 class="mb-5 text-2xl font-bold">
               {{ $t('pages.project._id.headings.tags') }}
             </h3>
