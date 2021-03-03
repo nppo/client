@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-1">
+  <div class="flex-1 pb-24">
     <Header has-dark-header has-search-bar :has-image="false" />
 
     <div class="container mx-auto mt-6">
@@ -11,7 +11,7 @@
             <!-- TODO: When image available make image dynamic: v-if="person.image" -->
             <img
               v-if="personImage"
-              class="inline mb-2 w-24 h-24 rounded-full shadow"
+              class="inline w-24 h-24 mb-2 rounded-full shadow"
               :src="personImage"
               :alt="person.firstName + '_avatar'"
             />
@@ -24,13 +24,13 @@
               {{ person.function }}
             </span>
 
-            <div class="flex justify-center items-center">
+            <div class="flex items-center justify-center">
               <FollowButton class="mb-6" />
             </div>
 
-            <div class="flex justify-center items-center">
+            <div class="flex items-center justify-center">
               <div
-                class="flex justify-center p-2 mr-2 w-8 h-8 text-white bg-blue-500 rounded-full"
+                class="flex justify-center w-8 h-8 p-2 mr-2 text-white bg-blue-500 rounded-full"
               >
                 <font-awesome-icon
                   :icon="['fab', 'twitter-square']"
@@ -38,7 +38,7 @@
                 />
               </div>
               <div
-                class="flex justify-center p-2 mr-2 w-8 h-8 text-white bg-blue-500 rounded-full"
+                class="flex justify-center w-8 h-8 p-2 mr-2 text-white bg-blue-500 rounded-full"
               >
                 <font-awesome-icon
                   :icon="['fab', 'linkedin']"
@@ -46,7 +46,7 @@
                 />
               </div>
               <div
-                class="flex justify-center p-2 w-8 h-8 text-white bg-blue-500 rounded-full"
+                class="flex justify-center w-8 h-8 p-2 text-white bg-blue-500 rounded-full"
               >
                 <font-awesome-icon
                   :icon="['fab', 'researchgate']"
@@ -58,7 +58,7 @@
 
           <hr class="mb-8 border-gray-200" />
 
-          <div class="grid grid-cols-2 items-center mb-4">
+          <div class="grid items-center grid-cols-2 mb-4">
             <div v-if="person.identifier" class="flex flex-col mb-4">
               <span class="font-bold uppercase">
                 {{ $t('pages.person._id.profile.identifier') }}
@@ -87,7 +87,7 @@
           <hr class="mb-8 border-gray-200" />
 
           <div class="mb-8">
-            <h2 class="text-3xl mb-8 block font-normal">
+            <h2 class="block mb-8 text-3xl font-normal">
               {{ $t('general.skills') }}
             </h2>
 
@@ -96,7 +96,7 @@
                 v-for="skill in person.tags"
                 :key="'person_skill_' + skill.id"
                 :text="skill.label"
-                class="mr-2 mb-2"
+                class="mb-2 mr-2"
               />
             </div>
           </div>
@@ -104,7 +104,7 @@
           <hr class="mb-8 border-gray-200" />
 
           <div>
-            <h2 class="text-3xl mb-8 block font-normal">
+            <h2 class="block mb-8 text-3xl font-normal">
               {{ $t('entities.theme.plural') }}
             </h2>
 
@@ -113,7 +113,7 @@
                 v-for="theme in person.themes"
                 :key="'person_theme_' + theme.id"
                 :text="theme.label"
-                class="mr-2 mb-2"
+                class="mb-2 mr-2"
               />
             </div>
           </div>
@@ -126,6 +126,36 @@
           <p class="mt-4">
             {{ person.about }}
           </p>
+
+          <template v-if="!person.projects || person.projects.length > 0">
+            <div class="flex items-center justify-between mt-10 mb-6">
+              <div class="flex items-center space-x-5">
+                <h2 class="text-4xl font-bold">
+                  {{ $t('entities.project.plural') }}
+                </h2>
+                <Badge
+                  :text="`${person.projects.length}`"
+                  color="yellow-brand"
+                />
+              </div>
+
+              <SliderArrows
+                v-if="person.projects.length > sliderShowMax"
+                @previous-slide="$refs.projectSlider.previous()"
+                @next-slide="$refs.projectSlider.next()"
+              />
+            </div>
+
+            <BlockSlider ref="projectSlider" :slides-to-show="sliderShowMax">
+              <div
+                v-for="project in person.projects"
+                :key="project.id"
+                class="h-full px-2"
+              >
+                <ProjectBlock :project="project" />
+              </div>
+            </BlockSlider>
+          </template>
         </div>
       </div>
     </div>
@@ -145,6 +175,7 @@ import { Person } from '~/types/entities'
   },
 })
 export default class PersonDetailPage extends mixins(NavigationRouterHook) {
+  public sliderShowMax: number = 3
   public personImage: string = 'https://picsum.photos/200/200'
 
   get person(): Person {
