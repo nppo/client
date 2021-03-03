@@ -26,7 +26,7 @@
                 : '/project/' + $route.params.id + '/' + page
             "
           >
-            {{ $t('pages.project_show.types.' + page) }}
+            {{ $t('pages.project._id.types.' + page) }}
           </LocaleLink>
         </nav>
       </div>
@@ -111,6 +111,8 @@ import { Project, Type } from '~/types/entities'
   },
 })
 export default class ProjectDetailPage extends mixins(NavigationRouterHook) {
+  public pages: Array<string> = ['project', 'products', 'people', 'parties']
+
   get project(): Project {
     return this.$accessor.projects.current
   }
@@ -131,11 +133,7 @@ export default class ProjectDetailPage extends mixins(NavigationRouterHook) {
     return this.project.products
   }
 
-  get pages(): Array<string> {
-    return ['project', 'products', 'people', 'parties']
-  }
-
-  get activePage() {
+  get activePage(): string {
     const basePath =
       this.$i18n.defaultLocale !== this.$i18n.locale
         ? '/' + this.$i18n.locale + '/project/' + this.$route.params.id + '/'

@@ -9,6 +9,11 @@ export default {
     back: 'Back',
   },
 
+  general: {
+    follow: 'Follow',
+    skills: 'Skills',
+  },
+
   account: {
     login: 'Login',
     profile: 'My account',
@@ -108,12 +113,14 @@ export default {
       },
     },
 
-    project_show: {
-      types: {
-        project: 'Project',
-        parties: 'Parties',
-        products: 'Products',
-        people: 'People',
+    project: {
+      _id: {
+        types: {
+          project: 'Project',
+          parties: 'Parties',
+          products: 'Products',
+          people: 'People',
+        },
       },
       headings: {
         contact: 'Contact',
@@ -126,6 +133,11 @@ export default {
       _id: {
         about: {
           title: 'About',
+        },
+        profile: {
+          identifier: 'Identifier',
+          email: 'E-mail',
+          phone: 'Phone',
         },
       },
     },
