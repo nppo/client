@@ -8,7 +8,7 @@
       <div class="flex justify-between space-x-32 mt-18">
         <div class="w-4/12">
           <div class="flex flex-col items-center p-4 mb-4">
-            <!-- TODO: When image available make image dynamic: v-if="person.image" -->
+            <!-- TODO: When image available make image dynamic: v-if="party.image" -->
             <img
               v-if="partyImage"
               class="inline w-24 h-24 mb-2 rounded-full shadow"
@@ -59,9 +59,100 @@
           <h2 class="text-4xl font-bold">
             {{ $t('pages.party._id.about.title') }}
           </h2>
+
           <p class="mt-4">
             {{ party.description }}
           </p>
+
+          <template v-if="!party.projects || party.projects.length > 0">
+            <div class="flex items-center justify-between mt-10 mb-6">
+              <div class="flex items-center space-x-5">
+                <h2 class="text-4xl font-bold">
+                  {{ $t('entities.project.plural') }}
+                </h2>
+                <Badge
+                  :text="`${party.projects.length}`"
+                  color="yellow-brand"
+                />
+              </div>
+
+              <SliderArrows
+                v-if="party.projects.length > sliderShowMax"
+                @previous-slide="$refs.projectSlider.previous()"
+                @next-slide="$refs.projectSlider.next()"
+              />
+            </div>
+
+            <BlockSlider ref="projectSlider" :slides-to-show="sliderShowMax">
+              <div
+                v-for="project in party.projects"
+                :key="project.id"
+                class="h-full px-2"
+              >
+                <ProjectBlock :project="project" />
+              </div>
+            </BlockSlider>
+          </template>
+
+          <template v-if="!party.products || party.products.length > 0">
+            <div class="flex items-center justify-between mt-10 mb-6">
+              <div class="flex items-center space-x-5">
+                <h2 class="text-4xl font-bold">
+                  {{ $t('entities.product.plural') }}
+                </h2>
+                <Badge
+                  :text="`${party.products.length}`"
+                  color="yellow-brand"
+                />
+              </div>
+
+              <SliderArrows
+                v-if="party.products.length > sliderShowMax"
+                @previous-slide="$refs.productSlider.previous()"
+                @next-slide="$refs.productSlider.next()"
+              />
+            </div>
+
+            <BlockSlider ref="productSlider" :slides-to-show="3">
+              <div
+                v-for="product in party.products"
+                :key="product.id"
+                class="h-full px-2"
+              >
+                <ProductBlock :product="product" />
+              </div>
+            </BlockSlider>
+          </template>
+
+          <template v-if="!party.parties || party.parties.length > 0">
+            <div class="flex items-center justify-between mt-10 mb-6">
+              <div class="flex items-center space-x-5">
+                <h2 class="text-4xl font-bold">
+                  {{ $t('entities.party.plural') }}
+                </h2>
+                <Badge
+                  :text="`${party.parties.length}`"
+                  color="yellow-brand"
+                />
+              </div>
+
+              <SliderArrows
+                v-if="party.parties.length > sliderShowMax"
+                @previous-slide="$refs.partySlider.previous()"
+                @next-slide="$refs.partySlider.next()"
+              />
+            </div>
+
+            <BlockSlider ref="partySlider" :slides-to-show="3">
+              <div
+                v-for="party in party.parties"
+                :key="party.id"
+                class="h-full px-2"
+              >
+                <PartyBlock :party="party" />
+              </div>
+            </BlockSlider>
+          </template>
         </div>
       </div>
     </div>
@@ -82,6 +173,7 @@ import { Party } from '~/types/entities'
 })
 export default class PartyDetailPage extends mixins(NavigationRouterHook) {
   public partyImage: string = 'https://picsum.photos/200/200'
+  public sliderShowMax: number = 3
 
   get party(): Party {
     return this.$accessor.parties.current

@@ -2,6 +2,9 @@ export interface Party {
   id: number
   name: string
   description: string
+  parties?: Party[]
+  products?: Product[]
+  projects?: Project[]
 }
 
 export interface Tag {
