@@ -5,6 +5,7 @@ import ProjectRepository from '~/repositories/ProjectRepository'
 import PersonRepository from '~/repositories/PersonRepository'
 import SearchRepository from '~/repositories/SearchRepository'
 import ThemeRepository from '~/repositories/ThemeRepository'
+import PartyRepository from '~/repositories/PartyRepository'
 import TypeRepository from '~/repositories/TypeRepository'
 import DiscoverRepository from '~/repositories/DiscoverRepository'
 
@@ -15,6 +16,7 @@ export default class Repositories {
   person: PersonRepository
   search: SearchRepository
   theme: ThemeRepository
+  party: PartyRepository
   type: TypeRepository
   discover: DiscoverRepository
 
@@ -25,6 +27,7 @@ export default class Repositories {
     this.person = new PersonRepository($axios)
     this.search = new SearchRepository($axios)
     this.theme = new ThemeRepository($axios)
+    this.party = new PartyRepository($axios)
     this.type = new TypeRepository($axios)
     this.discover = new DiscoverRepository($axios)
   }
