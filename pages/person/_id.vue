@@ -160,20 +160,11 @@
               <Badge :text="`${person.products.length}`" color="yellow-brand" />
             </div>
 
-            <div class="flex space-x-1" v-if="person.products.length > 3">
-              <div
-                class="flex justify-center w-8 h-8 p-2 text-blue-800 rounded-full cursor-pointer bg-yellow-brand"
-                @click="$refs.productSlider.previous()"
-              >
-                <font-awesome-icon class="text-base" icon="arrow-left" />
-              </div>
-              <div
-                class="flex justify-center w-8 h-8 p-2 text-blue-800 rounded-full cursor-pointer bg-yellow-brand"
-                @click="$refs.productSlider.next()"
-              >
-                <font-awesome-icon class="text-base" icon="arrow-right" />
-              </div>
-            </div>
+            <SliderArrows
+              v-if="person.products.length > sliderShowMax"
+              @previous-slide="$refs.productSlider.previous()"
+              @next-slide="$refs.productSlider.next()"
+            />
           </div>
 
           <BlockSlider ref="productSlider" :slides-to-show="3">
