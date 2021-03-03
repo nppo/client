@@ -35,13 +35,25 @@ export interface Product {
   tags?: Tag[]
 }
 
+export interface Owner {
+  id: number
+  firstName: string
+  lastName: string
+  email: string
+  function: string
+  phone: string
+  about: string
+  identifier: string
+  tags?: Tag[]
+}
+
 export interface Project {
   id: number
   title: string
   description: string
   likes: string
   createdAt: string
-  owner?: object
+  owner?: Owner
   tags?: Tag[]
   themes?: Theme[]
   parties?: Party[]
