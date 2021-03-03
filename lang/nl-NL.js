@@ -1,10 +1,6 @@
 export default {
   welcome: 'Welkom',
 
-  action: {
-    follow: 'Volgen',
-  },
-
   page: {
     back: 'Terug',
   },
@@ -117,17 +113,18 @@ export default {
 
     project: {
       _id: {
+        headings: {
+          contact: 'Contactpersoon',
+          people: 'Personen',
+          parties: 'Partijen',
+        },
+
         types: {
           project: 'Project',
           parties: 'Partijen',
           products: 'Producten',
           people: 'Personen',
         },
-      },
-      headings: {
-        contact: 'Contactpersoon',
-        people: 'Personen',
-        parties: 'Partijen',
       },
     },
 

@@ -1,10 +1,6 @@
 export default {
   welcome: 'Welcome',
 
-  action: {
-    follow: 'Follow',
-  },
-
   page: {
     back: 'Back',
   },
@@ -115,17 +111,17 @@ export default {
 
     project: {
       _id: {
+        headings: {
+          contact: 'Contact',
+          people: 'People',
+          parties: 'Parties',
+        },
         types: {
           project: 'Project',
           parties: 'Parties',
           products: 'Products',
           people: 'People',
         },
-      },
-      headings: {
-        contact: 'Contact',
-        people: 'People',
-        parties: 'Parties',
       },
     },
 

@@ -40,7 +40,7 @@
         <div>
           <div v-if="project.owner">
             <h3 class="mb-4 text-2xl font-bold">
-              {{ $t('pages.project_show.headings.contact') }}
+              {{ $t('pages.project._id.headings.contact') }}
             </h3>
 
             <PersonBlock :person="project.owner" class="mb-8" />
@@ -50,18 +50,12 @@
 
           <div v-if="project.people">
             <h3 class="mb-4 text-2xl font-bold">
-              {{ $t('pages.project_show.headings.people') }}
+              {{ $t('pages.project._id.headings.people') }}
             </h3>
 
             <EntityList :entity="project.people">
               <template #action>
-                <button
-                  type="button"
-                  class="inline-flex items-center px-2 py-1 space-x-2 font-bold text-blue-500 border border-blue-500 rounded-md"
-                >
-                  <font-awesome-icon class="block" icon="plus" />
-                  <span>{{ $t('action.follow') }}</span>
-                </button>
+                <FollowButton />
               </template>
             </EntityList>
 
@@ -70,7 +64,7 @@
 
           <div v-if="project.parties">
             <h3 class="mb-4 text-2xl font-bold">
-              {{ $t('pages.project_show.headings.parties') }}
+              {{ $t('pages.project._id.headings.parties') }}
             </h3>
 
             <EntityList :entity="project.parties">
