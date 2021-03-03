@@ -1,5 +1,8 @@
 <template>
-  <div class="flex flex-col h-full overflow-hidden bg-white rounded-md shadow">
+  <LocaleLink
+    :path="`/party/${party.id}`"
+    class="flex flex-col h-full overflow-hidden bg-white rounded-md shadow"
+  >
     <div class="flex flex-col items-center p-4">
       <!-- TODO: When image available make image dynamic: v-if="party.image" -->
       <img
@@ -39,7 +42,7 @@
         <font-awesome-icon :icon="['far', 'bookmark']" class="text-base" />
       </span>
     </div>
-  </div>
+  </LocaleLink>
 </template>
 
 <script lang="ts">

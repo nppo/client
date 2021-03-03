@@ -127,55 +127,65 @@
             {{ person.about }}
           </p>
 
-          <div class="flex items-center justify-between mt-10 mb-6">
-            <div class="flex items-center space-x-5">
-              <h2 class="text-4xl font-bold">
-                {{ $t('entities.project.plural') }}
-              </h2>
-              <Badge :text="`${person.projects.length}`" color="yellow-brand" />
+          <template v-if="!person.projects || person.projects.length > 0">
+            <div class="flex items-center justify-between mt-10 mb-6">
+              <div class="flex items-center space-x-5">
+                <h2 class="text-4xl font-bold">
+                  {{ $t('entities.project.plural') }}
+                </h2>
+                <Badge
+                  :text="`${person.projects.length}`"
+                  color="yellow-brand"
+                />
+              </div>
+
+              <SliderArrows
+                v-if="person.projects.length > sliderShowMax"
+                @previous-slide="$refs.projectSlider.previous()"
+                @next-slide="$refs.projectSlider.next()"
+              />
             </div>
 
-            <SliderArrows
-              v-if="person.projects.length > sliderShowMax"
-              @previous-slide="$refs.projectSlider.previous()"
-              @next-slide="$refs.projectSlider.next()"
-            />
-          </div>
+            <BlockSlider ref="projectSlider" :slides-to-show="sliderShowMax">
+              <div
+                v-for="project in person.projects"
+                :key="project.id"
+                class="h-full px-2"
+              >
+                <ProjectBlock :project="project" />
+              </div>
+            </BlockSlider>
+          </template>
 
-          <BlockSlider ref="projectSlider" :slides-to-show="sliderShowMax">
-            <div
-              v-for="project in person.projects"
-              :key="project.id"
-              class="h-full px-2"
-            >
-              <ProjectBlock :project="project" />
+          <template v-if="!person.products || person.products.length > 0">
+            <div class="flex items-center justify-between mt-10 mb-6">
+              <div class="flex items-center space-x-5">
+                <h2 class="text-4xl font-bold">
+                  {{ $t('entities.product.plural') }}
+                </h2>
+                <Badge
+                  :text="`${person.products.length}`"
+                  color="yellow-brand"
+                />
+              </div>
+
+              <SliderArrows
+                v-if="person.products.length > sliderShowMax"
+                @previous-slide="$refs.productSlider.previous()"
+                @next-slide="$refs.productSlider.next()"
+              />
             </div>
-          </BlockSlider>
 
-          <div class="flex items-center justify-between mt-10 mb-6">
-            <div class="flex items-center space-x-5">
-              <h2 class="text-4xl font-bold">
-                {{ $t('entities.product.plural') }}
-              </h2>
-              <Badge :text="`${person.products.length}`" color="yellow-brand" />
-            </div>
-
-            <SliderArrows
-              v-if="person.products.length > sliderShowMax"
-              @previous-slide="$refs.productSlider.previous()"
-              @next-slide="$refs.productSlider.next()"
-            />
-          </div>
-
-          <BlockSlider ref="productSlider" :slides-to-show="3">
-            <div
-              v-for="product in person.products"
-              :key="product.id"
-              class="h-full px-2"
-            >
-              <ProductBlock :product="product" />
-            </div>
-          </BlockSlider>
+            <BlockSlider ref="productSlider" :slides-to-show="3">
+              <div
+                v-for="product in person.products"
+                :key="product.id"
+                class="h-full px-2"
+              >
+                <ProductBlock :product="product" />
+              </div>
+            </BlockSlider>
+          </template>
 
           <div class="flex items-center justify-between mt-10 mb-6">
             <div class="flex items-center space-x-5">
