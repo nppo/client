@@ -118,7 +118,6 @@ export default {
           people: 'Personen',
           parties: 'Partijen',
         },
-
         types: {
           project: 'Project',
           parties: 'Partijen',
