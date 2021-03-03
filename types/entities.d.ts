@@ -41,6 +41,7 @@ export interface Project {
   description: string
   likes: string
   createdAt: string
+  owner?: object
   tags?: Tag[]
   themes?: Theme[]
   parties?: Party[]
