@@ -5,6 +5,11 @@ export default {
     back: 'Terug',
   },
 
+  general: {
+    follow: 'Volgen',
+    skills: 'Skills',
+  },
+
   account: {
     login: 'Inloggen',
     profile: 'Mijn Account',
@@ -106,12 +111,14 @@ export default {
       },
     },
 
-    project_show: {
-      types: {
-        project: 'Project',
-        parties: 'Partijen',
-        products: 'Producten',
-        people: 'Personen',
+    project: {
+      _id: {
+        types: {
+          project: 'Project',
+          parties: 'Partijen',
+          products: 'Producten',
+          people: 'Personen',
+        },
       },
       contact_heading: 'Contactpersoon',
     },
@@ -120,6 +127,11 @@ export default {
       _id: {
         about: {
           title: 'Over',
+        },
+        profile: {
+          identifier: 'Identifier',
+          email: 'E-mail',
+          phone: 'Telefoonnummer',
         },
       },
     },
