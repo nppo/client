@@ -8,7 +8,9 @@
     :slides-to-show="SlidesToShow"
     :slides-to-scroll="1"
   >
-    <slot />
+    <slot>
+      <div/>
+    </slot>
   </VueSlickCarousel>
 </template>
 
