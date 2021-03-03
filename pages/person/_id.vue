@@ -185,20 +185,11 @@
               <Badge :text="`${person.parties.length}`" color="yellow-brand" />
             </div>
 
-            <div class="flex space-x-1" v-if="person.parties.length > 3">
-              <div
-                class="flex justify-center w-8 h-8 p-2 text-blue-800 rounded-full cursor-pointer bg-yellow-brand"
-                @click="$refs.partySlider.previous()"
-              >
-                <font-awesome-icon class="text-base" icon="arrow-left" />
-              </div>
-              <div
-                class="flex justify-center w-8 h-8 p-2 text-blue-800 rounded-full cursor-pointer bg-yellow-brand"
-                @click="$refs.partySlider.next()"
-              >
-                <font-awesome-icon class="text-base" icon="arrow-right" />
-              </div>
-            </div>
+            <SliderArrows
+              v-if="person.parties.length > sliderShowMax"
+              @previous-slide="$refs.partySlider.previous()"
+              @next-slide="$refs.partySlider.next()"
+            />
           </div>
 
           <BlockSlider ref="partySlider" :slides-to-show="3">
