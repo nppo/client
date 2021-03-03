@@ -116,6 +116,7 @@ export default {
           people: 'People',
           parties: 'Parties',
           tags: 'Keywords',
+          themes: 'Themes',
         },
         types: {
           project: 'Project',

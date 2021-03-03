@@ -118,6 +118,7 @@ export default {
           people: 'Personen',
           parties: 'Partijen',
           tags: 'Trefwoorden',
+          themes: "Thema's",
         },
         types: {
           project: 'Project',
