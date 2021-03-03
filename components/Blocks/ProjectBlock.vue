@@ -29,7 +29,10 @@
     </div>
 
     <div class="flex flex-col p-4">
-      <h4 class="mb-1 text-base" :class="{ 'line-clamp-1': fixedHeight }">
+      <h4
+        class="mb-1 text-base break-all"
+        :class="{ 'line-clamp-1': fixedHeight }"
+      >
         {{ project.title }}
       </h4>
 

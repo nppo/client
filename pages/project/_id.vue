@@ -49,29 +49,21 @@
           </div>
 
           <div v-if="project.people">
-            <h3 class="mb-4 text-2xl font-bold">
+            <h3 class="mb-5 text-2xl font-bold">
               {{ $t('pages.project._id.headings.people') }}
             </h3>
 
-            <EntityList :entity="project.people">
-              <template #action>
-                <FollowButton />
-              </template>
-            </EntityList>
+            <PeopleList :people="project.people" />
 
             <hr class="mb-8 border-gray-200" />
           </div>
 
           <div v-if="project.parties">
-            <h3 class="mb-4 text-2xl font-bold">
+            <h3 class="mb-5 text-2xl font-bold">
               {{ $t('pages.project._id.headings.parties') }}
             </h3>
 
-            <EntityList :entity="project.parties">
-              <template #action>
-                <font-awesome-icon class="block text-base" icon="arrow-right" />
-              </template>
-            </EntityList>
+            <PartiesList :parties="project.parties" />
 
             <hr class="mb-8 border-gray-200" />
           </div>
