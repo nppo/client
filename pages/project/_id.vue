@@ -48,7 +48,7 @@
             <hr class="mb-8 border-gray-200" />
           </div>
 
-          <div v-if="project.people">
+          <div v-if="project.people && project.people.length > 0">
             <h3 class="mb-5 text-2xl font-bold">
               {{ $t('pages.project._id.headings.people') }}
             </h3>
@@ -58,7 +58,7 @@
             <hr class="mb-8 border-gray-200" />
           </div>
 
-          <div v-if="project.parties">
+          <div v-if="project.parties && project.parties.length > 0">
             <h3 class="mb-5 text-2xl font-bold">
               {{ $t('pages.project._id.headings.parties') }}
             </h3>
