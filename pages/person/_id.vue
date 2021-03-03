@@ -127,30 +127,35 @@
             {{ person.about }}
           </p>
 
-          <div class="flex items-center justify-between mt-10 mb-6">
-            <div class="flex items-center space-x-5">
-              <h2 class="text-4xl font-bold">
-                {{ $t('entities.project.plural') }}
-              </h2>
-              <Badge :text="`${person.projects.length}`" color="yellow-brand" />
+          <template v-if="!person.projects || person.projects.length > 0">
+            <div class="flex items-center justify-between mt-10 mb-6">
+              <div class="flex items-center space-x-5">
+                <h2 class="text-4xl font-bold">
+                  {{ $t('entities.project.plural') }}
+                </h2>
+                <Badge
+                  :text="`${person.projects.length}`"
+                  color="yellow-brand"
+                />
+              </div>
+
+              <SliderArrows
+                v-if="person.projects.length > sliderShowMax"
+                @previous-slide="$refs.projectSlider.previous()"
+                @next-slide="$refs.projectSlider.next()"
+              />
             </div>
 
-            <SliderArrows
-              v-if="person.projects.length > sliderShowMax"
-              @previous-slide="$refs.projectSlider.previous()"
-              @next-slide="$refs.projectSlider.next()"
-            />
-          </div>
-
-          <BlockSlider ref="projectSlider" :slides-to-show="sliderShowMax">
-            <div
-              v-for="project in person.projects"
-              :key="project.id"
-              class="h-full px-2"
-            >
-              <ProjectBlock :project="project" />
-            </div>
-          </BlockSlider>
+            <BlockSlider ref="projectSlider" :slides-to-show="sliderShowMax">
+              <div
+                v-for="project in person.projects"
+                :key="project.id"
+                class="h-full px-2"
+              >
+                <ProjectBlock :project="project" />
+              </div>
+            </BlockSlider>
+          </template>
 
           <div class="flex items-center justify-between mt-10 mb-6">
             <div class="flex items-center space-x-5">
