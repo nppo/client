@@ -113,6 +113,7 @@ export default {
           parties: 'Partijen',
           description: 'Beschrijving',
           purpose: 'Doel van project',
+          recent_products: 'Recente producten',
         },
         types: {
           project: 'Project',
