@@ -37,7 +37,17 @@
         <div class="col-span-3 mr-10">
           {{ project.description }}
         </div>
-        <div />
+        <div>
+          <div v-if="project.owner">
+            <h3 class="mb-4 text-2xl font-bold">
+              {{ $t('pages.project._id.headings.contact') }}
+            </h3>
+
+            <PersonBlock :person="project.owner" class="mb-8" />
+
+            <hr class="mb-8 border-gray-200" />
+          </div>
+        </div>
       </div>
 
       <NuxtChild

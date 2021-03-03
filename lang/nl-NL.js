@@ -107,6 +107,9 @@ export default {
 
     project: {
       _id: {
+        headings: {
+          contact: 'Contactpersoon',
+        },
         types: {
           project: 'Project',
           parties: 'Partijen',
