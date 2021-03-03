@@ -5,6 +5,11 @@ export default {
     back: 'Terug',
   },
 
+  general: {
+    follow: 'Volgen',
+    skills: 'Skills',
+  },
+
   account: {
     login: 'Inloggen',
     profile: 'Mijn Account',
@@ -110,6 +115,11 @@ export default {
       _id: {
         about: {
           title: 'Over',
+        },
+        profile: {
+          identifier: 'Identifier',
+          email: 'E-mail',
+          phone: 'Telefoonnummer',
         },
       },
     },

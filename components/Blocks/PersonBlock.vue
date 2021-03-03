@@ -1,5 +1,8 @@
 <template>
-  <div class="flex flex-col h-full overflow-hidden bg-white rounded-md shadow">
+  <LocaleLink
+    :path="`/person/${person.id}`"
+    class="flex flex-col h-full overflow-hidden bg-white rounded-md shadow"
+  >
     <div class="flex flex-col items-center p-4">
       <!-- TODO: When image available make image dynamic: v-if="person.image" -->
       <img
@@ -16,11 +19,16 @@
 
       <div class="flex w-full mb-2 justify-evenly">
         <div class="flex flex-col items-center">
-          <span class="font-bold uppercase">projecten</span>
+          <span class="font-bold uppercase">
+            {{ $t('entities.project.plural') }}
+          </span>
           <span>43</span>
         </div>
+
         <div class="flex flex-col items-center">
-          <span class="font-bold uppercase">producten</span>
+          <span class="font-bold uppercase">
+            {{ $t('entities.product.plural') }}
+          </span>
           <span>125</span>
         </div>
       </div>
@@ -52,10 +60,7 @@
 
     <hr class="mb-3 border-gray-100" />
 
-    <div
-      class="flex flex-row flex-wrap items-start justify-center px-4 mb-4"
-      :class="{ 'h-16 overflox-x-hidden': fixedHeight }"
-    >
+    <div class="flex flex-row flex-wrap items-start justify-center px-4 mb-4">
       <div
         v-for="tag in slicedTags"
         :key="'tag_shortcut_' + tag.id"
@@ -66,15 +71,9 @@
     </div>
 
     <div class="flex justify-end px-4 pb-3 mt-auto">
-      <button
-        type="button"
-        class="inline-flex items-center px-2 py-1 space-x-2 font-bold text-blue-500 border border-blue-500 rounded-md"
-      >
-        <font-awesome-icon class="block" icon="plus" />
-        <span>Volgen</span>
-      </button>
+      <FollowButton />
     </div>
-  </div>
+  </LocaleLink>
 </template>
 
 <script lang="ts">
@@ -87,7 +86,6 @@ export default class PersonBlock extends Vue {
   public personImage: string = 'https://picsum.photos/200/200'
 
   @Prop({ type: Object, required: true }) person!: Person
-  @Prop({ type: Boolean, default: false }) readonly fixedHeight!: boolean
 
   get slicedTags(): Array<any> | undefined {
     return this.person.tags?.slice(0, 5)
