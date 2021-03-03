@@ -12,7 +12,7 @@
         :alt="person.firstName + '_avatar'"
       />
 
-      <h4 class="text-base font-bold">
+      <h4 class="text-base font-bold break-all">
         {{ person.firstName }} {{ person.lastName }}
       </h4>
       <span class="mb-2 text-xs text-gray-300">{{ person.function }}</span>

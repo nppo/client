@@ -1,40 +1,43 @@
 <template>
   <Dropdown>
-    <button
-      slot="button"
-      type="button"
-      class="px-2 py-1 text-xs font-extrabold rounded-lg shadow cursor-pointer"
-      @click="toggleFilter()"
-    >
-      {{ $t('entities.type.singular') }}
-      <font-awesome-icon icon="arrow-down" class="ml-3" />
-    </button>
+    <template #button>
+      <button
+        type="button"
+        class="px-2 py-1 text-xs font-extrabold rounded-lg shadow cursor-pointer"
+        @click="toggleFilter()"
+      >
+        {{ $t('entities.type.singular') }}
+        <font-awesome-icon icon="arrow-down" class="ml-3" />
+      </button>
+    </template>
 
-    <div slot="items" class="w-64">
-      <ul v-for="(type, index) in types" :key="'type_' + index">
-        <li
-          class="block py-2 mb-2 text-sm hover:font-bold"
-          :class="{
-            'border-b border-gray-100 hover:border-b-2 hover:border-yellow-brand':
-              index < types.length - 1,
-          }"
-        >
-          <div class="flex items-center mb-2">
-            <input
-              :id="'type_' + type.id"
-              type="checkbox"
-              class="w-4 h-4 mr-2 bg-gray-100 form-checkbox text-yellow-brand"
-              :value="type.id"
-              :checked="isChecked(type.id)"
-              @change="toggleType(type.id)"
-            />
-            <label class="flex-1 cursor-pointer" :for="'type_' + type.id">
-              {{ $t('entities.' + type.label + '.singular') }}
-            </label>
-          </div>
-        </li>
-      </ul>
-    </div>
+    <template #items>
+      <div class="w-64">
+        <ul v-for="(type, index) in types" :key="'type_' + index">
+          <li
+            class="block py-2 mb-2 text-sm hover:font-bold"
+            :class="{
+              'border-b border-gray-100 hover:border-b-2 hover:border-yellow-brand':
+                index < types.length - 1,
+            }"
+          >
+            <div class="flex items-center mb-2">
+              <input
+                :id="'type_' + type.id"
+                type="checkbox"
+                class="w-4 h-4 mr-2 bg-gray-100 form-checkbox text-yellow-brand"
+                :value="type.id"
+                :checked="isChecked(type.id)"
+                @change="toggleType(type.id)"
+              />
+              <label class="flex-1 cursor-pointer" :for="'type_' + type.id">
+                {{ $t('entities.' + type.label + '.singular') }}
+              </label>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </template>
   </Dropdown>
 </template>
 

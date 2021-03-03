@@ -12,7 +12,7 @@
         :alt="party.name + '_logo'"
       />
 
-      <h4 class="text-base font-bold">{{ party.name }}</h4>
+      <h4 class="text-base font-bold break-all">{{ party.name }}</h4>
       <span class="mb-2 text-xs text-gray-300">Subtitel</span>
 
       <div class="mb-4 text-center text-gray-300 line-clamp-4">

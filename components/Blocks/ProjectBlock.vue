@@ -29,7 +29,7 @@
     </div>
 
     <div class="flex flex-col p-4">
-      <h4 class="mb-1 text-base">
+      <h4 class="mb-1 text-base break-all">
         {{ project.title }}
       </h4>
 
