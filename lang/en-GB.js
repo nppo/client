@@ -111,6 +111,9 @@ export default {
 
     project: {
       _id: {
+        headings: {
+          contact: 'Contact',
+        },
         types: {
           project: 'Project',
           parties: 'Parties',
@@ -118,7 +121,6 @@ export default {
           people: 'People',
         },
       },
-      contact_heading: 'Contact',
     },
 
     person: {

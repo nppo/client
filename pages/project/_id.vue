@@ -40,7 +40,7 @@
         <div>
           <div v-if="project.owner">
             <h3 class="mb-4 text-2xl font-bold">
-              {{ $t('pages.project_show.contact_heading') }}
+              {{ $t('pages.project._id.headings.contact') }}
             </h3>
 
             <PersonBlock :person="project.owner" class="mb-8" />
