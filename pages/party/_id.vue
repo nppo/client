@@ -130,10 +130,7 @@
                 <h2 class="text-4xl font-bold">
                   {{ $t('entities.party.plural') }}
                 </h2>
-                <Badge
-                  :text="`${party.parties.length}`"
-                  color="yellow-brand"
-                />
+                <Badge :text="`${party.parties.length}`" color="yellow-brand" />
               </div>
 
               <SliderArrows
