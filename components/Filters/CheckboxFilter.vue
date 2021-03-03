@@ -58,8 +58,8 @@
         >
           {{
             showingAll
-              ? $t('filters.show_less')
-              : $t('filters.show_more', { number: showMoreNumber })
+              ? $t('general.show_less')
+              : $t('general.show_more', { number: showMoreNumber })
           }}
         </span>
       </div>

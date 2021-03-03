@@ -27,15 +27,15 @@
     </div>
 
     <div class="mb-6">
-      <div v-if="parties.length > maxFilters" class="block mt-3 text-center">
+      <div v-if="parties.length > maxEntities" class="block mt-3 text-center">
         <span
           class="text-blue-400 underline cursor-pointer"
           @click="showingAll = !showingAll"
         >
           {{
             showingAll
-              ? $t('filters.show_less')
-              : $t('filters.show_more', { number: showMoreNumber })
+              ? $t('general.show_less')
+              : $t('general.show_more', { number: showMoreNumber })
           }}
         </span>
       </div>
@@ -52,7 +52,7 @@ export default class PartiesList extends Vue {
   public partyImage: string = 'https://picsum.photos/200/200'
   public showingAll: boolean = false
 
-  @Prop({ type: Number, default: 3 }) maxFilters!: number
+  @Prop({ type: Number, default: 3 }) maxEntities!: number
   @Prop({ type: Array, required: true }) parties!: Array<any>
 
   get numberVisibleListItems(): number {
@@ -60,11 +60,11 @@ export default class PartiesList extends Vue {
       return this.parties.length
     }
 
-    return this.maxFilters
+    return this.maxEntities
   }
 
   get showMoreNumber(): number {
-    return this.parties.length - this.maxFilters
+    return this.parties.length - this.maxEntities
   }
 
   get slicedListItems(): Array<any> {

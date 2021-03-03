@@ -8,6 +8,8 @@ export default {
   general: {
     follow: 'Volgen',
     skills: 'Skills',
+    show_more: 'Toon {number} meer',
+    show_less: 'Toon minder',
   },
 
   account: {
@@ -49,8 +51,6 @@ export default {
   },
 
   filters: {
-    show_more: 'Toon {number} meer',
-    show_less: 'Toon minder',
     themes: {
       title: 'Thema',
     },
