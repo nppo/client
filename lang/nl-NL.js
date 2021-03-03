@@ -138,6 +138,9 @@ export default {
         about: {
           title: 'Over',
         },
+        headings: {
+          parties: 'Organisaties',
+        },
       },
     },
 
