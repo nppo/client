@@ -113,6 +113,7 @@ export default {
           products: 'Producten',
           people: 'Personen',
         },
+        no_result: 'Dit project heeft geen {entity}',
       },
     },
 

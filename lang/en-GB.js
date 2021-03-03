@@ -111,6 +111,7 @@ export default {
           products: 'Products',
           people: 'People',
         },
+        no_result: 'This project has no {entity}',
       },
     },
 
