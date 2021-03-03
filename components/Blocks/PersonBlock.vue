@@ -60,10 +60,7 @@
 
     <hr class="mb-3 border-gray-100" />
 
-    <div
-      class="flex flex-row flex-wrap items-start justify-center px-4 mb-4"
-      :class="{ 'h-16 overflox-x-hidden': fixedHeight }"
-    >
+    <div class="flex flex-row flex-wrap items-start justify-center px-4 mb-4">
       <div
         v-for="tag in slicedTags"
         :key="'tag_shortcut_' + tag.id"
@@ -89,7 +86,6 @@ export default class PersonBlock extends Vue {
   public personImage: string = 'https://picsum.photos/200/200'
 
   @Prop({ type: Object, required: true }) person!: Person
-  @Prop({ type: Boolean, default: false }) readonly fixedHeight!: boolean
 
   get slicedTags(): Array<any> | undefined {
     return this.person.tags?.slice(0, 5)

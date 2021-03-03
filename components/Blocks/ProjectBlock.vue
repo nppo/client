@@ -29,15 +29,12 @@
     </div>
 
     <div class="flex flex-col p-4">
-      <h4 class="mb-1 text-base" :class="{ 'line-clamp-1': fixedHeight }">
+      <h4 class="mb-1 text-base">
         {{ project.title }}
       </h4>
 
       <!-- TODO: When image available make image dynamic: product.image" -->
-      <div
-        class="text-gray-300"
-        :class="{ 'line-clamp-4': projectImage, 'h-18': fixedHeight }"
-      >
+      <div class="text-gray-300" :class="{ 'line-clamp-4': projectImage }">
         {{ project.description }}
       </div>
     </div>
@@ -71,7 +68,6 @@ export default class ProjectBlock extends Vue {
   public projectImage: string = 'https://picsum.photos/296/150'
 
   @Prop({ type: Object, required: true }) readonly project!: Project
-  @Prop({ type: Boolean, default: false }) readonly fixedHeight!: boolean
 
   get createdAt(): string {
     const date = this.$dayjs(this.project.createdAt)
