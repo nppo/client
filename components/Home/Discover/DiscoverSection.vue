@@ -20,7 +20,7 @@
               }"
               @click="setActive(String(type.label))"
             >
-              {{ $t('pages.index.types.' + type.label) }}
+              {{ $t(`entities.${type.label}.plural`) }}
             </button>
           </nav>
 
