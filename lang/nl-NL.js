@@ -113,6 +113,8 @@ export default {
           parties: 'Partijen',
           description: 'Beschrijving',
           purpose: 'Doel van project',
+          tags: 'Trefwoorden',
+          themes: "Thema's",
         },
         types: {
           project: 'Project',
