@@ -142,6 +142,9 @@ export default {
         about: {
           title: 'About',
         },
+        headings: {
+          parties: 'Organisations',
+        },
       },
     },
 
