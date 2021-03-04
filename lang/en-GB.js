@@ -112,6 +112,8 @@ export default {
           description: 'Description',
           purpose: 'Purpose of the project',
           recent_products: 'Recent products',
+          tags: 'Keywords',
+          themes: 'Themes',
         },
         types: {
           project: 'Project',
@@ -140,6 +142,9 @@ export default {
       _id: {
         about: {
           title: 'About',
+        },
+        headings: {
+          parties: 'Organisations',
         },
       },
     },

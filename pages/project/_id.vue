@@ -94,6 +94,40 @@
 
             <hr class="mb-8 border-gray-200" />
           </div>
+
+          <div v-if="project.tags && project.tags.length > 0">
+            <h3 class="mb-5 text-2xl font-bold">
+              {{ $t('pages.project._id.headings.tags') }}
+            </h3>
+
+            <div class="flex flex-wrap mb-8">
+              <Badge
+                v-for="tag in project.tags"
+                :key="'project_tag_' + tag.id"
+                :text="tag.label"
+                class="mr-2 mb-2"
+              />
+            </div>
+
+            <hr class="mb-8 border-gray-200" />
+          </div>
+
+          <div v-if="project.themes && project.themes.length > 0">
+            <h3 class="mb-5 text-2xl font-bold">
+              {{ $t('pages.project._id.headings.themes') }}
+            </h3>
+
+            <div class="flex flex-wrap mb-8">
+              <Badge
+                v-for="theme in project.themes"
+                :key="'project_theme_' + theme.id"
+                :text="theme.label"
+                class="mr-2 mb-2"
+              />
+            </div>
+
+            <hr class="mb-8 border-gray-200" />
+          </div>
         </div>
       </div>
 

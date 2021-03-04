@@ -114,6 +114,8 @@ export default {
           description: 'Beschrijving',
           purpose: 'Doel van project',
           recent_products: 'Recente producten',
+          tags: 'Trefwoorden',
+          themes: "Thema's",
         },
         types: {
           project: 'Project',
@@ -142,6 +144,9 @@ export default {
       _id: {
         about: {
           title: 'Over',
+        },
+        headings: {
+          parties: 'Organisaties',
         },
       },
     },
