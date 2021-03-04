@@ -111,6 +111,8 @@ export default {
           contact: 'Contactpersoon',
           people: 'Personen',
           parties: 'Partijen',
+          description: 'Beschrijving',
+          purpose: 'Doel van project',
           tags: 'Trefwoorden',
           themes: "Thema's",
         },
