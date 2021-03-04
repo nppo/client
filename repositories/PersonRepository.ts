@@ -19,4 +19,11 @@ export default class PeopleRepository {
   show(id: number): Promise<AxiosResponse<SingleResult<Person>>> {
     return this.axios.get(`/api/${resource}/${id}`)
   }
+
+  updatePerson(person: Person): Promise<AxiosResponse<SingleResult<Person>>> {
+    return this.axios.patch(`/api/${resource}/${person.id}`, {
+      firstName: person.firstName,
+      lastName: person.lastName,
+    })
+  }
 }

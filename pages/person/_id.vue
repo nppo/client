@@ -5,7 +5,10 @@
     <div class="container mx-auto mt-6">
       <BackButton :has-navigated-internal="hasNavigatedInternal" />
 
-      <div class="flex justify-between space-x-32 mt-18">
+      <div
+        v-if="activePage === 'person'"
+        class="flex justify-between space-x-32 mt-18"
+      >
         <div class="w-4/12">
           <div class="flex flex-col items-center p-4 mb-4">
             <!-- TODO: When image available make image dynamic: v-if="person.image" -->
@@ -16,9 +19,17 @@
               :alt="person.firstName + '_avatar'"
             />
 
-            <h4 class="text-base font-bold">
-              {{ person.firstName }} {{ person.lastName }}
-            </h4>
+            <div class="flex items-center">
+              <h4 class="mr-2 text-base font-bold">
+                {{ person.firstName }} {{ person.lastName }}
+              </h4>
+              <LocaleLink
+                :path="`/person/${person.id}/edit`"
+                class="flex justify-center w-8 h-8 p-2 text-blue-800 rounded-full cursor-pointer bg-yellow-brand"
+              >
+                <font-awesome-icon class="text-base" icon="pencil-alt" />
+              </LocaleLink>
+            </div>
 
             <span class="mb-4 text-xs text-gray-300">
               {{ person.function }}
@@ -218,6 +229,12 @@
           </template>
         </div>
       </div>
+
+      <NuxtChild
+        :key="'person/' + $route.params.id + '/' + activePage"
+        :person="person"
+        keep-alive
+      />
     </div>
   </div>
 </template>
@@ -237,9 +254,19 @@ import { Person } from '~/types/entities'
 export default class PersonDetailPage extends mixins(NavigationRouterHook) {
   public sliderShowMax: number = 3
   public personImage: string = 'https://picsum.photos/200/200'
+  public pages: Array<string> = ['person', 'edit']
 
   get person(): Person {
     return this.$accessor.people.current
+  }
+
+  get activePage(): string {
+    const basePath =
+      this.$i18n.defaultLocale !== this.$i18n.locale
+        ? '/' + this.$i18n.locale + '/person/' + this.$route.params.id + '/'
+        : '/person/' + this.$route.params.id + '/'
+
+    return this.$route.path.substring(basePath.length) || 'person'
   }
 }
 </script>

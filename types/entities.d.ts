@@ -25,6 +25,7 @@ export interface Person {
   email: string
   function: string
   phone: string
+  about: string
   tags?: Tag[]
 }
 
