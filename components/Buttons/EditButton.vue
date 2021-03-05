@@ -14,7 +14,7 @@ import { Component, Vue, Prop } from 'nuxt-property-decorator'
 @Component
 export default class EditButton extends Vue {
   @Prop({ type: Number, required: true }) readonly entityId!: number
-  @Prop({ type: Number, default: 8 }) circleSize!: number
+  @Prop({ type: String, default: '8' }) circleSize!: string
   @Prop({ type: String, default: 'base' }) iconSize!: string
 }
 </script>

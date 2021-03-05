@@ -35,9 +35,8 @@ export const actions = actionTree(
         commit('setCurrent', data.data)
       }
     },
-    async updatePerson({ commit }, person: Person): Promise<void> {
-      const res = await this.$repositories.person.updatePerson(person)
-      const { status, data } = res
+    async update({ commit }, person: Person): Promise<void> {
+      const { status, data } = await this.$repositories.person.update(person)
 
       if (status === 200) {
         commit('setCurrent', data.data)

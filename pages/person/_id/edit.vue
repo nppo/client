@@ -41,7 +41,7 @@
           class="px-4 py-2 text-sm text-white rounded bg-orange-brand"
           type="submit"
         >
-          Opslaan
+          {{ $t('general.save') }}
         </button>
       </form>
     </div>
@@ -49,25 +49,22 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'nuxt-property-decorator'
+import { Component, Prop, mixins } from 'nuxt-property-decorator'
+import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import { Person } from '~/types/entities'
 
-@Component({
-  async fetch(this: PersonDetailEditPage) {
-    await this.setPerson(this.person)
-  },
-})
-export default class PersonDetailEditPage extends Vue {
-  private personData: Person = {} as Person
+@Component
+export default class PersonDetailEditPage extends mixins(NavigationRouterHook) {
+  private personData: Person = { ...this.person }
 
-  @Prop({ type: Object, required: true }) person!: Person
-
-  setPerson(person: Person) {
-    this.personData = { ...person }
+  get person(): Person {
+    return this.$accessor.people.current
   }
 
   updatePerson(): void {
-    this.$accessor.people.updatePerson(this.personData)
+    this.$accessor.people.update(this.personData).then(() => {
+      this.$router.push('/person/' + this.person.id)
+    })
   }
 }
 </script>

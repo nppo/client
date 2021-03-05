@@ -239,7 +239,6 @@
 
       <NuxtChild
         :key="'person/' + $route.params.id + '/' + activePage"
-        :person="person"
         keep-alive
       />
     </div>
