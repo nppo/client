@@ -10,6 +10,7 @@ export default {
     skills: 'Skills',
     show_more: 'Show {number} more',
     show_less: 'Show less',
+    save: 'Save',
   },
 
   account: {

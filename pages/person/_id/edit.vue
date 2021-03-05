@@ -49,12 +49,12 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, mixins } from 'nuxt-property-decorator'
+import { Component, mixins } from 'nuxt-property-decorator'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import { Person } from '~/types/entities'
 
 @Component
-export default class PersonDetailEditPage extends mixins(NavigationRouterHook) {
+export default class PersonEditPage extends mixins(NavigationRouterHook) {
   private personData: Person = { ...this.person }
 
   get person(): Person {

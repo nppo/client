@@ -10,6 +10,7 @@ export default {
     skills: 'Skills',
     show_more: 'Toon {number} meer',
     show_less: 'Toon minder',
+    save: 'Opslaan',
   },
 
   account: {
