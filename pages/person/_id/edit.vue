@@ -50,7 +50,7 @@
               <textarea
                 id="about"
                 v-model="personData.about"
-                rows="5"
+                rows="6"
                 class="w-full px-3 py-3 font-bold rounded-md shadow focus:outline-none"
               />
             </div>
