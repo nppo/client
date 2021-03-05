@@ -116,13 +116,20 @@ export default {
           purpose: 'Doel van project',
           tags: 'Trefwoorden',
           themes: "Thema's",
-          title: 'Titel',
         },
         types: {
           project: 'Project',
           parties: 'Partijen',
           products: 'Producten',
           people: 'Personen',
+        },
+        edit: {
+          title: 'Bewerk {name}',
+          labels: {
+            title: 'Titel',
+            description: 'Beschrijving',
+            purpose: 'Doel van project',
+          },
         },
         no_result: 'Dit project heeft geen {entity}',
       },

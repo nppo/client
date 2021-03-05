@@ -114,13 +114,20 @@ export default {
           purpose: 'Purpose of the project',
           tags: 'Keywords',
           themes: 'Themes',
-          title: 'Title',
         },
         types: {
           project: 'Project',
           parties: 'Parties',
           products: 'Products',
           people: 'People',
+        },
+        edit: {
+          title: 'Edit {name}',
+          labels: {
+            title: 'Title',
+            description: 'Description',
+            purpose: 'Purpose of the project',
+          },
         },
         no_result: 'This project has no {entity}',
       },
