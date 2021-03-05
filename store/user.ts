@@ -17,6 +17,10 @@ export const actions = actionTree(
   { state, mutations },
   {
     async fetchCurrent({ commit, dispatch }): Promise<void> {
+      if (!this.$auth.loggedIn) {
+        return
+      }
+
       const {
         status,
         data: { data },
