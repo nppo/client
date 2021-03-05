@@ -38,6 +38,7 @@ export default {
     '~/plugins/repositories.ts',
     '~/plugins/mock-axios.ts',
     '~/plugins/axios.ts',
+    '~/plugins/vue-gates.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
