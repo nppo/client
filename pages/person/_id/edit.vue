@@ -7,8 +7,9 @@
     <div class="h-full p-4 overflow-hidden bg-white rounded-md shadow">
       <form class="flex flex-col" @submit.prevent="updatePerson">
         <div class="flex flex-col mb-4">
-          <label> Voornaam </label>
+          <label :for="personData.firstName"> Voornaam </label>
           <input
+            :id="personData.firstName"
             v-model="personData.firstName"
             class="w-6/12 px-3 py-3 font-bold rounded-md shadow focus:outline-none"
             type="text"
@@ -16,8 +17,9 @@
         </div>
 
         <div class="flex flex-col mb-4">
-          <label> Achternaam </label>
+          <label :for="personData.lastName"> Achternaam </label>
           <input
+            :id="personData.lastName"
             v-model="personData.lastName"
             class="w-6/12 px-3 py-3 font-bold rounded-md shadow focus:outline-none"
             type="text"
@@ -25,10 +27,11 @@
         </div>
 
         <div class="flex flex-col mb-4">
-          <label>
+          <label for="about">
             {{ $t('pages.person._id.about.title') }}
           </label>
           <textarea
+            id="about"
             v-model="personData.about"
             class="w-6/12 px-3 py-3 font-bold rounded-md shadow focus:outline-none"
           />
@@ -46,7 +49,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from 'nuxt-property-decorator'
+import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import { Person } from '~/types/entities'
 
 @Component({
