@@ -10,6 +10,7 @@ export default {
     skills: 'Skills',
     show_more: 'Toon {number} meer',
     show_less: 'Toon minder',
+    save: 'Opslaan',
   },
 
   account: {
@@ -115,6 +116,7 @@ export default {
           purpose: 'Doel van project',
           tags: 'Trefwoorden',
           themes: "Thema's",
+          title: 'Titel',
         },
         types: {
           project: 'Project',

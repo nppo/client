@@ -10,6 +10,7 @@ export default {
     skills: 'Skills',
     show_more: 'Show {number} more',
     show_less: 'Show less',
+    save: 'Save',
   },
 
   account: {
@@ -113,6 +114,7 @@ export default {
           purpose: 'Purpose of the project',
           tags: 'Keywords',
           themes: 'Themes',
+          title: 'Title',
         },
         types: {
           project: 'Project',
