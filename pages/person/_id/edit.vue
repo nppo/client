@@ -16,11 +16,14 @@
         <div class="w-4/12">
           <div>
             <div class="flex flex-col mb-4">
-              <label class="pl-3 mb-1" for="first_name">
+              <label
+                :for="$t('pages.person._id.edit.labels.first_name')"
+                class="pl-3 mb-1"
+              >
                 {{ $t('pages.person._id.edit.labels.first_name') }}
               </label>
               <input
-                id="first_name"
+                :id="$t('pages.person._id.edit.labels.first_name')"
                 v-model="personData.firstName"
                 class="px-3 py-3 font-bold rounded-md shadow focus:outline-none"
                 type="text"
@@ -28,11 +31,14 @@
             </div>
 
             <div class="flex flex-col">
-              <label class="pl-3 mb-1" for="last_name">
+              <label
+                :for="$t('pages.person._id.edit.labels.last_name')"
+                class="pl-3 mb-1"
+              >
                 {{ $t('pages.person._id.edit.labels.last_name') }}
               </label>
               <input
-                id="last_name"
+                :id="$t('pages.person._id.edit.labels.last_name')"
                 v-model="personData.lastName"
                 class="px-3 py-3 font-bold rounded-md shadow focus:outline-none"
                 type="text"
@@ -43,12 +49,15 @@
         <div class="w-8/12">
           <div>
             <div class="flex flex-col">
-              <label class="pl-3 mb-1" for="about">
+              <label
+                :for="$t('pages.person._id.edit.labels.about')"
+                class="pl-3 mb-1"
+              >
                 {{ $t('pages.person._id.edit.labels.about') }}
               </label>
 
               <textarea
-                id="about"
+                :id="$t('pages.person._id.edit.labels.about')"
                 v-model="personData.about"
                 rows="6"
                 class="w-full px-3 py-3 font-bold rounded-md shadow focus:outline-none"
