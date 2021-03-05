@@ -23,12 +23,12 @@
               <h4 class="mr-2 text-base font-bold">
                 {{ person.firstName }} {{ person.lastName }}
               </h4>
-              <LocaleLink
-                :path="`/person/${person.id}/edit`"
-                class="flex justify-center w-8 h-8 p-2 text-blue-800 rounded-full cursor-pointer bg-yellow-brand"
-              >
-                <font-awesome-icon class="text-base" icon="pencil-alt" />
-              </LocaleLink>
+
+              <EditButton
+                :entity-id="person.id"
+                circle-size="6"
+                icon-size="tiny"
+              />
             </div>
 
             <span class="mb-4 text-xs text-gray-300">
@@ -97,7 +97,7 @@
 
           <hr class="mb-8 border-gray-200" />
 
-          <div class="mb-8">
+          <div v-if="person.tags" class="mb-8">
             <h2 class="block mb-8 text-3xl font-normal">
               {{ $t('general.skills') }}
             </h2>
@@ -114,7 +114,7 @@
 
           <hr class="mb-8 border-gray-200" />
 
-          <div>
+          <div v-if="person.themes">
             <h2 class="block mb-8 text-3xl font-normal">
               {{ $t('entities.theme.plural') }}
             </h2>
@@ -131,14 +131,21 @@
         </div>
 
         <div class="w-8/12">
-          <h2 class="text-4xl font-bold">
-            {{ $t('pages.person._id.about.title') }}
-          </h2>
-          <p class="mt-4">
-            {{ person.about }}
-          </p>
+          <div v-if="person.about">
+            <div class="flex items-center">
+              <h2 class="mr-3 text-4xl font-bold">
+                {{ $t('pages.person._id.about.title') }}
+              </h2>
 
-          <template v-if="!person.projects || person.projects.length > 0">
+              <EditButton :entity-id="person.id" />
+            </div>
+
+            <p class="mt-4">
+              {{ person.about }}
+            </p>
+          </div>
+
+          <template v-if="person.projects && person.projects.length > 0">
             <div class="flex items-center justify-between mt-10 mb-6">
               <div class="flex items-center space-x-5">
                 <h2 class="text-4xl font-bold">
@@ -168,7 +175,7 @@
             </BlockSlider>
           </template>
 
-          <template v-if="!person.products || person.products.length > 0">
+          <template v-if="person.products && person.products.length > 0">
             <div class="flex items-center justify-between mt-10 mb-6">
               <div class="flex items-center space-x-5">
                 <h2 class="text-4xl font-bold">
@@ -198,7 +205,7 @@
             </BlockSlider>
           </template>
 
-          <template v-if="!person.parties || person.parties.length > 0">
+          <template v-if="person.parties && person.parties.length > 0">
             <div class="flex items-center justify-between mt-10 mb-6">
               <div class="flex items-center space-x-5">
                 <h2 class="text-4xl font-bold">
