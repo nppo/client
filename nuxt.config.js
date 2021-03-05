@@ -180,6 +180,7 @@ export default {
         'faBookmark',
         'faThumbsUp',
         'faEye',
+        'faPencilAlt',
       ],
       regular: ['faBookmark', 'faPlayCircle'],
       brands: ['faLinkedin', 'faResearchgate', 'faTwitterSquare'],

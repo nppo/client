@@ -3,9 +3,15 @@
     <Header has-dark-header has-search-bar :has-image="false" />
 
     <div class="container mx-auto mt-6">
-      <BackButton :has-navigated-internal="hasNavigatedInternal" />
+      <div class="flex items-center justify-between">
+        <BackButton :has-navigated-internal="hasNavigatedInternal" />
+        <EditButton v-if="activePage === 'person'" :entity-id="person.id" />
+      </div>
 
-      <div class="flex justify-between space-x-32 mt-18">
+      <div
+        v-if="activePage === 'person'"
+        class="flex justify-between space-x-32 mt-18"
+      >
         <div class="w-4/12">
           <div class="flex flex-col items-center p-4 mb-4">
             <!-- TODO: When image available make image dynamic: v-if="person.image" -->
@@ -16,7 +22,7 @@
               :alt="person.firstName + '_avatar'"
             />
 
-            <h4 class="text-base font-bold">
+            <h4 class="mr-2 text-base font-bold">
               {{ person.firstName }} {{ person.lastName }}
             </h4>
 
@@ -86,7 +92,7 @@
 
           <hr class="mb-8 border-gray-200" />
 
-          <div class="mb-8">
+          <div v-if="person.tags" class="mb-8">
             <h2 class="block mb-8 text-3xl font-normal">
               {{ $t('general.skills') }}
             </h2>
@@ -103,7 +109,7 @@
 
           <hr class="mb-8 border-gray-200" />
 
-          <div>
+          <div v-if="person.themes">
             <h2 class="block mb-8 text-3xl font-normal">
               {{ $t('entities.theme.plural') }}
             </h2>
@@ -120,14 +126,17 @@
         </div>
 
         <div class="w-8/12">
-          <h2 class="text-4xl font-bold">
-            {{ $t('pages.person._id.about.title') }}
-          </h2>
-          <p class="mt-4">
-            {{ person.about }}
-          </p>
+          <div v-if="person.about">
+            <h2 class="mb-4 mr-3 text-4xl font-bold">
+              {{ $t('pages.person._id.about.title') }}
+            </h2>
 
-          <template v-if="!person.projects || person.projects.length > 0">
+            <p>
+              {{ person.about }}
+            </p>
+          </div>
+
+          <template v-if="person.projects && person.projects.length > 0">
             <div class="flex items-center justify-between mt-10 mb-6">
               <div class="flex items-center space-x-5">
                 <h2 class="text-4xl font-bold">
@@ -157,7 +166,7 @@
             </BlockSlider>
           </template>
 
-          <template v-if="!person.products || person.products.length > 0">
+          <template v-if="person.products && person.products.length > 0">
             <div class="flex items-center justify-between mt-10 mb-6">
               <div class="flex items-center space-x-5">
                 <h2 class="text-4xl font-bold">
@@ -187,7 +196,7 @@
             </BlockSlider>
           </template>
 
-          <template v-if="!person.parties || person.parties.length > 0">
+          <template v-if="person.parties && person.parties.length > 0">
             <div class="flex items-center justify-between mt-10 mb-6">
               <div class="flex items-center space-x-5">
                 <h2 class="text-4xl font-bold">
@@ -218,6 +227,11 @@
           </template>
         </div>
       </div>
+
+      <NuxtChild
+        :key="'person/' + $route.params.id + '/' + activePage"
+        keep-alive
+      />
     </div>
   </div>
 </template>
@@ -237,9 +251,19 @@ import { Person } from '~/types/entities'
 export default class PersonDetailPage extends mixins(NavigationRouterHook) {
   public sliderShowMax: number = 3
   public personImage: string = 'https://picsum.photos/200/200'
+  public pages: Array<string> = ['person', 'edit']
 
   get person(): Person {
     return this.$accessor.people.current
+  }
+
+  get activePage(): string {
+    const basePath =
+      this.$i18n.defaultLocale !== this.$i18n.locale
+        ? '/' + this.$i18n.locale + '/person/' + this.$route.params.id + '/'
+        : '/person/' + this.$route.params.id + '/'
+
+    return this.$route.path.substring(basePath.length) || 'person'
   }
 }
 </script>
