@@ -137,6 +137,14 @@ export default {
           email: 'E-mail',
           phone: 'Telefoonnummer',
         },
+        edit: {
+          title: 'Bewerk {name}',
+          labels: {
+            first_name: 'Voornaam',
+            last_name: 'Achternaam',
+            about: 'Over',
+          },
+        },
       },
     },
 

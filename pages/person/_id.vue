@@ -3,7 +3,10 @@
     <Header has-dark-header has-search-bar :has-image="false" />
 
     <div class="container mx-auto mt-6">
-      <BackButton :has-navigated-internal="hasNavigatedInternal" />
+      <div class="flex items-center justify-between">
+        <BackButton :has-navigated-internal="hasNavigatedInternal" />
+        <EditButton v-if="activePage === 'person'" :entity-id="person.id" />
+      </div>
 
       <div
         v-if="activePage === 'person'"
@@ -19,17 +22,9 @@
               :alt="person.firstName + '_avatar'"
             />
 
-            <div class="flex items-center">
-              <h4 class="mr-2 text-base font-bold">
-                {{ person.firstName }} {{ person.lastName }}
-              </h4>
-
-              <EditButton
-                :entity-id="person.id"
-                circle-size="6"
-                icon-size="tiny"
-              />
-            </div>
+            <h4 class="mr-2 text-base font-bold">
+              {{ person.firstName }} {{ person.lastName }}
+            </h4>
 
             <span class="mb-4 text-xs text-gray-300">
               {{ person.function }}
@@ -132,15 +127,11 @@
 
         <div class="w-8/12">
           <div v-if="person.about">
-            <div class="flex items-center">
-              <h2 class="mr-3 text-4xl font-bold">
-                {{ $t('pages.person._id.about.title') }}
-              </h2>
+            <h2 class="mb-4 mr-3 text-4xl font-bold">
+              {{ $t('pages.person._id.about.title') }}
+            </h2>
 
-              <EditButton :entity-id="person.id" />
-            </div>
-
-            <p class="mt-4">
+            <p>
               {{ person.about }}
             </p>
           </div>

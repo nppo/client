@@ -4,7 +4,7 @@
       <BackButton class="mt-8" :has-navigated-internal="hasNavigatedInternal" />
 
       <div class="pt-32 text-white">
-        <h1 class="pb-6 text-4xl font-bold">
+        <h1 class="mb-6 text-4xl font-bold">
           {{ project.title }}
         </h1>
       </div>
@@ -91,7 +91,7 @@
                 v-for="tag in project.tags"
                 :key="'project_tag_' + tag.id"
                 :text="tag.label"
-                class="mr-2 mb-2"
+                class="mb-2 mr-2"
               />
             </div>
 
@@ -108,7 +108,7 @@
                 v-for="theme in project.themes"
                 :key="'project_theme_' + theme.id"
                 :text="theme.label"
-                class="mr-2 mb-2"
+                class="mb-2 mr-2"
               />
             </div>
 

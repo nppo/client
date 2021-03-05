@@ -135,6 +135,14 @@ export default {
           email: 'E-mail',
           phone: 'Phone',
         },
+        edit: {
+          title: 'Edit {name}',
+          labels: {
+            first_name: 'First name',
+            last_name: 'Last name',
+            about: 'About',
+          },
+        },
       },
     },
 
