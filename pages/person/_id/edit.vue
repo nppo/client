@@ -21,6 +21,7 @@
                 :name="$t('pages.person._id.edit.labels.first_name')"
                 :label="$t('pages.person._id.edit.labels.first_name')"
                 :error-message="$t('validation.required')"
+                :has-errors.sync="firstNameError"
               />
 
               <TextInput
@@ -28,6 +29,7 @@
                 :name="$t('pages.person._id.edit.labels.last_name')"
                 :label="$t('pages.person._id.edit.labels.last_name')"
                 :error-message="$t('validation.required')"
+                :has-errors.sync="lastNameError"
               />
             </div>
           </div>
@@ -76,16 +78,19 @@ import { Person } from '~/types/entities'
 })
 export default class PersonEditPage extends mixins(NavigationRouterHook) {
   private personData: Person = { ...this.person }
-  private hasErrors: boolean = false
+  public firstNameError: boolean = false
+  public lastNameError: boolean = false
 
   get person(): Person {
     return this.$accessor.people.current
   }
 
   updatePerson(): void {
-    this.$accessor.people.update(this.personData).then(() => {
-      this.$router.push('/person/' + this.person.id)
-    })
+    if (!this.firstNameError && !this.lastNameError) {
+      this.$accessor.people.update(this.personData).then(() => {
+        this.$router.push('/person/' + this.person.id)
+      })
+    }
   }
 }
 </script>

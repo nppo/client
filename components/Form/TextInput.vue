@@ -11,12 +11,8 @@
           v-model="localValue"
           :name="name"
           class="w-full px-3 py-3 font-bold rounded-md shadow focus:outline-none"
+          :class="{ 'border border-red-300': errors[0] }"
           type="text"
-        />
-        <font-awesome-icon
-          v-if="errors[0]"
-          class="absolute right-0 mr-3 text-sm text-red-500"
-          icon="times"
         />
       </div>
 
@@ -46,11 +42,10 @@ export default class TextInput extends Vue {
   @Watch('localValue')
   updateValue() {
     this.$emit('update:value', this.localValue)
-  }
 
-  @Watch('ValidationProvider')
-  setErrors() {
-    if (ValidationProvider.errors && ValidationProvider.errors[0]) {
+    if (this.localValue) {
+      this.$emit('update:hasErrors', false)
+    } else {
       this.$emit('update:hasErrors', true)
     }
   }

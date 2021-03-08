@@ -182,7 +182,6 @@ export default {
         'faThumbsUp',
         'faEye',
         'faPencilAlt',
-        'faTimes',
       ],
       regular: ['faBookmark', 'faPlayCircle'],
       brands: ['faLinkedin', 'faResearchgate', 'faTwitterSquare'],
