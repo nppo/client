@@ -95,6 +95,10 @@ export default {
     },
   },
 
+  router: {
+    middleware: 'user-data',
+  },
+
   auth: {
     strategies: {
       api: {
