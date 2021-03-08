@@ -191,7 +191,7 @@ export default class ProjectDetailPage extends mixins(NavigationRouterHook) {
   }
 
   get recentProducts(): Product[] {
-    const products = this.project.products || []
+    const products = [...(this.project.products || [])]
 
     return products
       .sort((productA, productB) =>
