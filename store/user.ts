@@ -16,35 +16,27 @@ export const mutations = mutationTree(state, {
 export const actions = actionTree(
   { state, mutations },
   {
-    async fetchCurrent({ commit, dispatch }): Promise<void> {
+    setPermissions({ commit }): void {
       if (!this.$auth.loggedIn) {
         return
       }
 
-      const {
-        status,
-        data: { data },
-      } = await this.$repositories.user.current()
-
-      if (status !== 200) {
+      if (this.$auth.user === null) {
         return
       }
 
-      commit('setCurrent', data)
+      const user: User = (this.$auth.user as unknown) as User
+      commit('setCurrent', user)
 
       if (
-        typeof data.roles !== 'undefined' &&
-        typeof data.permissions !== 'undefined'
+        typeof user?.roles === 'undefined' ||
+        typeof user?.permissions === 'undefined'
       ) {
-        dispatch('setPermissions')
+        return
       }
-    },
 
-    setPermissions({ state }): void {
-      this.$gates.setRoles(state.current.roles?.map(({ name }) => name) || [])
-      this.$gates.setPermissions(
-        state.current.permissions?.map(({ name }) => name) || []
-      )
+      this.$gates.setRoles(user.roles.map(({ name }) => name) || [])
+      this.$gates.setPermissions(user.permissions.map(({ name }) => name) || [])
     },
   }
 )

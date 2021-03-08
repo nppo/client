@@ -8,7 +8,6 @@ import SearchRepository from '~/repositories/SearchRepository'
 import ThemeRepository from '~/repositories/ThemeRepository'
 import PartyRepository from '~/repositories/PartyRepository'
 import TypeRepository from '~/repositories/TypeRepository'
-import UserRepository from '~/repositories/UserRepository'
 
 export default class Repositories {
   statistics: StatisticsRepository
@@ -20,7 +19,6 @@ export default class Repositories {
   theme: ThemeRepository
   party: PartyRepository
   type: TypeRepository
-  user: UserRepository
 
   constructor($axios: NuxtAxiosInstance) {
     this.statistics = new StatisticsRepository($axios)
@@ -32,6 +30,5 @@ export default class Repositories {
     this.theme = new ThemeRepository($axios)
     this.party = new PartyRepository($axios)
     this.type = new TypeRepository($axios)
-    this.user = new UserRepository($axios)
   }
 }

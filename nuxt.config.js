@@ -96,7 +96,7 @@ export default {
   },
 
   router: {
-    middleware: 'user-data',
+    middleware: 'set-permissions',
   },
 
   auth: {
@@ -130,6 +130,9 @@ export default {
               : process.env.BACKEND_URL + '/auth/oauth/token',
           userInfo: '/api/user',
           logout: process.env.BACKEND_URL + '/logout',
+        },
+        user: {
+          property: 'data',
         },
         grantType: 'authorization_code',
         scope: '',
