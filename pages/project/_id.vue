@@ -105,7 +105,7 @@
                 v-for="tag in project.tags"
                 :key="'project_tag_' + tag.id"
                 :text="tag.label"
-                class="mr-2 mb-2"
+                class="mb-2 mr-2"
               />
             </div>
 
@@ -122,7 +122,7 @@
                 v-for="theme in project.themes"
                 :key="'project_theme_' + theme.id"
                 :text="theme.label"
-                class="mr-2 mb-2"
+                class="mb-2 mr-2"
               />
             </div>
 
@@ -191,14 +191,13 @@ export default class ProjectDetailPage extends mixins(NavigationRouterHook) {
   }
 
   get recentProducts(): Product[] {
-    const products = [...(this.project.products || [])]
-    return (
-      products
-        .sort((productA, productB) =>
-          productB.publishedAt.localeCompare(productA.publishedAt)
-        )
-        .slice(0, 2) || []
-    )
+    const products = this.project.products || []
+
+    return products
+      .sort((productA, productB) =>
+        productB.publishedAt.localeCompare(productA.publishedAt)
+      )
+      .slice(0, 2)
   }
 }
 </script>
