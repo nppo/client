@@ -37,7 +37,7 @@
                 {{ $t('pages.person._id.edit.labels.skills') }}
               </label>
 
-              <TagSelect :entity="personData.tags" />
+              <TagSelect :entity.sync="personData.tags" />
             </div>
           </div>
           <div class="w-8/12">

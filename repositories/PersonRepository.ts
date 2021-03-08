@@ -25,6 +25,7 @@ export default class PeopleRepository {
       first_name: person.firstName,
       last_name: person.lastName,
       about: person.about,
+      tags: person.tags,
     })
   }
 }
