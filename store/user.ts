@@ -29,8 +29,8 @@ export const actions = actionTree(
       commit('setCurrent', user)
 
       if (
-        typeof user?.roles === 'undefined' ||
-        typeof user?.permissions === 'undefined'
+        typeof user.roles === 'undefined' ||
+        typeof user.permissions === 'undefined'
       ) {
         return
       }
