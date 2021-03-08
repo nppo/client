@@ -10,7 +10,7 @@
       </div>
     </Header>
 
-    <div class="mb-12 border-b border-gray-200">
+    <div class="border-b border-gray-200">
       <div class="container relative h-full mx-auto">
         <nav class="flex space-x-16" aria-label="Tabs">
           <LocaleLink
@@ -33,8 +33,11 @@
     </div>
 
     <div class="container relative px-12 mx-auto">
-      <div v-if="activePage === 'project'" class="grid grid-cols-4 gap-4 mb-2">
-        <div class="col-span-3 mr-10">
+      <div
+        v-if="activePage === 'project'"
+        class="flex justify-between space-x-32 mt-18"
+      >
+        <div class="w-8/12">
           <div class="mb-10">
             <h2 class="mb-3 text-3xl font-bold">
               {{ $t('pages.project._id.headings.purpose') }}
@@ -42,15 +45,26 @@
 
             {{ project.purpose }}
           </div>
-          <div>
+          <div class="mb-18">
             <h3 class="mb-3 text-2xl font-bold">
               {{ $t('pages.project._id.headings.description') }}
             </h3>
 
             {{ project.description }}
           </div>
+          <div>
+            <h2 class="mb-12 text-3xl font-bold">
+              {{ $t('pages.project._id.headings.recent_products') }}
+            </h2>
+
+            <div class="grid grid-cols-2 gap-4">
+              <div v-for="product in recentProducts" :key="product.id">
+                <ProductBlock :product="product" />
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
+        <div class="w-4/12">
           <div v-if="project.owner">
             <h3 class="mb-4 text-2xl font-bold">
               {{ $t('pages.project._id.headings.contact') }}
@@ -91,7 +105,7 @@
                 v-for="tag in project.tags"
                 :key="'project_tag_' + tag.id"
                 :text="tag.label"
-                class="mr-2 mb-2"
+                class="mb-2 mr-2"
               />
             </div>
 
@@ -108,7 +122,7 @@
                 v-for="theme in project.themes"
                 :key="'project_theme_' + theme.id"
                 :text="theme.label"
-                class="mr-2 mb-2"
+                class="mb-2 mr-2"
               />
             </div>
 
@@ -120,6 +134,7 @@
       <NuxtChild
         :key="'project/' + $route.params.id + '/' + activePage"
         :project-content="projectContent"
+        class="mt-18"
         keep-alive
       />
     </div>
@@ -130,7 +145,7 @@
 import { Context } from '@nuxt/types'
 import { Component, mixins } from 'nuxt-property-decorator'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
-import { Project, Type } from '~/types/entities'
+import { Project, Type, Product } from '~/types/entities'
 
 @Component({
   async asyncData({ params, $accessor }: Context) {
@@ -173,6 +188,16 @@ export default class ProjectDetailPage extends mixins(NavigationRouterHook) {
         : '/project/' + this.$route.params.id + '/'
 
     return this.$route.path.substring(basePath.length) || 'project'
+  }
+
+  get recentProducts(): Product[] {
+    const products = [...(this.project.products || [])]
+
+    return products
+      .sort((productA, productB) =>
+        productB.publishedAt.localeCompare(productA.publishedAt)
+      )
+      .slice(0, 2)
   }
 }
 </script>
