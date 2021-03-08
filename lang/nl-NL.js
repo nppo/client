@@ -13,6 +13,10 @@ export default {
     save: 'Opslaan',
   },
 
+  validation: {
+    required: 'Dit veld is verplicht',
+  },
+
   account: {
     login: 'Inloggen',
     profile: 'Mijn Account',
