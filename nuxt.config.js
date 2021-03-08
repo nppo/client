@@ -38,6 +38,7 @@ export default {
     '~/plugins/repositories.ts',
     '~/plugins/mock-axios.ts',
     '~/plugins/axios.ts',
+    '~/plugins/vee-validate.ts',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -227,6 +228,7 @@ export default {
         ]
       },
     },
+    transpile: ['vee-validate/dist/rules'],
   },
 
   generate: {

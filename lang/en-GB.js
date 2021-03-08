@@ -13,6 +13,10 @@ export default {
     save: 'Save',
   },
 
+  validation: {
+    required: 'This field is required',
+  },
+
   account: {
     login: 'Login',
     profile: 'My account',
