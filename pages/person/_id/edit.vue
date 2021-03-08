@@ -32,6 +32,13 @@
                 :has-errors.sync="lastNameError"
               />
             </div>
+            <div>
+              <label class="pl-3 mb-1">
+                {{ $t('pages.person._id.edit.labels.skills') }}
+              </label>
+
+              <TagSelect :entity="personData.tags" />
+            </div>
           </div>
           <div class="w-8/12">
             <div>

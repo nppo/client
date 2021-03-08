@@ -147,6 +147,7 @@ export default {
             first_name: 'Voornaam',
             last_name: 'Achternaam',
             about: 'Over',
+            skills: 'Skills',
           },
         },
       },

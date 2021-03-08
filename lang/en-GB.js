@@ -145,6 +145,7 @@ export default {
             first_name: 'First name',
             last_name: 'Last name',
             about: 'About',
+            skills: 'Skills',
           },
         },
       },
