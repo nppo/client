@@ -106,3 +106,20 @@ export interface ProductTypeButton {
   textColor?: string
   color?: string
 }
+
+export interface User {
+  id: number
+  email: string
+  permissions?: Permission[]
+  roles?: Role[]
+}
+
+export interface Permission {
+  id: number
+  name: string
+}
+
+export interface Role {
+  id: number
+  name: string
+}
