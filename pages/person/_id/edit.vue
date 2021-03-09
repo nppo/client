@@ -9,9 +9,26 @@
     </h1>
 
     <form
+      ref="form"
       class="flex flex-col p-4 overflow-hidden bg-white rounded-md shadow"
       @submit.prevent="updatePerson"
     >
+      <div class="flex justify-between mb-6 space-x-32">
+        <div class="flex flex-col mb-4">
+          <label
+            :for="$t('pages.person._id.edit.labels.profile_picture')"
+            class="pl-3 mb-1"
+          >
+            {{ $t('pages.person._id.edit.labels.profile_picture') }}
+          </label>
+          <input
+            :id="$t('pages.person._id.edit.labels.profile_picture')"
+            class="px-3 py-3 font-bold rounded-md shadow focus:outline-none"
+            type="file"
+            @change="fileSelected"
+          />
+        </div>
+      </div>
       <div class="flex justify-between mb-6 space-x-32">
         <div class="w-4/12">
           <div>
@@ -24,7 +41,7 @@
               </label>
               <input
                 :id="$t('pages.person._id.edit.labels.first_name')"
-                v-model="personData.firstName"
+                v-model="formData.first_name"
                 class="px-3 py-3 font-bold rounded-md shadow focus:outline-none"
                 type="text"
               />
@@ -39,7 +56,7 @@
               </label>
               <input
                 :id="$t('pages.person._id.edit.labels.last_name')"
-                v-model="personData.lastName"
+                v-model="formData.last_name"
                 class="px-3 py-3 font-bold rounded-md shadow focus:outline-none"
                 type="text"
               />
@@ -58,7 +75,7 @@
 
               <textarea
                 :id="$t('pages.person._id.edit.labels.about')"
-                v-model="personData.about"
+                v-model="formData.about"
                 rows="6"
                 class="w-full px-3 py-3 font-bold rounded-md shadow focus:outline-none"
               />
@@ -78,22 +95,58 @@
 </template>
 
 <script lang="ts">
-import { Component, mixins } from 'nuxt-property-decorator'
+import { Component, mixins, Ref } from 'nuxt-property-decorator'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import { Person } from '~/types/entities'
 
 @Component
 export default class PersonEditPage extends mixins(NavigationRouterHook) {
-  private personData: Person = { ...this.person }
+  @Ref('form') readonly form!: HTMLFormElement
+
+  private formData: any = {
+    first_name: null,
+    last_name: null,
+    about: null,
+  }
 
   get person(): Person {
     return this.$accessor.people.current
   }
 
   updatePerson(): void {
-    this.$accessor.people.update(this.personData).then(() => {
-      this.$router.push('/person/' + this.person.id)
+    this.$accessor.people
+      .update({ id: this.person.id, data: this.personData })
+      .then(() => {
+        this.resetForm()
+        this.$router.push('/person/' + this.person.id)
+      })
+  }
+
+  get personData(): FormData {
+    const data = new FormData()
+
+    Object.keys(this.formData).forEach((key: string) => {
+      data.append(key, this.formData[key])
     })
+
+    return data
+  }
+
+  mounted() {
+    this.resetForm()
+  }
+
+  resetForm() {
+    this.form.reset()
+
+    this.formData.first_name = this.person.firstName
+    this.formData.last_name = this.person.lastName
+    this.formData.about = this.person.about
+    delete this.formData.profile_picture
+  }
+
+  fileSelected(event: any) {
+    this.formData.profile_picture = event.target.files[0]
   }
 }
 </script>

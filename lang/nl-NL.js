@@ -141,6 +141,7 @@ export default {
           title: 'Bewerk {name}',
           labels: {
             first_name: 'Voornaam',
+            profile_picture: 'Profiel foto',
             last_name: 'Achternaam',
             about: 'Over',
           },
