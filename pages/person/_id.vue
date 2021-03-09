@@ -6,7 +6,7 @@
       <div class="flex items-center justify-between">
         <BackButton :has-navigated-internal="hasNavigatedInternal" />
         <EditButton
-          v-if="$auth.loggedIn"
+          v-if="activePage === 'person'"
           v-can="'update people'"
           :entity-id="person.id"
         />
