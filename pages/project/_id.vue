@@ -4,7 +4,7 @@
       <BackButton class="mt-8" :has-navigated-internal="hasNavigatedInternal" />
 
       <div class="pt-32 text-white">
-        <h1 class="pb-6 text-4xl font-bold">
+        <h1 class="mb-6 text-4xl font-bold">
           {{ project.title }}
         </h1>
       </div>

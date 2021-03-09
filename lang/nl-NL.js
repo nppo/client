@@ -10,6 +10,11 @@ export default {
     skills: 'Skills',
     show_more: 'Toon {number} meer',
     show_less: 'Toon minder',
+    save: 'Opslaan',
+  },
+
+  validation: {
+    required: 'Dit veld is verplicht',
   },
 
   account: {
@@ -136,6 +141,14 @@ export default {
           identifier: 'Identifier',
           email: 'E-mail',
           phone: 'Telefoonnummer',
+        },
+        edit: {
+          title: 'Bewerk {name}',
+          labels: {
+            first_name: 'Voornaam',
+            last_name: 'Achternaam',
+            about: 'Over',
+          },
         },
       },
     },

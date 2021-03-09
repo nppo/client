@@ -20,12 +20,18 @@ export interface Theme {
 
 export interface Person {
   id: number
+  identifier: string
   firstName: string
   lastName: string
   email: string
   function: string
   phone: string
+  about: string
   tags?: Tag[]
+  parties?: Party[]
+  products?: Product[]
+  projects?: Project[]
+  themes?: Theme[]
 }
 
 export interface Product {

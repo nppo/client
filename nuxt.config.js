@@ -38,6 +38,7 @@ export default {
     '~/plugins/repositories.ts',
     '~/plugins/mock-axios.ts',
     '~/plugins/axios.ts',
+    '~/plugins/vee-validate.ts',
     '~/plugins/vue-gates.ts',
   ],
 
@@ -188,6 +189,7 @@ export default {
         'faBookmark',
         'faThumbsUp',
         'faEye',
+        'faPencilAlt',
       ],
       regular: ['faBookmark', 'faPlayCircle'],
       brands: ['faLinkedin', 'faResearchgate', 'faTwitterSquare'],
@@ -234,6 +236,7 @@ export default {
         ]
       },
     },
+    transpile: ['vee-validate/dist/rules'],
   },
 
   generate: {
