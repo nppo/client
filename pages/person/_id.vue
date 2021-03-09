@@ -5,7 +5,11 @@
     <div class="container mx-auto mt-6">
       <div class="flex items-center justify-between">
         <BackButton :has-navigated-internal="hasNavigatedInternal" />
-        <EditButton v-if="activePage === 'person'" :entity-id="person.id" />
+        <EditButton
+          v-if="$auth.loggedIn"
+          v-can="'update people'"
+          :entity-id="person.id"
+        />
       </div>
 
       <div
