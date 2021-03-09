@@ -111,6 +111,7 @@ export default {
           parties: 'Parties',
           description: 'Description',
           purpose: 'Purpose of the project',
+          recent_products: 'Recent products',
           tags: 'Keywords',
           themes: 'Themes',
         },
