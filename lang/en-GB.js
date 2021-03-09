@@ -13,6 +13,10 @@ export default {
     save: 'Save',
   },
 
+  validation: {
+    required: 'This field is required',
+  },
+
   account: {
     login: 'Login',
     profile: 'My account',
@@ -112,6 +116,7 @@ export default {
           parties: 'Parties',
           description: 'Description',
           purpose: 'Purpose of the project',
+          recent_products: 'Recent products',
           tags: 'Keywords',
           themes: 'Themes',
         },

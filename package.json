@@ -32,7 +32,9 @@
     "nuxt-property-decorator": "2.9.1",
     "nuxt-typed-vuex": "^0.1.22",
     "qs": "^6.9.6",
+    "vee-validate": "^3.4.5",
     "vue-class-component": "^7.2.6",
+    "vue-gates": "^2.1.0",
     "vue-slick-carousel": "^1.0.6"
   },
   "devDependencies": {

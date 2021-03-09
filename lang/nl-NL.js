@@ -13,6 +13,10 @@ export default {
     save: 'Opslaan',
   },
 
+  validation: {
+    required: 'Dit veld is verplicht',
+  },
+
   account: {
     login: 'Inloggen',
     profile: 'Mijn Account',
@@ -114,6 +118,7 @@ export default {
           parties: 'Partijen',
           description: 'Beschrijving',
           purpose: 'Doel van project',
+          recent_products: 'Recente producten',
           tags: 'Trefwoorden',
           themes: "Thema's",
         },

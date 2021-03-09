@@ -7,6 +7,7 @@ import * as search from '~/store/search'
 import * as types from '~/store/types'
 import * as errors from '~/store/errors'
 import * as parties from '~/store/parties'
+import * as user from '~/store/user'
 
 export const state = () => ({})
 
@@ -21,5 +22,6 @@ export const accessorType = getAccessorType({
     types,
     errors,
     parties,
+    user,
   },
 })
