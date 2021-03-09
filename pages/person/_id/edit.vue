@@ -74,6 +74,7 @@ import { Person } from '~/types/entities'
 @Component({
   middleware({ $gates }) {
     if (!$gates.hasPermission('update people')) {
+      // eslint-disable-next-line no-undef
       $nuxt.error({ statusCode: 403, message: 'Not Authorized' })
     }
   },
