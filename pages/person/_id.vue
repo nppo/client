@@ -7,6 +7,7 @@
         <BackButton :has-navigated-internal="hasNavigatedInternal" />
         <EditButton
           v-if="activePage === 'person'"
+          v-can="'update people'"
           :page="activePage"
           :entity-id="person.id"
         />
