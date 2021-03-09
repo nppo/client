@@ -25,7 +25,7 @@
             :id="$t('pages.person._id.edit.labels.profile_picture')"
             class="px-3 py-3 font-bold rounded-md shadow focus:outline-none"
             type="file"
-            @change="fileSelected"
+            @change="profilePictureSelected"
           />
         </div>
       </div>
@@ -113,15 +113,6 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
     return this.$accessor.people.current
   }
 
-  updatePerson(): void {
-    this.$accessor.people
-      .update({ id: this.person.id, data: this.personData })
-      .then(() => {
-        this.resetForm()
-        this.$router.push('/person/' + this.person.id)
-      })
-  }
-
   get personData(): FormData {
     const data = new FormData()
 
@@ -130,6 +121,15 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
     })
 
     return data
+  }
+
+  updatePerson(): void {
+    this.$accessor.people
+      .update({ id: this.person.id, data: this.personData })
+      .then(() => {
+        this.resetForm()
+        this.$router.push('/person/' + this.person.id)
+      })
   }
 
   mounted() {
@@ -145,7 +145,7 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
     delete this.formData.profile_picture
   }
 
-  fileSelected(event: any) {
+  profilePictureSelected(event: any) {
     this.formData.profile_picture = event.target.files[0]
   }
 }
