@@ -21,11 +21,8 @@ export const actions = actionTree(
         return
       }
 
-      if (this.$auth.user === null) {
-        return
-      }
-
       const user: User = (this.$auth.user as unknown) as User
+
       commit('setCurrent', user)
 
       if (
