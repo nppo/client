@@ -18,18 +18,18 @@
       <span class="mb-2 text-xs text-gray-300">{{ person.function }}</span>
 
       <div class="flex w-full mb-2 justify-evenly">
-        <div class="flex flex-col items-center">
+        <div v-if="person.projects" class="flex flex-col items-center">
           <span class="font-bold uppercase">
             {{ $t('entities.project.plural') }}
           </span>
-          <span>43</span>
+          <span>{{ person.projects.length }}</span>
         </div>
 
-        <div class="flex flex-col items-center">
+        <div v-if="person.products" class="flex flex-col items-center">
           <span class="font-bold uppercase">
             {{ $t('entities.product.plural') }}
           </span>
-          <span>125</span>
+          <span>{{ person.products.length }}</span>
         </div>
       </div>
 
