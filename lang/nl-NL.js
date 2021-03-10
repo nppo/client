@@ -128,6 +128,14 @@ export default {
           products: 'Producten',
           people: 'Personen',
         },
+        edit: {
+          title: 'Bewerk {name}',
+          labels: {
+            title: 'Titel',
+            description: 'Beschrijving',
+            purpose: 'Doel van project',
+          },
+        },
         no_result: 'Dit project heeft geen {entity}',
       },
     },
@@ -181,13 +189,6 @@ export default {
 
     login: {
       please_wait: 'Een moment geduld terwijl wij je proberen in te loggen',
-    },
-
-    error: {
-      403: 'Je hebt geen toegang tot deze pagina',
-      404: 'Deze pagina bestaat niet',
-      500: 'Er heeft zich een onverwachte fout voorgedaan',
-      back_to_homepage: 'Ga terug naar de homepagina',
     },
   },
 }

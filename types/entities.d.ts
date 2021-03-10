@@ -129,8 +129,3 @@ export interface Role {
   id: number
   name: string
 }
-
-export interface Error {
-  message: string
-  statusCode: number
-}

@@ -15,4 +15,8 @@ export default class ProjectRepository {
   show(id: number): Promise<AxiosResponse<SingleResult<Project>>> {
     return this.axios.get(`/api/${resource}/${id}`)
   }
+
+  update(project: Project): Promise<AxiosResponse<SingleResult<Project>>> {
+    return this.axios.put(`/api/${resource}/${project.id}`, project)
+  }
 }
