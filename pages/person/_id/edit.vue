@@ -85,7 +85,7 @@
 </template>
 
 <script lang="ts">
-import { Component, mixins, Ref } from 'nuxt-property-decorator'
+import { Component, mixins, Ref, Watch } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import { Person } from '~/types/entities'
@@ -111,7 +111,7 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
     return this.$accessor.people.current
   }
 
-  get personData(): FormData {
+  asFormData(): FormData {
     const data = new FormData()
 
     Object.keys(this.formData).forEach((key: string) => {
@@ -124,7 +124,7 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
   updatePerson(): void {
     if (!this.firstNameError && !this.lastNameError) {
       this.$accessor.people
-        .update({ id: this.person.id, data: this.personData })
+        .update({ id: this.person.id, data: this.asFormData() })
         .then(() => {
           this.resetForm()
           this.$router.push('/person/' + this.person.id)
@@ -148,7 +148,6 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
   }
 
   profilePictureSelected(event: any): void {
-    console.log(event)
     this.formData.profile_picture = event.target.files[0]
   }
 }
