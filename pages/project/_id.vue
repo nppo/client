@@ -1,16 +1,23 @@
 <template>
   <div class="flex-1 pb-24">
     <Header has-search-bar>
-      <BackButton class="mt-8" :has-navigated-internal="hasNavigatedInternal" />
+      <div class="flex items-center justify-between mt-8">
+        <BackButton :has-navigated-internal="hasNavigatedInternal" />
+        <EditButton
+          v-if="activePage === 'project'"
+          :page="activePage"
+          :entity-id="project.id"
+        />
+      </div>
 
       <div class="pt-32 text-white">
-        <h1 class="mb-6 text-4xl font-bold">
+        <h1 class="pb-6 text-4xl font-bold">
           {{ project.title }}
         </h1>
       </div>
     </Header>
 
-    <div class="border-b border-gray-200">
+    <div v-if="activePage === 'project'" class="mb-12 border-b border-gray-200">
       <div class="container relative h-full mx-auto">
         <nav class="flex space-x-16" aria-label="Tabs">
           <LocaleLink
