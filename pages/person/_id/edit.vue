@@ -74,7 +74,7 @@ import { Person } from '~/types/entities'
 @Component({
   middleware({ $gates }) {
     if ($gates.unlessPermission('update people')) {
-      $nuxt.error({ statusCode: 403, message: 'Not Authorized' })
+      return this.$nuxt.error({ statusCode: 403, message: 'Not Authorized' })
     }
   },
   components: {
