@@ -64,7 +64,10 @@
 
           <hr class="mb-8 border-gray-200" />
 
-          <div class="grid items-center grid-cols-2 mb-4">
+          <div
+            v-if="person.identifier || person.phone || person.email"
+            class="grid items-center grid-cols-2 mb-4"
+          >
             <div v-if="person.identifier" class="flex flex-col mb-4">
               <span class="font-bold uppercase">
                 {{ $t('pages.person._id.profile.identifier') }}
@@ -90,14 +93,17 @@
             </div>
           </div>
 
-          <hr class="mb-8 border-gray-200" />
+          <hr
+            v-if="person.identifier || person.phone || person.email"
+            class="mb-8 border-gray-200"
+          />
 
-          <div v-if="person.tags" class="mb-8">
+          <div v-if="person.tags && person.tags.length > 0" class="mb-8">
             <h2 class="block mb-8 text-3xl font-normal">
               {{ $t('general.skills') }}
             </h2>
 
-            <div class="flex flex-wrap">
+            <div class="flex flex-wrap mb-8">
               <Badge
                 v-for="skill in person.tags"
                 :key="'person_skill_' + skill.id"
@@ -105,11 +111,11 @@
                 class="mb-2 mr-2"
               />
             </div>
+
+            <hr class="mb-8 border-gray-200" />
           </div>
 
-          <hr class="mb-8 border-gray-200" />
-
-          <div v-if="person.themes">
+          <div v-if="person.themes && person.themes.length > 0">
             <h2 class="block mb-8 text-3xl font-normal">
               {{ $t('entities.theme.plural') }}
             </h2>
