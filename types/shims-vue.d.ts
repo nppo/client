@@ -1,6 +1,5 @@
 declare module '*.vue' {
   import Vue from 'vue'
-  Vue.component('VSelect', vSelect)
   export default Vue
 }
 
