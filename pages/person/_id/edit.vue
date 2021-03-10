@@ -85,7 +85,7 @@
 </template>
 
 <script lang="ts">
-import { Component, mixins, Ref, Watch } from 'nuxt-property-decorator'
+import { Component, mixins, Ref } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import { Person } from '~/types/entities'
