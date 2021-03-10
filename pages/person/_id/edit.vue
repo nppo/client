@@ -72,11 +72,6 @@ import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import { Person } from '~/types/entities'
 
 @Component({
-  middleware({ $gates }) {
-    if ($gates.unlessPermission('update people')) {
-      return this.$nuxt.error({ statusCode: 403, message: 'Not Authorized' })
-    }
-  },
   components: {
     ValidationObserver,
   },
@@ -95,6 +90,12 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
       this.$accessor.people.update(this.personData).then(() => {
         this.$router.push('/person/' + this.person.id)
       })
+    }
+  }
+
+  mounted() {
+    if (this.$gates.unlessPermission('update people')) {
+      return this.$nuxt.error({ statusCode: 403, message: 'Not Authorized' })
     }
   }
 }
