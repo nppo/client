@@ -116,6 +116,7 @@ export default {
           parties: 'Parties',
           description: 'Description',
           purpose: 'Purpose of the project',
+          recent_products: 'Recent products',
           tags: 'Keywords',
           themes: 'Themes',
         },
@@ -124,6 +125,14 @@ export default {
           parties: 'Parties',
           products: 'Products',
           people: 'People',
+        },
+        edit: {
+          title: 'Edit {name}',
+          labels: {
+            title: 'Title',
+            description: 'Description',
+            purpose: 'Purpose of the project',
+          },
         },
         no_result: 'This project has no {entity}',
       },

@@ -6,4 +6,5 @@ declare module '*.vue' {
 
 declare module 'vue-slick-carousel'
 declare module 'hooper'
+declare module 'vue-gates'
 declare module 'vue-select'

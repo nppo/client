@@ -118,6 +118,7 @@ export default {
           parties: 'Partijen',
           description: 'Beschrijving',
           purpose: 'Doel van project',
+          recent_products: 'Recente producten',
           tags: 'Trefwoorden',
           themes: "Thema's",
         },
@@ -126,6 +127,14 @@ export default {
           parties: 'Partijen',
           products: 'Producten',
           people: 'Personen',
+        },
+        edit: {
+          title: 'Bewerk {name}',
+          labels: {
+            title: 'Titel',
+            description: 'Beschrijving',
+            purpose: 'Doel van project',
+          },
         },
         no_result: 'Dit project heeft geen {entity}',
       },

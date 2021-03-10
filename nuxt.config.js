@@ -39,6 +39,7 @@ export default {
     '~/plugins/mock-axios.ts',
     '~/plugins/axios.ts',
     '~/plugins/vee-validate.ts',
+    '~/plugins/vue-gates.ts',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -95,6 +96,10 @@ export default {
     },
   },
 
+  router: {
+    middleware: 'set-permissions',
+  },
+
   auth: {
     strategies: {
       api: {
@@ -126,6 +131,9 @@ export default {
               : process.env.BACKEND_URL + '/auth/oauth/token',
           userInfo: '/api/user',
           logout: process.env.BACKEND_URL + '/logout',
+        },
+        user: {
+          property: 'data',
         },
         grantType: 'authorization_code',
         scope: '',
