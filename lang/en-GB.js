@@ -188,12 +188,5 @@ export default {
     login: {
       please_wait: 'Please wait while we try to log you in',
     },
-
-    error: {
-      403: 'You are not authorized to view this page',
-      404: 'This page does not exist',
-      500: 'An unexpected error has occurred',
-      back_to_homepage: 'Go back to the home page',
-    },
   },
 }
