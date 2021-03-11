@@ -156,6 +156,7 @@ export default {
             last_name: 'Last name',
             about: 'About',
             skills: 'Skills',
+            themes: 'themes',
           },
         },
       },

@@ -51,13 +51,22 @@
                 :has-errors.sync="lastNameError"
               />
             </div>
-            <div>
+
+            <!-- <div>
               <label class="pl-3 mb-1">
                 {{ $t('pages.person._id.edit.labels.skills') }}
               </label>
 
-              <TagSelect :entity.sync="personData.tags" />
-            </div>
+              <TagSelect :entity.sync="formData.skills" />
+            </div> -->
+
+            <!-- <div>
+              <label class="pl-3 mb-1">
+                {{ $t('pages.person._id.edit.labels.themes') }}
+              </label>
+
+              <ThemeSelect :themes.sync="formData.themes" />
+            </div> -->
           </div>
           <div class="w-8/12">
             <div>
@@ -103,16 +112,18 @@ import { Person } from '~/types/entities'
   },
 })
 export default class PersonEditPage extends mixins(NavigationRouterHook) {
-  @Ref('form') readonly form!: HTMLFormElement
-
   private formData: any = {
     first_name: null,
     last_name: null,
     about: null,
+    skills: [],
+    themes: [],
   }
 
   public firstNameError: boolean = false
   public lastNameError: boolean = false
+
+  @Ref('form') readonly form!: HTMLFormElement
 
   get person(): Person {
     return this.$accessor.people.current
@@ -151,6 +162,8 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
     this.formData.first_name = this.person.firstName
     this.formData.last_name = this.person.lastName
     this.formData.about = this.person.about
+    this.formData.skills = this.person.skills
+    this.formData.themes = this.person.themes
     delete this.formData.profile_picture
   }
 

@@ -158,6 +158,7 @@ export default {
             last_name: 'Achternaam',
             about: 'Over',
             skills: 'Skills',
+            themes: "Thema's",
           },
         },
       },
