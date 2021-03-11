@@ -1,5 +1,5 @@
 import { actionTree, mutationTree } from 'nuxt-typed-vuex'
-import { User } from '~/types/entities'
+import { User } from '~/types/models'
 
 export const state = () => ({
   current: {} as User,

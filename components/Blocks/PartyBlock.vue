@@ -47,7 +47,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
-import { Party } from '~/types/entities'
+import { Party } from '~/types/models'
 
 @Component
 export default class PartyBlock extends Vue {

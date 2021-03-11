@@ -1,5 +1,5 @@
 import { actionTree, mutationTree } from 'nuxt-typed-vuex'
-import { Party } from '~/types/entities'
+import { Party } from '~/types/models'
 
 export const state = () => ({
   all: [] as Party[],

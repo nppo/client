@@ -1,6 +1,6 @@
 import { NuxtAxiosInstance } from '@nuxtjs/axios'
 import { AxiosResponse } from 'axios'
-import { Theme } from '~/types/entities'
+import { Theme } from '~/types/models'
 import { MultipleResults } from '~/types/repositories'
 
 const resource = 'themes'

@@ -1,5 +1,5 @@
 import { actionTree, mutationTree } from 'nuxt-typed-vuex'
-import { Theme } from '~/types/entities'
+import { Theme } from '~/types/models'
 
 export const state = () => ({
   all: [] as Theme[],

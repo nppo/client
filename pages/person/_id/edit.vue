@@ -69,7 +69,7 @@
 import { Component, mixins } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
-import { Person } from '~/types/entities'
+import { Person } from '~/types/models'
 
 @Component({
   components: {

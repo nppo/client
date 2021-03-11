@@ -60,7 +60,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
-import { Product } from '~/types/entities'
+import { Product } from '~/types/models'
 
 @Component
 export default class ProductBlock extends Vue {

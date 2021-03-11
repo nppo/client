@@ -60,7 +60,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
-import { Project } from '~/types/entities'
+import { Project } from '~/types/models'
 
 @Component
 export default class ProjectBlock extends Vue {
