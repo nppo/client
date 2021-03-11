@@ -152,6 +152,7 @@ export default {
           title: 'Edit {name}',
           labels: {
             first_name: 'First name',
+            profile_picture: 'Profiel foto',
             last_name: 'Last name',
             about: 'About',
             skills: 'Skills',

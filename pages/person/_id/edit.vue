@@ -10,14 +10,33 @@
 
     <ValidationObserver>
       <form
+        ref="form"
         class="flex flex-col p-4 overflow-hidden bg-white rounded-md shadow"
         @submit.prevent="updatePerson"
       >
         <div class="flex justify-between mb-6 space-x-32">
+          <div class="flex flex-col mb-4">
+            <label
+              :for="$t('pages.person._id.edit.labels.profile_picture')"
+              class="pl-3 mb-1"
+            >
+              {{ $t('pages.person._id.edit.labels.profile_picture') }}
+            </label>
+
+            <input
+              :id="$t('pages.person._id.edit.labels.profile_picture')"
+              class="px-3 py-3 font-bold rounded-md shadow focus:outline-none"
+              type="file"
+              @change="profilePictureSelected"
+            />
+          </div>
+        </div>
+
+        <div class="flex justify-between mb-6 space-x-32">
           <div class="w-4/12">
             <div>
               <TextInput
-                :value.sync="personData.firstName"
+                :value.sync="formData.first_name"
                 :name="$t('pages.person._id.edit.labels.first_name')"
                 :label="$t('pages.person._id.edit.labels.first_name')"
                 :error-message="$t('validation.required')"
@@ -25,7 +44,7 @@
               />
 
               <TextInput
-                :value.sync="personData.lastName"
+                :value.sync="formData.last_name"
                 :name="$t('pages.person._id.edit.labels.last_name')"
                 :label="$t('pages.person._id.edit.labels.last_name')"
                 :error-message="$t('validation.required')"
@@ -52,7 +71,7 @@
 
                 <textarea
                   :id="$t('pages.person._id.edit.labels.about')"
-                  v-model="personData.about"
+                  v-model="formData.about"
                   rows="6"
                   class="w-full px-3 py-3 font-bold rounded-md shadow focus:outline-none"
                 />
@@ -73,7 +92,7 @@
 </template>
 
 <script lang="ts">
-import { Component, mixins } from 'nuxt-property-decorator'
+import { Component, mixins, Ref } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import { Person } from '~/types/entities'
@@ -84,7 +103,14 @@ import { Person } from '~/types/entities'
   },
 })
 export default class PersonEditPage extends mixins(NavigationRouterHook) {
-  private personData: Person = { ...this.person }
+  @Ref('form') readonly form!: HTMLFormElement
+
+  private formData: any = {
+    first_name: null,
+    last_name: null,
+    about: null,
+  }
+
   public firstNameError: boolean = false
   public lastNameError: boolean = false
 
@@ -92,12 +118,44 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
     return this.$accessor.people.current
   }
 
+  asFormData(): FormData {
+    const data = new FormData()
+
+    Object.keys(this.formData).forEach((key: string) => {
+      data.append(key, this.formData[key])
+    })
+
+    return data
+  }
+
   updatePerson(): void {
     if (!this.firstNameError && !this.lastNameError) {
-      this.$accessor.people.update(this.personData).then(() => {
-        this.$router.push('/person/' + this.person.id)
-      })
+      this.$accessor.people
+        .update({ id: this.person.id, data: this.asFormData() })
+        .then(() => {
+          this.resetForm()
+          this.$router.push('/person/' + this.person.id)
+        })
     }
+  }
+
+  beforeMount() {
+    this.resetForm()
+  }
+
+  resetForm() {
+    if (this.form) {
+      this.form.reset()
+    }
+
+    this.formData.first_name = this.person.firstName
+    this.formData.last_name = this.person.lastName
+    this.formData.about = this.person.about
+    delete this.formData.profile_picture
+  }
+
+  profilePictureSelected(event: any): void {
+    this.formData.profile_picture = event.target.files[0]
   }
 }
 </script>

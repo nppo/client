@@ -6,9 +6,9 @@
     <div class="flex flex-col items-center p-4">
       <!-- TODO: When image available make image dynamic: v-if="person.image" -->
       <img
-        v-if="personImage"
+        v-if="person.profile_picture_url"
         class="inline w-24 h-24 mb-2 rounded-full shadow"
-        :src="personImage"
+        :src="person.profile_picture_url"
         :alt="person.firstName + '_avatar'"
       />
 
@@ -82,9 +82,6 @@ import { Person } from '~/types/entities'
 
 @Component
 export default class PersonBlock extends Vue {
-  // TODO: When image available make image dynamic: v-if="party.image"
-  public personImage: string = 'https://picsum.photos/200/200'
-
   @Prop({ type: Object, required: true }) person!: Person
 
   get slicedTags(): Array<any> | undefined {
