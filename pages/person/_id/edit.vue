@@ -56,7 +56,7 @@
                 {{ $t('pages.person._id.edit.labels.skills') }}
               </label>
 
-              <TagSelect :entity.sync="personData.tags" />
+              <TagSelect :entity.sync="formData.skills" />
             </div>
           </div>
           <div class="w-8/12">
@@ -109,6 +109,7 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
     first_name: null,
     last_name: null,
     about: null,
+    skills: [],
   }
 
   public firstNameError: boolean = false
@@ -151,6 +152,7 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
     this.formData.first_name = this.person.firstName
     this.formData.last_name = this.person.lastName
     this.formData.about = this.person.about
+    this.formData.skills = this.person.skills
     delete this.formData.profile_picture
   }
 
