@@ -5,18 +5,35 @@
       has-dark-header
       has-search-bar
     >
-      <div class="mt-8 pb-96">
+      <div
+      class="flex justify-between"
+        :class="{
+          'mt-8 pb-96': activePage === 'product',
+          'pb-4': activePage !== 'product',
+        }"
+      >
         <BackButton :has-navigated-internal="hasNavigatedInternal" />
+
+        <EditButton
+          v-if="activePage === 'product'"
+          :page="activePage"
+          :entity-id="product.id"
+        />
       </div>
     </Header>
 
-    <div class="container grid grid-cols-12 mx-auto -mt-104">
+    <div
+      class="container grid grid-cols-12 mx-auto -mt-104"
+      v-if="activePage === 'product'"
+    >
       <component
         v-bind="{ product, type }"
         :is="typeComponent"
         class="col-span-8 col-start-3"
       />
     </div>
+
+    <NuxtChild />
   </div>
 </template>
 
@@ -40,6 +57,15 @@ export default class ProductDetailPage extends mixins(NavigationRouterHook) {
     const type = this.type.charAt(0).toUpperCase() + this.type.slice(1)
     const component = () => import(`~/components/ProductTypes/${type}Type.vue`)
     return component
+  }
+
+  get activePage(): string {
+    const basePath =
+      this.$i18n.defaultLocale !== this.$i18n.locale
+        ? '/' + this.$i18n.locale + '/product/' + this.$route.params.id + '/'
+        : '/product/' + this.$route.params.id + '/'
+
+    return this.$route.path.substring(basePath.length) || 'product'
   }
 
   get product(): Product {
