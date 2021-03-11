@@ -56,7 +56,10 @@
                 {{ $t('pages.person._id.edit.labels.skills') }}
               </label>
 
-              <TagSelect :entity.sync="formData.skills" />
+              <Multiselect
+                :entity.sync="formData.skills"
+                :options="skillTags"
+              />
             </div>
           </div>
           <div class="w-8/12">
@@ -95,9 +98,12 @@
 import { Component, mixins, Ref } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
-import { Person } from '~/types/entities'
+import { Person, Tag } from '~/types/entities'
 
 @Component({
+  async fetch(this: PersonEditPage) {
+    await this.$accessor.tags.fetchAll()
+  },
   components: {
     ValidationObserver,
   },
@@ -109,7 +115,7 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
     first_name: null,
     last_name: null,
     about: null,
-    skills: [],
+    skills: null,
   }
 
   public firstNameError: boolean = false
@@ -119,12 +125,18 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
     return this.$accessor.people.current
   }
 
+  get skillTags(): Tag[] {
+    return this.$accessor.tags.all
+  }
+
   asFormData(): FormData {
     const data = new FormData()
 
     Object.keys(this.formData).forEach((key: string) => {
       data.append(key, this.formData[key])
     })
+
+    console.log(this.formData)
 
     return data
   }

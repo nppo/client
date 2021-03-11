@@ -1,9 +1,9 @@
 import { NuxtAxiosInstance } from '@nuxtjs/axios'
 import { AxiosResponse } from 'axios'
-import { Skill } from '~/types/entities'
+import { Tag } from '~/types/entities'
 import { MultipleResults } from '~/types/repositories'
 
-const resource = 'skills'
+const resource = 'tags'
 
 export default class SkillRepository {
   axios: NuxtAxiosInstance
@@ -12,7 +12,7 @@ export default class SkillRepository {
     this.axios = axios
   }
 
-  all(): Promise<AxiosResponse<MultipleResults<Skill>>> {
+  all(): Promise<AxiosResponse<MultipleResults<Tag>>> {
     return this.axios.get(`/api/${resource}`)
   }
 }
