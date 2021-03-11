@@ -6,7 +6,7 @@
       has-search-bar
     >
       <div
-      class="flex justify-between"
+        class="flex justify-between"
         :class="{
           'mt-8 pb-96': activePage === 'product',
           'pb-4': activePage !== 'product',
@@ -23,8 +23,8 @@
     </Header>
 
     <div
-      class="container grid grid-cols-12 mx-auto -mt-104"
       v-if="activePage === 'product'"
+      class="container grid grid-cols-12 mx-auto -mt-104"
     >
       <component
         v-bind="{ product, type }"
