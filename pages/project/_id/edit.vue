@@ -93,5 +93,21 @@ export default class ProjectEditPage extends mixins(NavigationRouterHook) {
       })
     }
   }
+
+  mounted() {
+    if (this.$gates.unlessPermission('update projects')) {
+      return this.$nuxt.error({
+        statusCode: 403,
+        message: String(this.$i18n.t('pages.error.403')),
+      })
+    }
+
+    if (!this.project.can?.update) {
+      return this.$nuxt.error({
+        statusCode: 403,
+        message: String(this.$i18n.t('pages.error.403')),
+      })
+    }
+  }
 }
 </script>

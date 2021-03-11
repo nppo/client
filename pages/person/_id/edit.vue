@@ -158,6 +158,13 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
         message: String(this.$i18n.t('pages.error.403')),
       })
     }
+
+    if (!this.person.can?.update) {
+      return this.$nuxt.error({
+        statusCode: 403,
+        message: String(this.$i18n.t('pages.error.403')),
+      })
+    }
   }
 }
 </script>
