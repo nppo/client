@@ -13,6 +13,11 @@ export interface Tag {
   label: string
 }
 
+export interface Skill {
+  id: number
+  label: string
+}
+
 export interface Theme {
   id: number
   label: string
@@ -27,7 +32,8 @@ export interface Person {
   function: string
   phone: string
   about: string
-  tags?: Tag[]
+  profilePictureUrl: string
+  skills?: Skill[]
   parties?: Party[]
   products?: Product[]
   projects?: Project[]
@@ -54,7 +60,7 @@ export interface Owner {
   phone: string
   about: string
   identifier: string
-  tags?: Tag[]
+  skills?: Skill[]
 }
 
 export interface Project {

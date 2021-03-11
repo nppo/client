@@ -20,9 +20,9 @@
           <div class="flex flex-col items-center p-4 mb-4">
             <!-- TODO: When image available make image dynamic: v-if="person.image" -->
             <img
-              v-if="person.profile_picture_url"
+              v-if="person.profilePictureUrl"
               class="inline w-24 h-24 mb-2 rounded-full shadow"
-              :src="person.profile_picture_url"
+              :src="person.profilePictureUrl"
               :alt="person.firstName + '_avatar'"
             />
 
@@ -102,14 +102,14 @@
             class="mb-8 border-gray-200"
           />
 
-          <div v-if="person.tags && person.tags.length > 0" class="mb-8">
+          <div v-if="person.skills && person.skills.length > 0" class="mb-8">
             <h2 class="block mb-8 text-3xl font-normal">
               {{ $t('general.skills') }}
             </h2>
 
             <div class="flex flex-wrap mb-8">
               <Badge
-                v-for="skill in person.tags"
+                v-for="skill in person.skills"
                 :key="'person_skill_' + skill.id"
                 :text="skill.label"
                 class="mb-2 mr-2"

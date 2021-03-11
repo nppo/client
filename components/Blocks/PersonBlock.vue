@@ -6,9 +6,9 @@
     <div class="flex flex-col items-center p-4">
       <!-- TODO: When image available make image dynamic: v-if="person.image" -->
       <img
-        v-if="person.profile_picture_url"
+        v-if="person.profilePictureUrl"
         class="inline w-24 h-24 mb-2 rounded-full shadow"
-        :src="person.profile_picture_url"
+        :src="person.profilePictureUrl"
         :alt="person.firstName + '_avatar'"
       />
 
@@ -62,11 +62,11 @@
 
     <div class="flex flex-row flex-wrap items-start justify-center px-4 mb-4">
       <div
-        v-for="tag in slicedTags"
-        :key="'tag_shortcut_' + tag.id"
+        v-for="skill in slicedSkills"
+        :key="'skill_shortcut_' + skill.id"
         class="px-3 py-1 m-1 text-xs font-extrabold bg-green-300 rounded-md cursor-pointer"
       >
-        {{ tag.label }}
+        {{ skill.label }}
       </div>
     </div>
 
@@ -84,8 +84,8 @@ import { Person } from '~/types/entities'
 export default class PersonBlock extends Vue {
   @Prop({ type: Object, required: true }) person!: Person
 
-  get slicedTags(): Array<any> | undefined {
-    return this.person.tags?.slice(0, 5)
+  get slicedSkills(): Array<any> | undefined {
+    return this.person.skills?.slice(0, 5)
   }
 }
 </script>
