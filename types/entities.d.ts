@@ -40,3 +40,8 @@ export interface ProductTypeButton {
   textColor?: string
   color?: string
 }
+
+export interface Error {
+  message: string
+  statusCode: number
+}

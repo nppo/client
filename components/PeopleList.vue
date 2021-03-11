@@ -8,9 +8,9 @@
         >
           <!-- TODO: When image available make image dynamic: v-if="person.image" -->
           <img
-            v-if="personImage"
+            v-if="person.profile_picture_url"
             class="inline w-10 h-10 mr-4 rounded-full"
-            :src="personImage"
+            :src="person.profile_picture_url"
             :alt="person.firstName + '_avatar'"
           />
 
@@ -52,8 +52,6 @@ import { Person } from '~/types/models'
 
 @Component
 export default class PeopleList extends Vue {
-  // TODO: When image available make image dynamic: v-if="person.image"
-  public personImage: string = 'https://picsum.photos/200/200'
   public showingAll: boolean = false
 
   @Prop({ type: Number, default: 3 }) maxFilters!: number
