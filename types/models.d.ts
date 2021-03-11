@@ -1,6 +1,6 @@
 /* eslint-disable no-use-before-define */
 export interface Can {
-  update: boolean
+  update?: boolean
 }
 
 export interface Model {
