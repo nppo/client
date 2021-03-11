@@ -97,7 +97,7 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
     if (this.$gates.unlessPermission('update people')) {
       return this.$nuxt.error({
         statusCode: 403,
-        message: String(this.$i18n.t('pages.error.unauthorized')),
+        message: String(this.$i18n.t('pages.error.403')),
       })
     }
   }
