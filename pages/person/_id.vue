@@ -229,7 +229,7 @@
       </div>
 
       <NuxtChild
-        :key="'person/' + $route.params.id + '/' + activePage + pageCounter"
+        :key="'person/' + $route.params.id + '/' + activePage"
         keep-alive
       />
     </div>
@@ -251,7 +251,6 @@ import { Person } from '~/types/entities'
 export default class PersonDetailPage extends mixins(NavigationRouterHook) {
   public sliderShowMax: number = 3
   public pages: Array<string> = ['person', 'edit']
-  private pageCounter: number = 0
 
   get person(): Person {
     return this.$accessor.people.current
@@ -262,7 +261,6 @@ export default class PersonDetailPage extends mixins(NavigationRouterHook) {
       this.$i18n.defaultLocale !== this.$i18n.locale
         ? '/' + this.$i18n.locale + '/person/' + this.$route.params.id + '/'
         : '/person/' + this.$route.params.id + '/'
-    this.pageCounter++
 
     return this.$route.path.substring(basePath.length) || 'person'
   }
