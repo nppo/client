@@ -37,7 +37,7 @@ export default class TextInput extends Vue {
   @Prop({ type: String, default: '' }) readonly label!: string
   @Prop({ type: String, default: '' }) readonly errorMessage!: string
 
-  localValue = this.value
+  private localValue: string = this.value
 
   @Watch('localValue')
   updateValue() {

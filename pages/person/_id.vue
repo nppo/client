@@ -20,9 +20,9 @@
           <div class="flex flex-col items-center p-4 mb-4">
             <!-- TODO: When image available make image dynamic: v-if="person.image" -->
             <img
-              v-if="personImage"
+              v-if="person.profile_picture_url"
               class="inline w-24 h-24 mb-2 rounded-full shadow"
-              :src="personImage"
+              :src="person.profile_picture_url"
               :alt="person.firstName + '_avatar'"
             />
 
@@ -254,7 +254,6 @@ import { Person } from '~/types/entities'
 })
 export default class PersonDetailPage extends mixins(NavigationRouterHook) {
   public sliderShowMax: number = 3
-  public personImage: string = 'https://picsum.photos/200/200'
   public pages: Array<string> = ['person', 'edit']
 
   get person(): Person {
