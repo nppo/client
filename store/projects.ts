@@ -1,5 +1,5 @@
 import { actionTree, mutationTree } from 'nuxt-typed-vuex'
-import { Project } from '~/types/entities'
+import { Project } from '~/types/models'
 
 export const state = () => ({
   current: {} as Project,

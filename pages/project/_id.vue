@@ -4,7 +4,7 @@
       <div class="flex items-center justify-between mt-8">
         <BackButton :has-navigated-internal="hasNavigatedInternal" />
         <EditButton
-          v-if="activePage === 'project'"
+          v-if="activePage === 'project' && project.can.update"
           :page="activePage"
           :entity-id="project.id"
         />
@@ -152,7 +152,8 @@
 import { Context } from '@nuxt/types'
 import { Component, mixins } from 'nuxt-property-decorator'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
-import { Project, Type, Product } from '~/types/entities'
+import { Type } from '~/types/entities'
+import { Project, Product } from '~/types/models'
 
 @Component({
   async asyncData({ params, $accessor }: Context) {

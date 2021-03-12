@@ -1,6 +1,6 @@
 import { NuxtAxiosInstance } from '@nuxtjs/axios'
 import { AxiosResponse } from 'axios'
-import { Project } from '~/types/entities'
+import { Project } from '~/types/models'
 import { SingleResult } from '~/types/repositories'
 
 const resource = 'projects'
