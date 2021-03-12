@@ -57,10 +57,7 @@
                 {{ $t('pages.person._id.edit.labels.skills') }}
               </label>
 
-              <Multiselect
-                :entity.sync="formData.skills"
-                :options="skillTags"
-              />
+              <Multiselect :entity.sync="formData.skills" :options="skills" />
             </div>
 
             <div>
@@ -111,7 +108,7 @@ import { Person, Tag, Theme } from '~/types/models'
 
 @Component({
   async fetch(this: PersonEditPage) {
-    await this.$accessor.tags.fetchAll()
+    await this.$accessor.skills.fetchAll()
     await this.$accessor.themes.fetchAll()
   },
   components: {
@@ -136,8 +133,8 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
     return this.$accessor.people.current
   }
 
-  get skillTags(): Tag[] {
-    return this.$accessor.tags.all
+  get skills(): Tag[] {
+    return this.$accessor.skills.all
   }
 
   get themes(): Theme[] {
