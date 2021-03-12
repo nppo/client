@@ -60,6 +60,9 @@
               :entity.sync="formData.themes"
               :options="themes"
               :label="$t('pages.person._id.edit.labels.themes')"
+              :required="true"
+              :error-message="$t('validation.required')"
+              :has-errors.sync="themesError"
             />
           </div>
           <div class="w-8/12">
@@ -120,6 +123,7 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
 
   public firstNameError: boolean = false
   public lastNameError: boolean = false
+  public themesError: boolean = false
 
   @Ref('form') readonly form!: HTMLFormElement
 
@@ -158,7 +162,7 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
   }
 
   updatePerson(): void {
-    if (!this.firstNameError && !this.lastNameError) {
+    if (!this.firstNameError && !this.lastNameError && !this.themesError) {
       this.$accessor.people
         .update({ id: this.person.id, data: this.asFormData() })
         .then(() => {
