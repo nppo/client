@@ -62,16 +62,13 @@
                 :options="skillTags"
               />
             </div>
-            
+
             <div>
               <label class="pl-3 mb-1">
                 {{ $t('pages.person._id.edit.labels.themes') }}
               </label>
 
-              <Multiselect
-                :entity.sync="formData.themes"
-                :options="themes"
-              />
+              <Multiselect :entity.sync="formData.themes" :options="themes" />
             </div>
           </div>
           <div class="w-8/12">
@@ -110,11 +107,12 @@
 import { Component, mixins, Ref } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
-import { Person, Tag } from '~/types/models'
+import { Person, Tag, Theme } from '~/types/models'
 
 @Component({
   async fetch(this: PersonEditPage) {
     await this.$accessor.tags.fetchAll()
+    await this.$accessor.themes.fetchAll()
   },
   components: {
     ValidationObserver,
@@ -140,6 +138,10 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
 
   get skillTags(): Tag[] {
     return this.$accessor.tags.all
+  }
+
+  get themes(): Theme[] {
+    return this.$accessor.themes.all
   }
 
   asFormData(): FormData {
