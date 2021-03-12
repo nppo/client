@@ -71,7 +71,7 @@
 import { Component, mixins } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
-import { Project } from '~/types/entities'
+import { Project } from '~/types/models'
 
 @Component({
   components: {
@@ -90,6 +90,22 @@ export default class ProjectEditPage extends mixins(NavigationRouterHook) {
     if (!this.titleError) {
       this.$accessor.projects.update(this.projectData).then(() => {
         this.$router.push('/project/' + this.project.id)
+      })
+    }
+  }
+
+  mounted() {
+    if (this.$gates.unlessPermission('update projects')) {
+      return this.$nuxt.error({
+        statusCode: 403,
+        message: String(this.$i18n.t('pages.error.403')),
+      })
+    }
+
+    if (!this.project.can?.update) {
+      return this.$nuxt.error({
+        statusCode: 403,
+        message: String(this.$i18n.t('pages.error.403')),
       })
     }
   }

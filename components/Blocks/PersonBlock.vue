@@ -60,7 +60,10 @@
 
     <hr class="mb-3 border-gray-100" />
 
-    <div class="flex flex-row flex-wrap items-start justify-center px-4 mb-4">
+    <div
+      v-if="slicedSkills && slicedSkills.length > 0"
+      class="flex flex-row flex-wrap items-start justify-center px-4 mb-4"
+    >
       <div
         v-for="skill in slicedSkills"
         :key="'skill_shortcut_' + skill.id"
@@ -78,7 +81,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
-import { Person } from '~/types/entities'
+import { Person } from '~/types/models'
 
 @Component
 export default class PersonBlock extends Vue {

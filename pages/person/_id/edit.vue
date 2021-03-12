@@ -52,21 +52,27 @@
               />
             </div>
 
-            <!-- <div>
+            <div>
               <label class="pl-3 mb-1">
                 {{ $t('pages.person._id.edit.labels.skills') }}
               </label>
 
-              <TagSelect :entity.sync="formData.skills" />
-            </div> -->
-
-            <!-- <div>
+              <Multiselect
+                :entity.sync="formData.skills"
+                :options="skillTags"
+              />
+            </div>
+            
+            <div>
               <label class="pl-3 mb-1">
                 {{ $t('pages.person._id.edit.labels.themes') }}
               </label>
 
-              <ThemeSelect :themes.sync="formData.themes" />
-            </div> -->
+              <Multiselect
+                :entity.sync="formData.themes"
+                :options="themes"
+              />
+            </div>
           </div>
           <div class="w-8/12">
             <div>
@@ -104,9 +110,12 @@
 import { Component, mixins, Ref } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
-import { Person } from '~/types/entities'
+import { Person, Tag } from '~/types/models'
 
 @Component({
+  async fetch(this: PersonEditPage) {
+    await this.$accessor.tags.fetchAll()
+  },
   components: {
     ValidationObserver,
   },
@@ -129,11 +138,27 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
     return this.$accessor.people.current
   }
 
+  get skillTags(): Tag[] {
+    return this.$accessor.tags.all
+  }
+
   asFormData(): FormData {
     const data = new FormData()
 
-    Object.keys(this.formData).forEach((key: string) => {
-      data.append(key, this.formData[key])
+    Object.entries(this.formData).forEach(([key, value]) => {
+      if (!Array.isArray(value)) {
+        data.append(key, value as string | Blob)
+        return
+      }
+
+      value.forEach((item, index) => {
+        Object.entries(item).forEach(([itemKey, itemValue]) => {
+          data.append(
+            `${key}[${index}][${itemKey}]`,
+            itemValue as string | Blob
+          )
+        })
+      })
     })
 
     return data
@@ -169,6 +194,22 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
 
   profilePictureSelected(event: any): void {
     this.formData.profile_picture = event.target.files[0]
+  }
+
+  mounted() {
+    if (this.$gates.unlessPermission('update people')) {
+      return this.$nuxt.error({
+        statusCode: 403,
+        message: String(this.$i18n.t('pages.error.403')),
+      })
+    }
+
+    if (!this.person.can?.update) {
+      return this.$nuxt.error({
+        statusCode: 403,
+        message: String(this.$i18n.t('pages.error.403')),
+      })
+    }
   }
 }
 </script>

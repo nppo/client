@@ -6,7 +6,7 @@
       <div class="flex items-center justify-between">
         <BackButton :has-navigated-internal="hasNavigatedInternal" />
         <EditButton
-          v-if="activePage === 'person'"
+          v-if="activePage === 'person' && person.can.update"
           :page="activePage"
           :entity-id="person.id"
         />
@@ -250,7 +250,7 @@
 import { Context } from '@nuxt/types'
 import { Component, mixins } from 'nuxt-property-decorator'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
-import { Person } from '~/types/entities'
+import { Person } from '~/types/models'
 
 @Component({
   async asyncData({ params, $accessor }: Context) {
@@ -260,7 +260,6 @@ import { Person } from '~/types/entities'
 })
 export default class PersonDetailPage extends mixins(NavigationRouterHook) {
   public sliderShowMax: number = 3
-  public pages: Array<string> = ['person', 'edit']
 
   get person(): Person {
     return this.$accessor.people.current
