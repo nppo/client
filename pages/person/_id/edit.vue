@@ -34,30 +34,36 @@
 
         <div class="flex justify-between mb-6 space-x-32">
           <div class="w-4/12">
-            <div>
-              <TextInput
-                :value.sync="formData.first_name"
-                :name="$t('pages.person._id.edit.labels.first_name')"
-                :label="$t('pages.person._id.edit.labels.first_name')"
-                :error-message="$t('validation.required')"
-                :has-errors.sync="firstNameError"
-              />
+            <TextInput
+              :value.sync="formData.first_name"
+              :name="$t('pages.person._id.edit.labels.first_name')"
+              :label="$t('pages.person._id.edit.labels.first_name')"
+              :error-message="$t('validation.required')"
+              :has-errors.sync="firstNameError"
+            />
 
-              <TextInput
-                :value.sync="formData.last_name"
-                :name="$t('pages.person._id.edit.labels.last_name')"
-                :label="$t('pages.person._id.edit.labels.last_name')"
-                :error-message="$t('validation.required')"
-                :has-errors.sync="lastNameError"
-              />
-            </div>
-            <div>
-              <label class="pl-3 mb-1">
-                {{ $t('pages.person._id.edit.labels.skills') }}
-              </label>
+            <TextInput
+              :value.sync="formData.last_name"
+              :name="$t('pages.person._id.edit.labels.last_name')"
+              :label="$t('pages.person._id.edit.labels.last_name')"
+              :error-message="$t('validation.required')"
+              :has-errors.sync="lastNameError"
+            />
 
-              <Multiselect :entity.sync="formData.skills" :options="skills" />
-            </div>
+            <Multiselect
+              :entity.sync="formData.skills"
+              :options="skills"
+              :label="$t('pages.person._id.edit.labels.skills')"
+            />
+
+            <Multiselect
+              :entity.sync="formData.themes"
+              :options="themes"
+              :label="$t('pages.person._id.edit.labels.themes')"
+              :required="true"
+              :error-message="$t('validation.required')"
+              :has-errors.sync="themesError"
+            />
           </div>
           <div class="w-8/12">
             <div>
@@ -95,28 +101,31 @@
 import { Component, mixins, Ref } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
-import { Person, Tag } from '~/types/models'
+import { Person, Tag, Theme } from '~/types/models'
 
 @Component({
   async fetch(this: PersonEditPage) {
     await this.$accessor.skills.fetchAll()
+    await this.$accessor.themes.fetchAll()
   },
   components: {
     ValidationObserver,
   },
 })
 export default class PersonEditPage extends mixins(NavigationRouterHook) {
-  @Ref('form') readonly form!: HTMLFormElement
-
   private formData: any = {
     first_name: null,
     last_name: null,
     about: null,
     skills: [],
+    themes: [],
   }
 
   public firstNameError: boolean = false
   public lastNameError: boolean = false
+  public themesError: boolean = false
+
+  @Ref('form') readonly form!: HTMLFormElement
 
   get person(): Person {
     return this.$accessor.people.current
@@ -124,6 +133,10 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
 
   get skills(): Tag[] {
     return this.$accessor.skills.all
+  }
+
+  get themes(): Theme[] {
+    return this.$accessor.themes.all
   }
 
   asFormData(): FormData {
@@ -149,7 +162,7 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
   }
 
   updatePerson(): void {
-    if (!this.firstNameError && !this.lastNameError) {
+    if (!this.firstNameError && !this.lastNameError && !this.themesError) {
       this.$accessor.people
         .update({ id: this.person.id, data: this.asFormData() })
         .then(() => {
@@ -172,6 +185,7 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
     this.formData.last_name = this.person.lastName
     this.formData.about = this.person.about
     this.formData.skills = this.person.skills
+    this.formData.themes = this.person.themes
     delete this.formData.profile_picture
   }
 

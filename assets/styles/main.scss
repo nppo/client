@@ -1,0 +1,27 @@
+/*
+ * # Framework
+ */
+@import 'tailwindcss/base';
+
+/*
+ * External packages
+ */
+
+/*
+ * # Generic
+ */
+@import 'generic/base';
+@import 'generic/heading';
+
+/*
+ * # Components
+ */
+@import 'tailwindcss/components';
+@import 'components/vselect';
+
+/*
+ * # Utilities
+ */
+@import 'tailwindcss/utilities';
+@import 'utilities/animation';
+@import 'utilities/scrollbar';

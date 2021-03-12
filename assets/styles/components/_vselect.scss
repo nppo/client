@@ -1,0 +1,23 @@
+.v-select .vs__dropdown-toggle {
+  @apply px-3 py-3 font-bold rounded-md shadow border-none;
+}
+
+.vs__dropdown-menu .vs__dropdown-option {
+  @apply text-blue-800 block py-2 mb-2 text-sm border-b border-gray-100;
+}
+
+.vs__dropdown-menu .vs__dropdown-option--highlight {
+  @apply font-bold border-b-2 border-yellow-brand bg-transparent text-blue-800;
+}
+
+.v-select .vs__selected {
+  @apply px-3 py-1 m-1 text-xs font-extrabold bg-green-300 rounded-md cursor-pointer border-none flex-row-reverse;
+}
+
+.v-select .vs__deselect {
+  @apply mr-1 ml-0 fill-current;
+}
+
+.error-border > .vs__dropdown-toggle {
+  @apply border border-solid border-red-300;
+}
