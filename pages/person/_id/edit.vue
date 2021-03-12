@@ -132,11 +132,21 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
   asFormData(): FormData {
     const data = new FormData()
 
-    Object.keys(this.formData).forEach((key: string) => {
-      data.append(key, this.formData[key])
-    })
+    Object.entries(this.formData).forEach(([key, value]) => {
+      if (!Array.isArray(value)) {
+        data.append(key, value as string | Blob)
+        return
+      }
 
-    console.log(this.formData)
+      value.forEach((item, index) => {
+        Object.entries(item).forEach(([itemKey, itemValue]) => {
+          data.append(
+            `${key}[${index}][${itemKey}]`,
+            itemValue as string | Blob
+          )
+        })
+      })
+    })
 
     return data
   }
