@@ -19,4 +19,8 @@ export default class ProductRepository {
   show(id: number): Promise<AxiosResponse<SingleResult<Product>>> {
     return this.axios.get(`/api/${resource}/${id}`)
   }
+
+  update(product: Product): Promise<AxiosResponse<SingleResult<Product>>> {
+    return this.axios.put(`/api/${resource}/${product.id}`, product)
+  }
 }
