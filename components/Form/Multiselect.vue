@@ -32,3 +32,9 @@ export default class Multiselect extends Vue {
   }
 }
 </script>
+
+<style>
+.vs__dropdown-menu {
+  @apply max-h-40 overflow-y-auto rounded-md shadow border-none mt-3 p-4 !important;
+}
+</style>
