@@ -34,39 +34,33 @@
 
         <div class="flex justify-between mb-6 space-x-32">
           <div class="w-4/12">
-            <div>
-              <TextInput
-                :value.sync="formData.first_name"
-                :name="$t('pages.person._id.edit.labels.first_name')"
-                :label="$t('pages.person._id.edit.labels.first_name')"
-                :error-message="$t('validation.required')"
-                :has-errors.sync="firstNameError"
-              />
+            <TextInput
+              :value.sync="formData.first_name"
+              :name="$t('pages.person._id.edit.labels.first_name')"
+              :label="$t('pages.person._id.edit.labels.first_name')"
+              :error-message="$t('validation.required')"
+              :has-errors.sync="firstNameError"
+            />
 
-              <TextInput
-                :value.sync="formData.last_name"
-                :name="$t('pages.person._id.edit.labels.last_name')"
-                :label="$t('pages.person._id.edit.labels.last_name')"
-                :error-message="$t('validation.required')"
-                :has-errors.sync="lastNameError"
-              />
-            </div>
+            <TextInput
+              :value.sync="formData.last_name"
+              :name="$t('pages.person._id.edit.labels.last_name')"
+              :label="$t('pages.person._id.edit.labels.last_name')"
+              :error-message="$t('validation.required')"
+              :has-errors.sync="lastNameError"
+            />
 
-            <div>
-              <label class="pl-3 mb-1">
-                {{ $t('pages.person._id.edit.labels.skills') }}
-              </label>
+            <Multiselect
+              :entity.sync="formData.skills"
+              :options="skills"
+              :label="$t('pages.person._id.edit.labels.skills')"
+            />
 
-              <Multiselect :entity.sync="formData.skills" :options="skills" />
-            </div>
-
-            <div>
-              <label class="pl-3 mb-1">
-                {{ $t('pages.person._id.edit.labels.themes') }}
-              </label>
-
-              <Multiselect :entity.sync="formData.themes" :options="themes" />
-            </div>
+            <Multiselect
+              :entity.sync="formData.themes"
+              :options="themes"
+              :label="$t('pages.person._id.edit.labels.themes')"
+            />
           </div>
           <div class="w-8/12">
             <div>
