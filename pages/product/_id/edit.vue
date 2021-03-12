@@ -55,14 +55,15 @@
 import { Component, mixins } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
-import { Product } from '~/types/entities'
+import { Product } from '~/types/models'
+
 
 @Component({
   components: {
     ValidationObserver,
   },
 })
-export default class ProjectEditPage extends mixins(NavigationRouterHook) {
+export default class ProductEditPage extends mixins(NavigationRouterHook) {
   private productData: Product = { ...this.product }
   private titleError: boolean = false
 
@@ -74,6 +75,22 @@ export default class ProjectEditPage extends mixins(NavigationRouterHook) {
     if (!this.titleError) {
       this.$accessor.products.update(this.productData).then(() => {
         this.$router.push('/product/' + this.product.id)
+      })
+    }
+  }
+
+  mounted(): void {
+    if (this.$gates.unlessPermission('update products')) {
+      return this.$nuxt.error({
+        statusCode: 403,
+        message: String(this.$i18n.t('pages.error.403')),
+      })
+    }
+
+    if (!this.product.can?.update) {
+      return this.$nuxt.error({
+        statusCode: 403,
+        message: String(this.$i18n.t('pages.error.403')),
       })
     }
   }

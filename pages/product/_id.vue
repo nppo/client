@@ -15,25 +15,24 @@
         <BackButton :has-navigated-internal="hasNavigatedInternal" />
 
         <EditButton
-          v-if="activePage === 'product'"
+          v-if="activePage === 'product' && product.can.update"
           :page="activePage"
           :entity-id="product.id"
         />
       </div>
     </Header>
 
-    <div
-      v-if="activePage === 'product'"
-      class="container grid grid-cols-12 mx-auto -mt-104"
-    >
-      <component
-        v-bind="{ product, type }"
-        :is="typeComponent"
-        class="col-span-8 col-start-3"
-      />
-    </div>
+    <div class="container mx-auto">
+      <div v-if="activePage === 'product'" class="grid grid-cols-12 -mt-104">
+        <component
+          v-bind="{ product, type }"
+          :is="typeComponent"
+          class="col-span-8 col-start-3"
+        />
+      </div>
 
-    <NuxtChild />
+      <NuxtChild />
+    </div>
   </div>
 </template>
 
