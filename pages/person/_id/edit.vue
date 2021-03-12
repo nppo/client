@@ -115,7 +115,7 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
     first_name: null,
     last_name: null,
     about: null,
-    skills: null,
+    skills: [],
   }
 
   public firstNameError: boolean = false

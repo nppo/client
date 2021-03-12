@@ -1,6 +1,6 @@
 import { NuxtAxiosInstance } from '@nuxtjs/axios'
 import { AxiosResponse } from 'axios'
-import { Tag } from '~/types/entities'
+import { Tag } from '~/types/models'
 import { MultipleResults } from '~/types/repositories'
 
 const resource = 'tags'

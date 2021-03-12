@@ -1,5 +1,5 @@
 import { actionTree, mutationTree } from 'nuxt-typed-vuex'
-import { Tag } from '~/types/entities'
+import { Tag } from '~/types/models'
 
 export const state = () => ({
   all: [] as Tag[],
