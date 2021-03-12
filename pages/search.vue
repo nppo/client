@@ -138,15 +138,8 @@
 import { Component, mixins } from 'nuxt-property-decorator'
 import qs from 'qs'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
-import {
-  Party,
-  Person,
-  Product,
-  Project,
-  Search,
-  Theme,
-  Type,
-} from '~/types/entities'
+import { Search, Type } from '~/types/entities'
+import { Party, Person, Product, Project, Theme } from '~/types/models'
 
 @Component({
   async fetch(this: SearchPage) {

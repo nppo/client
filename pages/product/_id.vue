@@ -41,7 +41,7 @@
 import { Context } from '@nuxt/types'
 import { Component, mixins } from 'nuxt-property-decorator'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
-import { Product } from '~/types/entities'
+import { Product } from '~/types/models'
 
 @Component({
   async asyncData({ params, $accessor }: Context) {

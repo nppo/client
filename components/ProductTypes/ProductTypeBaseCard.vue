@@ -29,7 +29,8 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
-import { Product, ProductTypeButton } from '~/types/entities'
+import { ProductTypeButton } from '~/types/entities'
+import { Product } from '~/types/models'
 
 @Component
 export default class ProductTypeBaseCard extends Vue {

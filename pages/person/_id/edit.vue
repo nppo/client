@@ -88,7 +88,7 @@
 import { Component, mixins, Ref } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
-import { Person } from '~/types/entities'
+import { Person } from '~/types/models'
 
 @Component({
   components: {
@@ -153,6 +153,13 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
 
   mounted() {
     if (this.$gates.unlessPermission('update people')) {
+      return this.$nuxt.error({
+        statusCode: 403,
+        message: String(this.$i18n.t('pages.error.403')),
+      })
+    }
+
+    if (!this.person.can?.update) {
       return this.$nuxt.error({
         statusCode: 403,
         message: String(this.$i18n.t('pages.error.403')),

@@ -78,7 +78,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
-import { Person } from '~/types/entities'
+import { Person } from '~/types/models'
 
 @Component
 export default class PersonBlock extends Vue {

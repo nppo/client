@@ -1,5 +1,5 @@
 import { MockMethods } from 'axios-mock-server'
-import { Product } from '~/types/entities'
+import { Product } from '~/types/models'
 
 const products: Product[] = [
   {
