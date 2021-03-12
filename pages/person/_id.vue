@@ -260,7 +260,6 @@ import { Person } from '~/types/entities'
 })
 export default class PersonDetailPage extends mixins(NavigationRouterHook) {
   public sliderShowMax: number = 3
-  public pages: Array<string> = ['person', 'edit']
 
   get person(): Person {
     return this.$accessor.people.current

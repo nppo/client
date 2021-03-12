@@ -28,8 +28,7 @@ export default class Multiselect extends Vue {
 
   @Watch('localSelected')
   updateSelected() {
-    const values = this.localSelected.map((skill: any) => skill.label)
-    this.$emit('update:entity', values)
+    this.$emit('update:entity', this.localSelected)
   }
 }
 </script>
