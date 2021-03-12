@@ -2,7 +2,7 @@
   <ValidationProvider v-slot="{ errors }" :name="name" rules="required">
     <div class="flex flex-col mb-4">
       <label v-if="label" :for="name" class="pl-3 mb-1">
-        {{ name }}
+        {{ label }}
       </label>
 
       <div class="relative flex items-center mb-1">
