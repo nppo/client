@@ -57,7 +57,6 @@ import { ValidationObserver } from 'vee-validate'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import { Product } from '~/types/models'
 
-
 @Component({
   components: {
     ValidationObserver,
