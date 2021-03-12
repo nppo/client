@@ -8,9 +8,9 @@
         >
           <!-- TODO: When image available make image dynamic: v-if="person.image" -->
           <img
-            v-if="person.profile_picture_url"
+            v-if="person.profilePictureUrl"
             class="inline w-10 h-10 mr-4 rounded-full"
-            :src="person.profile_picture_url"
+            :src="person.profilePictureUrl"
             :alt="person.firstName + '_avatar'"
           />
 

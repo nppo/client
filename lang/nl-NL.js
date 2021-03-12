@@ -157,6 +157,7 @@ export default {
             profile_picture: 'Profiel foto',
             last_name: 'Achternaam',
             about: 'Over',
+            skills: 'Skills',
           },
         },
       },

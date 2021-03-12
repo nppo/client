@@ -20,9 +20,9 @@
           <div class="flex flex-col items-center p-4 mb-4">
             <!-- TODO: When image available make image dynamic: v-if="person.image" -->
             <img
-              v-if="person.profile_picture_url"
+              v-if="person.profilePictureUrl"
               class="inline w-24 h-24 mb-2 rounded-full shadow"
-              :src="person.profile_picture_url"
+              :src="person.profilePictureUrl"
               :alt="person.firstName + '_avatar'"
             />
 
@@ -68,7 +68,10 @@
 
           <hr class="mb-8 border-gray-200" />
 
-          <div class="grid items-center grid-cols-2 mb-4">
+          <div
+            v-if="person.identifier || person.phone || person.email"
+            class="grid items-center grid-cols-2 mb-4"
+          >
             <div v-if="person.identifier" class="flex flex-col mb-4">
               <span class="font-bold uppercase">
                 {{ $t('pages.person._id.profile.identifier') }}
@@ -94,26 +97,29 @@
             </div>
           </div>
 
-          <hr class="mb-8 border-gray-200" />
+          <hr
+            v-if="person.identifier || person.phone || person.email"
+            class="mb-8 border-gray-200"
+          />
 
-          <div v-if="person.tags" class="mb-8">
+          <div v-if="person.skills && person.skills.length > 0" class="mb-8">
             <h2 class="block mb-8 text-3xl font-normal">
               {{ $t('general.skills') }}
             </h2>
 
-            <div class="flex flex-wrap">
+            <div class="flex flex-wrap mb-8">
               <Badge
-                v-for="skill in person.tags"
+                v-for="skill in person.skills"
                 :key="'person_skill_' + skill.id"
                 :text="skill.label"
                 class="mb-2 mr-2"
               />
             </div>
+
+            <hr class="mb-8 border-gray-200" />
           </div>
 
-          <hr class="mb-8 border-gray-200" />
-
-          <div v-if="person.themes">
+          <div v-if="person.themes && person.themes.length > 0">
             <h2 class="block mb-8 text-3xl font-normal">
               {{ $t('entities.theme.plural') }}
             </h2>
@@ -254,7 +260,6 @@ import { Person } from '~/types/models'
 })
 export default class PersonDetailPage extends mixins(NavigationRouterHook) {
   public sliderShowMax: number = 3
-  public pages: Array<string> = ['person', 'edit']
 
   get person(): Person {
     return this.$accessor.people.current

@@ -51,6 +51,13 @@
                 :has-errors.sync="lastNameError"
               />
             </div>
+            <div>
+              <label class="pl-3 mb-1">
+                {{ $t('pages.person._id.edit.labels.skills') }}
+              </label>
+
+              <Multiselect :entity.sync="formData.skills" :options="skills" />
+            </div>
           </div>
           <div class="w-8/12">
             <div>
@@ -88,9 +95,12 @@
 import { Component, mixins, Ref } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
-import { Person } from '~/types/models'
+import { Person, Tag } from '~/types/models'
 
 @Component({
+  async fetch(this: PersonEditPage) {
+    await this.$accessor.skills.fetchAll()
+  },
   components: {
     ValidationObserver,
   },
@@ -102,6 +112,7 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
     first_name: null,
     last_name: null,
     about: null,
+    skills: [],
   }
 
   public firstNameError: boolean = false
@@ -111,11 +122,27 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
     return this.$accessor.people.current
   }
 
+  get skills(): Tag[] {
+    return this.$accessor.skills.all
+  }
+
   asFormData(): FormData {
     const data = new FormData()
 
-    Object.keys(this.formData).forEach((key: string) => {
-      data.append(key, this.formData[key])
+    Object.entries(this.formData).forEach(([key, value]) => {
+      if (!Array.isArray(value)) {
+        data.append(key, value as string | Blob)
+        return
+      }
+
+      value.forEach((item, index) => {
+        Object.entries(item).forEach(([itemKey, itemValue]) => {
+          data.append(
+            `${key}[${index}][${itemKey}]`,
+            itemValue as string | Blob
+          )
+        })
+      })
     })
 
     return data
@@ -144,6 +171,7 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
     this.formData.first_name = this.person.firstName
     this.formData.last_name = this.person.lastName
     this.formData.about = this.person.about
+    this.formData.skills = this.person.skills
     delete this.formData.profile_picture
   }
 

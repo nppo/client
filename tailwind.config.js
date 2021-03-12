@@ -52,6 +52,7 @@ module.exports = {
         '1/4': '25%',
       }),
       maxHeight: (theme) => ({
+        40: theme('spacing.40'),
         48: theme('spacing.48'),
       }),
       fontFamily: {

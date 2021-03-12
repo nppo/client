@@ -33,9 +33,10 @@ export interface Person extends Model {
   lastName: string
   email: string
   function: string
+  profilePictureUrl: string
   phone: string
   about: string
-  tags?: Tag[]
+  skills?: Tag[]
   parties?: Party[]
   products?: Product[]
   projects?: Project[]

@@ -20,17 +20,26 @@
       </div>
 
       <div class="flex w-full justify-evenly">
-        <div class="flex flex-col items-center">
+        <div
+          v-if="party.projects && party.projects.length > 0"
+          class="flex flex-col items-center"
+        >
           <span class="font-bold text-gray-300">projecten</span>
-          <span>43</span>
+          <span>{{ party.projects.length }}</span>
         </div>
-        <div class="flex flex-col items-center">
+        <div
+          v-if="party.products && party.products.length > 0"
+          class="flex flex-col items-center"
+        >
           <span class="font-bold text-gray-300">producten</span>
-          <span>125</span>
+          <span>{{ party.products.length }}</span>
         </div>
-        <div class="flex flex-col items-center">
-          <span class="font-bold text-gray-300">personen</span>
-          <span>135</span>
+        <div
+          v-if="party.parties && party.parties.length > 0"
+          class="flex flex-col items-center"
+        >
+          <span class="font-bold text-gray-300">partijen</span>
+          <span>{{ party.parties.length }}</span>
         </div>
       </div>
     </div>

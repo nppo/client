@@ -1,6 +1,10 @@
 import { Party, Person, Product, Project } from './models'
 
 /* eslint-disable no-use-before-define */
+export interface Skill {
+  id: number
+  label: string
+}
 export interface Filter {
   type: string
   values: any[]
