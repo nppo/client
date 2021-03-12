@@ -1,6 +1,6 @@
 import { NuxtAxiosInstance } from '@nuxtjs/axios'
 import { AxiosResponse } from 'axios'
-import { Product } from '~/types/entities'
+import { Product } from '~/types/models'
 import { MultipleResults, SingleResult } from '~/types/repositories'
 
 const resource = 'products'

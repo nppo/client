@@ -73,7 +73,8 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import qs from 'qs'
-import { Type, Filter, Theme, Discover } from '~/types/entities'
+import { Type, Filter, Discover } from '~/types/entities'
+import { Theme } from '~/types/models'
 
 @Component({
   async fetch(this: IndexPage) {
