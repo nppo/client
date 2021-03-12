@@ -3,7 +3,7 @@ import { AxiosResponse } from 'axios'
 import { Tag } from '~/types/models'
 import { MultipleResults } from '~/types/repositories'
 
-const resource = 'tags'
+const resource = 'skills'
 
 export default class SkillRepository {
   axios: NuxtAxiosInstance
