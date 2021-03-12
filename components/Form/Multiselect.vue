@@ -9,7 +9,7 @@
         :options="options"
         multiple
         append-to-body
-        :class="{ 'border border-red-300': errors[0] && required }"
+        :class="{ 'error-border': errors[0] && required }"
       />
 
       <span v-if="errors[0] && required" class="pl-3 text-red-500">{{

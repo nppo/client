@@ -17,3 +17,7 @@
 .v-select .vs__deselect {
   @apply mr-1 ml-0 fill-current;
 }
+
+.error-border > .vs__dropdown-toggle {
+  @apply border border-solid border-red-300;
+}
