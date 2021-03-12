@@ -148,14 +148,21 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
         return
       }
 
-      value.forEach((item, index) => {
-        Object.entries(item).forEach(([itemKey, itemValue]) => {
-          data.append(
-            `${key}[${index}][${itemKey}]`,
-            itemValue as string | Blob
-          )
+      if (Array.isArray(value)) {
+        if (value.length === 0) {
+          data.append(`${key}`, '')
+          return
+        }
+
+        value.forEach((item, index) => {
+          Object.entries(item).forEach(([itemKey, itemValue]) => {
+            data.append(
+              `${key}[${index}][${itemKey}]`,
+              itemValue as string | Blob
+            )
+          })
         })
-      })
+      }
     })
 
     return data
