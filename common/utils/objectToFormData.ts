@@ -1,6 +1,6 @@
 type FormDataValue = string | Blob
 
-const arrayOfObjectsToFormData = (
+const nestedObjectToFromData = (
   formData: FormData,
   object: [string, FormDataValue],
   index: number,
@@ -25,7 +25,7 @@ const arrayToFormData = (
     (item: FormDataValue | [string, FormDataValue], index: number) => {
       if (typeof item === 'object' && !(item instanceof Blob)) {
         // Handle nested object
-        return arrayOfObjectsToFormData(formData, item, index, key)
+        return nestedObjectToFromData(formData, item, index, key)
       }
 
       // Handle non-object array
