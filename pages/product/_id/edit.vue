@@ -2,7 +2,7 @@
   <div class="mt-18">
     <h1 class="mb-6 text-4xl font-bold">
       {{
-        $t('pages.project._id.edit.title', {
+        $t('pages.product._id.edit.title', {
           name: product.title,
         })
       }}
@@ -17,8 +17,8 @@
           <div class="w-6/12">
             <TextInput
               :value.sync="productData.title"
-              :name="$t('pages.project._id.edit.labels.title')"
-              :label="$t('pages.project._id.edit.labels.title')"
+              :name="$t('pages.product._id.edit.labels.title')"
+              :label="$t('pages.product._id.edit.labels.title')"
               :error-message="$t('validation.required')"
               :has-errors.sync="titleError"
             />
@@ -26,12 +26,12 @@
             <div class="flex flex-col mb-4">
               <label
                 class="pl-3 mb-1"
-                :for="$t('pages.project._id.edit.labels.description')"
+                :for="$t('pages.product._id.edit.labels.description')"
               >
-                {{ $t('pages.project._id.edit.labels.description') }}
+                {{ $t('pages.product._id.edit.labels.description') }}
               </label>
               <textarea
-                :id="$t('pages.project._id.edit.labels.description')"
+                :id="$t('pages.product._id.edit.labels.description')"
                 v-model="productData.description"
                 rows="6"
                 class="p-3 font-bold rounded-md shadow focus:outline-none"

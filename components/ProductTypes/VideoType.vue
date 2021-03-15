@@ -7,14 +7,14 @@
         {
           iconName: 'share-alt',
           iconStyle: 'fas',
-          text: $t('pages.product_show.share'),
+          text: $t('pages.product._id.actions.share'),
           textColor: 'white',
           color: 'blue-500',
         },
         {
           iconName: 'bookmark',
           iconStyle: 'fas',
-          text: $t('pages.product_show.bookmark'),
+          text: $t('pages.product._id.actions.bookmark'),
           textColor: 'white',
           color: 'blue-500',
         },
