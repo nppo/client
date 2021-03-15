@@ -8,10 +8,7 @@
 
     <div class="flex justify-between p-6 space-x-6">
       <div class="flex items-center space-x-6">
-        <Badge
-          v-bind="{ ...icon }"
-          :text="$t(`pages.product_show.types.${type}`)"
-        />
+        <Badge v-bind="{ ...icon }" :text="$t(`pages.product.types.${type}`)" />
 
         <div>{{ product.title }}</div>
       </div>
