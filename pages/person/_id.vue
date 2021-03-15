@@ -174,7 +174,7 @@
 
             <BlockSlider ref="projectSlider" :slides-to-show="sliderShowMax">
               <div
-                v-for="project in person.projects"
+                v-for="project in linkedEntity(person.projects)"
                 :key="project.id"
                 class="h-full px-2"
               >
@@ -204,7 +204,7 @@
 
             <BlockSlider ref="productSlider" :slides-to-show="3">
               <div
-                v-for="product in person.products"
+                v-for="product in linkedEntity(person.products)"
                 :key="product.id"
                 class="h-full px-2"
               >
@@ -234,7 +234,7 @@
 
             <BlockSlider ref="partySlider" :slides-to-show="3">
               <div
-                v-for="party in person.parties"
+                v-for="party in linkedEntity(person.parties)"
                 :key="party.id"
                 class="h-full px-2"
               >
@@ -279,6 +279,12 @@ export default class PersonDetailPage extends mixins(NavigationRouterHook) {
         : '/person/' + this.$route.params.id + '/'
 
     return this.$route.path.substring(basePath.length) || 'person'
+  }
+
+  linkedEntity(entity: Array<any>): void {
+    const entityItems = [...(entity || [])]
+
+    return entityItems.sort((entityA, entityB) => entityB.id - entityA.id)
   }
 }
 </script>

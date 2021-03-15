@@ -138,6 +138,7 @@ export default class ProductDetailPage extends mixins(NavigationRouterHook) {
   get typeComponent() {
     const type = this.type.charAt(0).toUpperCase() + this.type.slice(1)
     const component = () => import(`~/components/ProductTypes/${type}Type.vue`)
+
     return component
   }
 

@@ -45,21 +45,27 @@
         class="flex justify-between space-x-32 mt-18"
       >
         <div class="w-8/12">
-          <div class="mb-10">
+          <div
+            v-if="project.purpose && project.purpose.length > 0"
+            class="mb-10"
+          >
             <h2 class="mb-3 text-3xl font-bold">
               {{ $t('pages.project._id.headings.purpose') }}
             </h2>
 
             {{ project.purpose }}
           </div>
-          <div class="mb-18">
+          <div
+            v-if="project.description && project.description.length > 0"
+            class="mb-18"
+          >
             <h3 class="mb-3 text-2xl font-bold">
               {{ $t('pages.project._id.headings.description') }}
             </h3>
 
             {{ project.description }}
           </div>
-          <div>
+          <div v-if="recentProducts.length > 0">
             <h2 class="mb-12 text-3xl font-bold">
               {{ $t('pages.project._id.headings.recent_products') }}
             </h2>

@@ -64,7 +64,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Ref, mixins } from 'nuxt-property-decorator'
+import { Component, mixins } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 
@@ -75,21 +75,18 @@ import NavigationRouterHook from '~/mixins/navigation-router-hook'
 })
 export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
   private formData: any = {
-    id: this.$auth.user.id,
-    title: '',
-    description: '',
-    purpose: '',
+    id: this.$auth.user.person.id,
+    title: null,
+    description: null,
+    purpose: null,
   }
 
   private titleError: boolean = false
 
-  @Ref('form') readonly form!: HTMLFormElement
-
   createProject(): void {
     if (!this.titleError) {
       this.$repositories.project.store(this.formData).then(() => {
-        this.$accessor.people.fetchCurrent(this.$auth.user.id)
-        this.$router.push('/person/' + this.$auth.user.id)
+        this.$router.push('/person/' + this.$auth.user.person.id)
       })
     }
   }

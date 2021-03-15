@@ -85,7 +85,7 @@
 
             <BlockSlider ref="projectSlider" :slides-to-show="sliderShowMax">
               <div
-                v-for="project in party.projects"
+                v-for="project in linkedEntity(party.projects)"
                 :key="project.id"
                 class="h-full px-2"
               >
@@ -115,7 +115,7 @@
 
             <BlockSlider ref="productSlider" :slides-to-show="3">
               <div
-                v-for="product in party.products"
+                v-for="product in linkedEntity(party.products)"
                 :key="product.id"
                 class="h-full px-2"
               >
@@ -142,7 +142,7 @@
 
             <BlockSlider ref="partySlider" :slides-to-show="3">
               <div
-                v-for="party in party.parties"
+                v-for="party in linkedEntity(party.parties)"
                 :key="party.id"
                 class="h-full px-2"
               >
@@ -174,6 +174,12 @@ export default class PartyDetailPage extends mixins(NavigationRouterHook) {
 
   get party(): Party {
     return this.$accessor.parties.current
+  }
+
+  linkedEntity(entity: Array<any>): void {
+    const entityItems = [...(entity || [])]
+
+    return entityItems.sort((entityA, entityB) => entityB.id - entityA.id)
   }
 }
 </script>
