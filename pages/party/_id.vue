@@ -176,7 +176,7 @@ export default class PartyDetailPage extends mixins(NavigationRouterHook) {
     return this.$accessor.parties.current
   }
 
-  linkedEntity(entity: Array<any>): void {
+  linkedEntity(entity: Array<any>): any[] {
     const entityItems = [...(entity || [])]
 
     return entityItems.sort((entityA, entityB) => entityB.id - entityA.id)

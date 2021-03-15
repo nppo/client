@@ -86,7 +86,11 @@ export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
   createProject(): void {
     if (!this.titleError) {
       this.$repositories.project.store(this.formData).then(() => {
-        this.$router.push('/person/' + this.$auth.user.person.id)
+        this.$accessor.people
+          .fetchCurrent(this.$auth.user.person.id)
+          .then(() => {
+            this.$router.push('/person/' + this.$auth.user.person.id)
+          })
       })
     }
   }

@@ -281,7 +281,7 @@ export default class PersonDetailPage extends mixins(NavigationRouterHook) {
     return this.$route.path.substring(basePath.length) || 'person'
   }
 
-  linkedEntity(entity: Array<any>): void {
+  linkedEntity(entity: Array<any>): any[] {
     const entityItems = [...(entity || [])]
 
     return entityItems.sort((entityA, entityB) => entityB.id - entityA.id)
