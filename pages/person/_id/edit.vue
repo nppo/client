@@ -102,7 +102,7 @@ import { Component, mixins, Ref } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import { Person, Tag, Theme } from '~/types/models'
-import toFormData from '~/common/utils/toFormData'
+import objectToFormData from '~/common/utils/objectToFormData'
 
 @Component({
   async fetch(this: PersonEditPage) {
@@ -141,7 +141,7 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
   }
 
   asFormData(): FormData {
-    return toFormData(this.formData)
+    return objectToFormData(this.formData)
   }
 
   updatePerson(): void {

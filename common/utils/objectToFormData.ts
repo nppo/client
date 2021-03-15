@@ -18,18 +18,14 @@ const arrayToFormData = (
 ): void => {
   if (array.length === 0) {
     // Send empty value when array is empty
-    formData.append(`${key}`, '')
-
-    return
+    return formData.append(`${key}`, '')
   }
 
   array.forEach(
     (item: FormDataValue | [string, FormDataValue], index: number) => {
       if (typeof item === 'object' && !(item instanceof Blob)) {
         // Handle nested object
-        arrayOfObjectsToFormData(formData, item, index, key)
-
-        return
+        return arrayOfObjectsToFormData(formData, item, index, key)
       }
 
       // Handle non-object array
@@ -38,15 +34,14 @@ const arrayToFormData = (
   )
 }
 
-const toFormData = (object: object): FormData => {
-  const formData = new FormData()
-
+export default function objectToFormData(
+  object: object,
+  formData = new FormData()
+): FormData {
   Object.entries(object).forEach(
     ([key, value]: [string, FormDataValue | [string, FormDataValue][]]) => {
       if (Array.isArray(value)) {
-        arrayToFormData(formData, value, key)
-
-        return
+        return arrayToFormData(formData, value, key)
       }
 
       formData.append(key, value)
@@ -55,5 +50,3 @@ const toFormData = (object: object): FormData => {
 
   return formData
 }
-
-export default toFormData
