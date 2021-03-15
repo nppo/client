@@ -33,6 +33,89 @@
 
       <NuxtChild />
     </div>
+
+    <div class="container relative px-12 mx-auto">
+      <div
+        v-if="activePage === 'product'"
+        class="flex justify-between space-x-32 mt-18"
+      >
+        <div class="w-8/12">
+          <div class="mb-18">
+            <h3 class="mb-3 text-2xl">
+              {{ $t('pages.product._id.headings.description') }}
+            </h3>
+
+            {{ product.description }}
+          </div>
+        </div>
+
+        <div class="w-4/12">
+          <div v-if="product.owner">
+            <h3 class="mb-4 text-2xl font-bold">
+              {{ $t('pages.product._id.headings.contact') }}
+            </h3>
+
+            <PersonBlock :person="product.owner" class="mb-8" />
+
+            <hr class="mb-8 border-gray-200" />
+          </div>
+
+          <div v-if="product.people && product.people.length > 0">
+            <h3 class="mb-5 text-2xl font-bold">
+              {{ $t('pages.product._id.headings.people') }}
+            </h3>
+
+            <PeopleList :people="product.people" />
+
+            <hr class="mb-8 border-gray-200" />
+          </div>
+
+          <div v-if="product.parties && product.parties.length > 0">
+            <h3 class="mb-5 text-2xl font-bold">
+              {{ $t('pages.product._id.headings.parties') }}
+            </h3>
+
+            <PartiesList :parties="product.parties" />
+
+            <hr class="mb-8 border-gray-200" />
+          </div>
+
+          <div v-if="product.tags && product.tags.length > 0">
+            <h3 class="mb-5 text-2xl font-bold">
+              {{ $t('pages.product._id.headings.tags') }}
+            </h3>
+
+            <div class="flex flex-wrap mb-8">
+              <Badge
+                v-for="tag in product.tags"
+                :key="'product_tag_' + tag.id"
+                :text="tag.label"
+                class="mb-2 mr-2"
+              />
+            </div>
+
+            <hr class="mb-8 border-gray-200" />
+          </div>
+
+          <div v-if="product.themes && product.themes.length > 0">
+            <h3 class="mb-5 text-2xl font-bold">
+              {{ $t('pages.product._id.headings.themes') }}
+            </h3>
+
+            <div class="flex flex-wrap mb-8">
+              <Badge
+                v-for="theme in product.themes"
+                :key="'product_theme_' + theme.id"
+                :text="theme.label"
+                class="mb-2 mr-2"
+              />
+            </div>
+
+            <hr class="mb-8 border-gray-200" />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

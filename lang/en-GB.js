@@ -100,9 +100,30 @@ export default {
       },
     },
 
-    product_show: {
-      share: 'Share',
-      bookmark: 'Save',
+    product: {
+      _id: {
+        headings: {
+          contact: 'Contact',
+          people: 'People',
+          parties: 'Parties',
+          description: 'Description',
+          tags: 'Keywords',
+          themes: 'Themes',
+        },
+
+        edit: {
+          title: 'Edit {name}',
+          labels: {
+            title: 'Title',
+            description: 'Description',
+          },
+        },
+
+        actions: {
+          share: 'Share',
+          bookmark: 'Save',
+        },
+      },
       types: {
         video: 'video',
       },

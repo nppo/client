@@ -102,9 +102,28 @@ export default {
       },
     },
 
-    product_show: {
-      share: 'Delen',
-      bookmark: 'Opslaan',
+    product: {
+      _id: {
+        headings: {
+          contact: 'Contactpersoon',
+          people: 'Personen',
+          parties: 'Partijen',
+          description: 'Beschrijving',
+          tags: 'Trefwoorden',
+          themes: "Thema's",
+        },
+        actions: {
+          share: 'Delen',
+          bookmark: 'Opslaan',
+        },
+        edit: {
+          title: 'Bewerk {name}',
+          labels: {
+            title: 'Titel',
+            description: 'Beschrijving',
+          },
+        },
+      },
       types: {
         video: 'video',
       },
