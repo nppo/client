@@ -10,7 +10,7 @@
       <LanguageSwitcher />
 
       <LocaleLink
-        :path="$auth.loggedIn ? '/account' : '/login'"
+        :path="accountLink"
         class="px-4 py-2 text-sm text-white rounded bg-orange-brand"
       >
         {{ $auth.loggedIn ? $t('account.profile') : $t('account.login') }}
@@ -21,7 +21,17 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import { Person } from '~/types/models'
 
 @Component
-export default class Navbar extends Vue {}
+export default class Navbar extends Vue {
+  get accountLink(): string {
+    if (!this.$auth.loggedIn) {
+      return '/login'
+    }
+
+    const person: Person | undefined = this.$auth.user?.person as Person
+    return person ? `/person/${person.id}` : '/account'
+  }
+}
 </script>
