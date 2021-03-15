@@ -152,9 +152,16 @@
                 <h2 class="text-4xl font-bold">
                   {{ $t('entities.project.plural') }}
                 </h2>
+
                 <Badge
                   :text="`${person.projects.length}`"
                   color="yellow-brand"
+                />
+
+                <CreateButton
+                  :page="activePage"
+                  :entity-id="person.id"
+                  entity="project"
                 />
               </div>
 

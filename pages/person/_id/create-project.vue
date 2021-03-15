@@ -1,22 +1,18 @@
 <template>
   <div class="mt-18">
     <h1 class="mb-6 text-4xl font-bold">
-      {{
-        $t('pages.project._id.form.title', {
-          name: project.title,
-        })
-      }}
+      {{ $t('pages.project._id.headings.create_project') }}
     </h1>
 
     <ValidationObserver>
       <form
         class="p-4 overflow-hidden bg-white rounded-md shadow"
-        @submit.prevent="updateProject"
+        @submit.prevent="createProject"
       >
         <div class="flex justify-between mb-6 space-x-32">
           <div class="w-6/12">
             <TextInput
-              :value.sync="projectData.title"
+              :value.sync="formData.title"
               :name="$t('pages.project._id.form.labels.title')"
               :label="$t('pages.project._id.form.labels.title')"
               :error-message="$t('validation.required')"
@@ -32,7 +28,7 @@
               </label>
               <textarea
                 :id="$t('pages.project._id.form.labels.description')"
-                v-model="projectData.description"
+                v-model="formData.description"
                 rows="6"
                 class="p-3 font-bold rounded-md shadow focus:outline-none"
               />
@@ -48,7 +44,7 @@
               </label>
               <textarea
                 :id="$t('pages.project._id.form.labels.purpose')"
-                v-model="projectData.purpose"
+                v-model="formData.purpose"
                 rows="6"
                 class="p-3 font-bold rounded-md shadow focus:outline-none"
               />
@@ -60,7 +56,7 @@
           class="self-start px-4 py-2 text-sm text-white rounded bg-orange-brand"
           type="submit"
         >
-          {{ $t('general.save') }}
+          {{ $t('general.create') }}
         </button>
       </form>
     </ValidationObserver>
@@ -68,44 +64,32 @@
 </template>
 
 <script lang="ts">
-import { Component, mixins } from 'nuxt-property-decorator'
+import { Component, Ref, mixins } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
-import { Project } from '~/types/models'
 
 @Component({
   components: {
     ValidationObserver,
   },
 })
-export default class ProjectEditPage extends mixins(NavigationRouterHook) {
-  private projectData: Project = { ...this.project }
+export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
+  private formData: any = {
+    id: this.$auth.user.id,
+    title: '',
+    description: '',
+    purpose: '',
+  }
+
   private titleError: boolean = false
 
-  get project(): Project {
-    return this.$accessor.projects.current
-  }
+  @Ref('form') readonly form!: HTMLFormElement
 
-  updateProject(): void {
+  createProject(): void {
     if (!this.titleError) {
-      this.$accessor.projects.update(this.projectData).then(() => {
-        this.$router.push('/project/' + this.project.id)
-      })
-    }
-  }
-
-  mounted() {
-    if (this.$gates.unlessPermission('update projects')) {
-      return this.$nuxt.error({
-        statusCode: 403,
-        message: String(this.$i18n.t('pages.error.403')),
-      })
-    }
-
-    if (!this.project.can?.update) {
-      return this.$nuxt.error({
-        statusCode: 403,
-        message: String(this.$i18n.t('pages.error.403')),
+      this.$repositories.project.store(this.formData).then(() => {
+        this.$accessor.people.fetchCurrent(this.$auth.user.id)
+        this.$router.push('/person/' + this.$auth.user.id)
       })
     }
   }

@@ -121,9 +121,9 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
     themes: [],
   }
 
-  public firstNameError: boolean = false
-  public lastNameError: boolean = false
-  public themesError: boolean = false
+  private firstNameError: boolean = false
+  private lastNameError: boolean = false
+  private themesError: boolean = false
 
   @Ref('form') readonly form!: HTMLFormElement
 
