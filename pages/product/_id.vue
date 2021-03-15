@@ -41,7 +41,7 @@
       >
         <div class="w-8/12">
           <div class="mb-18">
-            <h3 class="mb-3 text-2xl font-bold">
+            <h3 class="mb-3 text-2xl">
               {{ $t('pages.product._id.headings.description') }}
             </h3>
 
