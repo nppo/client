@@ -107,7 +107,7 @@ export default class IndexPage extends Vue {
     return this.$accessor.themes.all
   }
 
-  get entities(): Discover[] {
+  get entities(): Discover {
     return this.$accessor.discover.all
   }
 
