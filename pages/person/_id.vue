@@ -158,11 +158,7 @@
                   color="yellow-brand"
                 />
 
-                <CreateButton
-                  :page="activePage"
-                  :entity-id="person.id"
-                  entity="project"
-                />
+                <CreateButton page="project" />
               </div>
 
               <SliderArrows

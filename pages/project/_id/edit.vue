@@ -11,7 +11,7 @@
     <ValidationObserver>
       <form
         class="p-4 overflow-hidden bg-white rounded-md shadow"
-        @submit.prevent="updateProject"
+        @submit.prevent="update"
       >
         <div class="flex justify-between mb-6 space-x-32">
           <div class="w-6/12">
@@ -86,7 +86,7 @@ export default class ProjectEditPage extends mixins(NavigationRouterHook) {
     return this.$accessor.projects.current
   }
 
-  updateProject(): void {
+  update(): void {
     if (!this.titleError) {
       this.$accessor.projects.update(this.projectData).then(() => {
         this.$router.push('/project/' + this.project.id)
