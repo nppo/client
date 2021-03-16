@@ -119,7 +119,9 @@ import { Party, Person, Tag, Theme } from '~/types/models'
       $accessor.tags.fetchAll(),
       $accessor.themes.fetchAll(),
       $accessor.people.fetchAll(),
-      $accessor.people.fetchCurrent($accessor.user.current.person?.id as number),
+      $accessor.people.fetchCurrent(
+        $accessor.user.current.person?.id as number
+      ),
     ])
   },
 })
