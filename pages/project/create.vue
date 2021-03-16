@@ -18,6 +18,24 @@
             @submit.prevent="create"
           >
             <div class="flex justify-between mb-6 space-x-32">
+              <div class="flex flex-col mb-4">
+                <label
+                  :for="$t('pages.person.form.labels.project_picture')"
+                  class="pl-3 mb-1"
+                >
+                  {{ $t('pages.person.form.labels.project_picture') }}
+                </label>
+
+                <input
+                  :id="$t('pages.person.form.labels.project_picture')"
+                  class="px-3 py-3 font-bold rounded-md shadow focus:outline-none"
+                  type="file"
+                  @change="projectPictureSelected"
+                />
+              </div>
+            </div>
+
+            <div class="flex justify-between mb-6 space-x-32">
               <div class="w-6/12">
                 <TextInput
                   :value.sync="formData.title"
@@ -77,6 +95,8 @@
 import { Component, mixins } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
+import objectToFormData from '~/common/utils/objectToFormData'
+
 @Component({
   components: {
     ValidationObserver,
@@ -91,9 +111,17 @@ export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
 
   private titleError: boolean = false
 
+  asFormData(): FormData {
+    return objectToFormData(this.formData)
+  }
+
+  projectPictureSelected(event: any): void {
+    this.formData.project_picture = event.target.files[0]
+  }
+
   create(): void {
     if (!this.titleError) {
-      this.$accessor.projects.store(this.formData).then(() => {
+      this.$accessor.projects.store({ data: this.asFormData() }).then(() => {
         this.$router.push('/project/' + this.$accessor.projects.current.id)
       })
     }

@@ -16,8 +16,8 @@ export default class ProjectRepository {
     return this.axios.get(`/api/${resource}/${id}`)
   }
 
-  store(project: Project): Promise<AxiosResponse<SingleResult<Project>>> {
-    return this.axios.post(`/api/${resource}`, project)
+  store(data: FormData): Promise<AxiosResponse<SingleResult<Project>>> {
+    return this.axios.post(`/api/${resource}`, data)
   }
 
   update(project: Project): Promise<AxiosResponse<SingleResult<Project>>> {

@@ -1,6 +1,6 @@
 <template>
   <div class="flex-1 pb-24">
-    <Header has-search-bar>
+    <Header has-search-bar :image-url="project.projectPictureUrl">
       <div class="flex items-center justify-between mt-8">
         <BackButton :has-navigated-internal="hasNavigatedInternal" />
         <EditButton
