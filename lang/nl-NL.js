@@ -153,6 +153,7 @@ export default {
             title: 'Titel',
             description: 'Beschrijving',
             purpose: 'Doel van project',
+            parties: 'Partijen',
           },
         },
         no_result: 'Dit project heeft geen {entity}',

@@ -153,6 +153,7 @@ export default {
             title: 'Title',
             description: 'Description',
             purpose: 'Purpose of the project',
+            parties: 'Partijen',
           },
         },
         no_result: 'This project has no {entity}',

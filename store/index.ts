@@ -8,6 +8,10 @@ import * as types from '~/store/types'
 import * as errors from '~/store/errors'
 import * as parties from '~/store/parties'
 import * as user from '~/store/user'
+import * as discover from '~/store/discover'
+import * as people from '~/store/people'
+import * as projects from '~/store/projects'
+import * as skills from '~/store/skills'
 
 export const state = () => ({})
 
@@ -23,5 +27,9 @@ export const accessorType = getAccessorType({
     errors,
     parties,
     user,
+    discover,
+    people,
+    projects,
+    skills,
   },
 })

@@ -37,6 +37,15 @@
                 class="p-3 font-bold rounded-md shadow focus:outline-none"
               />
             </div>
+
+            <Multiselect
+              :entity.sync="projectData.parties"
+              :options="parties"
+              :label="$t('pages.project._id.edit.labels.parties')"
+              :error-message="$t('validation.required')"
+              :has-errors.sync="partiesError"
+              option-label="name"
+            />
           </div>
           <div class="w-6/12">
             <div class="flex flex-col mb-4">
@@ -71,9 +80,12 @@
 import { Component, mixins } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
-import { Project } from '~/types/models'
+import { Party, Project } from '~/types/models'
 
 @Component({
+  async fetch(this: ProjectEditPage) {
+    await this.$accessor.parties.fetchAll()
+  },
   components: {
     ValidationObserver,
   },
@@ -81,9 +93,14 @@ import { Project } from '~/types/models'
 export default class ProjectEditPage extends mixins(NavigationRouterHook) {
   private projectData: Project = { ...this.project }
   private titleError: boolean = false
+  private partiesError: boolean = false
 
   get project(): Project {
     return this.$accessor.projects.current
+  }
+
+  get parties(): Party[] {
+    return this.$accessor.parties.all
   }
 
   updateProject(): void {
