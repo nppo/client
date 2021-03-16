@@ -135,13 +135,16 @@ export default {
         headings: {
           create: 'Create a new product',
         },
-
         form: {
           labels: {
             type: 'Type',
             title: 'Title',
             description: 'Description',
             file: 'File',
+            tags: 'Tags',
+            themes: 'Themes',
+            people: 'Authors',
+            parties: 'Parties',
           },
         },
       },
