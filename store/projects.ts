@@ -34,8 +34,14 @@ export const actions = actionTree(
       }
     },
 
-    async update({ commit }, project: Project): Promise<void> {
-      const { status, data } = await this.$repositories.project.update(project)
+    async update(
+      { commit },
+      updateData: { id: number; data: FormData }
+    ): Promise<void> {
+      const { status, data } = await this.$repositories.project.update(
+        updateData.id,
+        updateData.data
+      )
 
       if (status === 200) {
         commit('setCurrent', data.data)

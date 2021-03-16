@@ -39,7 +39,7 @@ export default class Header extends Vue {
   @Prop({ type: Boolean, default: false }) readonly hasDarkHeader!: boolean
   @Prop({ type: Boolean, default: false }) readonly hasSearchBar!: boolean
   @Prop({ type: Boolean, default: true }) readonly hasImage!: boolean
-  @Prop({ type: String, default: '../assets/img/header_bg.jpg' })
+  @Prop({ type: String, default: `../assets/img/${DEFAULT_HEADER_IMAGE}` })
   readonly imageUrl!: string
 
   handleSearchSubmit() {
