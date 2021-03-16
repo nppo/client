@@ -18,7 +18,6 @@
       >
         <div class="w-4/12">
           <div class="flex flex-col items-center p-4 mb-4">
-            <!-- TODO: When image available make image dynamic: v-if="person.image" -->
             <img
               v-if="person.profilePictureUrl"
               class="inline w-24 h-24 mb-2 rounded-full shadow"
@@ -189,6 +188,7 @@
                   :text="`${person.products.length}`"
                   color="yellow-brand"
                 />
+                <CreateButton v-can="'create products'" page="product" />
               </div>
 
               <SliderArrows
