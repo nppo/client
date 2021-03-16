@@ -44,7 +44,7 @@
               :label="$t('pages.project._id.edit.labels.parties')"
               :error-message="$t('validation.required')"
               :has-errors.sync="partiesError"
-              option-label="name"
+              option-label-attribute="name"
             />
           </div>
           <div class="w-6/12">

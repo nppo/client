@@ -9,7 +9,7 @@
         :options="options"
         multiple
         append-to-body
-        :label="optionLabel"
+        :label="optionLabelAttribute"
         :class="{ 'error-border': errors[0] && required }"
         :get-option-label="optionLabel"
       />
@@ -38,7 +38,7 @@ import 'vue-select/dist/vue-select.css'
 export default class Multiselect extends Vue {
   @Prop({ type: Array }) entity!: Array<any>
   @Prop({ type: Array }) options!: Array<any>
-  @Prop({ type: String }) readonly optionLabel!: string
+  @Prop({ type: String }) readonly optionLabelAttribute!: string
   @Prop({ type: String, default: '' }) readonly label!: string
   @Prop({ type: Boolean, default: false }) readonly required!: boolean
   @Prop({ type: String, default: '' }) readonly errorMessage!: string
