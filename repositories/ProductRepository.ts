@@ -23,4 +23,8 @@ export default class ProductRepository {
   update(product: Product): Promise<AxiosResponse<SingleResult<Product>>> {
     return this.axios.put(`/api/${resource}/${product.id}`, product)
   }
+
+  store(data: FormData): Promise<AxiosResponse<SingleResult<Product>>> {
+    return this.axios.post(`/api/${resource}`, data)
+  }
 }

@@ -11,6 +11,10 @@ export default {
     show_more: 'Toon {number} meer',
     show_less: 'Toon minder',
     save: 'Opslaan',
+
+    actions: {
+      create: 'Aanmaken',
+    },
   },
 
   validation: {
@@ -123,6 +127,23 @@ export default {
           labels: {
             title: 'Titel',
             description: 'Beschrijving',
+          },
+        },
+      },
+      create: {
+        headings: {
+          create: 'Product aanmaken',
+        },
+        form: {
+          labels: {
+            type: 'Type',
+            title: 'Titel',
+            description: 'Beschrijving',
+            file: 'Bestand',
+            tags: 'Tags',
+            themes: "Thema's",
+            people: 'Auteurs',
+            parties: 'Partijen',
           },
         },
       },

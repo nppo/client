@@ -11,6 +11,9 @@ export default {
     show_more: 'Show {number} more',
     show_less: 'Show less',
     save: 'Save',
+    actions: {
+      create: 'Create',
+    },
   },
 
   validation: {
@@ -128,6 +131,24 @@ export default {
       },
       types: {
         video: 'video',
+      },
+
+      create: {
+        headings: {
+          create: 'Create a new product',
+        },
+        form: {
+          labels: {
+            type: 'Type',
+            title: 'Title',
+            description: 'Description',
+            file: 'File',
+            tags: 'Tags',
+            themes: 'Themes',
+            people: 'Authors',
+            parties: 'Parties',
+          },
+        },
       },
     },
 

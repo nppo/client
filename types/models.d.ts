@@ -91,6 +91,7 @@ export interface User extends Model {
   email: string
   permissions?: Permission[]
   roles?: Role[]
+  person?: Person
 }
 
 export interface Permission extends Model {
