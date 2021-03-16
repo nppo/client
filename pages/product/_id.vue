@@ -40,13 +40,13 @@
         class="flex justify-between space-x-32 mt-18"
       >
         <div class="w-8/12">
-          <div v-if="slicedMeta.length > 0" class="mb-8">
-            <h3 class="mb-3 text-2xl font-bold">
+          <div v-if="slicedMeta.length > 0" class="mb-12">
+            <h2 class="mb-3 text-3xl font-bold">
               {{ $t('pages.product._id.headings.facts') }}
-            </h3>
-            <div class="grid grid-cols-5 gap-3">
+            </h2>
+            <div class="grid grid-cols-6 gap-4">
               <div v-for="meta in slicedMeta" :key="meta.id">
-                <h4 class="text-xl font-bold">
+                <h4 class="font-bold uppercase">
                   {{ meta.label }}
                 </h4>
                 {{ meta.value }}
@@ -54,7 +54,15 @@
             </div>
           </div>
 
-          <div class="mb-18">
+          <div class="mb-8">
+            <h2 class="mb-3 text-3xl">
+              {{ $t('pages.product._id.headings.summary') }}
+            </h2>
+
+            {{ product.summary }}
+          </div>
+
+          <div>
             <h3 class="mb-3 text-2xl">
               {{ $t('pages.product._id.headings.description') }}
             </h3>

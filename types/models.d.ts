@@ -48,6 +48,7 @@ export interface Person extends Model {
 export interface Product extends Model {
   id: number
   title: string
+  summary: string
   description: string
   image: string
   likes: string

@@ -107,6 +107,7 @@ export default {
           contact: 'Contact',
           people: 'People',
           parties: 'Parties',
+          summary: 'Summary',
           description: 'Description',
           tags: 'Keywords',
           themes: 'Themes',
