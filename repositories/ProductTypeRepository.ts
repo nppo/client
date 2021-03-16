@@ -3,7 +3,7 @@ import { AxiosResponse } from 'axios'
 import { Type } from '~/types/entities'
 import { MultipleResults } from '~/types/repositories'
 
-const resource = 'producttypes'
+const resource = 'product-types'
 
 export default class ProductTypeRepository {
   axios: NuxtAxiosInstance
