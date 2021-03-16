@@ -100,9 +100,9 @@ import objectToFormData from '~/common/utils/objectToFormData'
 })
 export default class ProjectEditPage extends mixins(NavigationRouterHook) {
   private formData: any = {
-    title: null,
-    purpose: null,
-    description: null,
+    title: '',
+    purpose: '',
+    description: '',
   }
 
   private titleError: boolean = false
