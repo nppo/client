@@ -23,7 +23,7 @@ export default class Repositories {
   party: PartyRepository
   type: TypeRepository
   skill: SkillRepository
-  producttypes: ProductTypeRepository
+  productTypes: ProductTypeRepository
   tags: TagRepository
 
   constructor($axios: NuxtAxiosInstance) {
@@ -37,7 +37,7 @@ export default class Repositories {
     this.party = new PartyRepository($axios)
     this.type = new TypeRepository($axios)
     this.skill = new SkillRepository($axios)
-    this.producttypes = new ProductTypeRepository($axios)
+    this.productTypes = new ProductTypeRepository($axios)
     this.tags = new TagRepository($axios)
   }
 }

@@ -115,7 +115,7 @@ import { Party, Person, Tag, Theme } from '~/types/models'
   },
   async asyncData({ $accessor }: Context) {
     await Promise.all([
-      $accessor.producttypes.fetchAll(),
+      $accessor.productTypes.fetchAll(),
       $accessor.tags.fetchAll(),
       $accessor.themes.fetchAll(),
       $accessor.people.fetchAll(),
@@ -138,7 +138,7 @@ export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
   private titleError: boolean = false
 
   get types(): Type[] {
-    return this.$accessor.producttypes.all
+    return this.$accessor.productTypes.all
   }
 
   get tags(): Tag[] {
