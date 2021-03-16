@@ -1,3 +1,5 @@
+import { MetaData } from './entities'
+
 /* eslint-disable no-use-before-define */
 export interface Can {
   update?: boolean
@@ -52,6 +54,7 @@ export interface Product extends Model {
   publishedAt: string
   themes?: Theme[]
   tags?: Tag[]
+  meta?: MetaData[]
 }
 
 export interface Owner extends Model {

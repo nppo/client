@@ -105,6 +105,7 @@ export default {
     product: {
       _id: {
         headings: {
+          facts: 'Quickfacts',
           contact: 'Contactpersoon',
           people: 'Personen',
           parties: 'Partijen',

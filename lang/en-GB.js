@@ -103,6 +103,7 @@ export default {
     product: {
       _id: {
         headings: {
+          facts: 'Quickfacts',
           contact: 'Contact',
           people: 'People',
           parties: 'Parties',
