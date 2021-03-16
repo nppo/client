@@ -5,7 +5,7 @@
   >
     <font-awesome-icon class="block" icon="plus" />
 
-    <span>{{ $t('general.create') }}</span>
+    <span>{{ $t('actions.create') }}</span>
   </LocaleLink>
 </template>
 

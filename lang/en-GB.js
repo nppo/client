@@ -11,6 +11,9 @@ export default {
     show_more: 'Show {number} more',
     show_less: 'Show less',
     save: 'Save',
+  },
+
+  actions: {
     create: 'Create',
   },
 
@@ -141,7 +144,6 @@ export default {
           recent_products: 'Recent products',
           tags: 'Keywords',
           themes: 'Themes',
-          create_project: 'Create project',
         },
         types: {
           project: 'Project',
@@ -149,15 +151,18 @@ export default {
           products: 'Products',
           people: 'People',
         },
-        form: {
-          title: 'Edit {name}',
-          labels: {
-            title: 'Title',
-            description: 'Description',
-            purpose: 'Purpose of the project',
-          },
-        },
         no_result: 'This project has no {entity}',
+      },
+      form: {
+        headings: {
+          create: 'Create project',
+          edit: 'Edit {name}',
+        },
+        labels: {
+          title: 'Title',
+          description: 'Description',
+          purpose: 'Purpose of the project',
+        },
       },
     },
 

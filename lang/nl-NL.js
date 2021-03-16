@@ -11,6 +11,9 @@ export default {
     show_more: 'Toon {number} meer',
     show_less: 'Toon minder',
     save: 'Opslaan',
+  },
+
+  actions: {
     create: 'Aanmaken',
   },
 
@@ -141,7 +144,6 @@ export default {
           recent_products: 'Recente producten',
           tags: 'Trefwoorden',
           themes: "Thema's",
-          create_project: 'Aanmaken project',
         },
         types: {
           project: 'Project',
@@ -149,15 +151,18 @@ export default {
           products: 'Producten',
           people: 'Personen',
         },
-        form: {
-          title: 'Bewerk {name}',
-          labels: {
-            title: 'Titel',
-            description: 'Beschrijving',
-            purpose: 'Doel van project',
-          },
-        },
         no_result: 'Dit project heeft geen {entity}',
+      },
+      form: {
+        headings: {
+          create: 'Aanmaken project',
+          edit: 'Bewerk {name}',
+        },
+        labels: {
+          title: 'Titel',
+          description: 'Beschrijving',
+          purpose: 'Doel van project',
+        },
       },
     },
 

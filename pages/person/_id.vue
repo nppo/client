@@ -158,7 +158,7 @@
                   color="yellow-brand"
                 />
 
-                <CreateButton page="project" />
+                <CreateButton v-can="'create projects'" page="project" />
               </div>
 
               <SliderArrows
