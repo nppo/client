@@ -155,8 +155,8 @@ export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
     return this.$accessor.people.all
   }
 
-  get parties(): Party[] | undefined {
-    return this.$accessor.people.current.parties
+  get parties(): Party[] {
+    return this.$accessor.people.current.parties || []
   }
 
   @Ref('form') readonly form!: HTMLFormElement
