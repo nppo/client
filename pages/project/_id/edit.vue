@@ -114,8 +114,10 @@ import { Party, Person, Product, Project } from '~/types/models'
 
 @Component({
   async asyncData({ $accessor, $auth }: Context) {
+    const personId = ($auth.user?.person as Person).id
+
     await $accessor.parties.fetchAll()
-    await $accessor.user.fetchProducts(($auth.user?.person as Person).id)
+    await $accessor.people.fetchCurrent(personId)
   },
 
   middleware({ $auth, error, $gates, app: { i18n } }: Context) {
@@ -157,7 +159,7 @@ export default class ProjectEditPage extends mixins(NavigationRouterHook) {
   }
 
   get relatedProducts(): Product[] {
-    return this.$accessor.user.products
+    return this.$accessor.people.current.products || []
   }
 
   asFormData(): FormData {
