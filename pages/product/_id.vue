@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-1">
+  <div class="flex-1 pb-24">
     <Header
       image-filename="product_header_bg.jpg"
       has-dark-header
@@ -55,7 +55,10 @@
               </div>
             </div>
 
-            <div class="mb-8">
+            <div
+              v-if="product.summary && product.summary.length > 0"
+              class="mb-8"
+            >
               <h2 class="mb-3 text-3xl">
                 {{ $t('pages.product._id.headings.summary') }}
               </h2>
@@ -63,12 +66,24 @@
               {{ product.summary }}
             </div>
 
-            <div>
+            <div v-if="product.description && product.description.length > 0">
               <h3 class="mb-3 text-2xl">
                 {{ $t('pages.product._id.headings.description') }}
               </h3>
 
               {{ product.description }}
+            </div>
+          </div>
+
+          <div v-if="recentProducts.length > 0">
+            <h2 class="mb-12 text-3xl font-bold">
+              {{ $t('pages.product._id.headings.more_products') }}
+            </h2>
+
+            <div class="grid grid-cols-2 gap-4">
+              <div v-for="product in recentProducts" :key="product.id">
+                <ProductBlock :product="product" />
+              </div>
             </div>
           </div>
         </div>
@@ -155,6 +170,10 @@ import { Product } from '~/types/models'
     const { id } = params
 
     await $accessor.products.fetchCurrent(Number(id))
+
+    if ($accessor.products.all.length < 1) {
+      await $accessor.products.fetchAll()
+    }
   },
 })
 export default class ProductDetailPage extends mixins(NavigationRouterHook) {
@@ -180,12 +199,26 @@ export default class ProductDetailPage extends mixins(NavigationRouterHook) {
     return this.$accessor.products.current
   }
 
+  get products(): Product[] {
+    return this.$accessor.products.all
+  }
+
   get slicedMeta(): MetaData[] {
     return (
       this.$accessor.products.current.meta?.filter((meta: MetaData) => {
         return meta.value != null
       }) || []
     )
+  }
+
+  get recentProducts(): Product[] {
+    const products = [...(this.products || [])]
+
+    return products
+      .sort((productA, productB) =>
+        productB.publishedAt.localeCompare(productA.publishedAt)
+      )
+      .slice(0, 2)
   }
 }
 </script>

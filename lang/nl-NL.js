@@ -121,6 +121,7 @@ export default {
           description: 'Beschrijving',
           tags: 'Trefwoorden',
           themes: "Thema's",
+          more_products: 'Meer producten',
         },
         actions: {
           share: 'Delen',
@@ -164,7 +165,7 @@ export default {
           parties: 'Partijen',
           description: 'Beschrijving',
           purpose: 'Doel van project',
-          recent_products: 'Recente producten',
+          featured_products: 'Uitgelichte producten',
           tags: 'Trefwoorden',
           themes: "Thema's",
         },

@@ -67,7 +67,7 @@
 
           <div v-if="recentProducts.length > 0">
             <h2 class="mb-12 text-3xl font-bold">
-              {{ $t('pages.project._id.headings.recent_products') }}
+              {{ $t('pages.project._id.headings.featured_products') }}
             </h2>
 
             <div class="grid grid-cols-2 gap-4">

@@ -53,7 +53,10 @@ export interface Product extends Model {
   image: string
   likes: string
   publishedAt: string
+  owner?: Owner
   themes?: Theme[]
+  parties?: Party[]
+  people?: Person[]
   tags?: Tag[]
   meta?: MetaData[]
 }
