@@ -58,7 +58,7 @@
             </div>
 
             <Multiselect
-              :entity.sync="projectData.parties"
+              :entity.sync="formData.parties"
               :options="parties"
               :label="$t('pages.project._id.edit.labels.parties')"
               :error-message="$t('validation.required')"
@@ -116,6 +116,7 @@ export default class ProjectEditPage extends mixins(NavigationRouterHook) {
     title: '',
     purpose: '',
     description: '',
+    parties: [],
   }
 
   private titleError: boolean = false
@@ -158,6 +159,7 @@ export default class ProjectEditPage extends mixins(NavigationRouterHook) {
     this.formData.title = this.project.title
     this.formData.purpose = this.project.purpose
     this.formData.description = this.project.description
+    this.formData.parties = this.project.parties
     delete this.formData.project_picture
   }
 
