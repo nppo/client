@@ -77,14 +77,15 @@
 </template>
 
 <script lang="ts">
+import { Context } from '@nuxt/types'
 import { Component, mixins } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import { Party, Project } from '~/types/models'
 
 @Component({
-  async fetch(this: ProjectEditPage) {
-    await this.$accessor.parties.fetchAll()
+  async asyncData({ $accessor }: Context) {
+    await $accessor.parties.fetchAll()
   },
   components: {
     ValidationObserver,
