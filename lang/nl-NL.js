@@ -174,15 +174,6 @@ export default {
           products: 'Producten',
           people: 'Personen',
         },
-        edit: {
-          title: 'Bewerk {name}',
-          labels: {
-            title: 'Titel',
-            description: 'Beschrijving',
-            purpose: 'Doel van project',
-            parties: 'Partijen',
-          },
-        },
         no_result: 'Dit project heeft geen {entity}',
       },
       form: {
@@ -191,9 +182,12 @@ export default {
           edit: 'Bewerk {name}',
         },
         labels: {
+          project_picture: 'Project foto',
           title: 'Titel',
           description: 'Beschrijving',
           purpose: 'Doel van project',
+          parties: 'Partijen',
+          products: 'Producten',
         },
       },
     },
