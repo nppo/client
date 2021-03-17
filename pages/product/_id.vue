@@ -180,10 +180,12 @@ export default class ProductDetailPage extends mixins(NavigationRouterHook) {
     return this.$accessor.products.current
   }
 
-  get slicedMeta(): MetaData[] | undefined {
-    return this.$accessor.products.current.meta?.filter((meta: MetaData) => {
-      return meta.value != null
-    })
+  get slicedMeta(): MetaData[] {
+    return (
+      this.$accessor.products.current.meta?.filter((meta: MetaData) => {
+        return meta.value != null
+      }) || []
+    )
   }
 }
 </script>
