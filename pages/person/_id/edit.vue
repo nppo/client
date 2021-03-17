@@ -12,7 +12,7 @@
       <form
         ref="form"
         class="flex flex-col p-4 overflow-hidden bg-white rounded-md shadow"
-        @submit.prevent="updatePerson"
+        @submit.prevent="update"
       >
         <div class="flex justify-between mb-6 space-x-32">
           <div class="flex flex-col mb-4">
@@ -103,6 +103,7 @@ import { Component, mixins, Ref } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import { Person, Tag, Theme } from '~/types/models'
+import objectToFormData from '~/common/utils/objectToFormData'
 
 @Component({
   async fetch(this: PersonEditPage) {
@@ -122,9 +123,9 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
     themes: [],
   }
 
-  public firstNameError: boolean = false
-  public lastNameError: boolean = false
-  public themesError: boolean = false
+  private firstNameError: boolean = false
+  private lastNameError: boolean = false
+  private themesError: boolean = false
 
   @Ref('form') readonly form!: HTMLFormElement
 
@@ -141,28 +142,10 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
   }
 
   asFormData(): FormData {
-    const data = new FormData()
-
-    Object.entries(this.formData).forEach(([key, value]) => {
-      if (!Array.isArray(value)) {
-        data.append(key, value as string | Blob)
-        return
-      }
-
-      value.forEach((item, index) => {
-        Object.entries(item).forEach(([itemKey, itemValue]) => {
-          data.append(
-            `${key}[${index}][${itemKey}]`,
-            itemValue as string | Blob
-          )
-        })
-      })
-    })
-
-    return data
+    return objectToFormData(this.formData)
   }
 
-  updatePerson(): void {
+  update(): void {
     if (!this.firstNameError && !this.lastNameError && !this.themesError) {
       this.$accessor.people
         .update({ id: this.person.id, data: this.asFormData() })

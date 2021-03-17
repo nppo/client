@@ -7,17 +7,14 @@
       <vSelect
         v-model="localSelected"
         :options="options"
-        multiple
         append-to-body
-        :taggable="taggable"
-        :label="optionLabelAttribute"
         :class="{ 'error-border': errors[0] && required }"
-        :get-option-label="optionLabel"
+        :reduce="onSelected"
       />
 
-      <span v-if="errors[0] && required" class="pl-3 text-red-500">{{
-        errorMessage
-      }}</span>
+      <span v-if="errors[0] && required" class="pl-3 text-red-500">
+        {{ errorMessage }}
+      </span>
     </div>
   </ValidationProvider>
 </template>
@@ -36,21 +33,19 @@ import 'vue-select/dist/vue-select.css'
     ValidationProvider,
   },
 })
-export default class Multiselect extends Vue {
-  @Prop({ type: Array }) entity!: Array<any>
+export default class SelectInput extends Vue {
+  @Prop() value!: any
   @Prop({ type: Array }) options!: Array<any>
-  @Prop({ type: String }) readonly optionLabelAttribute!: string
   @Prop({ type: String, default: '' }) readonly label!: string
   @Prop({ type: Boolean, default: false }) readonly required!: boolean
   @Prop({ type: String, default: '' }) readonly errorMessage!: string
-  @Prop({ type: Boolean, default: false }) readonly taggable!: boolean
-  @Prop({ type: Function }) readonly optionLabel?: Function
+  @Prop({ type: Function }) readonly onSelected?: Function
 
-  private localSelected: Array<any> = this.entity
+  private localSelected: any = this.value
 
   @Watch('localSelected')
   updateSelected() {
-    this.$emit('update:entity', this.localSelected)
+    this.$emit('update:value', this.localSelected)
 
     if (this.required) {
       if (this.localSelected.length > 0) {

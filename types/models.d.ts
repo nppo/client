@@ -1,3 +1,5 @@
+import { MetaData } from './entities'
+
 /* eslint-disable no-use-before-define */
 export interface Can {
   update?: boolean
@@ -46,12 +48,14 @@ export interface Person extends Model {
 export interface Product extends Model {
   id: number
   title: string
+  summary: string
   description: string
   image: string
   likes: string
   publishedAt: string
   themes?: Theme[]
   tags?: Tag[]
+  meta?: MetaData[]
 }
 
 export interface Owner extends Model {
@@ -72,6 +76,7 @@ export interface Project extends Model {
   purpose: string
   description: string
   likes: string
+  projectPictureUrl: string
   createdAt: string
   owner?: Owner
   tags?: Tag[]
@@ -87,6 +92,7 @@ export interface User extends Model {
   email: string
   permissions?: Permission[]
   roles?: Role[]
+  person?: Person
 }
 
 export interface Permission extends Model {

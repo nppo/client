@@ -4,21 +4,18 @@
     class="flex flex-col h-full overflow-hidden bg-white rounded-md shadow"
   >
     <div class="relative">
-      <!-- TODO: When image available make image dynamic: v-if="product.image" -->
       <img
-        v-if="projectImage"
-        class="w-full mb-2"
-        :src="projectImage"
+        v-if="project.projectPictureUrl"
+        class="object-cover w-full h-32 mb-2"
+        :src="project.projectPictureUrl"
         alt="Project"
       />
 
       <div class="flex items-center justify-between">
-        <!-- TODO: When image available make image dynamic: product.image" -->
         <span
           class="m-4 mb-5 min-w-1/4"
-          :class="{ 'absolute top-0 left-0': projectImage }"
+          :class="{ 'absolute top-0 left-0': project.projectPictureUrl }"
         >
-          <!-- TODO: Make sure the badge reflects information from the product -->
           <Badge text="TBA" />
         </span>
       </div>
@@ -33,8 +30,10 @@
         {{ project.title }}
       </h4>
 
-      <!-- TODO: When image available make image dynamic: product.image" -->
-      <div class="text-gray-300" :class="{ 'line-clamp-4': projectImage }">
+      <div
+        class="text-gray-300"
+        :class="{ 'line-clamp-4': project.projectPictureUrl }"
+      >
         {{ project.description }}
       </div>
     </div>
@@ -64,9 +63,6 @@ import { Project } from '~/types/models'
 
 @Component
 export default class ProjectBlock extends Vue {
-  // TODO: When image available make image dynamic: v-if="product.image"
-  public projectImage: string = 'https://picsum.photos/296/150'
-
   @Prop({ type: Object, required: true }) readonly project!: Project
 
   get createdAt(): string {

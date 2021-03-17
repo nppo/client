@@ -11,6 +11,13 @@ export default {
     show_more: 'Show {number} more',
     show_less: 'Show less',
     save: 'Save',
+    actions: {
+      create: 'Create',
+    },
+  },
+
+  actions: {
+    create: 'Create',
   },
 
   validation: {
@@ -103,9 +110,11 @@ export default {
     product: {
       _id: {
         headings: {
+          facts: 'Quickfacts',
           contact: 'Contact',
           people: 'People',
           parties: 'Parties',
+          summary: 'Summary',
           description: 'Description',
           tags: 'Keywords',
           themes: 'Themes',
@@ -126,6 +135,24 @@ export default {
       },
       types: {
         video: 'video',
+      },
+
+      create: {
+        headings: {
+          create: 'Create a new product',
+        },
+        form: {
+          labels: {
+            type: 'Type',
+            title: 'Title',
+            description: 'Description',
+            file: 'File',
+            tags: 'Tags',
+            themes: 'Themes',
+            people: 'Authors',
+            parties: 'Parties',
+          },
+        },
       },
     },
 
@@ -153,9 +180,21 @@ export default {
             title: 'Title',
             description: 'Description',
             purpose: 'Purpose of the project',
+            parties: 'Partijen',
           },
         },
         no_result: 'This project has no {entity}',
+      },
+      form: {
+        headings: {
+          create: 'Create project',
+          edit: 'Edit {name}',
+        },
+        labels: {
+          title: 'Title',
+          description: 'Description',
+          purpose: 'Purpose of the project',
+        },
       },
     },
 

@@ -49,3 +49,9 @@ export interface Error {
   message: string
   statusCode: number
 }
+
+export interface MetaData {
+  id: number
+  label: string
+  value: any
+}

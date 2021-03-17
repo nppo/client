@@ -11,6 +11,14 @@ export default {
     show_more: 'Toon {number} meer',
     show_less: 'Toon minder',
     save: 'Opslaan',
+
+    actions: {
+      create: 'Aanmaken',
+    },
+  },
+
+  actions: {
+    create: 'Aanmaken',
   },
 
   validation: {
@@ -105,9 +113,11 @@ export default {
     product: {
       _id: {
         headings: {
+          facts: 'Korte feiten',
           contact: 'Contactpersoon',
           people: 'Personen',
           parties: 'Partijen',
+          summary: 'Samenvatting',
           description: 'Beschrijving',
           tags: 'Trefwoorden',
           themes: "Thema's",
@@ -121,6 +131,23 @@ export default {
           labels: {
             title: 'Titel',
             description: 'Beschrijving',
+          },
+        },
+      },
+      create: {
+        headings: {
+          create: 'Product aanmaken',
+        },
+        form: {
+          labels: {
+            type: 'Type',
+            title: 'Titel',
+            description: 'Beschrijving',
+            file: 'Bestand',
+            tags: 'Tags',
+            themes: "Thema's",
+            people: 'Auteurs',
+            parties: 'Partijen',
           },
         },
       },
@@ -153,9 +180,21 @@ export default {
             title: 'Titel',
             description: 'Beschrijving',
             purpose: 'Doel van project',
+            parties: 'Partijen',
           },
         },
         no_result: 'Dit project heeft geen {entity}',
+      },
+      form: {
+        headings: {
+          create: 'Aanmaken project',
+          edit: 'Bewerk {name}',
+        },
+        labels: {
+          title: 'Titel',
+          description: 'Beschrijving',
+          purpose: 'Doel van project',
+        },
       },
     },
 
