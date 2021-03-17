@@ -2,7 +2,7 @@
   <div class="mt-18">
     <h1 class="mb-6 text-4xl font-bold">
       {{
-        $t('pages.project._id.edit.title', {
+        $t('pages.project.form.headings.edit', {
           name: project.title,
         })
       }}
@@ -10,15 +10,34 @@
 
     <ValidationObserver>
       <form
+        ref="form"
         class="p-4 overflow-hidden bg-white rounded-md shadow"
-        @submit.prevent="updateProject"
+        @submit.prevent="update"
       >
+        <div class="flex justify-between mb-6 space-x-32">
+          <div class="flex flex-col mb-4">
+            <label
+              :for="$t('pages.person.form.labels.project_picture')"
+              class="pl-3 mb-1"
+            >
+              {{ $t('pages.person.form.labels.project_picture') }}
+            </label>
+
+            <input
+              :id="$t('pages.person.form.labels.project_picture')"
+              class="px-3 py-3 font-bold rounded-md shadow focus:outline-none"
+              type="file"
+              @change="projectPictureSelected"
+            />
+          </div>
+        </div>
+
         <div class="flex justify-between mb-6 space-x-32">
           <div class="w-6/12">
             <TextInput
-              :value.sync="projectData.title"
-              :name="$t('pages.project._id.edit.labels.title')"
-              :label="$t('pages.project._id.edit.labels.title')"
+              :value.sync="formData.title"
+              :name="$t('pages.project.form.labels.title')"
+              :label="$t('pages.project.form.labels.title')"
               :error-message="$t('validation.required')"
               :has-errors.sync="titleError"
             />
@@ -26,13 +45,13 @@
             <div class="flex flex-col mb-4">
               <label
                 class="pl-3 mb-1"
-                :for="$t('pages.project._id.edit.labels.description')"
+                :for="$t('pages.project.form.labels.description')"
               >
-                {{ $t('pages.project._id.edit.labels.description') }}
+                {{ $t('pages.project.form.labels.description') }}
               </label>
               <textarea
-                :id="$t('pages.project._id.edit.labels.description')"
-                v-model="projectData.description"
+                :id="$t('pages.project.form.labels.description')"
+                v-model="formData.description"
                 rows="6"
                 class="p-3 font-bold rounded-md shadow focus:outline-none"
               />
@@ -51,13 +70,13 @@
             <div class="flex flex-col mb-4">
               <label
                 class="pl-3 mb-1"
-                :for="$t('pages.project._id.edit.labels.purpose')"
+                :for="$t('pages.project.form.labels.purpose')"
               >
-                {{ $t('pages.project._id.edit.labels.purpose') }}
+                {{ $t('pages.project.form.labels.purpose') }}
               </label>
               <textarea
-                :id="$t('pages.project._id.edit.labels.purpose')"
-                v-model="projectData.purpose"
+                :id="$t('pages.project.form.labels.purpose')"
+                v-model="formData.purpose"
                 rows="6"
                 class="p-3 font-bold rounded-md shadow focus:outline-none"
               />
@@ -78,10 +97,11 @@
 
 <script lang="ts">
 import { Context } from '@nuxt/types'
-import { Component, mixins } from 'nuxt-property-decorator'
+import { Component, Ref, mixins } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
-import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import { Party, Project } from '~/types/models'
+import NavigationRouterHook from '~/mixins/navigation-router-hook'
+import objectToFormData from '~/common/utils/objectToFormData'
 
 @Component({
   async asyncData({ $accessor }: Context) {
@@ -92,9 +112,16 @@ import { Party, Project } from '~/types/models'
   },
 })
 export default class ProjectEditPage extends mixins(NavigationRouterHook) {
-  private projectData: Project = { ...this.project }
+  private formData: any = {
+    title: '',
+    purpose: '',
+    description: '',
+  }
+
   private titleError: boolean = false
   private partiesError: boolean = false
+
+  @Ref('form') readonly form!: HTMLFormElement
 
   get project(): Project {
     return this.$accessor.projects.current
@@ -104,12 +131,38 @@ export default class ProjectEditPage extends mixins(NavigationRouterHook) {
     return this.$accessor.parties.all
   }
 
-  updateProject(): void {
+  asFormData(): FormData {
+    return objectToFormData(this.formData)
+  }
+
+  update(): void {
     if (!this.titleError) {
-      this.$accessor.projects.update(this.projectData).then(() => {
-        this.$router.push('/project/' + this.project.id)
-      })
+      this.$accessor.projects
+        .update({ id: this.project.id, data: this.asFormData() })
+        .then(() => {
+          this.resetForm()
+          this.$router.push('/project/' + this.project.id)
+        })
     }
+  }
+
+  beforeMount() {
+    this.resetForm()
+  }
+
+  resetForm() {
+    if (this.form) {
+      this.form.reset()
+    }
+
+    this.formData.title = this.project.title
+    this.formData.purpose = this.project.purpose
+    this.formData.description = this.project.description
+    delete this.formData.project_picture
+  }
+
+  projectPictureSelected(event: any): void {
+    this.formData.project_picture = event.target.files[0]
   }
 
   mounted() {

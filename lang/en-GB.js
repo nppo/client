@@ -16,6 +16,10 @@ export default {
     },
   },
 
+  actions: {
+    create: 'Create',
+  },
+
   validation: {
     required: 'This field is required',
   },
@@ -178,6 +182,17 @@ export default {
           },
         },
         no_result: 'This project has no {entity}',
+      },
+      form: {
+        headings: {
+          create: 'Create project',
+          edit: 'Edit {name}',
+        },
+        labels: {
+          title: 'Title',
+          description: 'Description',
+          purpose: 'Purpose of the project',
+        },
       },
     },
 
