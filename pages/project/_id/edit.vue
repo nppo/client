@@ -120,16 +120,19 @@ import { Party, Person, Product, Project } from '~/types/models'
     await $accessor.people.fetchCurrent(personId)
   },
 
-  middleware({ $auth, error, $gates, app: { i18n } }: Context) {
-    if ($auth.loggedIn && $gates.hasPermission('update projects')) {
-      return
-    }
+  middleware: [
+    'auth',
+    ({ error, $gates, app: { i18n } }: Context) => {
+      if ($gates.hasPermission('update projects')) {
+        return
+      }
 
-    return error({
-      statusCode: 403,
-      message: String(i18n.t('pages.error.403')),
-    })
-  },
+      return error({
+        statusCode: 403,
+        message: String(i18n.t('pages.error.403')),
+      })
+    },
+  ],
 
   components: {
     ValidationObserver,
