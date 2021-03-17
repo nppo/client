@@ -55,3 +55,7 @@ export interface MetaData {
   label: string
   value: any
 }
+
+export interface MetaAuthOptions {
+  requiredPermissions?: string[]
+}

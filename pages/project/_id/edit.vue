@@ -111,6 +111,7 @@ import { ValidationObserver } from 'vee-validate'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import objectToFormData from '~/common/utils/objectToFormData'
 import { Party, Person, Product, Project } from '~/types/models'
+import { MetaAuthOptions } from '~/types/entities'
 
 @Component({
   async asyncData({ $accessor, $auth }: Context) {
@@ -120,19 +121,13 @@ import { Party, Person, Product, Project } from '~/types/models'
     await $accessor.people.fetchCurrent(personId)
   },
 
-  middleware: [
-    'auth',
-    ({ error, $gates, app: { i18n } }: Context) => {
-      if ($gates.hasPermission('update projects')) {
-        return
-      }
+  meta: {
+    auth: {
+      requiredPermissions: ['update projects'],
+    } as MetaAuthOptions,
+  },
 
-      return error({
-        statusCode: 403,
-        message: String(i18n.t('pages.error.403')),
-      })
-    },
-  ],
+  middleware: ['auth', 'check-permissions'],
 
   components: {
     ValidationObserver,
