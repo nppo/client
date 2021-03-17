@@ -111,6 +111,10 @@ export default {
           themes: 'Themes',
         },
 
+        preview: {
+          fallback: 'Sorry, we were not able to preview this product',
+        },
+
         edit: {
           title: 'Edit {name}',
           labels: {
@@ -122,10 +126,12 @@ export default {
         actions: {
           share: 'Share',
           bookmark: 'Save',
+          download: 'Download',
         },
       },
       types: {
         video: 'video',
+        image: 'image',
       },
     },
 

@@ -49,3 +49,14 @@ export interface Error {
   message: string
   statusCode: number
 }
+
+export interface ProductLinks {
+  preview: string
+  download: string
+}
+
+export interface IconSetting {
+  type: string
+  icon: string
+  style: string
+}

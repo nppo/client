@@ -1,3 +1,5 @@
+import { ProductLinks } from './entities'
+
 /* eslint-disable no-use-before-define */
 export interface Can {
   update?: boolean
@@ -45,6 +47,7 @@ export interface Person extends Model {
 
 export interface Product extends Model {
   id: number
+  type: string
   title: string
   description: string
   image: string
@@ -52,6 +55,7 @@ export interface Product extends Model {
   publishedAt: string
   themes?: Theme[]
   tags?: Tag[]
+  links?: ProductLinks
 }
 
 export interface Owner extends Model {

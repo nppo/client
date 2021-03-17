@@ -112,9 +112,14 @@ export default {
           tags: 'Trefwoorden',
           themes: "Thema's",
         },
+        preview: {
+          fallback:
+            'Sorry, het was voor ons niet mogelijk om dit product te previewen',
+        },
         actions: {
           share: 'Delen',
           bookmark: 'Opslaan',
+          download: 'Download',
         },
         edit: {
           title: 'Bewerk {name}',
@@ -126,6 +131,7 @@ export default {
       },
       types: {
         video: 'video',
+        image: 'afbeelding',
       },
     },
 
