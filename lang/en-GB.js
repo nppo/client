@@ -110,9 +110,11 @@ export default {
     product: {
       _id: {
         headings: {
+          facts: 'Quickfacts',
           contact: 'Contact',
           people: 'People',
           parties: 'Parties',
+          summary: 'Summary',
           description: 'Description',
           tags: 'Keywords',
           themes: 'Themes',

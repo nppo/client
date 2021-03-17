@@ -113,9 +113,11 @@ export default {
     product: {
       _id: {
         headings: {
+          facts: 'Korte feiten',
           contact: 'Contactpersoon',
           people: 'Personen',
           parties: 'Partijen',
+          summary: 'Samenvatting',
           description: 'Beschrijving',
           tags: 'Trefwoorden',
           themes: "Thema's",
