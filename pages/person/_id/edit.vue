@@ -12,7 +12,7 @@
       <form
         ref="form"
         class="flex flex-col p-4 overflow-hidden bg-white rounded-md shadow"
-        @submit.prevent="updatePerson"
+        @submit.prevent="update"
       >
         <div class="flex justify-between mb-6 space-x-32">
           <div class="flex flex-col mb-4">
@@ -122,9 +122,9 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
     themes: [],
   }
 
-  public firstNameError: boolean = false
-  public lastNameError: boolean = false
-  public themesError: boolean = false
+  private firstNameError: boolean = false
+  private lastNameError: boolean = false
+  private themesError: boolean = false
 
   @Ref('form') readonly form!: HTMLFormElement
 
@@ -144,7 +144,7 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
     return objectToFormData(this.formData)
   }
 
-  updatePerson(): void {
+  update(): void {
     if (!this.firstNameError && !this.lastNameError && !this.themesError) {
       this.$accessor.people
         .update({ id: this.person.id, data: this.asFormData() })

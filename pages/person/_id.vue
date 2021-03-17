@@ -151,10 +151,13 @@
                 <h2 class="text-4xl font-bold">
                   {{ $t('entities.project.plural') }}
                 </h2>
+
                 <Badge
                   :text="`${person.projects.length}`"
                   color="yellow-brand"
                 />
+
+                <CreateButton v-can="'create projects'" page="project" />
               </div>
 
               <SliderArrows
