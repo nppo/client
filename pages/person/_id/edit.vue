@@ -104,12 +104,23 @@ import { ValidationObserver } from 'vee-validate'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import { Person, Tag, Theme } from '~/types/models'
 import objectToFormData from '~/common/utils/objectToFormData'
+import { Context } from '@nuxt/types'
+import { MetaAuthOptions } from '~/types/entities'
 
 @Component({
-  async fetch(this: PersonEditPage) {
+  async asyncData({ $accessor, $auth }: Context) {
     await this.$accessor.skills.fetchAll()
     await this.$accessor.themes.fetchAll()
   },
+
+  meta: {
+    auth: {
+      requiredPermissions: ['update people'],
+    } as MetaAuthOptions,
+  },
+
+  middleware: ['auth', 'check-permissions'],
+
   components: {
     ValidationObserver,
   },
@@ -177,14 +188,7 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
     this.formData.profile_picture = event.target.files[0]
   }
 
-  mounted() {
-    if (this.$gates.unlessPermission('update people')) {
-      return this.$nuxt.error({
-        statusCode: 403,
-        message: String(this.$i18n.t('pages.error.403')),
-      })
-    }
-
+  created(): void {
     if (!this.person.can?.update) {
       return this.$nuxt.error({
         statusCode: 403,

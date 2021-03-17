@@ -55,9 +55,18 @@
 import { Component, mixins } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
+import { MetaAuthOptions } from '~/types/entities'
 import { Product } from '~/types/models'
 
 @Component({
+  meta: {
+    auth: {
+      requiredPermissions: ['update products'],
+    } as MetaAuthOptions,
+  },
+
+  middleware: ['auth', 'check-permissions'],
+  
   components: {
     ValidationObserver,
   },
@@ -78,14 +87,7 @@ export default class ProductEditPage extends mixins(NavigationRouterHook) {
     }
   }
 
-  mounted(): void {
-    if (this.$gates.unlessPermission('update products')) {
-      return this.$nuxt.error({
-        statusCode: 403,
-        message: String(this.$i18n.t('pages.error.403')),
-      })
-    }
-
+  created(): void {
     if (!this.product.can?.update) {
       return this.$nuxt.error({
         statusCode: 403,
