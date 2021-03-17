@@ -65,6 +65,15 @@
               :has-errors.sync="partiesError"
               option-label-attribute="name"
             />
+
+            <Multiselect
+              :entity.sync="formData.products"
+              :options="relatedProducts"
+              :label="$t('pages.project._id.edit.labels.products')"
+              :error-message="$t('validation.required')"
+              :has-errors.sync="productsError"
+              option-label-attribute="title"
+            />
           </div>
           <div class="w-6/12">
             <div class="flex flex-col mb-4">
@@ -99,14 +108,27 @@
 import { Context } from '@nuxt/types'
 import { Component, Ref, mixins } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
-import { Party, Project } from '~/types/models'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import objectToFormData from '~/common/utils/objectToFormData'
+import { Party, Person, Product, Project } from '~/types/models'
 
 @Component({
-  async asyncData({ $accessor }: Context) {
+  async asyncData({ $accessor, $auth }: Context) {
     await $accessor.parties.fetchAll()
+    await $accessor.user.fetchProducts(($auth.user?.person as Person).id)
   },
+
+  middleware({ $auth, error, $gates, app: { i18n } }: Context) {
+    if ($auth.loggedIn && $gates.hasPermission('update projects')) {
+      return
+    }
+
+    return error({
+      statusCode: 403,
+      message: String(i18n.t('pages.error.403')),
+    })
+  },
+
   components: {
     ValidationObserver,
   },
@@ -117,10 +139,12 @@ export default class ProjectEditPage extends mixins(NavigationRouterHook) {
     purpose: '',
     description: '',
     parties: [],
+    products: [],
   }
 
   private titleError: boolean = false
   private partiesError: boolean = false
+  private productsError: boolean = false
 
   @Ref('form') readonly form!: HTMLFormElement
 
@@ -130,6 +154,10 @@ export default class ProjectEditPage extends mixins(NavigationRouterHook) {
 
   get parties(): Party[] {
     return this.$accessor.parties.all
+  }
+
+  get relatedProducts(): Product[] {
+    return this.$accessor.user.products
   }
 
   asFormData(): FormData {
@@ -160,6 +188,7 @@ export default class ProjectEditPage extends mixins(NavigationRouterHook) {
     this.formData.purpose = this.project.purpose
     this.formData.description = this.project.description
     this.formData.parties = this.project.parties
+    this.formData.products = this.project.products
     delete this.formData.project_picture
   }
 
@@ -167,15 +196,8 @@ export default class ProjectEditPage extends mixins(NavigationRouterHook) {
     this.formData.project_picture = event.target.files[0]
   }
 
-  mounted() {
-    if (this.$gates.unlessPermission('update projects')) {
-      return this.$nuxt.error({
-        statusCode: 403,
-        message: String(this.$i18n.t('pages.error.403')),
-      })
-    }
-
-    if (!this.project.can?.update) {
+  created(): void {
+    if (!this.$accessor.projects.current.can?.update) {
       return this.$nuxt.error({
         statusCode: 403,
         message: String(this.$i18n.t('pages.error.403')),
