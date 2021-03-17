@@ -10,7 +10,7 @@
       <div class="flex items-center space-x-6">
         <Badge v-bind="{ ...icon }" :text="$t(`pages.product.types.${type}`)" />
 
-        <div>{{ product.title }}</div>
+        <h1 class="text-base">{{ product.title }}</h1>
       </div>
 
       <div class="flex space-x-3">

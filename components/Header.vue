@@ -2,7 +2,7 @@
   <div class="relative">
     <img
       v-if="hasImage"
-      :src="imageUrl"
+      :src="imageUrl ? imageUrl : require(`~/assets/img/${defaultImage}`)"
       class="absolute inset-0 object-cover w-full h-full"
     />
 
@@ -30,17 +30,15 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 
-const DEFAULT_HEADER_IMAGE = 'header_bg.jpg'
-
 @Component
 export default class Header extends Vue {
+  public defaultImage: string = 'header_bg.jpg'
   private searchQuery: string = ''
 
   @Prop({ type: Boolean, default: false }) readonly hasDarkHeader!: boolean
   @Prop({ type: Boolean, default: false }) readonly hasSearchBar!: boolean
   @Prop({ type: Boolean, default: true }) readonly hasImage!: boolean
-  @Prop({ type: String, default: `../assets/img/${DEFAULT_HEADER_IMAGE}` })
-  readonly imageUrl!: string
+  @Prop({ type: String, default: '' }) readonly imageUrl!: string
 
   handleSearchSubmit() {
     this.$router.push({
