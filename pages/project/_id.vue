@@ -1,6 +1,6 @@
 <template>
   <div class="flex-1 pb-24">
-    <Header has-search-bar>
+    <Header has-search-bar :image-url="project.projectPictureUrl">
       <div class="flex items-center justify-between mt-8">
         <BackButton :has-navigated-internal="hasNavigatedInternal" />
         <EditButton
@@ -46,14 +46,17 @@
       >
         <div class="w-8/12">
           <div class="mb-18">
-            <div class="mb-10">
+            <div
+              v-if="project.purpose && project.purpose.length > 0"
+              class="mb-10"
+            >
               <h2 class="mb-3 text-3xl font-bold">
                 {{ $t('pages.project._id.headings.purpose') }}
               </h2>
 
               {{ project.purpose }}
             </div>
-            <div>
+            <div v-if="project.description && project.description.length > 0">
               <h3 class="mb-3 text-2xl font-bold">
                 {{ $t('pages.project._id.headings.description') }}
               </h3>
@@ -62,7 +65,7 @@
             </div>
           </div>
 
-          <div>
+          <div v-if="recentProducts.length > 0">
             <h2 class="mb-12 text-3xl font-bold">
               {{ $t('pages.project._id.headings.recent_products') }}
             </h2>

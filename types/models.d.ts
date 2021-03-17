@@ -76,6 +76,7 @@ export interface Project extends Model {
   purpose: string
   description: string
   likes: string
+  projectPictureUrl: string
   createdAt: string
   owner?: Owner
   tags?: Tag[]

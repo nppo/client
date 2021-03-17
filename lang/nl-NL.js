@@ -17,6 +17,10 @@ export default {
     },
   },
 
+  actions: {
+    create: 'Aanmaken',
+  },
+
   validation: {
     required: 'Dit veld is verplicht',
   },
@@ -170,15 +174,18 @@ export default {
           products: 'Producten',
           people: 'Personen',
         },
-        edit: {
-          title: 'Bewerk {name}',
-          labels: {
-            title: 'Titel',
-            description: 'Beschrijving',
-            purpose: 'Doel van project',
-          },
-        },
         no_result: 'Dit project heeft geen {entity}',
+      },
+      form: {
+        headings: {
+          create: 'Aanmaken project',
+          edit: 'Bewerk {name}',
+        },
+        labels: {
+          title: 'Titel',
+          description: 'Beschrijving',
+          purpose: 'Doel van project',
+        },
       },
     },
 
