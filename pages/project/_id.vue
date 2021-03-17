@@ -183,16 +183,16 @@ export default class ProjectDetailPage extends mixins(NavigationRouterHook) {
     return this.$accessor.types.all
   }
 
-  get projectContent(): Array<any> | undefined {
+  get projectContent(): Array<any> {
     if (this.activePage === 'people') {
-      return this.project.people
+      return this.project.people || []
     }
 
     if (this.activePage === 'parties') {
-      return this.project.parties
+      return this.project.parties || []
     }
 
-    return this.project.products
+    return this.project.products || []
   }
 
   get activePage(): string {

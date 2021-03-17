@@ -56,6 +56,15 @@
                 class="p-3 font-bold rounded-md shadow focus:outline-none"
               />
             </div>
+
+            <Multiselect
+              :entity.sync="formData.parties"
+              :options="parties"
+              :label="$t('pages.project._id.edit.labels.parties')"
+              :error-message="$t('validation.required')"
+              :has-errors.sync="partiesError"
+              option-label-attribute="name"
+            />
           </div>
           <div class="w-6/12">
             <div class="flex flex-col mb-4">
@@ -87,13 +96,17 @@
 </template>
 
 <script lang="ts">
+import { Context } from '@nuxt/types'
 import { Component, Ref, mixins } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
+import { Party, Project } from '~/types/models'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
-import { Project } from '~/types/models'
 import objectToFormData from '~/common/utils/objectToFormData'
 
 @Component({
+  async asyncData({ $accessor }: Context) {
+    await $accessor.parties.fetchAll()
+  },
   components: {
     ValidationObserver,
   },
@@ -103,14 +116,20 @@ export default class ProjectEditPage extends mixins(NavigationRouterHook) {
     title: '',
     purpose: '',
     description: '',
+    parties: [],
   }
 
   private titleError: boolean = false
+  private partiesError: boolean = false
 
   @Ref('form') readonly form!: HTMLFormElement
 
   get project(): Project {
     return this.$accessor.projects.current
+  }
+
+  get parties(): Party[] {
+    return this.$accessor.parties.all
   }
 
   asFormData(): FormData {
@@ -140,6 +159,7 @@ export default class ProjectEditPage extends mixins(NavigationRouterHook) {
     this.formData.title = this.project.title
     this.formData.purpose = this.project.purpose
     this.formData.description = this.project.description
+    this.formData.parties = this.project.parties
     delete this.formData.project_picture
   }
 

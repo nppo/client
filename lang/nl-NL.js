@@ -174,6 +174,15 @@ export default {
           products: 'Producten',
           people: 'Personen',
         },
+        edit: {
+          title: 'Bewerk {name}',
+          labels: {
+            title: 'Titel',
+            description: 'Beschrijving',
+            purpose: 'Doel van project',
+            parties: 'Partijen',
+          },
+        },
         no_result: 'Dit project heeft geen {entity}',
       },
       form: {
