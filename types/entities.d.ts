@@ -51,8 +51,7 @@ export interface Error {
 }
 
 export interface ProductLinks {
-  preview: string
-  download: string
+  preview: string | null
 }
 
 export interface IconSetting {

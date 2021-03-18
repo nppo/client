@@ -160,6 +160,7 @@ export default {
       types: {
         video: 'video',
         image: 'afbeelding',
+        youtube: 'YouTube',
       },
     },
 

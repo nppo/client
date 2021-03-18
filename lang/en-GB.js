@@ -142,6 +142,7 @@ export default {
       types: {
         video: 'video',
         image: 'image',
+        youtube: 'YouTube',
       },
 
       create: {
