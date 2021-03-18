@@ -84,6 +84,16 @@
             <hr class="mb-8 border-gray-200" />
           </div>
 
+          <div v-if="product.projects && product.projects.length > 0">
+            <h3 class="mb-5 text-2xl font-bold">
+              {{ $t('pages.product._id.headings.part_of') }}
+            </h3>
+
+            <ProjectsList :projects="product.projects" />
+
+            <hr class="mb-8 border-gray-200" />
+          </div>
+
           <div v-if="product.people && product.people.length > 0">
             <h3 class="mb-5 text-2xl font-bold">
               {{ $t('pages.product._id.headings.people') }}
