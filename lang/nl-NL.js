@@ -121,6 +121,7 @@ export default {
           description: 'Beschrijving',
           tags: 'Trefwoorden',
           themes: "Thema's",
+          more_products: 'Meer producten',
         },
         preview: {
           fallback:
@@ -170,7 +171,7 @@ export default {
           parties: 'Partijen',
           description: 'Beschrijving',
           purpose: 'Doel van project',
-          recent_products: 'Recente producten',
+          featured_products: 'Uitgelichte producten',
           tags: 'Trefwoorden',
           themes: "Thema's",
         },
@@ -180,15 +181,6 @@ export default {
           products: 'Producten',
           people: 'Personen',
         },
-        edit: {
-          title: 'Bewerk {name}',
-          labels: {
-            title: 'Titel',
-            description: 'Beschrijving',
-            purpose: 'Doel van project',
-            parties: 'Partijen',
-          },
-        },
         no_result: 'Dit project heeft geen {entity}',
       },
       form: {
@@ -197,9 +189,12 @@ export default {
           edit: 'Bewerk {name}',
         },
         labels: {
+          project_picture: 'Project foto',
           title: 'Titel',
           description: 'Beschrijving',
           purpose: 'Doel van project',
+          parties: 'Partijen',
+          products: 'Producten',
         },
       },
     },

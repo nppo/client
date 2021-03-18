@@ -118,6 +118,7 @@ export default {
           description: 'Description',
           tags: 'Keywords',
           themes: 'Themes',
+          more_products: 'More products',
         },
 
         preview: {
@@ -170,7 +171,7 @@ export default {
           parties: 'Parties',
           description: 'Description',
           purpose: 'Purpose of the project',
-          recent_products: 'Recent products',
+          featured_products: 'Featured products',
           tags: 'Keywords',
           themes: 'Themes',
         },
@@ -180,15 +181,6 @@ export default {
           products: 'Products',
           people: 'People',
         },
-        edit: {
-          title: 'Edit {name}',
-          labels: {
-            title: 'Title',
-            description: 'Description',
-            purpose: 'Purpose of the project',
-            parties: 'Partijen',
-          },
-        },
         no_result: 'This project has no {entity}',
       },
       form: {
@@ -197,9 +189,12 @@ export default {
           edit: 'Edit {name}',
         },
         labels: {
+          project_picture: 'Project picture',
           title: 'Title',
           description: 'Description',
           purpose: 'Purpose of the project',
+          parties: 'Parties',
+          products: 'Products',
         },
       },
     },
@@ -218,7 +213,7 @@ export default {
           title: 'Edit {name}',
           labels: {
             first_name: 'First name',
-            profile_picture: 'Profiel foto',
+            profile_picture: 'Profile foto',
             last_name: 'Last name',
             about: 'About',
             skills: 'Skills',
