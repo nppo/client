@@ -24,7 +24,7 @@
 
     <div class="container mx-auto">
       <div v-if="activePage === 'product'" class="grid grid-cols-12 -mt-104">
-        <ProductCarousel :product="product" class="col-span-8">
+        <ProductCarousel :product="product" class="col-span-8 col-start-3">
           <component :is="viewerComponent" :product="product" />
         </ProductCarousel>
       </div>
