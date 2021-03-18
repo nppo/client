@@ -16,7 +16,7 @@
           class="m-4 mb-5 min-w-1/4"
           :class="{ 'absolute top-0 left-0': project.projectPictureUrl }"
         >
-          <Badge text="TBA" />
+          <Badge :text="$t('entities.project.singular')" />
         </span>
       </div>
     </div>
