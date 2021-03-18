@@ -147,6 +147,8 @@ export default {
         form: {
           labels: {
             type: 'Type',
+            external: 'Extern',
+            link: 'Link',
             title: 'Titel',
             description: 'Beschrijving',
             file: 'Bestand',
