@@ -66,7 +66,7 @@ import { Product } from '~/types/models'
   },
 
   middleware: ['auth', 'check-permissions'],
-  
+
   components: {
     ValidationObserver,
   },

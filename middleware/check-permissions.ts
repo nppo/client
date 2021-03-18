@@ -1,7 +1,12 @@
 import { Context } from '@nuxt/types'
 import { MetaAuthOptions } from '~/types/entities'
 
-export default function ({ error, $gates, route, app: { i18n } }: Context): void {
+export default function ({
+  error,
+  $gates,
+  route,
+  app: { i18n },
+}: Context): void {
   const permissions = getPermissionsFromAuthMeta(route.meta)
 
   if (!permissions.length) {

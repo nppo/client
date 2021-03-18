@@ -101,16 +101,16 @@
 <script lang="ts">
 import { Component, mixins, Ref } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
+import { Context } from '@nuxt/types'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import { Person, Tag, Theme } from '~/types/models'
 import objectToFormData from '~/common/utils/objectToFormData'
-import { Context } from '@nuxt/types'
 import { MetaAuthOptions } from '~/types/entities'
 
 @Component({
-  async asyncData({ $accessor, $auth }: Context) {
-    await this.$accessor.skills.fetchAll()
-    await this.$accessor.themes.fetchAll()
+  async asyncData({ $accessor }: Context) {
+    await $accessor.skills.fetchAll()
+    await $accessor.themes.fetchAll()
   },
 
   meta: {
