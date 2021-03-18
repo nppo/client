@@ -77,6 +77,7 @@
                     :entity.sync="formData.tags"
                     :options="tags"
                     :label="$t('pages.product.create.form.labels.tags')"
+                    :taggable="true"
                   />
 
                   <Multiselect

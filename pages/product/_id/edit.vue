@@ -73,6 +73,7 @@
               <Multiselect
                 :entity.sync="formData.tags"
                 :options="tags"
+                :taggable="true"
                 :label="$t('pages.product._id.edit.labels.tags')"
               />
 
@@ -120,6 +121,9 @@ import { Product, Party, Person, Tag, Theme } from '~/types/models'
 import objectToFormData from '~/common/utils/objectToFormData'
 
 @Component({
+  async asyncData({ $accessor }) {
+    await Promise.all([$accessor.tags.fetchAll(), $accessor.themes.fetchAll()])
+  },
   components: {
     ValidationObserver,
   },
