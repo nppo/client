@@ -24,9 +24,11 @@
 
     <div class="container mx-auto">
       <div v-if="activePage === 'product'" class="grid grid-cols-12 -mt-104">
-        <ProductCarousel :product="product" class="col-span-8 col-start-3">
-          <component :is="viewerComponent" :product="product" />
-        </ProductCarousel>
+        <component
+          :is="viewerComponent"
+          :product="product"
+          class="col-span-8 col-start-3"
+        />
       </div>
 
       <NuxtChild />
@@ -185,7 +187,7 @@ export default class ProductDetailPage extends mixins(NavigationRouterHook) {
   get loadComponent(): Promise<String> {
     const type =
       this.product.type.charAt(0).toUpperCase() + this.product.type.slice(1)
-    return import(`~/components/Product/${type}Viewer.vue`)
+    return import(`~/components/Product/${type}Card.vue`)
   }
 
   get slicedMeta(): MetaData[] {
