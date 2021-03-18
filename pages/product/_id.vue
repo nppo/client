@@ -180,7 +180,7 @@ export default class ProductDetailPage extends mixins(NavigationRouterHook) {
       })
       .catch(() => {
         this.viewerComponent = () =>
-          import(`~/components/Product/FallbackViewer.vue`)
+          import(`~/components/Product/FallbackCard.vue`)
       })
   }
 
