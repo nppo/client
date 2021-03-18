@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { ProductLinks } from './entities'
-=======
-import { MetaData } from './entities'
->>>>>>> origin/develop
+import { MetaData, ProductLinks } from './entities'
 
 /* eslint-disable no-use-before-define */
 export interface Can {
@@ -60,11 +56,8 @@ export interface Product extends Model {
   publishedAt: string
   themes?: Theme[]
   tags?: Tag[]
-<<<<<<< HEAD
   links?: ProductLinks
-=======
   meta?: MetaData[]
->>>>>>> origin/develop
 }
 
 export interface Owner extends Model {
