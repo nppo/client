@@ -1,6 +1,6 @@
 import { NuxtAxiosInstance } from '@nuxtjs/axios'
 import { AxiosResponse } from 'axios'
-import { Person } from '~/types/models'
+import { Person, Product } from '~/types/models'
 import { MultipleResults, SingleResult } from '~/types/repositories'
 
 const resource = 'people'
@@ -27,5 +27,9 @@ export default class PeopleRepository {
     // Needed as Laravel otherwise does not allow uploading of images
     data.set('_method', 'PUT')
     return this.axios.post(`/api/${resource}/${id}`, data)
+  }
+
+  products(id: number): Promise<AxiosResponse<MultipleResults<Product>>> {
+    return this.axios.get(`/api/${resource}/${id}/products`)
   }
 }

@@ -183,9 +183,12 @@ export default {
           edit: 'Bewerk {name}',
         },
         labels: {
+          project_picture: 'Project foto',
           title: 'Titel',
           description: 'Beschrijving',
           purpose: 'Doel van project',
+          parties: 'Partijen',
+          products: 'Producten',
         },
       },
     },

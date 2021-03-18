@@ -53,6 +53,7 @@
             <Multiselect
               :entity.sync="formData.skills"
               :options="skills"
+              :taggable="true"
               :label="$t('pages.person._id.edit.labels.skills')"
             />
 

@@ -119,7 +119,9 @@ import { Party, Person, Tag, Theme } from '~/types/models'
       $accessor.tags.fetchAll(),
       $accessor.themes.fetchAll(),
       $accessor.people.fetchAll(),
-      $accessor.people.fetchCurrent($accessor.user.current.person?.id),
+      $accessor.people.fetchCurrent(
+        $accessor.user.current.person?.id as number
+      ),
     ])
   },
 })
@@ -154,7 +156,7 @@ export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
   }
 
   get parties(): Party[] {
-    return this.$accessor.people.current.parties
+    return this.$accessor.people.current.parties || []
   }
 
   @Ref('form') readonly form!: HTMLFormElement

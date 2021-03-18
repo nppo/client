@@ -52,7 +52,7 @@
           </div>
           <div v-else>
             <SearchCollapse
-              v-if="products && products.length > 0"
+              v-if="products.length > 0"
               :show-header="!hasSpecificTypeFilter"
               :header="$t('entities.product.plural')"
               class="mb-20"
@@ -71,7 +71,7 @@
             </SearchCollapse>
 
             <SearchCollapse
-              v-if="people && people.length > 0"
+              v-if="people.length > 0"
               :show-header="!hasSpecificTypeFilter"
               :header="$t('entities.person.plural')"
               class="mb-20"
@@ -88,7 +88,7 @@
             </SearchCollapse>
 
             <SearchCollapse
-              v-if="projects && projects.length > 0"
+              v-if="projects.length > 0"
               :show-header="!hasSpecificTypeFilter"
               :header="$t('entities.project.plural')"
               class="mb-20"
@@ -107,7 +107,7 @@
             </SearchCollapse>
 
             <SearchCollapse
-              v-if="parties && parties.length > 0"
+              v-if="parties.length > 0"
               :show-header="!hasSpecificTypeFilter"
               :header="$t('entities.party.plural')"
               @show-all="setFilterByLabel('party')"
@@ -160,20 +160,20 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
     return this.$accessor.search.current
   }
 
-  get people(): Array<Person> | undefined {
-    return this.current.people
+  get people(): Array<Person> {
+    return this.current.people || []
   }
 
-  get parties(): Array<Party> | undefined {
-    return this.current.parties
+  get parties(): Array<Party> {
+    return this.current.parties || []
   }
 
-  get products(): Array<Product> | undefined {
-    return this.current.products
+  get products(): Array<Product> {
+    return this.current.products || []
   }
 
-  get projects(): Array<Project> | undefined {
-    return this.current.projects
+  get projects(): Array<Project> {
+    return this.current.projects || []
   }
 
   get themes(): Array<Theme> {
