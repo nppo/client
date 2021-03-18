@@ -9,6 +9,7 @@
         :options="options"
         multiple
         append-to-body
+        :taggable="taggable"
         :label="optionLabelAttribute"
         :class="{ 'error-border': errors[0] && required }"
         :get-option-label="optionLabel"
@@ -42,6 +43,7 @@ export default class Multiselect extends Vue {
   @Prop({ type: String, default: '' }) readonly label!: string
   @Prop({ type: Boolean, default: false }) readonly required!: boolean
   @Prop({ type: String, default: '' }) readonly errorMessage!: string
+  @Prop({ type: Boolean, default: false }) readonly taggable!: boolean
   @Prop({ type: Function }) readonly optionLabel?: Function
 
   private localSelected: Array<any> = this.entity
