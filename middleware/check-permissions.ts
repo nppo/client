@@ -30,8 +30,9 @@ const getPermissionsFromAuthMeta = (meta: any): string[] => {
     return []
   }
 
-  // Last meta is current page component
-  const currentMeta = [...meta].pop()
-
-  return (currentMeta.auth as MetaAuthOptions)?.requiredPermissions || []
+  return meta
+    .map(
+      (meta: any) => (meta.auth as MetaAuthOptions)?.requiredPermissions || []
+    )
+    .flat()
 }
