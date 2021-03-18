@@ -5,7 +5,7 @@
       :key="project.id"
       class="flex flex-col h-full overflow-hidden bg-white rounded-md shadow mb-4"
     >
-      <LocaleLink class="flex flex-row" :path="`/projects/${project.id}`">
+      <LocaleLink class="flex flex-row" :path="`/project/${project.id}`">
         <div class="w-1/4 h-24">
           <img
             v-if="project.projectPictureUrl"
