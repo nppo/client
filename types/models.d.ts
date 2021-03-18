@@ -13,6 +13,7 @@ export interface Party extends Model {
   id: number
   name: string
   description: string
+  partyPictureUrl: string
   parties?: Party[]
   products?: Product[]
   projects?: Project[]

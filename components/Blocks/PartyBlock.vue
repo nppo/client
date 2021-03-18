@@ -6,9 +6,9 @@
     <div class="flex flex-col items-center p-4">
       <!-- TODO: When image available make image dynamic: v-if="party.image" -->
       <img
-        v-if="partyImage"
+        v-if="party.partyPictureUrl"
         class="inline w-24 h-24 mb-2 rounded-full shadow"
-        :src="partyImage"
+        :src="party.partyPictureUrl"
         :alt="party.name + '_logo'"
       />
 
@@ -60,9 +60,6 @@ import { Party } from '~/types/models'
 
 @Component
 export default class PartyBlock extends Vue {
-  // TODO: When image available make image dynamic: v-if="party.image"
-  public partyImage: string = 'https://picsum.photos/200/200'
-
   @Prop({ type: Object, required: true }) party!: Party
 }
 </script>
