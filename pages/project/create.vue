@@ -110,10 +110,10 @@
 <script lang="ts">
 import { Component, mixins } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
+import { Context } from '@nuxt/types'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import objectToFormData from '~/common/utils/objectToFormData'
 import { Party, Person, Product } from '~/types/models'
-import { Context } from '@nuxt/types'
 
 @Component({
   async asyncData({ $accessor, $auth }: Context) {
