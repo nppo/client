@@ -59,6 +59,22 @@
                     class="p-3 font-bold rounded-md shadow focus:outline-none"
                   />
                 </div>
+
+                <Multiselect
+                  :entity.sync="formData.parties"
+                  :options="parties"
+                  :label="$t('pages.project.form.labels.parties')"
+                  :error-message="$t('validation.required')"
+                  option-label-attribute="name"
+                />
+
+                <Multiselect
+                  :entity.sync="formData.products"
+                  :options="relatedProducts"
+                  :label="$t('pages.project.form.labels.products')"
+                  :error-message="$t('validation.required')"
+                  option-label-attribute="title"
+                />
               </div>
               <div class="w-6/12">
                 <div class="flex flex-col mb-4">
@@ -96,8 +112,31 @@ import { Component, mixins } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import objectToFormData from '~/common/utils/objectToFormData'
+import { Party, Person, Product } from '~/types/models'
+import { Context } from '@nuxt/types'
 
 @Component({
+  async asyncData({ $accessor, $auth }: Context) {
+    const personId = ($auth.user?.person as Person).id
+
+    await $accessor.parties.fetchAll()
+    await $accessor.people.fetchCurrent(personId)
+  },
+
+  middleware: [
+    'auth',
+    ({ error, $gates, app: { i18n } }: Context) => {
+      if ($gates.hasPermission('create projects')) {
+        return
+      }
+
+      return error({
+        statusCode: 403,
+        message: String(i18n.t('pages.error.403')),
+      })
+    },
+  ],
+
   components: {
     ValidationObserver,
   },
@@ -107,9 +146,19 @@ export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
     title: '',
     description: '',
     purpose: '',
+    parties: [],
+    products: [],
   }
 
   private titleError: boolean = false
+
+  get parties(): Party[] {
+    return this.$accessor.parties.all
+  }
+
+  get relatedProducts(): Product[] {
+    return this.$accessor.people.current.products || []
+  }
 
   asFormData(): FormData {
     return objectToFormData(this.formData)
