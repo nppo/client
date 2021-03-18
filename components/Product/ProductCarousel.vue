@@ -17,6 +17,7 @@
           icon-style="fas"
           :text="$t('pages.product._id.actions.share')"
           text-color="white"
+          color="blue-500"
         />
 
         <Badge
