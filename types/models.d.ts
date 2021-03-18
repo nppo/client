@@ -1,4 +1,4 @@
-import { MetaData } from './entities'
+import { MetaData, ProductLinks } from './entities'
 
 /* eslint-disable no-use-before-define */
 export interface Can {
@@ -47,6 +47,7 @@ export interface Person extends Model {
 
 export interface Product extends Model {
   id: number
+  type: string
   title: string
   summary: string
   description: string
@@ -58,6 +59,7 @@ export interface Product extends Model {
   parties?: Party[]
   people?: Person[]
   tags?: Tag[]
+  links?: ProductLinks
   meta?: MetaData[]
 }
 

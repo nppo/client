@@ -25,8 +25,8 @@
     <div class="container mx-auto">
       <div v-if="activePage === 'product'" class="grid grid-cols-12 -mt-104">
         <component
-          v-bind="{ product, type }"
-          :is="typeComponent"
+          :is="viewerComponent"
+          :product="product"
           class="col-span-8 col-start-3"
         />
       </div>
@@ -177,14 +177,7 @@ import { Product } from '~/types/models'
   },
 })
 export default class ProductDetailPage extends mixins(NavigationRouterHook) {
-  private type: string = 'video'
-
-  get typeComponent() {
-    const type = this.type.charAt(0).toUpperCase() + this.type.slice(1)
-    const component = () => import(`~/components/ProductTypes/${type}Type.vue`)
-
-    return component
-  }
+  private viewerComponent: any = null
 
   get activePage(): string {
     const basePath =
@@ -197,6 +190,23 @@ export default class ProductDetailPage extends mixins(NavigationRouterHook) {
 
   get product(): Product {
     return this.$accessor.products.current
+  }
+
+  mounted() {
+    this.loadComponent
+      .then(() => {
+        this.viewerComponent = () => this.loadComponent
+      })
+      .catch(() => {
+        this.viewerComponent = () =>
+          import(`~/components/Product/FallbackCard.vue`)
+      })
+  }
+
+  get loadComponent(): Promise<String> {
+    const type =
+      this.product.type.charAt(0).toUpperCase() + this.product.type.slice(1)
+    return import(`~/components/Product/${type}Card.vue`)
   }
 
   get products(): Product[] {
