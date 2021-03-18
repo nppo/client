@@ -199,8 +199,8 @@ export default class ProductDetailPage extends mixins(NavigationRouterHook) {
     return this.$accessor.products.current
   }
 
-  get recentProducts(): Product[] {
-    return this.$accessor.products.all.slice(0, 2)
+  get products(): Product[] {
+    return this.$accessor.products.all
   }
 
   get slicedMeta(): MetaData[] {
@@ -209,6 +209,16 @@ export default class ProductDetailPage extends mixins(NavigationRouterHook) {
         return meta.value != null
       }) || []
     )
+  }
+
+  get recentProducts(): Product[] {
+    const products = [...(this.products || [])]
+
+    return products
+      .sort((productA, productB) =>
+        productB.publishedAt.localeCompare(productA.publishedAt)
+      )
+      .slice(0, 2)
   }
 }
 </script>
