@@ -20,14 +20,14 @@
             <div class="flex justify-between mb-6 space-x-32">
               <div class="flex flex-col mb-4">
                 <label
-                  :for="$t('pages.person.form.labels.project_picture')"
+                  :for="$t('pages.project.form.labels.project_picture')"
                   class="pl-3 mb-1"
                 >
-                  {{ $t('pages.person.form.labels.project_picture') }}
+                  {{ $t('pages.project.form.labels.project_picture') }}
                 </label>
 
                 <input
-                  :id="$t('pages.person.form.labels.project_picture')"
+                  :id="$t('pages.project.form.labels.project_picture')"
                   class="px-3 py-3 font-bold rounded-md shadow focus:outline-none"
                   type="file"
                   @change="projectPictureSelected"

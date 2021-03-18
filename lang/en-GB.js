@@ -118,6 +118,7 @@ export default {
           description: 'Description',
           tags: 'Keywords',
           themes: 'Themes',
+          more_products: 'More products',
         },
 
         edit: {
@@ -164,7 +165,7 @@ export default {
           parties: 'Parties',
           description: 'Description',
           purpose: 'Purpose of the project',
-          recent_products: 'Recent products',
+          featured_products: 'Featured products',
           tags: 'Keywords',
           themes: 'Themes',
         },
