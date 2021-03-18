@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { ProductLinks } from './entities'
+=======
+import { MetaData } from './entities'
+>>>>>>> origin/develop
 
 /* eslint-disable no-use-before-define */
 export interface Can {
@@ -49,13 +53,18 @@ export interface Product extends Model {
   id: number
   type: string
   title: string
+  summary: string
   description: string
   image: string
   likes: string
   publishedAt: string
   themes?: Theme[]
   tags?: Tag[]
+<<<<<<< HEAD
   links?: ProductLinks
+=======
+  meta?: MetaData[]
+>>>>>>> origin/develop
 }
 
 export interface Owner extends Model {
@@ -76,6 +85,7 @@ export interface Project extends Model {
   purpose: string
   description: string
   likes: string
+  projectPictureUrl: string
   createdAt: string
   owner?: Owner
   tags?: Tag[]
@@ -91,6 +101,7 @@ export interface User extends Model {
   email: string
   permissions?: Permission[]
   roles?: Role[]
+  person?: Person
 }
 
 export interface Permission extends Model {

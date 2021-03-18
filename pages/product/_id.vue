@@ -39,11 +39,35 @@
       >
         <div class="w-8/12">
           <div class="mb-18">
-            <h3 class="mb-3 text-2xl">
-              {{ $t('pages.product._id.headings.description') }}
-            </h3>
+            <div v-if="slicedMeta.length > 0" class="mb-12">
+              <h2 class="mb-3 text-3xl font-bold">
+                {{ $t('pages.product._id.headings.facts') }}
+              </h2>
+              <div class="grid grid-cols-6 gap-4">
+                <div v-for="meta in slicedMeta" :key="meta.id">
+                  <h4 class="font-bold uppercase">
+                    {{ meta.label }}
+                  </h4>
+                  {{ meta.value }}
+                </div>
+              </div>
+            </div>
 
-            {{ product.description }}
+            <div class="mb-8">
+              <h2 class="mb-3 text-3xl">
+                {{ $t('pages.product._id.headings.summary') }}
+              </h2>
+
+              {{ product.summary }}
+            </div>
+
+            <div>
+              <h3 class="mb-3 text-2xl">
+                {{ $t('pages.product._id.headings.description') }}
+              </h3>
+
+              {{ product.description }}
+            </div>
           </div>
         </div>
 
@@ -121,6 +145,7 @@
 import { Context } from '@nuxt/types'
 import { Component, mixins } from 'nuxt-property-decorator'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
+import { MetaData } from '~/types/entities'
 import { Product } from '~/types/models'
 
 @Component({
@@ -161,6 +186,14 @@ export default class ProductDetailPage extends mixins(NavigationRouterHook) {
     const type =
       this.product.type.charAt(0).toUpperCase() + this.product.type.slice(1)
     return import(`~/components/Product/${type}Viewer.vue`)
+  }
+
+  get slicedMeta(): MetaData[] {
+    return (
+      this.$accessor.products.current.meta?.filter((meta: MetaData) => {
+        return meta.value != null
+      }) || []
+    )
   }
 }
 </script>

@@ -60,3 +60,9 @@ export interface IconSetting {
   icon: string
   style: string
 }
+
+export interface MetaData {
+  id: number
+  label: string
+  value: any
+}

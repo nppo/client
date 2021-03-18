@@ -36,7 +36,6 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/repositories.ts',
-    '~/plugins/mock-axios.ts',
     '~/plugins/axios.ts',
     '~/plugins/vee-validate.ts',
     '~/plugins/vue-gates.ts',
@@ -244,9 +243,5 @@ export default {
 
   generate: {
     dir: 'public_html',
-  },
-
-  env: {
-    mockAxios: process.env.MOCK_AXIOS || 'false',
   },
 }
