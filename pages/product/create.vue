@@ -38,6 +38,21 @@
                 <div class="flex flex-col mb-4">
                   <label
                     class="pl-3 mb-1"
+                    :for="$t('pages.product.create.form.labels.summary')"
+                  >
+                    {{ $t('pages.product.create.form.labels.summary') }}
+                  </label>
+                  <textarea
+                    :id="$t('pages.product.create.form.labels.summary')"
+                    v-model="formData.summary"
+                    rows="6"
+                    class="p-3 font-bold rounded-md shadow focus:outline-none"
+                  />
+                </div>
+
+                <div class="flex flex-col mb-4">
+                  <label
+                    class="pl-3 mb-1"
                     :for="$t('pages.product.create.form.labels.description')"
                   >
                     {{ $t('pages.product.create.form.labels.description') }}
@@ -102,7 +117,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Ref, mixins } from 'nuxt-property-decorator'
+import { Component, mixins } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
 import { Context } from '@nuxt/types'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
@@ -129,6 +144,7 @@ export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
   private formData: any = {
     type: null,
     title: '',
+    summary: '',
     description: '',
     file: null,
     tags: [],
@@ -158,8 +174,6 @@ export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
   get parties(): Party[] {
     return this.$accessor.people.current.parties || []
   }
-
-  @Ref('form') readonly form!: HTMLFormElement
 
   create(): void {
     if (!this.titleError) {

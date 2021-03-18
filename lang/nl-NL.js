@@ -130,8 +130,15 @@ export default {
         edit: {
           title: 'Bewerk {name}',
           labels: {
+            type: 'Type',
             title: 'Titel',
+            summary: 'Samenvatting',
             description: 'Beschrijving',
+            file: 'Bestand',
+            tags: 'Tags',
+            themes: "Thema's",
+            people: 'Auteurs',
+            parties: 'Partijen',
           },
         },
       },
@@ -143,6 +150,7 @@ export default {
           labels: {
             type: 'Type',
             title: 'Titel',
+            summary: 'Samenvatting',
             description: 'Beschrijving',
             file: 'Bestand',
             tags: 'Tags',
