@@ -114,6 +114,7 @@ export default {
           contact: 'Contact',
           people: 'People',
           parties: 'Parties',
+          part_of: 'Part of',
           summary: 'Summary',
           description: 'Description',
           tags: 'Keywords',

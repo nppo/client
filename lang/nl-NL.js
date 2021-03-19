@@ -117,6 +117,7 @@ export default {
           contact: 'Contactpersoon',
           people: 'Personen',
           parties: 'Partijen',
+          part_of: 'Onderdeel van',
           summary: 'Samenvatting',
           description: 'Beschrijving',
           tags: 'Trefwoorden',
