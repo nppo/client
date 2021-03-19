@@ -216,7 +216,9 @@ export default class ProductDetailPage extends mixins(NavigationRouterHook) {
 
     return products
       .sort((productA, productB) =>
-        productB.publishedAt.localeCompare(productA.publishedAt)
+        productB.publishedAt === null
+          ? -1
+          : productB.publishedAt.localeCompare(productA.publishedAt)
       )
       .slice(0, 2)
   }
