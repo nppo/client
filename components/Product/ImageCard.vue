@@ -1,6 +1,6 @@
 <template>
   <ProductBaseCard v-bind="settings">
-    <div class="w-full h-full">
+    <div class="w-full h-full cursor-pointer">
       <CoolLightBox
         :src="product.links.preview"
         :index="index"
