@@ -129,8 +129,15 @@ export default {
         edit: {
           title: 'Edit {name}',
           labels: {
+            type: 'Type',
             title: 'Title',
+            summary: 'Summary',
             description: 'Description',
+            file: 'File',
+            tags: 'Tags',
+            themes: 'Themes',
+            people: 'Authors',
+            parties: 'Parties',
           },
         },
 
@@ -153,6 +160,7 @@ export default {
           labels: {
             type: 'Type',
             title: 'Title',
+            summary: 'Summary',
             description: 'Description',
             file: 'File',
             tags: 'Tags',

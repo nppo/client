@@ -55,6 +55,7 @@ export interface Product extends Model {
   image: string
   likes: string
   publishedAt: string
+  type: string
   owner?: Owner
   themes?: Theme[]
   parties?: Party[]
