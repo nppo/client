@@ -4,11 +4,10 @@
       <LocaleLink :path="`/party/${party.id}`">
         <div class="flex items-center justify-between">
           <div class="flex items-center">
-            <!-- TODO: When image available make image dynamic: v-if="party.image" -->
             <img
-              v-if="partyImage"
+              v-if="party.partyPictureUrl"
               class="inline w-10 h-10 mr-4 rounded-full"
-              :src="partyImage"
+              :src="party.partyPictureUrl"
               :alt="party.name + '_logo'"
             />
 
@@ -49,8 +48,6 @@ import { Party } from '~/types/models'
 
 @Component
 export default class PartiesList extends Vue {
-  // TODO: When image available make image dynamic: v-if="party.image"
-  public partyImage: string = 'https://picsum.photos/200/200'
   public showingAll: boolean = false
 
   @Prop({ type: Number, default: 3 }) maxEntities!: number
