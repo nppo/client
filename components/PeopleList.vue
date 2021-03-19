@@ -6,7 +6,6 @@
           class="flex items-center w-full"
           :path="`/person/${person.id}`"
         >
-          <!-- TODO: When image available make image dynamic: v-if="person.image" -->
           <img
             v-if="person.profilePictureUrl"
             class="inline w-10 h-10 mr-4 rounded-full"

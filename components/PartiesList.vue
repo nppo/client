@@ -4,7 +4,6 @@
       <LocaleLink :path="`/party/${party.id}`">
         <div class="flex items-center justify-between">
           <div class="flex items-center">
-            <!-- TODO: When image available make image dynamic: v-if="party.image" -->
             <img
               v-if="party.partyPictureUrl"
               class="inline w-10 h-10 mr-4 rounded-full"

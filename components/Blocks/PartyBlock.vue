@@ -4,7 +4,6 @@
     class="flex flex-col h-full overflow-hidden bg-white rounded-md shadow"
   >
     <div class="flex flex-col items-center p-4">
-      <!-- TODO: When image available make image dynamic: v-if="party.image" -->
       <img
         v-if="party.partyPictureUrl"
         class="inline w-24 h-24 mb-2 rounded-full shadow"

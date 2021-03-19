@@ -8,7 +8,6 @@
       <div class="flex justify-between space-x-32 mt-18">
         <div class="w-4/12">
           <div class="flex flex-col items-center p-4 mb-4">
-            <!-- TODO: When image available make image dynamic: v-if="party.image" -->
             <img
               v-if="party.partyPictureUrl"
               class="inline w-24 h-24 mb-2 rounded-full shadow"
