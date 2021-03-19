@@ -4,6 +4,7 @@
     class="flex flex-col h-full overflow-hidden bg-white rounded-md shadow"
   >
     <div class="relative">
+      <!-- TODO: When image available make image dynamic: v-if="product.image" -->
       <img
         v-if="productImage"
         class="w-full mb-2"
