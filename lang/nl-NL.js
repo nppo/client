@@ -145,6 +145,7 @@ export default {
             themes: "Thema's",
             people: 'Auteurs',
             parties: 'Partijen',
+            published_at: 'Gepubliceerd op',
           },
         },
       },
@@ -269,5 +270,10 @@ export default {
       500: 'Er heeft zich een onverwachte fout voorgedaan',
       back_to_homepage: 'Ga terug naar de homepagina',
     },
+  },
+
+  date_picker: {
+    select_date: 'selecteer datum',
+    select_time: 'selecteer tijd',
   },
 }

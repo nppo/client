@@ -168,6 +168,7 @@ export default {
             themes: 'Themes',
             people: 'Authors',
             parties: 'Parties',
+            published_at: 'Published on',
           },
         },
       },
@@ -269,5 +270,10 @@ export default {
       500: 'An unexpected error has occurred',
       back_to_homepage: 'Go back to the home page',
     },
+  },
+
+  date_picker: {
+    select_date: 'selecteer datum',
+    select_time: 'selecteer tijd',
   },
 }
