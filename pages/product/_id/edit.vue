@@ -215,13 +215,6 @@ export default class ProductEditPage extends mixins(NavigationRouterHook) {
   }
 
   created(): void {
-    if (this.$gates.unlessPermission('update products')) {
-      return this.$nuxt.error({
-        statusCode: 403,
-        message: String(this.$i18n.t('pages.error.403')),
-      })
-    }
-
     if (!this.product.can?.update) {
       return this.$nuxt.error({
         statusCode: 403,
