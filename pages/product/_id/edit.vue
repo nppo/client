@@ -116,8 +116,8 @@
 import { Component, Ref, mixins } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
-import { MetaAuthOptions } from '~/types/entities'
-import { Type } from '~/types/entities'
+import { MetaAuthOptions, Type } from '~/types/entities'
+
 import { Product, Party, Person, Tag, Theme } from '~/types/models'
 import objectToFormData from '~/common/utils/objectToFormData'
 
