@@ -2,6 +2,30 @@
   @apply w-full #{!important};
 
   .mx-input {
-    @apply w-full px-3 py-3 font-bold rounded-md shadow border-none bg-white h-auto text-xs leading-4.5;
+    @apply w-full px-3 py-3 font-bold rounded-md shadow border-none bg-white h-auto text-xs leading-4.5 text-blue-800;
   }
+}
+
+.mx-datepicker-main {
+    @apply text-blue-800 rounded-md shadow border-none text-xs #{!important};
+
+    .mx-table-date .cell.not-current-month {
+      @apply text-gray-200;
+    }
+
+    .mx-calendar-content .cell:hover {
+      @apply border-b-2 border-yellow-brand bg-transparent font-bold text-blue-800;
+    }
+
+    .mx-table-date .today {
+      @apply border-b-2 border-yellow-brand font-bold text-blue-800;
+
+      &:hover {
+        @apply border-yellow-brand border-0;
+      }
+    }
+
+    .mx-btn {
+      @apply text-gray-300;
+    }
 }

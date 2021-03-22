@@ -163,6 +163,7 @@ export default {
             themes: "Thema's",
             people: 'Auteurs',
             parties: 'Partijen',
+            published_at: 'Gepubliceerd op',
           },
         },
       },
