@@ -17,7 +17,7 @@
       </div>
     </Header>
 
-    <div v-if="activePage === 'project'" class="mb-12 border-b border-gray-200">
+    <div v-if="activePage !== 'edit'" class="mb-12 border-b border-gray-200">
       <div class="container relative h-full mx-auto">
         <nav class="flex space-x-16" aria-label="Tabs">
           <LocaleLink
@@ -67,7 +67,7 @@
 
           <div v-if="recentProducts.length > 0">
             <h2 class="mb-12 text-3xl font-bold">
-              {{ $t('pages.project._id.headings.recent_products') }}
+              {{ $t('pages.project._id.headings.featured_products') }}
             </h2>
 
             <div class="grid grid-cols-2 gap-4">
@@ -209,7 +209,9 @@ export default class ProjectDetailPage extends mixins(NavigationRouterHook) {
 
     return products
       .sort((productA, productB) =>
-        productB.publishedAt.localeCompare(productA.publishedAt)
+        productB.publishedAt === null
+          ? -1
+          : productB.publishedAt.localeCompare(productA.publishedAt)
       )
       .slice(0, 2)
   }

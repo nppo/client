@@ -62,7 +62,6 @@
               :options="parties"
               :label="$t('pages.project.form.labels.parties')"
               :error-message="$t('validation.required')"
-              :has-errors.sync="partiesError"
               option-label-attribute="name"
             />
 
@@ -71,7 +70,6 @@
               :options="relatedProducts"
               :label="$t('pages.project.form.labels.products')"
               :error-message="$t('validation.required')"
-              :has-errors.sync="productsError"
               option-label-attribute="title"
             />
           </div>
@@ -143,8 +141,6 @@ export default class ProjectEditPage extends mixins(NavigationRouterHook) {
   }
 
   private titleError: boolean = false
-  private partiesError: boolean = false
-  private productsError: boolean = false
 
   @Ref('form') readonly form!: HTMLFormElement
 

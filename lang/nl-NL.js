@@ -117,20 +117,34 @@ export default {
           contact: 'Contactpersoon',
           people: 'Personen',
           parties: 'Partijen',
+          part_of: 'Onderdeel van',
           summary: 'Samenvatting',
           description: 'Beschrijving',
           tags: 'Trefwoorden',
           themes: "Thema's",
+          more_products: 'Meer producten',
+        },
+        preview: {
+          fallback:
+            'Sorry, het was voor ons niet mogelijk om dit product te previewen',
         },
         actions: {
           share: 'Delen',
           bookmark: 'Opslaan',
+          download: 'Download',
         },
         edit: {
           title: 'Bewerk {name}',
           labels: {
+            type: 'Type',
             title: 'Titel',
+            summary: 'Samenvatting',
             description: 'Beschrijving',
+            file: 'Bestand',
+            tags: 'Tags',
+            themes: "Thema's",
+            people: 'Auteurs',
+            parties: 'Partijen',
           },
         },
       },
@@ -142,6 +156,7 @@ export default {
           labels: {
             type: 'Type',
             title: 'Titel',
+            summary: 'Samenvatting',
             description: 'Beschrijving',
             file: 'Bestand',
             tags: 'Tags',
@@ -153,6 +168,7 @@ export default {
       },
       types: {
         video: 'video',
+        image: 'afbeelding',
       },
     },
 
@@ -164,7 +180,7 @@ export default {
           parties: 'Partijen',
           description: 'Beschrijving',
           purpose: 'Doel van project',
-          recent_products: 'Recente producten',
+          featured_products: 'Uitgelichte producten',
           tags: 'Trefwoorden',
           themes: "Thema's",
         },

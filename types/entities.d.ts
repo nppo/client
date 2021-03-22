@@ -50,6 +50,17 @@ export interface Error {
   statusCode: number
 }
 
+export interface ProductLinks {
+  preview: string
+  download: string
+}
+
+export interface IconSetting {
+  type: string
+  icon: string
+  style: string
+}
+
 export interface MetaData {
   id: number
   label: string

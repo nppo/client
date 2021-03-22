@@ -20,14 +20,14 @@
             <div class="flex justify-between mb-6 space-x-32">
               <div class="flex flex-col mb-4">
                 <label
-                  :for="$t('pages.person.form.labels.project_picture')"
+                  :for="$t('pages.project.form.labels.project_picture')"
                   class="pl-3 mb-1"
                 >
-                  {{ $t('pages.person.form.labels.project_picture') }}
+                  {{ $t('pages.project.form.labels.project_picture') }}
                 </label>
 
                 <input
-                  :id="$t('pages.person.form.labels.project_picture')"
+                  :id="$t('pages.project.form.labels.project_picture')"
                   class="px-3 py-3 font-bold rounded-md shadow focus:outline-none"
                   type="file"
                   @change="projectPictureSelected"
@@ -59,6 +59,22 @@
                     class="p-3 font-bold rounded-md shadow focus:outline-none"
                   />
                 </div>
+
+                <Multiselect
+                  :entity.sync="formData.parties"
+                  :options="parties"
+                  :label="$t('pages.project.form.labels.parties')"
+                  :error-message="$t('validation.required')"
+                  option-label-attribute="name"
+                />
+
+                <Multiselect
+                  :entity.sync="formData.products"
+                  :options="relatedProducts"
+                  :label="$t('pages.project.form.labels.products')"
+                  :error-message="$t('validation.required')"
+                  option-label-attribute="title"
+                />
               </div>
               <div class="w-6/12">
                 <div class="flex flex-col mb-4">
@@ -94,10 +110,32 @@
 <script lang="ts">
 import { Component, mixins } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
+import { Context } from '@nuxt/types'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import objectToFormData from '~/common/utils/objectToFormData'
+import { Party, Person, Product } from '~/types/models'
 
 @Component({
+  async asyncData({ $accessor, $auth }: Context) {
+    const personId = ($auth.user?.person as Person).id
+
+    await $accessor.people.fetchCurrent(personId)
+  },
+
+  middleware: [
+    'auth',
+    ({ error, $gates, app: { i18n } }: Context) => {
+      if ($gates.hasPermission('create projects')) {
+        return
+      }
+
+      return error({
+        statusCode: 403,
+        message: String(i18n.t('pages.error.403')),
+      })
+    },
+  ],
+
   components: {
     ValidationObserver,
   },
@@ -107,9 +145,19 @@ export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
     title: '',
     description: '',
     purpose: '',
+    parties: [],
+    products: [],
   }
 
   private titleError: boolean = false
+
+  get parties(): Party[] {
+    return this.$accessor.people.current.parties || []
+  }
+
+  get relatedProducts(): Product[] {
+    return this.$accessor.people.current.products || []
+  }
 
   asFormData(): FormData {
     return objectToFormData(this.formData)

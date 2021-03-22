@@ -1,6 +1,6 @@
 <template>
-  <div class="relative overflow-hidden bg-white rounded">
-    <div style="padding-bottom: calc(100% / (16 / 9))" class="relative">
+  <div class="relative h-full overflow-hidden bg-white rounded">
+    <div class="relative product-base-card">
       <div class="absolute inset-0">
         <slot />
       </div>
@@ -8,7 +8,7 @@
 
     <div class="flex justify-between p-6 space-x-6">
       <div class="flex items-center space-x-6">
-        <Badge v-bind="{ ...icon }" :text="$t(`pages.product.types.${type}`)" />
+        <TypeBadge :product="product" />
 
         <h1 class="text-base">{{ product.title }}</h1>
       </div>
@@ -30,29 +30,13 @@ import { ProductTypeButton } from '~/types/entities'
 import { Product } from '~/types/models'
 
 @Component
-export default class ProductTypeBaseCard extends Vue {
-  @Prop({ type: String, required: true }) type!: string
+export default class ProductBaseCard extends Vue {
   @Prop({ type: Object, required: true }) product!: Product
   @Prop({ type: Array }) buttons!: ProductTypeButton[]
-
-  get icon(): { iconName: string; iconStyle: string } | null {
-    let iconName = ''
-    let iconStyle = ''
-
-    switch (this.type) {
-      case 'video':
-        iconName = 'video'
-        iconStyle = 'fas'
-        break
-
-      default:
-        return null
-    }
-
-    return {
-      iconName,
-      iconStyle,
-    }
-  }
 }
 </script>
+<style scoped>
+.product-base-card {
+  padding-bottom: calc(100% / (16 / 9));
+}
+</style>

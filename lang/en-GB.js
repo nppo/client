@@ -114,27 +114,42 @@ export default {
           contact: 'Contact',
           people: 'People',
           parties: 'Parties',
+          part_of: 'Part of',
           summary: 'Summary',
           description: 'Description',
           tags: 'Keywords',
           themes: 'Themes',
+          more_products: 'More products',
+        },
+
+        preview: {
+          fallback: 'Sorry, we were not able to preview this product',
         },
 
         edit: {
           title: 'Edit {name}',
           labels: {
+            type: 'Type',
             title: 'Title',
+            summary: 'Summary',
             description: 'Description',
+            file: 'File',
+            tags: 'Tags',
+            themes: 'Themes',
+            people: 'Authors',
+            parties: 'Parties',
           },
         },
 
         actions: {
           share: 'Share',
           bookmark: 'Save',
+          download: 'Download',
         },
       },
       types: {
         video: 'video',
+        image: 'image',
       },
 
       create: {
@@ -145,6 +160,7 @@ export default {
           labels: {
             type: 'Type',
             title: 'Title',
+            summary: 'Summary',
             description: 'Description',
             file: 'File',
             tags: 'Tags',
@@ -164,7 +180,7 @@ export default {
           parties: 'Parties',
           description: 'Description',
           purpose: 'Purpose of the project',
-          recent_products: 'Recent products',
+          featured_products: 'Featured products',
           tags: 'Keywords',
           themes: 'Themes',
         },

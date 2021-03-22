@@ -34,6 +34,7 @@
     "qs": "^6.9.6",
     "vee-validate": "^3.4.5",
     "vue-class-component": "^7.2.6",
+    "vue-cool-lightbox": "^2.7.1",
     "vue-gates": "^2.1.0",
     "vue-select": "^3.11.2",
     "vue-slick-carousel": "^1.0.6"
