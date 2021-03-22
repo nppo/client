@@ -97,6 +97,12 @@
                 :label="$t('pages.product._id.edit.labels.parties')"
                 :option-label="(option) => `${option.name}`"
               />
+
+              <DatePicker
+                :value.sync="formData.publishedAt"
+                :name="$t('pages.product.create.form.labels.published_at')"
+                :label="$t('pages.product.create.form.labels.published_at')"
+              />
             </div>
           </div>
         </div>
@@ -139,6 +145,7 @@ export default class ProductEditPage extends mixins(NavigationRouterHook) {
     themes: [],
     people: [],
     parties: [],
+    publishedAt: '',
   }
 
   private titleError: boolean = false
@@ -201,6 +208,7 @@ export default class ProductEditPage extends mixins(NavigationRouterHook) {
     this.formData.themes = this.product.themes
     this.formData.people = this.product.people
     this.formData.parties = this.product.parties
+    this.formData.publishedAt = this.product.publishedAt
     delete this.formData.file
   }
 

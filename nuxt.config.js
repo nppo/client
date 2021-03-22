@@ -192,6 +192,7 @@ export default {
         'faImage',
         'faDownload',
         'faFile',
+        'faCalendarAlt',
       ],
       regular: ['faBookmark', 'faPlayCircle'],
       brands: ['faLinkedin', 'faResearchgate', 'faTwitterSquare'],

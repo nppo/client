@@ -63,6 +63,9 @@ module.exports = {
       fontSize: {
         tiny: '0.625rem',
       },
+      lineHeight: {
+        4.5: '1.125rem',
+      },
     },
     customForms: () => ({
       default: {

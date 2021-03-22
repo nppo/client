@@ -37,7 +37,8 @@
     "vue-cool-lightbox": "^2.7.1",
     "vue-gates": "^2.1.0",
     "vue-select": "^3.11.2",
-    "vue-slick-carousel": "^1.0.6"
+    "vue-slick-carousel": "^1.0.6",
+    "vue2-datepicker": "^3.9.0"
   },
   "devDependencies": {
     "@fortawesome/free-brands-svg-icons": "^5.15.2",

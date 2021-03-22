@@ -100,6 +100,12 @@
                     :label="$t('pages.product.create.form.labels.parties')"
                     :option-label="(option) => `${option.name}`"
                   />
+
+                  <DatePicker
+                    :value.sync="formData.publishedAt"
+                    :name="$t('pages.product.create.form.labels.published_at')"
+                    :label="$t('pages.product.create.form.labels.published_at')"
+                  />
                 </div>
               </div>
             </div>
@@ -122,6 +128,7 @@ import { Component, mixins } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
 import { Context } from '@nuxt/types'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
+import objectToFormData from '~/common/utils/objectToFormData'
 import { Type } from '~/types/entities'
 import { Party, Person, Tag, Theme } from '~/types/models'
 
@@ -152,6 +159,7 @@ export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
     themes: [],
     people: [],
     parties: [],
+    publishedAt: '',
   }
 
   private titleError: boolean = false
@@ -185,25 +193,7 @@ export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
   }
 
   asFormData(): FormData {
-    const data = new FormData()
-
-    Object.entries(this.formData).forEach(([key, value]) => {
-      if (!Array.isArray(value)) {
-        data.append(key, value as string | Blob)
-        return
-      }
-
-      value.forEach((item, index) => {
-        Object.entries(item).forEach(([itemKey, itemValue]) => {
-          data.append(
-            `${key}[${index}][${itemKey}]`,
-            itemValue as string | Blob
-          )
-        })
-      })
-    })
-
-    return data
+    return objectToFormData(this.formData)
   }
 }
 </script>

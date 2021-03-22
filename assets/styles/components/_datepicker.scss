@@ -1,0 +1,7 @@
+.mx-datepicker {
+  @apply w-full #{!important};
+
+  .mx-input {
+    @apply w-full px-3 py-3 font-bold rounded-md shadow border-none bg-white h-auto text-xs leading-4.5;
+  }
+}
