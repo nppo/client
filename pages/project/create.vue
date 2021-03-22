@@ -119,7 +119,6 @@ import { Party, Person, Product } from '~/types/models'
   async asyncData({ $accessor, $auth }: Context) {
     const personId = ($auth.user?.person as Person).id
 
-    await $accessor.parties.fetchAll()
     await $accessor.people.fetchCurrent(personId)
   },
 
@@ -153,7 +152,7 @@ export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
   private titleError: boolean = false
 
   get parties(): Party[] {
-    return this.$accessor.parties.all
+    return this.$accessor.people.current.parties || []
   }
 
   get relatedProducts(): Product[] {
