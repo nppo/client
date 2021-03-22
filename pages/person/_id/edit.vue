@@ -87,6 +87,16 @@
           </div>
         </div>
 
+        <div>
+          <TextInput
+            v-for="(data, index) in formData.meta"
+            :key="index"
+            :name="data.label"
+            :label="data.label"
+            :value.sync="formData.meta[index].value"
+          />
+        </div>
+
         <button
           class="self-start px-4 py-2 text-sm text-white rounded bg-orange-brand"
           type="submit"
@@ -121,6 +131,7 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
     about: null,
     skills: [],
     themes: [],
+    meta: [],
   }
 
   private firstNameError: boolean = false
@@ -170,6 +181,7 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
     this.formData.about = this.person.about
     this.formData.skills = this.person.skills
     this.formData.themes = this.person.themes
+    this.formData.meta = JSON.parse(JSON.stringify(this.person.meta))
     delete this.formData.profile_picture
   }
 
