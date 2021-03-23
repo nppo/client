@@ -61,6 +61,8 @@
               <div
                 class="grid grid-cols-1 gap-4 mb-5 md:grid-cols-2 lg:grid-cols-3"
               >
+                <CollectionBlock />
+
                 <div
                   v-for="product in getMaxEntities(products, 6)"
                   :key="product.id"
