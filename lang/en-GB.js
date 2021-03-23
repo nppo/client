@@ -6,6 +6,9 @@ export default {
   },
 
   general: {
+    yes: 'Yes',
+    no: 'No',
+
     follow: 'Follow',
     skills: 'Skills',
     show_more: 'Show {number} more',

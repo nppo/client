@@ -6,6 +6,9 @@ export default {
   },
 
   general: {
+    yes: 'Ja',
+    no: 'Nee',
+
     follow: 'Volgen',
     skills: 'Skills',
     show_more: 'Toon {number} meer',

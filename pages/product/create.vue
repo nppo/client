@@ -53,7 +53,7 @@
 
               <div class="w-6/12">
                 <div class="flex flex-col mb-4">
-                  <CheckboxInput
+                  <ToggleInput
                     :value.sync="external"
                     :name="$t('pages.product.create.form.labels.external')"
                     :label="$t('pages.product.create.form.labels.external')"
