@@ -6,6 +6,9 @@ export default {
   },
 
   general: {
+    yes: 'Ja',
+    no: 'Nee',
+
     follow: 'Volgen',
     skills: 'Skills',
     show_more: 'Toon {number} meer',
@@ -156,6 +159,8 @@ export default {
         form: {
           labels: {
             type: 'Type',
+            external: 'Extern',
+            link: 'Link',
             title: 'Titel',
             summary: 'Samenvatting',
             description: 'Beschrijving',
@@ -171,6 +176,7 @@ export default {
       types: {
         video: 'video',
         image: 'afbeelding',
+        youtube: 'YouTube',
       },
     },
 

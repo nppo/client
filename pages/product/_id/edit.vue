@@ -128,14 +128,24 @@
 import { Component, Ref, mixins } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
-import { Type } from '~/types/entities'
+import { MetaAuthOptions, Type } from '~/types/entities'
+
 import { Product, Party, Person, Tag, Theme } from '~/types/models'
 import objectToFormData from '~/common/utils/objectToFormData'
 
 @Component({
+  meta: {
+    auth: {
+      requiredPermissions: ['update products'],
+    } as MetaAuthOptions,
+  },
+
+  middleware: ['auth', 'check-permissions'],
+
   async asyncData({ $accessor }) {
     await Promise.all([$accessor.tags.fetchAll(), $accessor.themes.fetchAll()])
   },
+
   components: {
     ValidationObserver,
   },
@@ -197,11 +207,11 @@ export default class ProductEditPage extends mixins(NavigationRouterHook) {
     }
   }
 
-  beforeMount() {
+  beforeMount(): void {
     this.resetForm()
   }
 
-  resetForm() {
+  resetForm(): void {
     if (this.form) {
       this.form.reset()
     }
@@ -218,14 +228,7 @@ export default class ProductEditPage extends mixins(NavigationRouterHook) {
     delete this.formData.file
   }
 
-  mounted(): void {
-    if (this.$gates.unlessPermission('update products')) {
-      return this.$nuxt.error({
-        statusCode: 403,
-        message: String(this.$i18n.t('pages.error.403')),
-      })
-    }
-
+  created(): void {
     if (!this.product.can?.update) {
       return this.$nuxt.error({
         statusCode: 403,

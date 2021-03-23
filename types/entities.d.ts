@@ -51,8 +51,7 @@ export interface Error {
 }
 
 export interface ProductLinks {
-  preview: string
-  download: string
+  preview: string | null
 }
 
 export interface IconSetting {
@@ -65,4 +64,8 @@ export interface MetaData {
   id: number
   label: string
   value: any
+}
+
+export interface MetaAuthOptions {
+  requiredPermissions?: string[]
 }

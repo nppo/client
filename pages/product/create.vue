@@ -84,7 +84,19 @@
 
               <div class="w-6/12">
                 <div class="flex flex-col mb-4">
+                  <ToggleInput
+                    :value.sync="external"
+                    :name="$t('pages.product.create.form.labels.external')"
+                    :label="$t('pages.product.create.form.labels.external')"
+                  />
+                  <TextInput
+                    v-if="external"
+                    :value.sync="formData.link"
+                    :name="$t('pages.product.create.form.labels.link')"
+                    :label="$t('pages.product.create.form.labels.link')"
+                  />
                   <FileInput
+                    v-else
                     :value.sync="formData.file"
                     :name="$t('pages.product.create.form.labels.file')"
                     :label="$t('pages.product.create.form.labels.file')"
@@ -141,6 +153,7 @@ import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import objectToFormData from '~/common/utils/objectToFormData'
 import { Type } from '~/types/entities'
 import { Party, Person, Tag, Theme } from '~/types/models'
+import objectToFormData from '~/common/utils/objectToFormData'
 
 @Component({
   components: {
@@ -170,7 +183,10 @@ export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
     people: [],
     parties: [],
     publishedAt: '',
+    link: null,
   }
+
+  private external: boolean = false
 
   private titleError: boolean = false
 
