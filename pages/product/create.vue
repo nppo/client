@@ -68,7 +68,19 @@
 
               <div class="w-6/12">
                 <div class="flex flex-col mb-4">
+                  <ToggleInput
+                    :value.sync="external"
+                    :name="$t('pages.product.create.form.labels.external')"
+                    :label="$t('pages.product.create.form.labels.external')"
+                  />
+                  <TextInput
+                    v-if="external"
+                    :value.sync="formData.link"
+                    :name="$t('pages.product.create.form.labels.link')"
+                    :label="$t('pages.product.create.form.labels.link')"
+                  />
                   <FileInput
+                    v-else
                     :value.sync="formData.file"
                     :name="$t('pages.product.create.form.labels.file')"
                     :label="$t('pages.product.create.form.labels.file')"
@@ -124,6 +136,7 @@ import { Context } from '@nuxt/types'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import { Type } from '~/types/entities'
 import { Party, Person, Tag, Theme } from '~/types/models'
+import objectToFormData from '~/common/utils/objectToFormData'
 
 @Component({
   components: {
@@ -152,7 +165,10 @@ export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
     themes: [],
     people: [],
     parties: [],
+    link: null,
   }
+
+  private external: boolean = false
 
   private titleError: boolean = false
 
@@ -185,25 +201,7 @@ export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
   }
 
   asFormData(): FormData {
-    const data = new FormData()
-
-    Object.entries(this.formData).forEach(([key, value]) => {
-      if (!Array.isArray(value)) {
-        data.append(key, value as string | Blob)
-        return
-      }
-
-      value.forEach((item, index) => {
-        Object.entries(item).forEach(([itemKey, itemValue]) => {
-          data.append(
-            `${key}[${index}][${itemKey}]`,
-            itemValue as string | Blob
-          )
-        })
-      })
-    })
-
-    return data
+    return objectToFormData(this.formData)
   }
 }
 </script>
