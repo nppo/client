@@ -1,6 +1,6 @@
 <template>
   <LocaleLink
-    :path="`/collection/1`"
+    :path="`/product/${product.id}`"
     class="flex flex-col h-full overflow-hidden bg-white rounded-md shadow"
   >
     <div class="relative">
@@ -19,22 +19,27 @@
     </div>
 
     <div class="flex justify-between px-4 text-tiny">
-      <span>21 sep 2020</span>
+      <span>{{ publishedAt }}</span>
     </div>
 
     <div class="flex flex-col p-4">
-      <h4 class="mb-3 text-base break-all">Titel van de collectie</h4>
+      <h4 class="mb-3 text-base break-all">{{ product.title }}</h4>
 
-      <div>
+      <div v-if="product.children && product.children.length > 0">
         <span class="block mb-1 font-bold text-blue-800">
-          {{ products.length }} producten:
+          {{ product.children.length }} product(en):
         </span>
 
         <div class="flex flex-wrap text-gray-300">
-          <div v-for="(product, index) in slicedProducts" :key="index">
-            <span class="block mb-1 mr-2">{{ product }}</span>
+          <div v-for="(product, index) in linkedProducts" :key="index">
+            <span class="block mb-1 mr-2">{{ product.title }}</span>
           </div>
-          <span class="font-bold text-blue-800">+{{ showMoreNumber }}</span>
+          <span
+            v-if="product.children.length > 6"
+            class="font-bold text-blue-800"
+          >
+            +{{ showMoreNumber }}
+          </span>
         </div>
       </div>
     </div>
@@ -43,7 +48,7 @@
       <div class="flex space-x-5">
         <div class="flex items-center space-x-1">
           <font-awesome-icon :icon="['fas', 'thumbs-up']" class="text-base" />
-          <span>111</span>
+          <span>{{ product.likes }}</span>
         </div>
         <div class="flex items-center space-x-1">
           <font-awesome-icon :icon="['fas', 'eye']" class="text-base" />
@@ -60,44 +65,35 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import { Product } from '~/types/models'
 
 @Component
 export default class CollectionBlock extends Vue {
   public showingAll: boolean = false
-  public products: Array<any> = [
-    'Liefde maakt blind?',
-    'Maria Toko',
-    'Website: Hang in there',
-    'Liefde maakt blind?',
-    'Maria Toko',
-    'Website: Hang in there',
-    'Liefde maakt blind?',
-    'Maria Toko',
-    'Website: Hang in there',
-  ]
 
+  @Prop({ type: Object, required: true }) readonly product!: Product
   @Prop({ type: Number, default: 6 }) maxFilters!: number
 
-  // get publishedAt(): string {
-  //   const date = this.$dayjs(this.product.publishedAt)
+  get publishedAt(): string {
+    const date = this.$dayjs(this.product.publishedAt)
 
-  //   return date.locale(this.$i18n.locale).format('D MMM YYYY')
-  // }
+    return date.locale(this.$i18n.locale).format('D MMM YYYY')
+  }
 
   get numberVisibleListItems(): number {
     if (this.showingAll) {
-      return this.products.length
+      return this.product.children.length
     }
 
     return this.maxFilters
   }
 
   get showMoreNumber(): number {
-    return this.products.length - this.maxFilters
+    return this.product.children.length - this.maxFilters
   }
 
-  get slicedProducts(): any[] {
-    return this.products.slice(0, this.numberVisibleListItems)
+  get linkedProducts(): Product[] {
+    return this.product.children?.slice(0, this.numberVisibleListItems) || []
   }
 }
 </script>

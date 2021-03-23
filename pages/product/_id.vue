@@ -202,17 +202,6 @@ export default class ProductDetailPage extends mixins(NavigationRouterHook) {
     return this.$accessor.products.current
   }
 
-  mounted() {
-    this.loadComponent
-      .then(() => {
-        this.viewerComponent = () => this.loadComponent
-      })
-      .catch(() => {
-        this.viewerComponent = () =>
-          import(`~/components/Product/FallbackCard.vue`)
-      })
-  }
-
   get loadComponent(): Promise<String> {
     const type =
       this.product.type.charAt(0).toUpperCase() + this.product.type.slice(1)
@@ -241,6 +230,17 @@ export default class ProductDetailPage extends mixins(NavigationRouterHook) {
           : productB.publishedAt.localeCompare(productA.publishedAt)
       )
       .slice(0, 2)
+  }
+
+  mounted() {
+    this.loadComponent
+      .then(() => {
+        this.viewerComponent = () => this.loadComponent
+      })
+      .catch(() => {
+        this.viewerComponent = () =>
+          import(`~/components/Product/FallbackCard.vue`)
+      })
   }
 }
 </script>
