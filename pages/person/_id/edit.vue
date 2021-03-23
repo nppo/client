@@ -92,7 +92,7 @@
             {{ $t('pages.person._id.edit.headings.metadata') }}
           </h2>
 
-          <div class="grid grid-cols-3 gap-4">
+          <div class="grid grid-cols-4 gap-4">
             <TextInput
               v-for="(data, index) in formData.meta"
               :key="index"
