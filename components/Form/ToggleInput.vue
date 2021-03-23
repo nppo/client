@@ -12,7 +12,7 @@
         class="flex items-center duration-300 ease-in-out transform translate-x-0"
         :class="{ 'translate-x-4': localValue }"
       >
-        <span v-if="localValue" class="mr-1 font-bold">
+        <span v-if="localValue" class="mr-2 font-bold">
           {{ $t('general.yes') }}
         </span>
         <div class="w-5 h-5 bg-white rounded-full shadow-md" />
