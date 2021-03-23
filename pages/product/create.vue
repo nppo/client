@@ -153,7 +153,6 @@ import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import objectToFormData from '~/common/utils/objectToFormData'
 import { Type } from '~/types/entities'
 import { Party, Person, Tag, Theme } from '~/types/models'
-import objectToFormData from '~/common/utils/objectToFormData'
 
 @Component({
   components: {
