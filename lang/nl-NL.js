@@ -220,6 +220,9 @@ export default {
         },
         edit: {
           title: 'Bewerk {name}',
+          headings: {
+            metadata: 'Metadata',
+          },
           labels: {
             first_name: 'Voornaam',
             profile_picture: 'Profiel foto',

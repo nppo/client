@@ -6,9 +6,13 @@ const nestedObjectToFromData = (
   index: number,
   key: string
 ): void => {
-  Object.entries(object).forEach(([itemKey, itemValue]) =>
+  Object.entries(object).forEach(([itemKey, itemValue]) => {
+    if (itemValue === null) {
+      itemValue = ''
+    }
+
     formData.append(`${key}[${index}][${itemKey}]`, itemValue)
-  )
+  })
 }
 
 const arrayToFormData = (
@@ -28,6 +32,10 @@ const arrayToFormData = (
         return nestedObjectToFromData(formData, item, index, key)
       }
 
+      if (item === null) {
+        item = ''
+      }
+
       // Handle non-object array
       formData.append(`${key}[${index}]`, item)
     }
@@ -42,6 +50,9 @@ export default function objectToFormData(
     ([key, value]: [string, FormDataValue | [string, FormDataValue][]]) => {
       if (Array.isArray(value)) {
         return arrayToFormData(formData, value, key)
+      }
+      if (value === null) {
+        value = ''
       }
 
       formData.append(key, value)

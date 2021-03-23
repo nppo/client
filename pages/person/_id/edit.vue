@@ -87,14 +87,20 @@
           </div>
         </div>
 
-        <div>
-          <TextInput
-            v-for="(data, index) in formData.meta"
-            :key="index"
-            :name="data.label"
-            :label="data.label"
-            :value.sync="formData.meta[index].value"
-          />
+        <div class="mb-6">
+          <h2 class="mb-4 text-3xl font-bold">
+            {{ $t('pages.person._id.edit.headings.metadata') }}
+          </h2>
+
+          <div class="grid grid-cols-3 gap-4">
+            <TextInput
+              v-for="(data, index) in formData.meta"
+              :key="index"
+              :name="data.label"
+              :label="data.label"
+              :value.sync="formData.meta[index].value"
+            />
+          </div>
         </div>
 
         <button

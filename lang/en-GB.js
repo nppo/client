@@ -128,6 +128,9 @@ export default {
 
         edit: {
           title: 'Edit {name}',
+          headings: {
+            metadata: 'Metadata',
+          },
           labels: {
             type: 'Type',
             title: 'Title',
