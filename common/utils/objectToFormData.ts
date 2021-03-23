@@ -44,9 +44,11 @@ export default function objectToFormData(
         return arrayToFormData(formData, value, key)
       }
 
-      if (value != null) {
-        formData.append(key, value)
+      if (value === null) {
+        value = ''
       }
+
+      formData.append(key, value)
     }
   )
 
