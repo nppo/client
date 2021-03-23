@@ -5,22 +5,12 @@
     </label>
     <date-picker
       v-model="localDate"
-      type="datetime"
-      :show-time-panel="showTimePanel"
-      :lang="lang"
+      value-type="format"
+      format="DD-MM-YYYY"
+      :lang="currentLocale"
     >
       <template #icon-calendar>
         <font-awesome-icon class="w-3 h-3 fill-current" icon="calendar-alt" />
-      </template>
-
-      <template #footer>
-        <button class="mx-btn mx-btn-text" @click="toggleTimePanel">
-          {{
-            showTimePanel
-              ? $t('date_picker.select_date')
-              : $t('date_picker.select_time')
-          }}
-        </button>
       </template>
     </date-picker>
   </div>
@@ -39,29 +29,32 @@ import 'vue2-datepicker/locale/en'
   },
 })
 export default class DatepickerInput extends Vue {
-  private localDate: string = ''
-  private lang: string = this.$i18n.locale
-  private showTimePanel: boolean = false
-
+  @Prop({ type: String }) value!: string
   @Prop({ type: String, default: '' }) readonly label!: string
   @Prop({ type: Boolean, default: false }) readonly required!: boolean
-  @Prop({ type: String, default: '' }) readonly errorMessage!: string
+
+  private localDate: string = this.formatDate(this.value)
 
   @Watch('localDate')
   updateDate() {
     this.$emit('update:value', this.localDate)
-
-    if (this.required) {
-      if (this.localDate.length > 0) {
-        this.$emit('update:hasErrors', false)
-      } else {
-        this.$emit('update:hasErrors', true)
-      }
-    }
   }
 
-  toggleTimePanel() {
-    this.showTimePanel = !this.showTimePanel
+  get currentLocale() {
+    return this.$i18n.locale
+  }
+
+  formatDate(dateString: string | null) {
+    if (dateString) {
+      const date = new Date(dateString)
+      return date.toLocaleDateString(this.$i18n.locale, {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+      })
+    }
+
+    return '-'
   }
 }
 </script>
