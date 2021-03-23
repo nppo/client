@@ -81,7 +81,7 @@ export default class CollectionBlock extends Vue {
   }
 
   get numberVisibleListItems(): number {
-    if (this.showingAll) {
+    if (this.showingAll && this.product.children) {
       return this.product.children.length
     }
 
@@ -89,7 +89,7 @@ export default class CollectionBlock extends Vue {
   }
 
   get showMoreNumber(): number {
-    return this.product.children.length - this.maxFilters
+    return this.product.children!.length - this.maxFilters
   }
 
   get linkedProducts(): Product[] {
