@@ -32,7 +32,7 @@
 
       <LocaleLink
         v-else
-        :path="accountLink"
+        path="login"
         class="px-4 py-2 text-sm text-white rounded bg-orange-brand"
       >
         {{ $t('auth.actions.login') }}
@@ -47,14 +47,6 @@ import { Person } from '~/types/models'
 
 @Component
 export default class Navbar extends Vue {
-  get accountLink(): string {
-    if (!this.$auth.loggedIn) {
-      return '/login'
-    }
-
-    return this.person ? `/person/${this.person.id}` : '/account'
-  }
-
   get person(): Person | undefined {
     return this.$auth.user?.person as Person
   }

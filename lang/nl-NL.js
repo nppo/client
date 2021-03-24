@@ -29,7 +29,6 @@ export default {
   },
 
   account: {
-    login: 'Inloggen',
     manage: 'Mijn Account',
     profile: 'Mijn Profiel',
   },
