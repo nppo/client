@@ -148,6 +148,7 @@ export default {
             themes: 'Themes',
             people: 'Authors',
             parties: 'Parties',
+            children: 'Underlying products',
           },
         },
 
@@ -178,6 +179,7 @@ export default {
             themes: 'Themes',
             people: 'Authors',
             parties: 'Parties',
+            children: 'Underlying products',
           },
         },
       },

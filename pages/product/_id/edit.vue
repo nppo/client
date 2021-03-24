@@ -97,6 +97,12 @@
                 :label="$t('pages.product._id.edit.labels.parties')"
                 :option-label="(option) => `${option.name}`"
               />
+              <Multiselect
+                :entity.sync="formData.children"
+                :options="products"
+                :label="$t('pages.product._id.edit.labels.children')"
+                option-label-attribute="title"
+              />
             </div>
           </div>
         </div>
@@ -131,7 +137,14 @@ import objectToFormData from '~/common/utils/objectToFormData'
   middleware: ['auth', 'check-permissions'],
 
   async asyncData({ $accessor }) {
-    await Promise.all([$accessor.tags.fetchAll(), $accessor.themes.fetchAll()])
+    await Promise.all([
+      $accessor.tags.fetchAll(), 
+      $accessor.themes.fetchAll(),
+      $accessor.people.fetchAll(),
+      $accessor.people.fetchCurrent(
+        $accessor.user.current.person?.id as number
+      ),
+    ])
   },
 
   components: {
@@ -149,6 +162,7 @@ export default class ProductEditPage extends mixins(NavigationRouterHook) {
     themes: [],
     people: [],
     parties: [],
+    children: [],
   }
 
   private titleError: boolean = false
@@ -177,6 +191,10 @@ export default class ProductEditPage extends mixins(NavigationRouterHook) {
 
   get parties(): Party[] {
     return this.$accessor.people.current.parties || []
+  }
+
+  get products(): Product[] {
+    return this.$accessor.people.current.products || []
   }
 
   asFormData(): FormData {
@@ -211,6 +229,7 @@ export default class ProductEditPage extends mixins(NavigationRouterHook) {
     this.formData.themes = this.product.themes
     this.formData.people = this.product.people
     this.formData.parties = this.product.parties
+    this.formData.children = this.product.children
     delete this.formData.file
   }
 
