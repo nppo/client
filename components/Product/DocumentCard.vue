@@ -11,10 +11,7 @@ import ProductPreview from '~/mixins/product-preview'
 @Component
 export default class DocumentCard extends mixins(ProductPreview) {
   get url(): string {
-    const url =
-      'https://docs.google.com/document/d/1ptrEWMme0hi0gpsg49SU2mrpKvWI71to9rRSYQNKNHg'
-
-    return `https://docs.google.com/gview?url=${url}&embedded=true`
+    return `https://docs.google.com/gview?url=${this.product.links?.preview}&embedded=true`
   }
 }
 </script>
