@@ -28,8 +28,15 @@ export default {
   },
 
   account: {
-    login: 'Login',
-    profile: 'My account',
+    manage: 'Mijn Account',
+    profile: 'Mijn Profiel',
+  },
+
+  auth: {
+    actions: {
+      login: 'Inloggen',
+      logout: 'Uitloggen',
+    },
   },
 
   entities: {
@@ -264,6 +271,10 @@ export default {
 
     login: {
       please_wait: 'Please wait while we try to log you in',
+    },
+
+    logout: {
+      please_wait: 'Een moment geduld terwijl wij je proberen uit te loggen',
     },
 
     error: {
