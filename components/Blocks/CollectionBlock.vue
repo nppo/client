@@ -12,7 +12,7 @@
             class="w-full"
             icon-style="fas"
             icon-name="folder-open"
-            text="collectie"
+            :text="$t('entities.collection.singular')"
           />
         </span>
       </div>

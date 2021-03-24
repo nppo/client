@@ -63,6 +63,11 @@ export default {
       plural: 'Projects',
       default: 'project | projects',
     },
+    collection: {
+      singular: 'Collection',
+      plural: 'Collections',
+      default: 'collection | collections',
+    },
   },
 
   filters: {
