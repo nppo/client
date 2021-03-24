@@ -274,7 +274,7 @@ export default {
     },
 
     logout: {
-      please_wait: 'Een moment geduld terwijl wij je proberen uit te loggen',
+      please_wait: 'Please wait while we try to log you out',
     },
 
     error: {
