@@ -277,9 +277,4 @@ export default {
       back_to_homepage: 'Ga terug naar de homepagina',
     },
   },
-
-  date_picker: {
-    select_date: 'selecteer datum',
-    select_time: 'selecteer tijd',
-  },
 }

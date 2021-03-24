@@ -275,9 +275,4 @@ export default {
       back_to_homepage: 'Go back to the home page',
     },
   },
-
-  date_picker: {
-    select_date: 'selecteer datum',
-    select_time: 'selecteer tijd',
-  },
 }
