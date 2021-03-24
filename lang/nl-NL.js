@@ -175,6 +175,7 @@ export default {
         video: 'video',
         image: 'afbeelding',
         youtube: 'YouTube',
+        document: 'Document',
       },
     },
 
