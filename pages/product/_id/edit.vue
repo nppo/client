@@ -138,7 +138,7 @@ import objectToFormData from '~/common/utils/objectToFormData'
 
   async asyncData({ $accessor }) {
     await Promise.all([
-      $accessor.tags.fetchAll(), 
+      $accessor.tags.fetchAll(),
       $accessor.themes.fetchAll(),
       $accessor.people.fetchAll(),
       $accessor.people.fetchCurrent(
