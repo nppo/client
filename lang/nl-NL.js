@@ -29,8 +29,15 @@ export default {
   },
 
   account: {
-    login: 'Inloggen',
-    profile: 'Mijn Account',
+    manage: 'Mijn Account',
+    profile: 'Mijn Profiel',
+  },
+
+  auth: {
+    actions: {
+      login: 'Inloggen',
+      logout: 'Uitloggen',
+    },
   },
 
   entities: {
@@ -172,8 +179,8 @@ export default {
         },
       },
       types: {
-        video: 'video',
-        image: 'afbeelding',
+        video: 'Video',
+        image: 'Afbeelding',
         youtube: 'YouTube',
         document: 'Document',
       },
@@ -267,6 +274,10 @@ export default {
 
     login: {
       please_wait: 'Een moment geduld terwijl wij je proberen in te loggen',
+    },
+
+    logout: {
+      please_wait: 'Een moment geduld terwijl wij je proberen uit te loggen',
     },
 
     error: {
