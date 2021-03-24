@@ -14,6 +14,6 @@ import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 @Component
 export default class DropdownArrows extends Vue {
-  @Prop({ type: String }) active!: string
+  @Prop({ type: Boolean, default: false }) readonly active!: boolean
 }
 </script>
