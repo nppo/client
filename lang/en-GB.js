@@ -28,14 +28,14 @@ export default {
   },
 
   account: {
-    manage: 'Mijn Account',
-    profile: 'Mijn Profiel',
+    manage: 'My Account',
+    profile: 'My Profile',
   },
 
   auth: {
     actions: {
-      login: 'Inloggen',
-      logout: 'Uitloggen',
+      login: 'Login',
+      logout: 'Logout',
     },
   },
 
