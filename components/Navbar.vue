@@ -17,17 +17,15 @@
         </template>
 
         <template #items>
-          <div class="divide-y divide-gray-100">
-            <div>
-              <LocaleLink
-                v-for="link in links"
-                :key="link.link"
-                :path="link.link"
-                class="w-full py-1 text-sm text-left border-b border-gray-100 hover:font-bold"
-              >
-                {{ $t(link.text) }}
-              </LocaleLink>
-            </div>
+          <div class="grid grid-cols-1 divide-y divide-gray-100">
+            <LocaleLink
+              v-for="link in links"
+              :key="link.link"
+              :path="link.link"
+              class="w-full py-1 text-sm text-left border-b border-gray-100 hover:font-bold"
+            >
+              {{ $t(link.text) }}
+            </LocaleLink>
           </div>
         </template>
       </Dropdown>
