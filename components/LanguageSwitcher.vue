@@ -6,7 +6,7 @@
       >
         <span>{{ currentLocale.toUpperCase() }}</span>
 
-        <DropdownArrows :active="active" />
+        <DropdownArrow :active="active" />
       </button>
     </template>
 

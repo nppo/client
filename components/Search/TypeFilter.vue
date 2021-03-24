@@ -8,7 +8,7 @@
       >
         <span>{{ $t('entities.type.singular') }}</span>
 
-        <DropdownArrows :active="active" />
+        <DropdownArrow :active="active" />
       </button>
     </template>
 

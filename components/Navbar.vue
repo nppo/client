@@ -16,7 +16,7 @@
           >
             <span>{{ $t('account.manage') }}</span>
 
-            <DropdownArrows :active="active" />
+            <DropdownArrow :active="active" />
           </button>
         </template>
 
