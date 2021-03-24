@@ -5,13 +5,7 @@
       has-dark-header
       has-search-bar
     >
-      <div
-        class="flex justify-between"
-        :class="{
-          'mt-8 pb-96': activePage === 'product',
-          'pb-4': activePage !== 'product',
-        }"
-      >
+      <div class="flex justify-between pb-4">
         <BackButton :has-navigated-internal="hasNavigatedInternal" />
 
         <EditButton
@@ -20,13 +14,55 @@
           :entity-id="product.id"
         />
       </div>
-    </Header>
 
-    <div class="container mx-auto">
-      <div v-if="activePage === 'product'" class="grid grid-cols-12 -mt-104">
-        <ProductCard :product="product" class="col-span-8 col-start-3" />
+      <div class="flex items-center mb-4 space-x-3" v-if="activePage === 'product' && isCollectionType && product.children.length">
+        <TypeBadge :product="product" /><h1 class="text-4xl text-white">{{ product.title }}</h1>
       </div>
 
+      <div
+        class="flex"
+        :class="
+          isCollectionType && product.children.length
+            ? 'justify-between'
+            : 'justify-center'
+        "
+        v-if="activePage === 'product'"
+      >
+        <div class="relative w-8/12 h-112">
+          <div class="absolute inset-x-0 top-0">
+            <ProductCard :product="highlightedProduct" class="w-full" />
+          </div>
+        </div>
+
+        <div class="w-3/12" v-if="isCollectionType && product.children.length">
+          <h4 class="h-8 px-2 text-base font-bold text-white">
+            {{ product.children.length }} {{ $tc('entities.product.default', product.children.length) }}
+          </h4>
+
+          <div class="flex flex-col px-2 space-y-3 overflow-y-auto h-104">
+            <LocaleLink
+              :path="`/product/${child.id}`"
+              :key="child.id"
+              v-for="child in product.children"
+              class="flex bg-white"
+            >
+              <img
+                class="flex-shrink-0 object-cover w-4/12 h-full"
+                src="https://picsum.photos/300/300"
+              />
+              <div
+                class="flex flex-col items-baseline justify-center flex-1 px-3 py-2 space-y-2"
+              >
+                <TypeBadge :product="child" />
+                <h5>{{ child.title }}</h5>
+              </div>
+            </LocaleLink>
+          </div>
+        </div>
+      </div>
+    </Header>
+
+    <div class="container mx-auto mt-40">
       <NuxtChild />
     </div>
 
@@ -218,6 +254,16 @@ export default class ProductDetailPage extends mixins(NavigationRouterHook) {
           : productB.publishedAt.localeCompare(productA.publishedAt)
       )
       .slice(0, 2)
+  }
+
+  get isCollectionType(): boolean {
+    return this.product.type === 'collection'
+  }
+
+  get highlightedProduct(): Product {
+    return this.isCollectionType && this.product.children?.length
+      ? this.product.children[0]
+      : this.product
   }
 }
 </script>
