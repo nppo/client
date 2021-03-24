@@ -6,6 +6,9 @@ export default {
   },
 
   general: {
+    yes: 'Yes',
+    no: 'No',
+
     follow: 'Follow',
     skills: 'Skills',
     show_more: 'Show {number} more',
@@ -25,8 +28,15 @@ export default {
   },
 
   account: {
-    login: 'Login',
-    profile: 'My account',
+    manage: 'My Account',
+    profile: 'My Profile',
+  },
+
+  auth: {
+    actions: {
+      login: 'Login',
+      logout: 'Logout',
+    },
   },
 
   entities: {
@@ -151,8 +161,9 @@ export default {
         },
       },
       types: {
-        video: 'video',
-        image: 'image',
+        video: 'Video',
+        image: 'Image',
+        youtube: 'YouTube',
       },
 
       create: {
@@ -263,6 +274,10 @@ export default {
 
     login: {
       please_wait: 'Please wait while we try to log you in',
+    },
+
+    logout: {
+      please_wait: 'Please wait while we try to log you out',
     },
 
     error: {

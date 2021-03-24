@@ -114,28 +114,22 @@ import { Context } from '@nuxt/types'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import objectToFormData from '~/common/utils/objectToFormData'
 import { Party, Person, Product } from '~/types/models'
+import { MetaAuthOptions } from '~/types/entities'
 
 @Component({
   async asyncData({ $accessor, $auth }: Context) {
     const personId = ($auth.user?.person as Person).id
 
-    await $accessor.parties.fetchAll()
     await $accessor.people.fetchCurrent(personId)
   },
 
-  middleware: [
-    'auth',
-    ({ error, $gates, app: { i18n } }: Context) => {
-      if ($gates.hasPermission('create projects')) {
-        return
-      }
+  meta: {
+    auth: {
+      requiredPermissions: ['create projects'],
+    } as MetaAuthOptions,
+  },
 
-      return error({
-        statusCode: 403,
-        message: String(i18n.t('pages.error.403')),
-      })
-    },
-  ],
+  middleware: ['auth', 'check-permissions'],
 
   components: {
     ValidationObserver,
@@ -153,7 +147,7 @@ export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
   private titleError: boolean = false
 
   get parties(): Party[] {
-    return this.$accessor.parties.all
+    return this.$accessor.people.current.parties || []
   }
 
   get relatedProducts(): Product[] {

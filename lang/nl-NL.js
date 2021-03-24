@@ -6,6 +6,9 @@ export default {
   },
 
   general: {
+    yes: 'Ja',
+    no: 'Nee',
+
     follow: 'Volgen',
     skills: 'Skills',
     show_more: 'Toon {number} meer',
@@ -26,8 +29,15 @@ export default {
   },
 
   account: {
-    login: 'Inloggen',
-    profile: 'Mijn Account',
+    manage: 'Mijn Account',
+    profile: 'Mijn Profiel',
+  },
+
+  auth: {
+    actions: {
+      login: 'Inloggen',
+      logout: 'Uitloggen',
+    },
   },
 
   entities: {
@@ -155,6 +165,8 @@ export default {
         form: {
           labels: {
             type: 'Type',
+            external: 'Extern',
+            link: 'Link',
             title: 'Titel',
             summary: 'Samenvatting',
             description: 'Beschrijving',
@@ -167,8 +179,9 @@ export default {
         },
       },
       types: {
-        video: 'video',
-        image: 'afbeelding',
+        video: 'Video',
+        image: 'Afbeelding',
+        youtube: 'YouTube',
       },
     },
 
@@ -263,6 +276,10 @@ export default {
 
     login: {
       please_wait: 'Een moment geduld terwijl wij je proberen in te loggen',
+    },
+
+    logout: {
+      please_wait: 'Een moment geduld terwijl wij je proberen uit te loggen',
     },
 
     error: {
