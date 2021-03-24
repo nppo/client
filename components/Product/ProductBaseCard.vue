@@ -1,12 +1,12 @@
 <template>
-  <div class="relative h-full overflow-hidden bg-white rounded">
-    <div class="relative product-base-card">
+  <div class="relative">
+    <div class="relative overflow-hidden bg-white rounded-t product-base-card">
       <div class="absolute inset-0">
         <slot />
       </div>
     </div>
 
-    <div class="flex justify-between p-6 space-x-6">
+    <div class="absolute inset-x-0 flex justify-between p-6 space-x-6 overflow-hidden bg-white rounded-b">
       <div class="flex items-center space-x-6">
         <TypeBadge :product="product" />
 

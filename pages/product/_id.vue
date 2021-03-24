@@ -15,8 +15,16 @@
         />
       </div>
 
-      <div class="flex items-center mb-4 space-x-3" v-if="activePage === 'product' && isCollectionType && product.children.length">
-        <TypeBadge :product="product" /><h1 class="text-4xl text-white">{{ product.title }}</h1>
+      <div
+        class="flex items-center mb-4 space-x-3"
+        v-if="
+          activePage === 'product' &&
+          isCollectionType &&
+          product.children.length
+        "
+      >
+        <TypeBadge :product="product" />
+        <h1 class="text-4xl text-white">{{ product.title }}</h1>
       </div>
 
       <div
@@ -28,18 +36,22 @@
         "
         v-if="activePage === 'product'"
       >
-        <div class="relative w-8/12 h-112">
-          <div class="absolute inset-x-0 top-0">
-            <ProductCard :product="highlightedProduct" class="w-full" />
-          </div>
+        <div class="relative w-8/12">
+          <ProductCard :product="highlightedProduct" />
         </div>
 
-        <div class="w-3/12" v-if="isCollectionType && product.children.length">
-          <h4 class="h-8 px-2 text-base font-bold text-white">
-            {{ product.children.length }} {{ $tc('entities.product.default', product.children.length) }}
+        <div
+          class="flex flex-col w-3/12"
+          v-if="isCollectionType && product.children.length"
+        >
+          <h4 class="px-2 mb-4 text-base font-bold text-white">
+            {{ product.children.length }}
+            {{ $tc('entities.product.default', product.children.length) }}
           </h4>
 
-          <div class="flex flex-col px-2 space-y-3 overflow-y-auto h-104">
+          <div
+            class="flex flex-col flex-none flex-grow h-0 px-2 pb-2 space-y-3 overflow-y-auto"
+          >
             <LocaleLink
               :path="`/product/${child.id}`"
               :key="child.id"
