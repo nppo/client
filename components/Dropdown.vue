@@ -15,7 +15,7 @@
       <div
         v-show="active"
         ref="items"
-        class="absolute right-0 px-4 py-3 mt-2 text-blue-800 origin-top-right bg-white rounded shadow min-w-40 max-h-48 overflow-y-auto z-10 break-words"
+        class="absolute right-0 z-10 px-4 py-3 mt-2 overflow-y-auto text-blue-800 break-words origin-top-right bg-white rounded shadow min-w-40 max-h-48"
       >
         <slot ref="items" name="items" />
       </div>
@@ -24,11 +24,20 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Vue, Watch } from 'nuxt-property-decorator'
 
 @Component
 export default class Dropdown extends Vue {
   private active: boolean = false
+
+  @Watch('active')
+  updateActiveState() {
+    if (this.active) {
+      this.$emit('update:is-active', true)
+    } else {
+      this.$emit('update:is-active', false)
+    }
+  }
 
   handleClickEvent(event: Event) {
     const isInsideDropdown = (this.$refs.dropdown as Element).contains(

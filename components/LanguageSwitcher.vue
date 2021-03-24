@@ -1,11 +1,12 @@
 <template>
-  <Dropdown>
+  <Dropdown :is-active.sync="active">
     <template #button>
       <button
         class="flex items-center p-2 space-x-4 text-sm font-bold bg-white rounded"
       >
         <span>{{ currentLocale.toUpperCase() }}</span>
-        <font-awesome-icon class="w-3 h-3 fill-current" icon="arrow-down" />
+
+        <DropdownArrows :active="active" />
       </button>
     </template>
 
@@ -35,6 +36,8 @@ import { Component, Vue } from 'nuxt-property-decorator'
 
 @Component
 export default class LanguageSwitcher extends Vue {
+  public active: boolean = false
+
   get currentLocale() {
     return this.$i18n.locale
   }

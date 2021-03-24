@@ -9,10 +9,14 @@
     <div class="flex space-x-2">
       <LanguageSwitcher />
 
-      <Dropdown v-if="$auth.loggedIn">
+      <Dropdown v-if="$auth.loggedIn" :is-active.sync="active">
         <template #button>
-          <button class="px-4 py-2 text-sm text-white rounded bg-orange-brand">
-            {{ $t('account.manage') }}
+          <button
+            class="flex items-center px-4 py-2 space-x-4 text-sm text-white rounded bg-orange-brand"
+          >
+            <span>{{ $t('account.manage') }}</span>
+
+            <DropdownArrows :active="active" />
           </button>
         </template>
 
@@ -47,6 +51,8 @@ import { Person } from '~/types/models'
 
 @Component
 export default class Navbar extends Vue {
+  public active: boolean = false
+
   get person(): Person | undefined {
     return this.$auth.user?.person as Person
   }
