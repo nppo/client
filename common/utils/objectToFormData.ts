@@ -1,5 +1,17 @@
 type FormDataValue = string | Blob
 
+const appendToFromData = (
+  formData: FormData,
+  key: string,
+  value: FormDataValue
+): void => {
+  if (value === null) {
+    value = ''
+  }
+
+  formData.append(key, value)
+}
+
 const nestedObjectToFromData = (
   formData: FormData,
   object: [string, FormDataValue],
@@ -11,7 +23,7 @@ const nestedObjectToFromData = (
       itemValue = ''
     }
 
-    formData.append(`${key}[${index}][${itemKey}]`, itemValue)
+    appendToFromData(formData, `${key}[${index}][${itemKey}]`, itemValue)
   })
 }
 
@@ -32,12 +44,8 @@ const arrayToFormData = (
         return nestedObjectToFromData(formData, item, index, key)
       }
 
-      if (item === null) {
-        item = ''
-      }
-
       // Handle non-object array
-      formData.append(`${key}[${index}]`, item)
+      appendToFromData(formData, `${key}[${index}]`, item)
     }
   )
 }
@@ -51,11 +59,8 @@ export default function objectToFormData(
       if (Array.isArray(value)) {
         return arrayToFormData(formData, value, key)
       }
-      if (value === null) {
-        value = ''
-      }
 
-      formData.append(key, value)
+      appendToFromData(formData, key, value)
     }
   )
 
