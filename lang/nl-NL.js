@@ -177,8 +177,8 @@ export default {
         },
       },
       types: {
-        video: 'video',
-        image: 'afbeelding',
+        video: 'Video',
+        image: 'Afbeelding',
         youtube: 'YouTube',
       },
     },

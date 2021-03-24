@@ -156,8 +156,8 @@ export default {
         },
       },
       types: {
-        video: 'video',
-        image: 'image',
+        video: 'Video',
+        image: 'Image',
         youtube: 'YouTube',
       },
 

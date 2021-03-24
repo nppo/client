@@ -18,8 +18,7 @@
           class="m-4 mb-5 min-w-1/4"
           :class="{ 'absolute top-0 left-0': productImage }"
         >
-          <!-- TODO: Make sure the badge reflects information from the product -->
-          <Badge class="w-full" icon-style="fas" icon-name="link" text="TBA" />
+          <TypeBadge :product="product" />
         </span>
       </div>
     </div>

@@ -24,11 +24,7 @@
 
     <div class="container mx-auto">
       <div v-if="activePage === 'product'" class="grid grid-cols-12 -mt-104">
-        <component
-          :is="viewerComponent"
-          :product="product"
-          class="col-span-8 col-start-3"
-        />
+        <ProductCard :product="product" class="col-span-8 col-start-3" />
       </div>
 
       <NuxtChild />
@@ -187,8 +183,6 @@ import { Product } from '~/types/models'
   },
 })
 export default class ProductDetailPage extends mixins(NavigationRouterHook) {
-  private viewerComponent: any = null
-
   get activePage(): string {
     const basePath =
       this.$i18n.defaultLocale !== this.$i18n.locale
@@ -200,12 +194,6 @@ export default class ProductDetailPage extends mixins(NavigationRouterHook) {
 
   get product(): Product {
     return this.$accessor.products.current
-  }
-
-  get loadComponent(): Promise<String> {
-    const type =
-      this.product.type.charAt(0).toUpperCase() + this.product.type.slice(1)
-    return import(`~/components/Product/${type}Card.vue`)
   }
 
   get products(): Product[] {
@@ -230,17 +218,6 @@ export default class ProductDetailPage extends mixins(NavigationRouterHook) {
           : productB.publishedAt.localeCompare(productA.publishedAt)
       )
       .slice(0, 2)
-  }
-
-  mounted() {
-    this.loadComponent
-      .then(() => {
-        this.viewerComponent = () => this.loadComponent
-      })
-      .catch(() => {
-        this.viewerComponent = () =>
-          import(`~/components/Product/FallbackCard.vue`)
-      })
   }
 }
 </script>
