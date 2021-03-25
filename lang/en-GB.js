@@ -164,6 +164,7 @@ export default {
         video: 'Video',
         image: 'Image',
         youtube: 'YouTube',
+        document: 'Document',
       },
 
       create: {

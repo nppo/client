@@ -182,6 +182,7 @@ export default {
         video: 'Video',
         image: 'Afbeelding',
         youtube: 'YouTube',
+        document: 'Document',
       },
     },
 
