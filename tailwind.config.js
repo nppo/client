@@ -39,6 +39,7 @@ module.exports = {
       },
       backgroundOpacity: (theme) => theme('opacity'),
       spacing: {
+        11: '2.625rem',
         18: '4.5rem',
         28: '7rem',
         96: '24rem',
@@ -52,6 +53,9 @@ module.exports = {
         40: theme('spacing.40'),
         '1/4': '25%',
       }),
+      minHeight: (theme) => ({
+        11: theme('spacing.11'),
+      }),
       maxHeight: (theme) => ({
         40: theme('spacing.40'),
         48: theme('spacing.48'),
@@ -63,6 +67,9 @@ module.exports = {
       },
       fontSize: {
         tiny: '0.625rem',
+      },
+      lineHeight: {
+        4.5: '1.125rem',
       },
     },
     customForms: () => ({

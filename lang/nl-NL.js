@@ -71,6 +71,11 @@ export default {
       plural: 'Projecten',
       default: 'project | projecten',
     },
+    collection: {
+      singular: 'Collectie',
+      plural: 'Collecties',
+      default: 'collectie | collecties',
+    },
   },
 
   filters: {
@@ -156,6 +161,7 @@ export default {
             people: 'Auteurs',
             parties: 'Partijen',
             children: 'Onderliggende producten',
+            published_at: 'Gepubliceerd op',
           },
         },
       },
@@ -177,6 +183,7 @@ export default {
             people: 'Auteurs',
             parties: 'Partijen',
             children: 'Onderliggende producten',
+            published_at: 'Gepubliceerd op',
           },
         },
       },

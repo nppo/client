@@ -17,15 +17,31 @@
             class="p-4 overflow-hidden bg-white rounded-md shadow"
             @submit.prevent="create"
           >
-            <div class="flex justify-between mb-6 space-x-32">
+            <div class="flex mb-6 space-x-32">
               <div class="w-6/12">
-                <SelectInput
-                  :value.sync="formData.type"
-                  :name="$t('pages.product.create.form.labels.type')"
-                  :label="$t('pages.product.create.form.labels.type')"
-                  :options="types"
-                  :on-selected="(option) => option.label"
-                />
+                <div class="flex space-x-8">
+                  <div class="w-6/12">
+                    <SelectInput
+                      :value.sync="formData.type"
+                      :name="$t('pages.product.create.form.labels.type')"
+                      :label="$t('pages.product.create.form.labels.type')"
+                      :options="types"
+                      :on-selected="(option) => option.label"
+                    />
+                  </div>
+
+                  <div class="w-6/12">
+                    <DatePicker
+                      :value.sync="formData.publishedAt"
+                      :name="
+                        $t('pages.product.create.form.labels.published_at')
+                      "
+                      :label="
+                        $t('pages.product.create.form.labels.published_at')
+                      "
+                    />
+                  </div>
+                </div>
 
                 <TextInput
                   :value.sync="formData.title"
@@ -140,9 +156,9 @@ import { Component, mixins } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
 import { Context } from '@nuxt/types'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
+import objectToFormData from '~/common/utils/objectToFormData'
 import { Type } from '~/types/entities'
 import { Party, Person, Product, Tag, Theme } from '~/types/models'
-import objectToFormData from '~/common/utils/objectToFormData'
 
 @Component({
   components: {
@@ -171,6 +187,7 @@ export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
     themes: [],
     people: [],
     parties: [],
+    publishedAt: '',
     link: null,
     children: [],
   }

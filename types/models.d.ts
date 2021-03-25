@@ -64,6 +64,7 @@ export interface Product extends Model {
   links?: ProductLinks
   meta?: MetaData[]
   children?: Product[]
+  parents?: Product[]
 }
 
 export interface Owner extends Model {
