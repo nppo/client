@@ -28,8 +28,6 @@ import { ValidationProvider } from 'vee-validate'
 
 import vSelect from 'vue-select'
 
-import 'vue-select/dist/vue-select.css'
-
 @Component({
   components: {
     vSelect,

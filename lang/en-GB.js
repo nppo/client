@@ -156,6 +156,7 @@ export default {
             themes: 'Themes',
             people: 'Authors',
             parties: 'Parties',
+            published_at: 'Published on',
           },
         },
 
@@ -187,6 +188,7 @@ export default {
             themes: 'Themes',
             people: 'Authors',
             parties: 'Parties',
+            published_at: 'Published on',
           },
         },
       },
