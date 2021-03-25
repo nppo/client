@@ -16,33 +16,33 @@
       </div>
 
       <div
-        class="flex items-center mb-4 space-x-3"
         v-if="
           activePage === 'product' &&
           isCollectionType &&
           product.children.length
         "
+        class="flex items-center mb-4 space-x-3"
       >
         <TypeBadge :product="product" />
         <h1 class="text-4xl text-white">{{ product.title }}</h1>
       </div>
 
       <div
+        v-if="activePage === 'product'"
         class="flex"
         :class="
           isCollectionType && product.children.length
             ? 'justify-between'
             : 'justify-center'
         "
-        v-if="activePage === 'product'"
       >
         <div class="relative w-8/12">
           <ProductCard :product="highlightedProduct" />
         </div>
 
         <div
-          class="flex flex-col w-3/12"
           v-if="isCollectionType && product.children.length"
+          class="flex flex-col w-3/12"
         >
           <h4 class="px-2 mb-4 text-base font-bold text-white">
             {{ product.children.length }}
@@ -53,9 +53,9 @@
             class="flex flex-col flex-none flex-grow h-0 px-2 pb-2 space-y-3 overflow-y-auto"
           >
             <LocaleLink
-              :path="`/product/${child.id}`"
-              :key="child.id"
               v-for="child in product.children"
+              :key="child.id"
+              :path="`/product/${child.id}`"
               class="flex bg-white"
             >
               <img
