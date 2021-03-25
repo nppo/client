@@ -162,6 +162,7 @@ export default {
         video: 'Video',
         image: 'Image',
         youtube: 'YouTube',
+        collection: 'Collection',
       },
 
       create: {
