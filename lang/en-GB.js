@@ -166,6 +166,7 @@ export default {
         image: 'Image',
         youtube: 'YouTube',
         collection: 'Collection',
+        document: 'Document',
       },
 
       create: {

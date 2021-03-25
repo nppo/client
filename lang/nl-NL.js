@@ -185,6 +185,7 @@ export default {
         image: 'Afbeelding',
         youtube: 'YouTube',
         collection: 'Collectie',
+        document: 'Document',
       },
     },
 
