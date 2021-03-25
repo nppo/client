@@ -44,6 +44,7 @@ export interface Person extends Model {
   products?: Product[]
   projects?: Project[]
   themes?: Theme[]
+  meta?: MetaData[]
 }
 
 export interface Product extends Model {
