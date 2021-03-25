@@ -56,10 +56,10 @@
               v-for="child in product.children"
               :key="child.id"
               :path="`/product/${child.id}`"
-              class="flex bg-white"
+              class="flex bg-white rounded shadow"
             >
               <img
-                class="flex-shrink-0 object-cover w-4/12 h-full"
+                class="flex-shrink-0 object-cover w-4/12 h-full rounded-l"
                 src="https://picsum.photos/300/300"
               />
               <div
