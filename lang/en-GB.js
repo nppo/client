@@ -25,6 +25,7 @@ export default {
 
   validation: {
     required: 'This field is required',
+    required_label: '*required',
   },
 
   account: {

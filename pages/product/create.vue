@@ -31,6 +31,7 @@
                   :value.sync="formData.title"
                   :name="$t('pages.product.create.form.labels.title')"
                   :label="$t('pages.product.create.form.labels.title')"
+                  :required="true"
                   :error-message="$t('validation.required')"
                   :has-errors.sync="titleError"
                 />
@@ -193,6 +194,10 @@ export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
   }
 
   create(): void {
+    if (!this.formData.title) {
+      this.titleError = true
+    }
+
     if (!this.titleError) {
       this.$accessor.products.store(this.asFormData()).then(() => {
         this.$router.push('/product/' + this.$accessor.products.current.id)

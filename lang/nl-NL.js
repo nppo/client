@@ -26,6 +26,7 @@ export default {
 
   validation: {
     required: 'Dit veld is verplicht',
+    required_label: '*verplicht',
   },
 
   account: {
