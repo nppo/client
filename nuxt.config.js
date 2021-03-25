@@ -176,6 +176,7 @@ export default {
   fontawesome: {
     icons: {
       solid: [
+        'faArrowUp',
         'faArrowDown',
         'faArrowLeft',
         'faArrowRight',
