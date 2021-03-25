@@ -44,6 +44,7 @@ export interface Person extends Model {
   products?: Product[]
   projects?: Project[]
   themes?: Theme[]
+  meta?: MetaData[]
 }
 
 export interface Product extends Model {
@@ -62,6 +63,8 @@ export interface Product extends Model {
   tags?: Tag[]
   links?: ProductLinks
   meta?: MetaData[]
+  children?: Product[]
+  parents?: Product[]
 }
 
 export interface Owner extends Model {

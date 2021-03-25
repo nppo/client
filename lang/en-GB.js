@@ -28,8 +28,15 @@ export default {
   },
 
   account: {
-    login: 'Login',
-    profile: 'My account',
+    manage: 'My Account',
+    profile: 'My Profile',
+  },
+
+  auth: {
+    actions: {
+      login: 'Login',
+      logout: 'Logout',
+    },
   },
 
   entities: {
@@ -62,6 +69,11 @@ export default {
       singular: 'Project',
       plural: 'Projects',
       default: 'project | projects',
+    },
+    collection: {
+      singular: 'Collection',
+      plural: 'Collections',
+      default: 'collection | collections',
     },
   },
 
@@ -131,6 +143,9 @@ export default {
 
         edit: {
           title: 'Edit {name}',
+          headings: {
+            metadata: 'Metadata',
+          },
           labels: {
             type: 'Type',
             title: 'Title',
@@ -152,9 +167,10 @@ export default {
         },
       },
       types: {
-        video: 'video',
-        image: 'image',
+        video: 'Video',
+        image: 'Image',
         youtube: 'YouTube',
+        document: 'Document',
       },
 
       create: {
@@ -266,6 +282,10 @@ export default {
 
     login: {
       please_wait: 'Please wait while we try to log you in',
+    },
+
+    logout: {
+      please_wait: 'Please wait while we try to log you out',
     },
 
     error: {
