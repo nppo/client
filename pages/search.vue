@@ -65,7 +65,14 @@
                   v-for="product in getMaxEntities(products, 6)"
                   :key="product.id"
                 >
-                  <ProductBlock :product="product" />
+                  <component
+                    :is="
+                      product.children.length > 0
+                        ? 'CollectionBlock'
+                        : 'ProductBlock'
+                    "
+                    :product="product"
+                  />
                 </div>
               </div>
             </SearchCollapse>
@@ -141,6 +148,9 @@ import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import { Search, Type } from '~/types/entities'
 import { Party, Person, Product, Project, Theme } from '~/types/models'
 
+import CollectionBlock from '~/components/Blocks/CollectionBlock.vue'
+import ProductBlock from '~/components/Blocks/ProductBlock.vue'
+
 @Component({
   async fetch(this: SearchPage) {
     await this.$accessor.themes.fetchAll()
@@ -149,6 +159,10 @@ import { Party, Person, Product, Project, Theme } from '~/types/models'
     this.prepareFilters()
 
     await this.search()
+  },
+  components: {
+    CollectionBlock,
+    ProductBlock,
   },
 })
 export default class SearchPage extends mixins(NavigationRouterHook) {
@@ -186,6 +200,10 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
 
   get filters() {
     return this.$accessor.search.filters
+  }
+
+  get hasSpecificTypeFilter(): boolean {
+    return this.filters.types?.length === 1
   }
 
   isActive(id: any, type: string): boolean {
@@ -257,10 +275,6 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
         }
       }
     }
-  }
-
-  get hasSpecificTypeFilter(): boolean {
-    return this.filters.types?.length === 1
   }
 
   setFilterByLabel(label: string): void {

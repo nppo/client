@@ -7,7 +7,7 @@
       <!-- TODO: When image available make image dynamic: v-if="product.image" -->
       <img
         v-if="productImage"
-        class="w-full mb-2"
+        class="object-cover w-full h-32 mb-2"
         :src="productImage"
         :alt="product.title + '_image'"
       />

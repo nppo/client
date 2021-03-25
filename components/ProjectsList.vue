@@ -3,24 +3,24 @@
     <div
       v-for="project in slicedListItems"
       :key="project.id"
-      class="flex flex-col h-full overflow-hidden bg-white rounded-md shadow mb-4"
+      class="flex flex-col h-full mb-4 overflow-hidden bg-white rounded-md shadow"
     >
       <LocaleLink class="flex flex-row" :path="`/project/${project.id}`">
         <div class="w-1/4 h-24">
           <img
             v-if="project.projectPictureUrl"
-            class="inline h-full object-center object-cover"
+            class="inline object-cover object-center h-full"
             :src="project.projectPictureUrl"
             :alt="project.title + '_image'"
           />
         </div>
 
-        <div class="w-3/4 flex flex-wrap flex-col mr-2 py-2 px-4 break-all">
+        <div class="flex flex-col flex-wrap w-3/4 px-4 py-2 mr-2 break-all">
           <span class="flex flex-row mb-1">
-            <Badge text="Project" />
+            <Badge :text="$t('entities.project.singular')" />
           </span>
 
-          <span class="font-bold text-base">
+          <span class="text-base font-bold">
             {{ project.title }}
           </span>
         </div>

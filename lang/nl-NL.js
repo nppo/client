@@ -71,6 +71,11 @@ export default {
       plural: 'Projecten',
       default: 'project | projecten',
     },
+    collection: {
+      singular: 'Collectie',
+      plural: 'Collecties',
+      default: 'collectie | collecties',
+    },
   },
 
   filters: {
