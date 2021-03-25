@@ -6,7 +6,7 @@
       </div>
     </div>
 
-    <div class="flex justify-between p-6 space-x-6">
+    <div class="flex items-center justify-between p-6 space-x-6">
       <div class="flex items-center space-x-6">
         <TypeBadge :product="product" />
 

@@ -176,6 +176,7 @@ export default {
   fontawesome: {
     icons: {
       solid: [
+        'faArrowUp',
         'faArrowDown',
         'faArrowLeft',
         'faArrowRight',
@@ -192,6 +193,8 @@ export default {
         'faImage',
         'faDownload',
         'faFile',
+        'faFolderOpen',
+        'faCalendarAlt',
       ],
       regular: ['faBookmark', 'faPlayCircle'],
       brands: ['faLinkedin', 'faResearchgate', 'faTwitterSquare'],

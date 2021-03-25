@@ -70,6 +70,11 @@ export default {
       plural: 'Projects',
       default: 'project | projects',
     },
+    collection: {
+      singular: 'Collection',
+      plural: 'Collections',
+      default: 'collection | collections',
+    },
   },
 
   filters: {
@@ -152,6 +157,7 @@ export default {
             people: 'Authors',
             parties: 'Parties',
             children: 'Underlying products',
+            published_at: 'Published on',
           },
         },
 
@@ -185,6 +191,7 @@ export default {
             people: 'Authors',
             parties: 'Parties',
             children: 'Underlying products',
+            published_at: 'Published on',
           },
         },
       },
