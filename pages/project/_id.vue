@@ -46,6 +46,21 @@
       >
         <div class="w-8/12">
           <div class="mb-18">
+            <div v-if="slicedMeta.length > 0" class="mb-12">
+              <h2 class="mb-3 text-3xl font-bold">
+                {{ $t('pages.product._id.headings.facts') }}
+              </h2>
+              <div class="grid grid-cols-6 gap-4">
+                <div v-for="meta in slicedMeta" :key="meta.id">
+                  <h4 class="font-bold uppercase">
+                    {{ meta.label }}
+                  </h4>
+                  {{ meta.value }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mb-18">
             <div
               v-if="project.purpose && project.purpose.length > 0"
               class="mb-10"
@@ -158,7 +173,7 @@
 import { Context } from '@nuxt/types'
 import { Component, mixins } from 'nuxt-property-decorator'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
-import { Type } from '~/types/entities'
+import { MetaData, Type } from '~/types/entities'
 import { Project, Product } from '~/types/models'
 
 @Component({
@@ -202,6 +217,14 @@ export default class ProjectDetailPage extends mixins(NavigationRouterHook) {
         : '/project/' + this.$route.params.id + '/'
 
     return this.$route.path.substring(basePath.length) || 'project'
+  }
+
+  get slicedMeta(): MetaData[] {
+    return (
+      this.$accessor.projects.current.meta?.filter((meta: MetaData) => {
+        return meta.value != null
+      }) || []
+    )
   }
 
   get recentProducts(): Product[] {
