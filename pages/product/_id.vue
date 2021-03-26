@@ -95,12 +95,13 @@
             <hr class="mb-8 border-gray-200" />
           </div>
 
-          <div v-if="product.projects && product.projects.length > 0">
+          <div v-if="partOfItems">
             <h3 class="mb-5 text-2xl font-bold">
               {{ $t('pages.product._id.headings.part_of') }}
             </h3>
 
             <ProjectsList :projects="product.projects" />
+            <ParentsList :parents="product.parents" />
 
             <hr class="mb-8 border-gray-200" />
           </div>
@@ -218,6 +219,13 @@ export default class ProductDetailPage extends mixins(NavigationRouterHook) {
           : productB.publishedAt.localeCompare(productA.publishedAt)
       )
       .slice(0, 2)
+  }
+
+  get partOfItems() {
+    return (
+      (this.product.projects && this.product.projects.length > 0) ||
+      (this.product.parents && this.product.parents.length > 0)
+    )
   }
 }
 </script>
