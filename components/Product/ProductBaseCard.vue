@@ -7,7 +7,7 @@
     </div>
 
     <div
-      class="absolute inset-x-0 flex justify-between p-6 space-x-6 overflow-hidden bg-white rounded-b"
+      class="absolute inset-x-0 flex items-center justify-between p-6 space-x-6 overflow-hidden bg-white rounded-b"
     >
       <div class="flex items-center space-x-6">
         <TypeBadge :product="product" />
