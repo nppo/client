@@ -96,7 +96,11 @@
                 :option-label="(option) => `${option.name}`"
               />
               <Multiselect
-                v-if="product.parents && !product.parents.length"
+                v-if="
+                  product.type === 'collection' &&
+                  product.parents &&
+                  !product.parents.length
+                "
                 :entity.sync="formData.children"
                 :options="products"
                 :label="$t('pages.product._id.edit.labels.children')"

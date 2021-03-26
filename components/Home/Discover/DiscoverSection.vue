@@ -44,7 +44,7 @@
             >
               <component
                 :is="
-                  product.children.length > 0
+                  product.children && product.children.length > 0
                     ? 'CollectionBlock'
                     : 'ProductBlock'
                 "

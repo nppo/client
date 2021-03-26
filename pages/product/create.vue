@@ -130,6 +130,7 @@
                     :option-label="(option) => `${option.name}`"
                   />
                   <Multiselect
+                    v-if="formData.type === 'collection'"
                     :entity.sync="formData.children"
                     :options="products"
                     :label="$t('pages.product.create.form.labels.children')"
