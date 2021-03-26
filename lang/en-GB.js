@@ -156,6 +156,7 @@ export default {
             themes: 'Themes',
             people: 'Authors',
             parties: 'Parties',
+            children: 'Underlying products',
             published_at: 'Published on',
           },
         },
@@ -170,6 +171,7 @@ export default {
         video: 'Video',
         image: 'Image',
         youtube: 'YouTube',
+        collection: 'Collection',
         document: 'Document',
       },
 
@@ -188,6 +190,7 @@ export default {
             themes: 'Themes',
             people: 'Authors',
             parties: 'Parties',
+            children: 'Underlying products',
             published_at: 'Published on',
           },
         },
