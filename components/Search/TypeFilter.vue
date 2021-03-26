@@ -1,13 +1,14 @@
 <template>
-  <Dropdown>
+  <Dropdown :is-active.sync="active">
     <template #button>
       <button
         type="button"
-        class="px-2 py-1 text-xs font-extrabold rounded-lg shadow cursor-pointer"
+        class="flex items-center px-2 py-1 space-x-4 text-xs font-extrabold rounded-lg shadow cursor-pointer"
         @click="toggleFilter()"
       >
-        {{ $t('entities.type.singular') }}
-        <font-awesome-icon icon="arrow-down" class="ml-3" />
+        <span>{{ $t('entities.type.singular') }}</span>
+
+        <DropdownArrow :active="active" />
       </button>
     </template>
 

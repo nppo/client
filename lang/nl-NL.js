@@ -72,6 +72,11 @@ export default {
       plural: 'Projecten',
       default: 'project | projecten',
     },
+    collection: {
+      singular: 'Collectie',
+      plural: 'Collecties',
+      default: 'collectie | collecties',
+    },
   },
 
   filters: {
@@ -156,6 +161,7 @@ export default {
             themes: "Thema's",
             people: 'Auteurs',
             parties: 'Partijen',
+            published_at: 'Gepubliceerd op',
           },
         },
       },
@@ -176,6 +182,7 @@ export default {
             themes: "Thema's",
             people: 'Auteurs',
             parties: 'Partijen',
+            published_at: 'Gepubliceerd op',
           },
         },
       },
@@ -183,6 +190,7 @@ export default {
         video: 'Video',
         image: 'Afbeelding',
         youtube: 'YouTube',
+        document: 'Document',
       },
     },
 

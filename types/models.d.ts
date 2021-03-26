@@ -56,7 +56,6 @@ export interface Product extends Model {
   image: string
   likes: string
   publishedAt: string
-  type: string
   owner?: Owner
   themes?: Theme[]
   parties?: Party[]
@@ -64,6 +63,8 @@ export interface Product extends Model {
   tags?: Tag[]
   links?: ProductLinks
   meta?: MetaData[]
+  children?: Product[]
+  parents?: Product[]
 }
 
 export interface Owner extends Model {

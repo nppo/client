@@ -71,6 +71,11 @@ export default {
       plural: 'Projects',
       default: 'project | projects',
     },
+    collection: {
+      singular: 'Collection',
+      plural: 'Collections',
+      default: 'collection | collections',
+    },
   },
 
   filters: {
@@ -152,6 +157,7 @@ export default {
             themes: 'Themes',
             people: 'Authors',
             parties: 'Parties',
+            published_at: 'Published on',
           },
         },
 
@@ -165,6 +171,7 @@ export default {
         video: 'Video',
         image: 'Image',
         youtube: 'YouTube',
+        document: 'Document',
       },
 
       create: {
@@ -182,6 +189,7 @@ export default {
             themes: 'Themes',
             people: 'Authors',
             parties: 'Parties',
+            published_at: 'Published on',
           },
         },
       },
