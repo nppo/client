@@ -18,16 +18,6 @@
           <div class="w-6/12">
             <div class="flex space-x-8">
               <div class="w-6/12">
-                <SelectInput
-                  :value.sync="formData.type"
-                  :name="$t('pages.product._id.edit.labels.type')"
-                  :label="$t('pages.product._id.edit.labels.type')"
-                  :options="types"
-                  :on-selected="(option) => option.label"
-                />
-              </div>
-
-              <div class="w-6/12">
                 <DatePicker
                   :value.sync="formData.publishedAt"
                   :name="$t('pages.product.create.form.labels.published_at')"
