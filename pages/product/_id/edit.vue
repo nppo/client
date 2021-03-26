@@ -8,11 +8,11 @@
       }}
     </h1>
 
-    <ValidationObserver>
+    <ValidationObserver v-slot="{ handleSubmit }">
       <form
         ref="form"
         class="p-4 overflow-hidden bg-white rounded-md shadow"
-        @submit.prevent="update"
+        @submit.prevent="handleSubmit(update)"
       >
         <div class="flex mb-6 space-x-32">
           <div class="w-6/12">
@@ -198,14 +198,12 @@ export default class ProductEditPage extends mixins(NavigationRouterHook) {
   }
 
   update(): void {
-    if (!this.titleError) {
-      this.$accessor.products
-        .update({ id: this.product.id, data: this.asFormData() })
-        .then(() => {
-          this.resetForm()
-          this.$router.push('/product/' + this.product.id)
-        })
-    }
+    this.$accessor.products
+      .update({ id: this.product.id, data: this.asFormData() })
+      .then(() => {
+        this.resetForm()
+        this.$router.push('/product/' + this.product.id)
+      })
   }
 
   beforeMount(): void {

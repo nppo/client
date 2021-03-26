@@ -12,10 +12,10 @@
           {{ $t('pages.project.form.headings.create') }}
         </h1>
 
-        <ValidationObserver>
+        <ValidationObserver v-slot="{ handleSubmit }">
           <form
             class="p-4 overflow-hidden bg-white rounded-md shadow"
-            @submit.prevent="create"
+            @submit.prevent="handleSubmit(create)"
           >
             <div class="flex justify-between mb-6 space-x-32">
               <div class="flex flex-col mb-4">
@@ -162,11 +162,9 @@ export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
   }
 
   create(): void {
-    if (!this.titleError) {
-      this.$accessor.projects.store({ data: this.asFormData() }).then(() => {
-        this.$router.push('/project/' + this.$accessor.projects.current.id)
-      })
-    }
+    this.$accessor.projects.store({ data: this.asFormData() }).then(() => {
+      this.$router.push('/project/' + this.$accessor.projects.current.id)
+    })
   }
 }
 </script>

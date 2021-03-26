@@ -8,11 +8,11 @@
       }}
     </h1>
 
-    <ValidationObserver>
+    <ValidationObserver v-slot="{ handleSubmit }">
       <form
         ref="form"
         class="flex flex-col p-4 overflow-hidden bg-white rounded-md shadow"
-        @submit.prevent="update"
+        @submit.prevent="handleSubmit(update)"
       >
         <div class="flex justify-between mb-6 space-x-32">
           <div class="flex flex-col mb-4">
@@ -176,14 +176,12 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
   }
 
   update(): void {
-    if (!this.firstNameError && !this.lastNameError && !this.themesError) {
-      this.$accessor.people
-        .update({ id: this.person.id, data: this.asFormData() })
-        .then(() => {
-          this.resetForm()
-          this.$router.push('/person/' + this.person.id)
-        })
-    }
+    this.$accessor.people
+      .update({ id: this.person.id, data: this.asFormData() })
+      .then(() => {
+        this.resetForm()
+        this.$router.push('/person/' + this.person.id)
+      })
   }
 
   beforeMount() {
