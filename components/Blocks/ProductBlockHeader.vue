@@ -42,13 +42,5 @@ import { Product } from '~/types/models'
 @Component
 export default class ProductBlock extends Vue {
   @Prop({ type: Object, required: true }) readonly product!: Product
-  onYouTubeIframeAPIReady() {
-    const player = new YT.Player('player', {
-      height: '390',
-      width: '640',
-      videoId: 'M4Xrh8OP1Jk',
-    })
-  }
 }
 </script>
-<script src="//www.youtube.com/player_api"></script>
