@@ -217,6 +217,13 @@ export default {
         },
         no_result: 'This project has no {entity}',
       },
+
+      create: {
+        headings: {
+          metadata: 'Metadata',
+        },
+      },
+
       form: {
         headings: {
           create: 'Create project',

@@ -94,6 +94,22 @@
               </div>
             </div>
 
+            <div class="mb-6">
+              <h2 class="mb-4 text-3xl font-bold">
+                {{ $t('pages.project.create.headings.metadata') }}
+              </h2>
+
+              <div class="grid grid-cols-4 gap-4">
+                <TextInput
+                  v-for="(data, index) in formData.meta"
+                  :key="index"
+                  :name="data.label"
+                  :label="data.label"
+                  :value.sync="formData.meta[index].value"
+                />
+              </div>
+            </div>
+
             <button
               class="self-start px-4 py-2 text-sm text-white rounded bg-orange-brand"
               type="submit"
@@ -117,10 +133,25 @@ import { Party, Person, Product } from '~/types/models'
 import { MetaAuthOptions } from '~/types/entities'
 
 @Component({
-  async asyncData({ $accessor, $auth }: Context) {
+  async asyncData({ $repositories, $accessor, $auth }: Context) {
     const personId = ($auth.user?.person as Person).id
 
     await $accessor.people.fetchCurrent(personId)
+
+    const metaData = await $repositories.project.create()
+
+    return {
+      formData: {
+        title: '',
+        description: '',
+        purpose: '',
+        parties: [],
+        products: [],
+        meta: metaData.data.attributes.map((meta: any) => {
+          return { id: meta.id, label: meta.label, value: '' }
+        }),
+      },
+    }
   },
 
   meta: {
@@ -136,13 +167,7 @@ import { MetaAuthOptions } from '~/types/entities'
   },
 })
 export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
-  private formData: any = {
-    title: '',
-    description: '',
-    purpose: '',
-    parties: [],
-    products: [],
-  }
+  private formData: any
 
   private titleError: boolean = false
 
