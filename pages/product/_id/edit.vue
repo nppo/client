@@ -110,6 +110,7 @@
                 :option-label="(option) => `${option.name}`"
               />
               <Multiselect
+                v-if="product.parents && !product.parents.length"
                 :entity.sync="formData.children"
                 :options="products"
                 :label="$t('pages.product._id.edit.labels.children')"
@@ -187,7 +188,13 @@ export default class ProductEditPage extends mixins(NavigationRouterHook) {
   }
 
   get types(): Type[] {
-    return this.$accessor.productTypes.all
+    const types: Type[] = this.$accessor.productTypes.all
+
+    if (this.product.parents?.length) {
+      return types.filter(({ label }) => label !== 'collection')
+    }
+
+    return types
   }
 
   get tags(): Tag[] {
