@@ -8,11 +8,11 @@
       }}
     </h1>
 
-    <ValidationObserver v-slot="{ handleSubmit }">
+    <ValidationObserver>
       <form
         ref="form"
         class="p-4 overflow-hidden bg-white rounded-md shadow"
-        @submit.prevent="handleSubmit(update)"
+        @submit.prevent="update"
       >
         <div class="flex justify-between mb-6 space-x-32">
           <div class="flex flex-col mb-4">
@@ -160,12 +160,14 @@ export default class ProjectEditPage extends mixins(NavigationRouterHook) {
   }
 
   update(): void {
-    this.$accessor.projects
-      .update({ id: this.project.id, data: this.asFormData() })
-      .then(() => {
-        this.resetForm()
-        this.$router.push('/project/' + this.project.id)
-      })
+    if (!this.titleError) {
+      this.$accessor.projects
+        .update({ id: this.project.id, data: this.asFormData() })
+        .then(() => {
+          this.resetForm()
+          this.$router.push('/project/' + this.project.id)
+        })
+    }
   }
 
   beforeMount() {
