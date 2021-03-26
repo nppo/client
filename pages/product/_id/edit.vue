@@ -40,6 +40,7 @@
               :value.sync="formData.title"
               :name="$t('pages.product._id.edit.labels.title')"
               :label="$t('pages.product._id.edit.labels.title')"
+              :required="true"
               :error-message="$t('validation.required')"
               :has-errors.sync="titleError"
             />

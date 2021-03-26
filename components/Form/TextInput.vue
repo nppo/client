@@ -1,8 +1,16 @@
 <template>
-  <ValidationProvider v-slot="{ errors }" :name="name" rules="required">
+  <ValidationProvider
+    v-slot="{ errors }"
+    :name="name"
+    :rules="{ required: required }"
+  >
     <div class="flex flex-col mb-4">
       <label v-if="label" :for="name" class="pl-3 mb-1">
         {{ label }}
+
+        <small v-if="required" class="ml-1 text-red-500">
+          {{ $t('validation.required_label') }}
+        </small>
       </label>
 
       <div class="relative flex items-center mb-1">
@@ -36,6 +44,7 @@ export default class TextInput extends Vue {
   @Prop({ type: String, default: '' }) readonly name!: string
   @Prop({ type: String, default: '' }) readonly label!: string
   @Prop({ type: String, default: '' }) readonly errorMessage!: string
+  @Prop({ type: Boolean, default: false }) readonly required!: boolean
 
   private localValue: string = this.value
 

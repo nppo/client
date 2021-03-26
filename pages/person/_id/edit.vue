@@ -38,6 +38,7 @@
               :value.sync="formData.first_name"
               :name="$t('pages.person._id.edit.labels.first_name')"
               :label="$t('pages.person._id.edit.labels.first_name')"
+              :required="true"
               :error-message="$t('validation.required')"
               :has-errors.sync="firstNameError"
             />
@@ -46,6 +47,7 @@
               :value.sync="formData.last_name"
               :name="$t('pages.person._id.edit.labels.last_name')"
               :label="$t('pages.person._id.edit.labels.last_name')"
+              :required="true"
               :error-message="$t('validation.required')"
               :has-errors.sync="lastNameError"
             />
