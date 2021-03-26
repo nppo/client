@@ -96,7 +96,7 @@
 
             <div class="mb-6">
               <h2 class="mb-4 text-3xl font-bold">
-                {{ $t('pages.person._id.edit.headings.metadata') }}
+                {{ $t('pages.project.create.headings.metadata') }}
               </h2>
 
               <div class="grid grid-cols-4 gap-4">

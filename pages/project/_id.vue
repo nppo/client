@@ -55,7 +55,8 @@
                   <h4 class="font-bold uppercase">
                     {{ meta.label }}
                   </h4>
-                  {{ meta.value }}
+
+                  <span class="break-all">{{ meta.value }}</span>
                 </div>
               </div>
             </div>

@@ -213,6 +213,13 @@ export default {
         },
         no_result: 'Dit project heeft geen {entity}',
       },
+
+      create: {
+        headings: {
+          metadata: 'Metadata',
+        },
+      },
+
       form: {
         headings: {
           create: 'Aanmaken project',
