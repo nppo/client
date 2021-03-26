@@ -157,7 +157,11 @@
                   color="yellow-brand"
                 />
 
-                <CreateButton v-can="'create projects'" page="project" />
+                <CreateButton
+                  v-if="this.$auth.user && this.$auth.user.id === person.id"
+                  v-can="'create projects'"
+                  page="project"
+                />
               </div>
 
               <SliderArrows
@@ -188,7 +192,11 @@
                   :text="`${person.products.length}`"
                   color="yellow-brand"
                 />
-                <CreateButton v-can="'create products'" page="product" />
+                <CreateButton
+                  v-if="this.$auth.user && this.$auth.user.id === person.id"
+                  v-can="'create products'"
+                  page="product"
+                />
               </div>
 
               <SliderArrows

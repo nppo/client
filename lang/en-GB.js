@@ -25,6 +25,7 @@ export default {
 
   validation: {
     required: 'This field is required',
+    required_label: '*required',
   },
 
   account: {
@@ -217,6 +218,13 @@ export default {
         },
         no_result: 'This project has no {entity}',
       },
+
+      create: {
+        headings: {
+          metadata: 'Metadata',
+        },
+      },
+
       form: {
         headings: {
           create: 'Create project',

@@ -38,6 +38,7 @@
               :value.sync="formData.title"
               :name="$t('pages.project.form.labels.title')"
               :label="$t('pages.project.form.labels.title')"
+              :required="true"
               :error-message="$t('validation.required')"
               :has-errors.sync="titleError"
             />
@@ -61,7 +62,6 @@
               :entity.sync="formData.parties"
               :options="parties"
               :label="$t('pages.project.form.labels.parties')"
-              :error-message="$t('validation.required')"
               option-label-attribute="name"
             />
 
@@ -69,7 +69,6 @@
               :entity.sync="formData.products"
               :options="relatedProducts"
               :label="$t('pages.project.form.labels.products')"
-              :error-message="$t('validation.required')"
               option-label-attribute="title"
             />
           </div>

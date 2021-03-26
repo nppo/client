@@ -65,6 +65,7 @@ export interface Product extends Model {
   meta?: MetaData[]
   children?: Product[]
   parents?: Product[]
+  projects?: Project[]
 }
 
 export interface Owner extends Model {
@@ -88,6 +89,7 @@ export interface Project extends Model {
   projectPictureUrl: string
   createdAt: string
   owner?: Owner
+  meta?: MetaData[]
   tags?: Tag[]
   themes?: Theme[]
   parties?: Party[]
