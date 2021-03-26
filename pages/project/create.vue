@@ -12,10 +12,10 @@
           {{ $t('pages.project.form.headings.create') }}
         </h1>
 
-        <ValidationObserver>
+        <ValidationObserver v-slot="{ handleSubmit }">
           <form
             class="p-4 overflow-hidden bg-white rounded-md shadow"
-            @submit.prevent="create"
+            @submit.prevent="handleSubmit(create)"
           >
             <div class="flex justify-between mb-6 space-x-32">
               <div class="flex flex-col mb-4">
@@ -41,6 +41,7 @@
                   :value.sync="formData.title"
                   :name="$t('pages.project.form.labels.title')"
                   :label="$t('pages.project.form.labels.title')"
+                  :required="true"
                   :error-message="$t('validation.required')"
                   :has-errors.sync="titleError"
                 />
@@ -64,7 +65,6 @@
                   :entity.sync="formData.parties"
                   :options="parties"
                   :label="$t('pages.project.form.labels.parties')"
-                  :error-message="$t('validation.required')"
                   option-label-attribute="name"
                 />
 
@@ -72,7 +72,6 @@
                   :entity.sync="formData.products"
                   :options="relatedProducts"
                   :label="$t('pages.project.form.labels.products')"
-                  :error-message="$t('validation.required')"
                   option-label-attribute="title"
                 />
               </div>
@@ -91,6 +90,22 @@
                     class="p-3 font-bold rounded-md shadow focus:outline-none"
                   />
                 </div>
+              </div>
+            </div>
+
+            <div class="mb-6">
+              <h2 class="mb-4 text-3xl font-bold">
+                {{ $t('pages.project.create.headings.metadata') }}
+              </h2>
+
+              <div class="grid grid-cols-4 gap-4">
+                <TextInput
+                  v-for="(data, index) in formData.meta"
+                  :key="index"
+                  :name="data.label"
+                  :label="data.label"
+                  :value.sync="formData.meta[index].value"
+                />
               </div>
             </div>
 
@@ -117,10 +132,25 @@ import { Party, Person, Product } from '~/types/models'
 import { MetaAuthOptions } from '~/types/entities'
 
 @Component({
-  async asyncData({ $accessor, $auth }: Context) {
+  async asyncData({ $repositories, $accessor, $auth }: Context) {
     const personId = ($auth.user?.person as Person).id
 
     await $accessor.people.fetchCurrent(personId)
+
+    const metaData = await $repositories.project.create()
+
+    return {
+      formData: {
+        title: '',
+        description: '',
+        purpose: '',
+        parties: [],
+        products: [],
+        meta: metaData.data.attributes.map((meta: any) => {
+          return { id: meta.id, label: meta.label, value: '' }
+        }),
+      },
+    }
   },
 
   meta: {
@@ -136,13 +166,7 @@ import { MetaAuthOptions } from '~/types/entities'
   },
 })
 export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
-  private formData: any = {
-    title: '',
-    description: '',
-    purpose: '',
-    parties: [],
-    products: [],
-  }
+  private formData: any
 
   private titleError: boolean = false
 
@@ -163,11 +187,9 @@ export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
   }
 
   create(): void {
-    if (!this.titleError) {
-      this.$accessor.projects.store({ data: this.asFormData() }).then(() => {
-        this.$router.push('/project/' + this.$accessor.projects.current.id)
-      })
-    }
+    this.$accessor.projects.store({ data: this.asFormData() }).then(() => {
+      this.$router.push('/project/' + this.$accessor.projects.current.id)
+    })
   }
 }
 </script>

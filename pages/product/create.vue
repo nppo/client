@@ -12,10 +12,10 @@
           {{ $t('pages.product.create.headings.create') }}
         </h1>
 
-        <ValidationObserver>
+        <ValidationObserver v-slot="{ handleSubmit }">
           <form
             class="p-4 overflow-hidden bg-white rounded-md shadow"
-            @submit.prevent="create"
+            @submit.prevent="handleSubmit(create)"
           >
             <div class="flex mb-6 space-x-32">
               <div class="w-6/12">
@@ -47,6 +47,7 @@
                   :value.sync="formData.title"
                   :name="$t('pages.product.create.form.labels.title')"
                   :label="$t('pages.product.create.form.labels.title')"
+                  :required="true"
                   :error-message="$t('validation.required')"
                   :has-errors.sync="titleError"
                 />
@@ -128,6 +129,12 @@
                     :label="$t('pages.product.create.form.labels.parties')"
                     :option-label="(option) => `${option.name}`"
                   />
+                  <Multiselect
+                    :entity.sync="formData.children"
+                    :options="products"
+                    :label="$t('pages.product.create.form.labels.children')"
+                    option-label-attribute="title"
+                  />
                 </div>
               </div>
             </div>
@@ -152,7 +159,7 @@ import { Context } from '@nuxt/types'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import objectToFormData from '~/common/utils/objectToFormData'
 import { Type } from '~/types/entities'
-import { Party, Person, Tag, Theme } from '~/types/models'
+import { Party, Person, Product, Tag, Theme } from '~/types/models'
 
 @Component({
   components: {
@@ -183,6 +190,7 @@ export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
     parties: [],
     publishedAt: '',
     link: null,
+    children: [],
   }
 
   private external: boolean = false
@@ -209,12 +217,14 @@ export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
     return this.$accessor.people.current.parties || []
   }
 
+  get products(): Product[] {
+    return this.$accessor.people.current.products || []
+  }
+
   create(): void {
-    if (!this.titleError) {
-      this.$accessor.products.store(this.asFormData()).then(() => {
-        this.$router.push('/product/' + this.$accessor.products.current.id)
-      })
-    }
+    this.$accessor.products.store(this.asFormData()).then(() => {
+      this.$router.push('/product/' + this.$accessor.products.current.id)
+    })
   }
 
   asFormData(): FormData {

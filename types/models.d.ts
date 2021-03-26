@@ -89,6 +89,7 @@ export interface Project extends Model {
   projectPictureUrl: string
   createdAt: string
   owner?: Owner
+  meta?: MetaData[]
   tags?: Tag[]
   themes?: Theme[]
   parties?: Party[]

@@ -28,4 +28,8 @@ export default class ProjectRepository {
     data.set('_method', 'PUT')
     return this.axios.post(`/api/${resource}/${id}`, data)
   }
+
+  create(): Promise<AxiosResponse<any>> {
+    return this.axios.get(`api/${resource}/create`)
+  }
 }

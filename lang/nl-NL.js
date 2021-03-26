@@ -26,6 +26,7 @@ export default {
 
   validation: {
     required: 'Dit veld is verplicht',
+    required_label: '*verplicht',
   },
 
   account: {
@@ -160,6 +161,7 @@ export default {
             themes: "Thema's",
             people: 'Auteurs',
             parties: 'Partijen',
+            children: 'Onderliggende producten',
             published_at: 'Gepubliceerd op',
           },
         },
@@ -181,6 +183,7 @@ export default {
             themes: "Thema's",
             people: 'Auteurs',
             parties: 'Partijen',
+            children: 'Onderliggende producten',
             published_at: 'Gepubliceerd op',
           },
         },
@@ -189,6 +192,7 @@ export default {
         video: 'Video',
         image: 'Afbeelding',
         youtube: 'YouTube',
+        collection: 'Collectie',
         document: 'Document',
       },
     },
@@ -213,6 +217,13 @@ export default {
         },
         no_result: 'Dit project heeft geen {entity}',
       },
+
+      create: {
+        headings: {
+          metadata: 'Metadata',
+        },
+      },
+
       form: {
         headings: {
           create: 'Aanmaken project',
