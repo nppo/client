@@ -23,6 +23,8 @@
           @change="fileSelected"
         />
       </div>
+
+      <span v-if="errors[0]" class="pl-3 text-red-500">{{ errorMessage }}</span>
     </div>
   </ValidationProvider>
 </template>
