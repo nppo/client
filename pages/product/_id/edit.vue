@@ -78,11 +78,6 @@
 
           <div class="w-6/12">
             <div class="flex flex-col mb-4">
-              <FileInput
-                :value.sync="formData.file"
-                :name="$t('pages.product._id.edit.labels.file')"
-                :label="$t('pages.product._id.edit.labels.file')"
-              />
               <Multiselect
                 :entity.sync="formData.tags"
                 :options="tags"
