@@ -95,12 +95,18 @@
                     :value.sync="formData.link"
                     :name="$t('pages.product.create.form.labels.link')"
                     :label="$t('pages.product.create.form.labels.link')"
+                    :required="true"
+                    :error-message="$t('validation.required')"
+                    :has-errors.sync="linkError"
                   />
                   <FileInput
                     v-else
                     :value.sync="formData.file"
                     :name="$t('pages.product.create.form.labels.file')"
                     :label="$t('pages.product.create.form.labels.file')"
+                    :required="true"
+                    :error-message="$t('validation.required')"
+                    :has-errors.sync="fileError"
                   />
                   <Multiselect
                     :entity.sync="formData.tags"
@@ -197,6 +203,8 @@ export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
   private external: boolean = false
 
   private titleError: boolean = false
+  private linkError: boolean = false
+  private fileError: boolean = false
 
   get types(): Type[] {
     return this.$accessor.productTypes.all
