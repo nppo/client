@@ -51,7 +51,6 @@
                   :label="$t('pages.product.create.form.labels.title')"
                   :required="true"
                   :error-message="$t('validation.required')"
-                  :has-errors.sync="titleError"
                 />
 
                 <Textarea
@@ -66,7 +65,6 @@
                   :label="$t('pages.product.create.form.labels.description')"
                   :required="true"
                   :error-message="$t('validation.required')"
-                  :has-errors.sync="descriptionError"
                 />
               </div>
 
@@ -84,7 +82,6 @@
                     :label="$t('pages.product.create.form.labels.link')"
                     :required="true"
                     :error-message="$t('validation.required')"
-                    :has-errors.sync="linkError"
                   />
 
                   <FileInput
@@ -92,9 +89,8 @@
                     :value.sync="formData.file"
                     :name="$t('pages.product.create.form.labels.file')"
                     :label="$t('pages.product.create.form.labels.file')"
-                    :required="false"
+                    :required="true"
                     :error-message="$t('validation.required')"
-                    :has-errors.sync="fileError"
                   />
 
                   <Multiselect
@@ -171,30 +167,29 @@ import { Party, Person, Product, Tag, Theme } from '~/types/models'
         $accessor.user.current.person?.id as number
       ),
     ])
+
+    return {
+      formData: {
+        type: null,
+        title: '',
+        summary: '',
+        description: '',
+        tags: [],
+        themes: [],
+        people: [],
+        parties: [],
+        publishedAt: '',
+        file: null,
+        link: null,
+        children: [],
+      },
+    }
   },
 })
 export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
-  private formData: any = {
-    type: null,
-    title: '',
-    summary: '',
-    description: '',
-    file: null,
-    tags: [],
-    themes: [],
-    people: [],
-    parties: [],
-    publishedAt: '',
-    link: null,
-    children: [],
-  }
+  private formData: any
 
   private external: boolean = false
-
-  private titleError: boolean = false
-  private descriptionError: boolean = false
-  private linkError: boolean = false
-  private fileError: boolean = false
 
   get types(): Type[] {
     return this.$accessor.productTypes.all
@@ -228,10 +223,6 @@ export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
 
   asFormData(): FormData {
     return objectToFormData(this.formData)
-  }
-
-  fileSelected(event: any): void {
-    this.formData.file = event.target.files[0]
   }
 }
 </script>

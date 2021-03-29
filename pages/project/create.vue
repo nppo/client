@@ -43,7 +43,6 @@
                   :label="$t('pages.project.form.labels.title')"
                   :required="true"
                   :error-message="$t('validation.required')"
-                  :has-errors.sync="titleError"
                 />
 
                 <Textarea
@@ -149,8 +148,6 @@ import { MetaAuthOptions } from '~/types/entities'
 })
 export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
   private formData: any
-
-  private titleError: boolean = false
 
   get parties(): Party[] {
     return this.$accessor.people.current.parties || []
