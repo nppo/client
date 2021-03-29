@@ -26,6 +26,8 @@
                       :name="$t('pages.product.create.form.labels.type')"
                       :label="$t('pages.product.create.form.labels.type')"
                       :options="types"
+                      :required="true"
+                      :error-message="$t('validation.required')"
                       :on-selected="(option) => option.label"
                     />
                   </div>
@@ -52,35 +54,20 @@
                   :has-errors.sync="titleError"
                 />
 
-                <div class="flex flex-col mb-4">
-                  <label
-                    class="pl-3 mb-1"
-                    :for="$t('pages.product.create.form.labels.summary')"
-                  >
-                    {{ $t('pages.product.create.form.labels.summary') }}
-                  </label>
-                  <textarea
-                    :id="$t('pages.product.create.form.labels.summary')"
-                    v-model="formData.summary"
-                    rows="6"
-                    class="p-3 font-bold rounded-md shadow focus:outline-none"
-                  />
-                </div>
+                <Textarea
+                  :value.sync="formData.summary"
+                  :name="$t('pages.product.create.form.labels.summary')"
+                  :label="$t('pages.product.create.form.labels.summary')"
+                />
 
-                <div class="flex flex-col mb-4">
-                  <label
-                    class="pl-3 mb-1"
-                    :for="$t('pages.product.create.form.labels.description')"
-                  >
-                    {{ $t('pages.product.create.form.labels.description') }}
-                  </label>
-                  <textarea
-                    :id="$t('pages.product.create.form.labels.description')"
-                    v-model="formData.description"
-                    rows="6"
-                    class="p-3 font-bold rounded-md shadow focus:outline-none"
-                  />
-                </div>
+                <Textarea
+                  :value.sync="formData.description"
+                  :name="$t('pages.product.create.form.labels.description')"
+                  :label="$t('pages.product.create.form.labels.description')"
+                  :required="true"
+                  :error-message="$t('validation.required')"
+                  :has-errors.sync="descriptionError"
+                />
               </div>
 
               <div class="w-6/12">
@@ -99,15 +86,17 @@
                     :error-message="$t('validation.required')"
                     :has-errors.sync="linkError"
                   />
+
                   <FileInput
                     v-else
                     :value.sync="formData.file"
                     :name="$t('pages.product.create.form.labels.file')"
                     :label="$t('pages.product.create.form.labels.file')"
-                    :required="true"
+                    :required="false"
                     :error-message="$t('validation.required')"
                     :has-errors.sync="fileError"
                   />
+
                   <Multiselect
                     :entity.sync="formData.tags"
                     :options="tags"
@@ -203,6 +192,7 @@ export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
   private external: boolean = false
 
   private titleError: boolean = false
+  private descriptionError: boolean = false
   private linkError: boolean = false
   private fileError: boolean = false
 
@@ -238,6 +228,10 @@ export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
 
   asFormData(): FormData {
     return objectToFormData(this.formData)
+  }
+
+  fileSelected(event: any): void {
+    this.formData.file = event.target.files[0]
   }
 }
 </script>

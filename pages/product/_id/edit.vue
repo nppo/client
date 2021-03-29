@@ -35,35 +35,17 @@
               :has-errors.sync="titleError"
             />
 
-            <div class="flex flex-col mb-4">
-              <label
-                class="pl-3 mb-1"
-                :for="$t('pages.product._id.edit.labels.summary')"
-              >
-                {{ $t('pages.product._id.edit.labels.summary') }}
-              </label>
-              <textarea
-                :id="$t('pages.product._id.edit.labels.summary')"
-                v-model="formData.summary"
-                rows="6"
-                class="p-3 font-bold rounded-md shadow focus:outline-none"
-              />
-            </div>
+            <Textarea
+              :value.sync="formData.summary"
+              :name="$t('pages.product.create.form.labels.summary')"
+              :label="$t('pages.product.create.form.labels.summary')"
+            />
 
-            <div class="flex flex-col mb-4">
-              <label
-                class="pl-3 mb-1"
-                :for="$t('pages.product._id.edit.labels.description')"
-              >
-                {{ $t('pages.product._id.edit.labels.description') }}
-              </label>
-              <textarea
-                :id="$t('pages.product._id.edit.labels.description')"
-                v-model="formData.description"
-                rows="6"
-                class="p-3 font-bold rounded-md shadow focus:outline-none"
-              />
-            </div>
+            <Textarea
+              :value.sync="formData.description"
+              :name="$t('pages.product.create.form.labels.description')"
+              :label="$t('pages.product.create.form.labels.description')"
+            />
           </div>
 
           <div class="w-6/12">

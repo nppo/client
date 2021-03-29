@@ -14,13 +14,13 @@
       </label>
 
       <div class="flex items-center mb-1">
-        <input
+        <textarea
           :id="name"
           v-model="localValue"
           :name="name"
-          class="w-full px-3 py-3 font-bold rounded-md shadow focus:outline-none"
+          class="w-full p-3 font-bold rounded-md shadow focus:outline-none"
           :class="{ 'border border-red-300': errors[0] }"
-          type="text"
+          rows="6"
         />
       </div>
 
@@ -39,7 +39,7 @@ import { ValidationProvider } from 'vee-validate'
     ValidationProvider,
   },
 })
-export default class TextInput extends Vue {
+export default class Textarea extends Vue {
   @Prop({ type: String }) value!: string
   @Prop({ type: String, default: '' }) readonly name!: string
   @Prop({ type: String, default: '' }) readonly label!: string

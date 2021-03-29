@@ -43,20 +43,11 @@
               :has-errors.sync="titleError"
             />
 
-            <div class="flex flex-col mb-4">
-              <label
-                class="pl-3 mb-1"
-                :for="$t('pages.project.form.labels.description')"
-              >
-                {{ $t('pages.project.form.labels.description') }}
-              </label>
-              <textarea
-                :id="$t('pages.project.form.labels.description')"
-                v-model="formData.description"
-                rows="6"
-                class="p-3 font-bold rounded-md shadow focus:outline-none"
-              />
-            </div>
+            <Textarea
+              :value.sync="formData.description"
+              :name="$t('pages.project.form.labels.description')"
+              :label="$t('pages.project.form.labels.description')"
+            />
 
             <Multiselect
               :entity.sync="formData.parties"
@@ -73,20 +64,11 @@
             />
           </div>
           <div class="w-6/12">
-            <div class="flex flex-col mb-4">
-              <label
-                class="pl-3 mb-1"
-                :for="$t('pages.project.form.labels.purpose')"
-              >
-                {{ $t('pages.project.form.labels.purpose') }}
-              </label>
-              <textarea
-                :id="$t('pages.project.form.labels.purpose')"
-                v-model="formData.purpose"
-                rows="6"
-                class="p-3 font-bold rounded-md shadow focus:outline-none"
-              />
-            </div>
+            <Textarea
+              :value.sync="formData.purpose"
+              :name="$t('pages.project.form.labels.purpose')"
+              :label="$t('pages.project.form.labels.purpose')"
+            />
           </div>
         </div>
 

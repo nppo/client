@@ -69,23 +69,11 @@
             />
           </div>
           <div class="w-8/12">
-            <div>
-              <div class="flex flex-col">
-                <label
-                  :for="$t('pages.person._id.edit.labels.about')"
-                  class="pl-3 mb-1"
-                >
-                  {{ $t('pages.person._id.edit.labels.about') }}
-                </label>
-
-                <textarea
-                  :id="$t('pages.person._id.edit.labels.about')"
-                  v-model="formData.about"
-                  rows="6"
-                  class="w-full px-3 py-3 font-bold rounded-md shadow focus:outline-none"
-                />
-              </div>
-            </div>
+            <Textarea
+              :value.sync="formData.about"
+              :name="$t('pages.person._id.edit.labels.about')"
+              :label="$t('pages.person._id.edit.labels.about')"
+            />
           </div>
         </div>
 
