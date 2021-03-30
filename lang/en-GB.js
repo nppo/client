@@ -174,6 +174,8 @@ export default {
         youtube: 'YouTube',
         collection: 'Collection',
         document: 'Document',
+        link: 'Link',
+        empty: 'Empty',
       },
 
       create: {

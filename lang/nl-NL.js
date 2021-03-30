@@ -194,6 +194,8 @@ export default {
         youtube: 'YouTube',
         collection: 'Collectie',
         document: 'Document',
+        link: 'Link',
+        empty: 'Leeg',
       },
     },
 
