@@ -1,6 +1,7 @@
 <template>
   <ValidationProvider
     v-slot="{ errors }"
+    ref="provider"
     :name="name"
     :rules="{ required: required }"
   >
@@ -48,6 +49,8 @@ export default class FileInput extends Vue {
 
   private localValue: string = this.value
 
+  $refs!: { provider: InstanceType<typeof ValidationProvider> }
+
   @Watch('localValue')
   updateValue() {
     this.$emit('update:value', this.localValue)
@@ -60,7 +63,11 @@ export default class FileInput extends Vue {
   }
 
   fileSelected(event: any): void {
-    this.localValue = event.target.files[0]
+    const valid = this.$refs.provider.validate(event)
+
+    if (valid) {
+      this.localValue = event.target.files[0]
+    }
   }
 }
 </script>
