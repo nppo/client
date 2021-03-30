@@ -23,7 +23,7 @@
     />
 
     <div
-      v-if="product.type === 'document'"
+      v-if="product.type === 'document' || product.type === 'empty'"
       class="flex items-center justify-center w-full h-32 mb-2 bg-blue-800"
     >
       <font-awesome-icon
