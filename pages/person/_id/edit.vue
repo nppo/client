@@ -8,11 +8,11 @@
       }}
     </h1>
 
-    <ValidationObserver>
+    <ValidationObserver v-slot="{ handleSubmit }">
       <form
         ref="form"
         class="flex flex-col p-4 overflow-hidden bg-white rounded-md shadow"
-        @submit.prevent="update"
+        @submit.prevent="handleSubmit(update)"
       >
         <div class="flex justify-between mb-6 space-x-32">
           <div class="flex flex-col mb-4">
@@ -69,23 +69,11 @@
             />
           </div>
           <div class="w-8/12">
-            <div>
-              <div class="flex flex-col">
-                <label
-                  :for="$t('pages.person._id.edit.labels.about')"
-                  class="pl-3 mb-1"
-                >
-                  {{ $t('pages.person._id.edit.labels.about') }}
-                </label>
-
-                <textarea
-                  :id="$t('pages.person._id.edit.labels.about')"
-                  v-model="formData.about"
-                  rows="6"
-                  class="w-full px-3 py-3 font-bold rounded-md shadow focus:outline-none"
-                />
-              </div>
-            </div>
+            <Textarea
+              :value.sync="formData.about"
+              :name="$t('pages.person._id.edit.labels.about')"
+              :label="$t('pages.person._id.edit.labels.about')"
+            />
           </div>
         </div>
 

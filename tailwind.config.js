@@ -54,6 +54,7 @@ module.exports = {
       }),
       minHeight: (theme) => ({
         11: theme('spacing.11'),
+        24: theme('spacing.24'),
       }),
       maxHeight: (theme) => ({
         40: theme('spacing.40'),

@@ -6,7 +6,7 @@
       class="flex flex-col h-full mb-3 overflow-hidden bg-white rounded-md shadow"
     >
       <LocaleLink class="flex flex-row" :path="`/product/${parent.id}`">
-        <div class="w-1/4 h-24">
+        <div class="w-1/4 min-h-24">
           <div class="w-full h-full bg-blue-800" />
         </div>
 

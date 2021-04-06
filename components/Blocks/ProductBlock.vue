@@ -4,19 +4,14 @@
     class="flex flex-col h-full overflow-hidden bg-white rounded-md shadow"
   >
     <div class="relative">
-      <!-- TODO: When image available make image dynamic: v-if="product.image" -->
-      <img
-        v-if="productImage"
-        class="object-cover w-full h-32 mb-2"
-        :src="productImage"
-        :alt="product.title + '_image'"
-      />
+      <ProductBlockHeader :product="product" />
 
       <div class="flex items-center justify-between">
-        <!-- TODO: When image available make image dynamic: product.image" -->
         <span
           class="m-4 mb-5 min-w-1/4"
-          :class="{ 'absolute top-0 left-0': productImage }"
+          :class="{
+            'absolute top-0 left-0': product.links && product.links.preview,
+          }"
         >
           <TypeBadge :product="product" />
         </span>
@@ -32,8 +27,10 @@
         {{ product.title }}
       </h4>
 
-      <!-- TODO: When image available make image dynamic: product.image" -->
-      <div class="text-gray-300" :class="{ 'line-clamp-4': productImage }">
+      <div
+        class="text-gray-300"
+        :class="{ 'line-clamp-4': product.links && product.links.preview }"
+      >
         {{ product.description }}
       </div>
     </div>
@@ -63,9 +60,6 @@ import { Product } from '~/types/models'
 
 @Component
 export default class ProductBlock extends Vue {
-  // TODO: When image available make image dynamic: v-if="product.image"
-  public productImage: string = 'https://picsum.photos/296/150'
-
   @Prop({ type: Object, required: true }) readonly product!: Product
 
   get publishedAt(): string {

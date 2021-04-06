@@ -26,6 +26,8 @@
                       :name="$t('pages.product.create.form.labels.type')"
                       :label="$t('pages.product.create.form.labels.type')"
                       :options="types"
+                      :required="true"
+                      :error-message="$t('validation.required')"
                       :on-selected="(option) => option.label"
                     />
                   </div>
@@ -49,38 +51,21 @@
                   :label="$t('pages.product.create.form.labels.title')"
                   :required="true"
                   :error-message="$t('validation.required')"
-                  :has-errors.sync="titleError"
                 />
 
-                <div class="flex flex-col mb-4">
-                  <label
-                    class="pl-3 mb-1"
-                    :for="$t('pages.product.create.form.labels.summary')"
-                  >
-                    {{ $t('pages.product.create.form.labels.summary') }}
-                  </label>
-                  <textarea
-                    :id="$t('pages.product.create.form.labels.summary')"
-                    v-model="formData.summary"
-                    rows="6"
-                    class="p-3 font-bold rounded-md shadow focus:outline-none"
-                  />
-                </div>
+                <Textarea
+                  :value.sync="formData.summary"
+                  :name="$t('pages.product.create.form.labels.summary')"
+                  :label="$t('pages.product.create.form.labels.summary')"
+                />
 
-                <div class="flex flex-col mb-4">
-                  <label
-                    class="pl-3 mb-1"
-                    :for="$t('pages.product.create.form.labels.description')"
-                  >
-                    {{ $t('pages.product.create.form.labels.description') }}
-                  </label>
-                  <textarea
-                    :id="$t('pages.product.create.form.labels.description')"
-                    v-model="formData.description"
-                    rows="6"
-                    class="p-3 font-bold rounded-md shadow focus:outline-none"
-                  />
-                </div>
+                <Textarea
+                  :value.sync="formData.description"
+                  :name="$t('pages.product.create.form.labels.description')"
+                  :label="$t('pages.product.create.form.labels.description')"
+                  :required="true"
+                  :error-message="$t('validation.required')"
+                />
               </div>
 
               <div class="w-6/12">
@@ -95,13 +80,19 @@
                     :value.sync="formData.link"
                     :name="$t('pages.product.create.form.labels.link')"
                     :label="$t('pages.product.create.form.labels.link')"
+                    :required="true"
+                    :error-message="$t('validation.required')"
                   />
+
                   <FileInput
                     v-else
                     :value.sync="formData.file"
                     :name="$t('pages.product.create.form.labels.file')"
                     :label="$t('pages.product.create.form.labels.file')"
+                    :required="true"
+                    :error-message="$t('validation.required')"
                   />
+
                   <Multiselect
                     :entity.sync="formData.tags"
                     :options="tags"
@@ -130,6 +121,7 @@
                     :option-label="(option) => `${option.name}`"
                   />
                   <Multiselect
+                    v-if="formData.type === 'collection'"
                     :entity.sync="formData.children"
                     :options="products"
                     :label="$t('pages.product.create.form.labels.children')"
@@ -175,27 +167,29 @@ import { Party, Person, Product, Tag, Theme } from '~/types/models'
         $accessor.user.current.person?.id as number
       ),
     ])
+
+    return {
+      formData: {
+        type: null,
+        title: '',
+        summary: '',
+        description: '',
+        tags: [],
+        themes: [],
+        people: [],
+        parties: [],
+        publishedAt: '',
+        file: null,
+        link: null,
+        children: [],
+      },
+    }
   },
 })
 export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
-  private formData: any = {
-    type: null,
-    title: '',
-    summary: '',
-    description: '',
-    file: null,
-    tags: [],
-    themes: [],
-    people: [],
-    parties: [],
-    publishedAt: '',
-    link: null,
-    children: [],
-  }
+  private formData: any
 
   private external: boolean = false
-
-  private titleError: boolean = false
 
   get types(): Type[] {
     return this.$accessor.productTypes.all

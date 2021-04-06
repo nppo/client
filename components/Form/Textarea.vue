@@ -1,7 +1,6 @@
 <template>
   <ValidationProvider
     v-slot="{ errors }"
-    ref="provider"
     :name="name"
     :rules="{ required: required }"
   >
@@ -14,14 +13,14 @@
         </small>
       </label>
 
-      <div class="relative flex items-center mb-1">
-        <input
+      <div class="flex items-center mb-1">
+        <textarea
           :id="name"
+          v-model="localValue"
           :name="name"
-          class="w-full px-3 py-3 font-bold rounded-md shadow focus:outline-none"
-          type="file"
+          class="w-full p-3 font-bold rounded-md shadow focus:outline-none"
           :class="{ 'border border-red-300': errors[0] }"
-          @change="fileSelected"
+          rows="6"
         />
       </div>
 
@@ -40,16 +39,14 @@ import { ValidationProvider } from 'vee-validate'
     ValidationProvider,
   },
 })
-export default class FileInput extends Vue {
-  @Prop({ type: File }) value!: string
+export default class Textarea extends Vue {
+  @Prop({ type: String }) value!: string
   @Prop({ type: String, default: '' }) readonly name!: string
   @Prop({ type: String, default: '' }) readonly label!: string
   @Prop({ type: String, default: '' }) readonly errorMessage!: string
   @Prop({ type: Boolean, default: false }) readonly required!: boolean
 
   private localValue: string = this.value
-
-  $refs!: { provider: InstanceType<typeof ValidationProvider> }
 
   @Watch('localValue')
   updateValue() {
@@ -59,14 +56,6 @@ export default class FileInput extends Vue {
       this.$emit('update:hasErrors', false)
     } else {
       this.$emit('update:hasErrors', true)
-    }
-  }
-
-  fileSelected(event: any): void {
-    const valid = this.$refs.provider.validate(event)
-
-    if (valid) {
-      this.localValue = event.target.files[0]
     }
   }
 }

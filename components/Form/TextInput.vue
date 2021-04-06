@@ -13,7 +13,7 @@
         </small>
       </label>
 
-      <div class="relative flex items-center mb-1">
+      <div class="flex items-center mb-1">
         <input
           :id="name"
           v-model="localValue"

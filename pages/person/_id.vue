@@ -212,7 +212,14 @@
                 :key="product.id"
                 class="h-full px-2"
               >
-                <ProductBlock :product="product" />
+                <component
+                  :is="
+                    product.children.length > 0
+                      ? 'CollectionBlock'
+                      : 'ProductBlock'
+                  "
+                  :product="product"
+                />
               </div>
             </BlockSlider>
           </template>
@@ -263,10 +270,18 @@ import { Component, mixins } from 'nuxt-property-decorator'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import { Person } from '~/types/models'
 
+import CollectionBlock from '~/components/Blocks/CollectionBlock.vue'
+import ProductBlock from '~/components/Blocks/ProductBlock.vue'
+
 @Component({
   async asyncData({ params, $accessor }: Context) {
     const { id } = params
     await $accessor.people.fetchCurrent(Number(id))
+  },
+
+  components: {
+    CollectionBlock,
+    ProductBlock,
   },
 })
 export default class PersonDetailPage extends mixins(NavigationRouterHook) {

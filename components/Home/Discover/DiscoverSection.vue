@@ -42,7 +42,15 @@
               :key="product.id"
               class="h-full px-2"
             >
-              <ProductBlock class="shadow-none" :product="product" />
+              <component
+                :is="
+                  product.children && product.children.length > 0
+                    ? 'CollectionBlock'
+                    : 'ProductBlock'
+                "
+                :product="product"
+                class="shadow-none"
+              />
             </div>
           </BlockSlider>
 
@@ -85,7 +93,12 @@
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 import { Discover, Type } from '~/types/entities'
 
-@Component
+import CollectionBlock from '~/components/Blocks/CollectionBlock.vue'
+import ProductBlock from '~/components/Blocks/ProductBlock.vue'
+
+@Component({
+  components: { CollectionBlock, ProductBlock },
+})
 export default class DiscoverSection extends Vue {
   public activeTab: String = 'product'
 
