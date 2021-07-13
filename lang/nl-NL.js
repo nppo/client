@@ -143,7 +143,7 @@ export default {
         preview: {
           fallback:
             'Sorry, het was voor ons niet mogelijk om dit product te previewen',
-          loading: 'Preview wordt geladen...'
+          loading: 'Preview wordt geladen...',
         },
         actions: {
           share: 'Delen',

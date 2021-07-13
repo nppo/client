@@ -1,14 +1,19 @@
 <template>
   <ProductBaseCard v-bind="settings">
-    <LinkPrevue :url="url" cardWidth="100%" :showButton="false" class="flex justify-center h-full w-full bg-gray-100 | link-prevue-wrapper">
+    <LinkPrevue
+      :url="url"
+      card-width="100%"
+      :show-button="false"
+      class="flex justify-center h-full w-full bg-gray-100 | link-prevue-wrapper"
+    >
       <template slot-scope="props">
         <div v-if="props.img" class="w-full h-full">
-          <img
-            :src="props.img"
-            class="block object-contain w-full h-full"
-          />
+          <img :src="props.img" class="block object-contain w-full h-full" />
         </div>
-        <div v-else class="flex items-center justify-center w-full h-full bg-gray-100">
+        <div
+          v-else
+          class="flex items-center justify-center w-full h-full bg-gray-100"
+        >
           <div class="flex flex-col items-center justify-center text-center">
             <div
               class="flex items-center justify-center mb-5 bg-gray-200 rounded-full h-28 w-28"
@@ -38,15 +43,15 @@
 </template>
 
 <script lang="ts">
+import LinkPrevue from 'link-prevue'
+
 import Component, { mixins } from 'vue-class-component'
 import ProductPreview from '~/mixins/product-preview'
 
-import LinkPrevue from 'link-prevue'
-
 @Component({
   components: {
-    LinkPrevue
-  }
+    LinkPrevue,
+  },
 })
 export default class LinkCard extends mixins(ProductPreview) {
   get url(): string {
@@ -55,8 +60,8 @@ export default class LinkCard extends mixins(ProductPreview) {
 }
 </script>
 
-<style>
-  .link-prevue-wrapper > div{
-    @apply w-full;
-  }
+<style scoped>
+.link-prevue-wrapper > div {
+  @apply w-full;
+}
 </style>
