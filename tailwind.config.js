@@ -71,9 +71,6 @@ module.exports = {
       lineHeight: {
         4.5: '1.125rem',
       },
-      inset: {
-        '1/2': '50%',
-      }
     },
     customForms: () => ({
       default: {
