@@ -140,6 +140,7 @@ export default {
 
         preview: {
           fallback: 'Sorry, we were not able to preview this product',
+          loading: 'Preview is loading...'
         },
 
         edit: {
@@ -166,6 +167,7 @@ export default {
           share: 'Share',
           bookmark: 'Save',
           download: 'Download',
+          visit: 'Visit',
         },
       },
       types: {

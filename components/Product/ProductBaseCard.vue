@@ -21,6 +21,14 @@
           :key="index"
           v-bind="{ ...button }"
         />
+
+        <a
+          v-if="product.type === 'link'"
+          :href="product.links.preview"
+          class="flex items-center px-2 py-1 font-bold rounded-md bg-orange-brand text-white"
+        >
+          {{ $t('pages.product._id.actions.visit') }}
+        </a>
       </div>
     </div>
   </div>

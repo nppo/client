@@ -27,6 +27,7 @@
     "@tailwindcss/line-clamp": "^0.2.0",
     "core-js": "^3.8.3",
     "hooper": "^0.3.4",
+    "link-prevue": "^1.2.0",
     "nuxt": "^2.14.12",
     "nuxt-i18n": "^6.19.0",
     "nuxt-property-decorator": "2.9.1",
