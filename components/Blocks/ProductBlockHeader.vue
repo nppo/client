@@ -37,13 +37,18 @@
       :url="product.links.preview"
       card-width="100%"
       :show-button="false"
-      class="flex justify-center"
     >
       <template slot-scope="props">
-        <img
-          class="object-cover w-full h-32 mb-2"
-          :src="props.img"
-          :alt="props.title"
+        <div v-if="props.img">
+          <img
+            class="object-cover w-full h-32 mb-2"
+            :src="props.img"
+            :alt="props.title"
+          />
+        </div>
+        <div
+          v-else
+          class="flex items-center justify-center w-full h-32 mb-2 bg-blue-800"
         />
       </template>
     </LinkPrevue>

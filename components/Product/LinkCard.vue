@@ -4,6 +4,7 @@
       :url="url"
       card-width="100%"
       :show-button="false"
+      :api-url="previewApiUrl"
       class="flex justify-center h-full w-full bg-gray-100 | link-prevue-wrapper"
     >
       <template slot-scope="props">
@@ -54,8 +55,16 @@ import ProductPreview from '~/mixins/product-preview'
   },
 })
 export default class LinkCard extends mixins(ProductPreview) {
-  get url(): string {
-    return this.product.links?.preview
+  get url(): string | null {
+    if (this.product.links) {
+      return this.product.links.preview
+    }
+
+    return ''
+  }
+
+  get previewApiUrl(): string | undefined {
+    return process.env.PREVIEW_API_URL
   }
 }
 </script>
