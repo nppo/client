@@ -38,6 +38,16 @@ export const actions = actionTree(
       }
     },
 
+    async store({ commit }, createData: { data: FormData }): Promise<void> {
+      const { status, data } = await this.$repositories.person.store(
+        createData.data
+      )
+
+      if (status === 200) {
+        commit('setCurrent', data.data)
+      }
+    },
+
     async update(
       { commit },
       updateData: { id: number; data: FormData }

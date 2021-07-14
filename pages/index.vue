@@ -67,6 +67,8 @@
     />
 
     <StatisticsSection :statistics="entityStatistics" />
+
+    <PersonCreate v-if="$auth.user" :is-open="{ true: $auth.user.person  }" />
   </div>
 </template>
 
