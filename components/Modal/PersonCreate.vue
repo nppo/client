@@ -80,6 +80,8 @@ export default class UserCreateModal extends Vue {
   closeModal() {
     this.open = false
     document.querySelector('body')!.style.overflow = 'auto'
+
+    localStorage.setItem('closedProfileModal', 'true')
   }
 }
 </script>
