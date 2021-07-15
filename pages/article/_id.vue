@@ -15,7 +15,22 @@
     </div>
     <div class="container relative px-12 mx-auto">
       <div class="flex justify-between space-x-32 mt-18">
-        <div class="w-8/12"></div>
+        <div class="w-8/12">
+          <div v-if="article.tags && article.tags.length > 0">
+            <h3 class="mb-5 text-2xl font-bold">
+              {{ $t('pages.article._id.headings.tags') }}
+            </h3>
+
+            <div class="flex flex-wrap mb-8">
+              <Badge
+                v-for="tag in article.tags"
+                :key="'article_tag_' + tag.id"
+                :text="tag.label"
+                class="mb-2 mr-2"
+              />
+            </div>
+          </div>
+        </div>
         <div class="w-4/12"></div>
       </div>
     </div>
