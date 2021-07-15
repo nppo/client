@@ -1,5 +1,6 @@
 import { NuxtAxiosInstance } from '@nuxtjs/axios'
 import ProductTypeRepository from './ProductTypeRepository'
+import ArticleRepository from './ArticleRepository'
 import StatisticsRepository from '~/repositories/StatisticsRepository'
 import DiscoverRepository from '~/repositories/DiscoverRepository'
 import ProductRepository from '~/repositories/ProductRepository'
@@ -25,6 +26,7 @@ export default class Repositories {
   skill: SkillRepository
   productTypes: ProductTypeRepository
   tags: TagRepository
+  article: ArticleRepository
 
   constructor($axios: NuxtAxiosInstance) {
     this.statistics = new StatisticsRepository($axios)
@@ -39,5 +41,6 @@ export default class Repositories {
     this.skill = new SkillRepository($axios)
     this.productTypes = new ProductTypeRepository($axios)
     this.tags = new TagRepository($axios)
+    this.article = new ArticleRepository($axios)
   }
 }
