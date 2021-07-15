@@ -68,7 +68,7 @@
 
     <StatisticsSection :statistics="entityStatistics" />
 
-    <PersonCreate v-if="$auth.user" :is-open="showProfileModal" />
+    <PersonCreate v-if="$auth.user" :is-open="showProfileModal" :themes="themes" />
   </div>
 </template>
 

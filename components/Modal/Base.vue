@@ -79,7 +79,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 @Component
 export default class Modal extends Vue {
   @Prop({ type: String, required: true }) readonly title!: string
-  @Prop({ type: String, default: 'md:w-96' }) readonly width!: string
+  @Prop({ type: String, default: 'md:w-210' }) readonly width!: string
   @Prop({ type: Boolean, default: true }) readonly header!: boolean
 
   @Prop({ default: false })
