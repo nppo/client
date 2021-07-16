@@ -40,28 +40,24 @@
               aria-modal="true"
               aria-labelledby="modal-headline"
             >
-              <div class="absolute top-0 right-0 block p-8">
-                <button type="button" class="button-close" @click="close()">
+              <div class="flex justify-end block p-6 pb-0">
+                <button type="button" class="button-close focus:outline-0" @click="close()">
                   <span class="sr-only">Close</span>
 
-                  <!-- <BaseIcon
-                    name="close"
-                    class="w-4 h-4"
-                    @close="isOpen = false"
-                  /> -->
+                  <font-awesome-icon class="fill-current h-3 w-3 text-gray-300" icon="times" />
                 </button>
               </div>
 
               <div class="bg-white">
                 <div
                   v-if="header"
-                  class="p-8 tracking-wider border-b border-gray-100"
+                  class="p-6 pt-4 tracking-wider"
                 >
-                  <h1 class="text-xl font-semibold">{{ title }}</h1>
+                  <h1 class="text-3xl font-semibold">{{ title }}</h1>
                 </div>
                 <div v-else class="p-6 lg:p-0" />
 
-                <div class="p-8">
+                <div class="p-6">
                   <slot name="content" />
                 </div>
               </div>
