@@ -16,6 +16,12 @@
     <div class="container relative px-12 mx-auto">
       <div class="flex justify-between space-x-32 mt-18">
         <div class="w-8/12">
+          <ContentPart
+            v-for="(part, index) in article.content"
+            :key="index"
+            :data="part"
+            class="mb-8"
+          />
           <div v-if="article.tags && article.tags.length > 0">
             <h2 class="mb-3 text-3xl font-bold">
               {{ $t('pages.article._id.headings.tags') }}
