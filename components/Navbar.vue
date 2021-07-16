@@ -12,7 +12,7 @@
       <Dropdown v-if="$auth.loggedIn" :is-active.sync="active">
         <template #button>
           <button
-            class="flex items-center px-4 py-2 space-x-4 text-sm text-white rounded bg-orange-brand"
+            class="flex items-center px-4 py-2 space-x-4 text-sm text-white rounded bg-orange-brand focus:outline-none"
           >
             <span>{{ $t('account.manage') }}</span>
 
@@ -53,10 +53,6 @@ import { Person } from '~/types/models'
 export default class Navbar extends Vue {
   public active: boolean = false
 
-  get person(): Person | undefined {
-    return this.$auth.user?.person as Person
-  }
-
   private links: Array<{ link: string; text: string }> = [
     {
       link: `/person/${this.person?.id}`,
@@ -67,5 +63,9 @@ export default class Navbar extends Vue {
       text: 'auth.actions.logout',
     },
   ]
+
+  get person(): Person | undefined {
+    return this.$auth.user?.person as Person
+  }
 }
 </script>

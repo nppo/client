@@ -266,6 +266,8 @@ export default {
             about: 'Over',
             skills: 'Skills',
             themes: "Thema's",
+            function: "Functie",
+            phone: 'Telefoonnummer'
           },
         },
       },
