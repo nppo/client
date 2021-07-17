@@ -115,3 +115,8 @@ export interface Role extends Model {
   id: number
   name: string
 }
+
+export interface Article extends Model {
+  title: string
+  tags?: Tag[]
+}

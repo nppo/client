@@ -311,5 +311,13 @@ export default {
       500: 'Er heeft zich een onverwachte fout voorgedaan',
       back_to_homepage: 'Ga terug naar de homepagina',
     },
+
+    article: {
+      _id: {
+        headings: {
+          tags: 'Tags',
+        },
+      },
+    },
   },
 }
