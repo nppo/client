@@ -317,6 +317,14 @@ export default {
       500: 'An unexpected error has occurred',
       back_to_homepage: 'Go back to the home page',
     },
+
+    article: {
+      _id: {
+        headings: {
+          tags: 'Tags',
+        },
+      },
+    },
   },
 
   modals: {
