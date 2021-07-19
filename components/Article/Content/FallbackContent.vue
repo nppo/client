@@ -22,7 +22,7 @@
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 @Component
-export default class ImageContent extends Vue {
+export default class FallbackContent extends Vue {
   @Prop({ type: Object, required: true }) data!: object
 }
 </script>

@@ -11,13 +11,7 @@
       center-padding="100px"
       :focus-on-select="true"
     >
-      <img v-for="(image, index) in data.images" :key="index" :src="image.url" class="block h-104" />
-
-      <template #customPaging="page">
-        <div class="custom-dot">
-          {{ page }}
-        </div>
-      </template>
+      <img v-for="(image, index) in data.images" :key="index" :src="image.url" class="block object-cover h-96" />
     </VueSlickCarousel>
 
     <div
