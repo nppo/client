@@ -20,7 +20,7 @@
             v-for="(part, index) in article.content"
             :key="index"
             :data="part"
-            class="mb-8"
+            class="mb-18"
           />
           <div v-if="article.tags && article.tags.length > 0">
             <h2 class="mb-3 text-3xl font-bold">
