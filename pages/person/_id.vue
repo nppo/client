@@ -171,7 +171,11 @@
               />
             </div>
 
-            <BlockSlider v-if="person.projects && person.projects.length > 0" ref="projectSlider" :slides-to-show="sliderShowMax">
+            <BlockSlider
+              v-if="person.projects && person.projects.length > 0"
+              ref="projectSlider"
+              :slides-to-show="sliderShowMax"
+            >
               <div
                 v-for="project in person.projects"
                 :key="project.id"
@@ -180,7 +184,7 @@
                 <ProjectBlock :project="project" />
               </div>
             </BlockSlider>
-            <p v-else>Je hebt nog geen projecten.</p>
+            <p v-else>{{ $t('pages.person._id.projects.empty') }}</p>
           </template>
 
           <template>
@@ -207,7 +211,11 @@
               />
             </div>
 
-            <BlockSlider v-if="person.products && person.products.length > 0" ref="productSlider" :slides-to-show="3">
+            <BlockSlider
+              v-if="person.products && person.products.length > 0"
+              ref="productSlider"
+              :slides-to-show="3"
+            >
               <div
                 v-for="product in person.products"
                 :key="product.id"
@@ -223,7 +231,7 @@
                 />
               </div>
             </BlockSlider>
-            <p v-else>Je hebt nog geen producten.</p>
+            <p v-else>{{ $t('pages.person._id.products.empty') }}</p>
           </template>
 
           <template v-if="person.parties && person.parties.length > 0">

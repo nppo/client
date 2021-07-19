@@ -268,6 +268,12 @@ export default {
             phone: 'Phone',
           },
         },
+        projects: {
+          empty: 'This person has no projects yet.',
+        },
+        products: {
+          empty: 'This person has no products yet.',
+        },
       },
     },
 
@@ -316,8 +322,9 @@ export default {
   modals: {
     person: {
       create: {
-        heading: 'You do not have a profile yet, would you like to create one?,
-        cancel_text: "Don't want to create a profile yet? Continue to the platform",
+        heading: 'You do not have a profile yet, would you like to create one?',
+        cancel_text:
+          "Don't want to create a profile yet? Continue to the platform",
       },
     },
   },

@@ -41,18 +41,22 @@
               aria-labelledby="modal-headline"
             >
               <div class="flex justify-end block p-6 pb-0">
-                <button type="button" class="button-close focus:outline-0" @click="close()">
+                <button
+                  type="button"
+                  class="button-close focus:outline-0"
+                  @click="close()"
+                >
                   <span class="sr-only">Close</span>
 
-                  <font-awesome-icon class="fill-current h-3 w-3 text-gray-300" icon="times" />
+                  <font-awesome-icon
+                    class="w-3 h-3 text-gray-300 fill-current"
+                    icon="times"
+                  />
                 </button>
               </div>
 
               <div class="bg-white">
-                <div
-                  v-if="header"
-                  class="p-6 pt-4 tracking-wider"
-                >
+                <div v-if="header" class="p-6 pt-4 tracking-wider">
                   <h1 class="text-3xl font-semibold">{{ title }}</h1>
                 </div>
                 <div v-else class="p-6 lg:p-0" />

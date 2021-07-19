@@ -270,6 +270,12 @@ export default {
             phone: 'Telefoonnummer',
           },
         },
+        projects: {
+          empty: 'Deze persoon heeft nog geen projecten.',
+        },
+        products: {
+          empty: 'Deze persoon heeft nog geen producten.',
+        },
       },
     },
 
