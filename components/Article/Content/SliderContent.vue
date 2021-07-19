@@ -78,13 +78,14 @@ export default class SliderContent extends Vue {
   @apply transition-spacing duration-100 ease-in-out py-4 !important;
 }
 
+.slick-current {
+  @apply z-10 !important;
+
+  box-shadow: 0 9px 0 0 white, 0 -9px 0 0 white, 75px 0 100px -4px rgba(0, 3, 63, 0.8), -75px 0 100px -4px rgba(0, 3, 63, 0.8);
+}
+
 .slick-current img {
   @apply rounded-md py-0 !important;
 }
 
-.slick-current::before {
-  content: "";
-  box-shadow: -20px 0 20px -20px rgba(0, 3, 63, 0.8) inset;
-  width: 20px;
-}
 </style>
