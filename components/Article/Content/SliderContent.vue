@@ -81,7 +81,7 @@ export default class SliderContent extends Vue {
   height: 100% !important;
 }
 .slick-slide img {
-  @apply py-4 !important;
+  @apply transition-spacing duration-100 ease-in-out py-4 !important;
 }
 
 .slick-current img {

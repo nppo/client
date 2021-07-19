@@ -7,7 +7,7 @@
       @close="index = null"
     />
     <!-- @TODO SURAPP-302: Make sure the image below is styled nicely -->
-    <div class="w-full h-full" @click="index = 0">
+    <div class="w-full h-104" @click="index = 0">
       <img :src="data.image.url" class="block object-contain rounded-md" />
     </div>
   </div>

@@ -74,6 +74,9 @@ module.exports = {
       inset: {
         '1/2': '50%',
         6.5: '1.625rem',
+      },
+      transitionProperty: {
+        'spacing': 'padding',
       }
     },
     customForms: () => ({
