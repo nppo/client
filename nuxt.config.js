@@ -74,6 +74,8 @@ export default {
     '@nuxtjs/auth-next',
     // Doc: https://github.com/nuxt-community/dayjs-module
     '@nuxtjs/dayjs',
+    // Doc: https://github.com/nuxt-community/markdownit-module
+    '@nuxtjs/markdownit',
   ],
 
   /*
@@ -207,6 +209,10 @@ export default {
       'Baloo Tammudu 2': [400],
       'Baloo Tamma 2': [500, 700],
     },
+  },
+
+  markdownit: {
+   runtime: true
   },
 
   /*
