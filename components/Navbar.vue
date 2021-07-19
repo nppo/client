@@ -53,16 +53,23 @@ import { Person } from '~/types/models'
 export default class Navbar extends Vue {
   public active: boolean = false
 
-  private links: Array<{ link: string; text: string }> = [
-    {
-      link: `/person/${this.person?.id}`,
-      text: 'account.profile',
-    },
-    {
+  get links(): Array<{ link: string; text: string }> {
+    const links = []
+
+    if (this.person) {
+      links.push({
+        link: `/person/${this.person?.id}`,
+        text: 'account.profile',
+      })
+    }
+
+    links.push({
       link: '/logout',
       text: 'auth.actions.logout',
-    },
-  ]
+    })
+
+    return links
+  }
 
   get person(): Person | undefined {
     return this.$auth.user?.person as Person

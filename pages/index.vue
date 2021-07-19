@@ -68,7 +68,12 @@
 
     <StatisticsSection :statistics="entityStatistics" />
 
-    <PersonCreate v-if="$auth.user" :is-open="showProfileModal" :themes="themes" :skills="skills" />
+    <PersonCreate
+      v-if="$auth.user"
+      :is-open="showProfileModal"
+      :themes="themes"
+      :skills="skills"
+    />
   </div>
 </template>
 
@@ -119,7 +124,10 @@ export default class IndexPage extends Vue {
   }
 
   get showProfileModal() {
-    return this.$auth.user?.person === null && localStorage.getItem('closedProfileModal') === null
+    return (
+      this.$auth.user?.person === null &&
+      localStorage.getItem('closedProfileModal') === null
+    )
   }
 
   setFilters(type: string, filters: Array<any>): void {

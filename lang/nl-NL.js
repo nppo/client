@@ -266,8 +266,8 @@ export default {
             about: 'Over',
             skills: 'Skills',
             themes: "Thema's",
-            function: "Functie",
-            phone: 'Telefoonnummer'
+            function: 'Functie',
+            phone: 'Telefoonnummer',
           },
         },
       },
@@ -312,6 +312,15 @@ export default {
       404: 'Deze pagina bestaat niet',
       500: 'Er heeft zich een onverwachte fout voorgedaan',
       back_to_homepage: 'Ga terug naar de homepagina',
+    },
+  },
+
+  modals: {
+    person: {
+      create: {
+        heading: 'Je hebt nog geen profiel, wil je die aanmaken?',
+        cancel_text: 'Nu geen profiel aanmaken? Ga door naar het platform',
+      },
     },
   },
 }

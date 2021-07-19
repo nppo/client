@@ -264,8 +264,8 @@ export default {
             about: 'About',
             skills: 'Skills',
             themes: 'Themes',
-            function: "Function",
-            phone: 'Phone'
+            function: 'Function',
+            phone: 'Phone',
           },
         },
       },
@@ -310,6 +310,15 @@ export default {
       404: 'This page does not exist',
       500: 'An unexpected error has occurred',
       back_to_homepage: 'Go back to the home page',
+    },
+  },
+
+  modals: {
+    person: {
+      create: {
+        heading: 'You do not have a profile yet, would you like to create one?,
+        cancel_text: "Don't want to create a profile yet? Continue to the platform",
+      },
     },
   },
 }

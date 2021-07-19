@@ -1,13 +1,16 @@
 <template>
   <Base
     :is-open="open"
-    :title="'Je hebt nog geen profiel, wil je die aanmaken?'"
+    :title="$t('modals.person.create.heading')"
     @close="closeModal()"
   >
     <template #content>
       <div class="flex flex-col">
         <ValidationObserver v-slot="{ handleSubmit }">
-          <form class="space-y-6 pb-8 border-b border-gray-100" @submit.prevent="handleSubmit(create)">
+          <form
+            class="pb-8 space-y-6 border-b border-gray-100"
+            @submit.prevent="handleSubmit(create)"
+          >
             <div class="grid grid-cols-3 gap-4">
               <div class="flex flex-col mb-4">
                 <label
@@ -38,7 +41,7 @@
                 :label="$t('pages.person._id.edit.labels.phone')"
                 :required="true"
               />
-              
+
               <TextInput
                 :value.sync="formData.first_name"
                 :name="$t('pages.person._id.edit.labels.first_name')"
@@ -85,10 +88,18 @@
           </form>
         </ValidationObserver>
 
-        <button class="pt-8 flex items-center text-left focus:outline-none" @click="closeModal">
-          <h2 class="text-base font-semibold mr-4">Nu geen profiel aanmaken? Ga door naar het platform</h2>
+        <button
+          class="flex items-center pt-8 text-left focus:outline-none"
+          @click="closeModal"
+        >
+          <h2 class="mr-4 text-base font-semibold">
+            {{ $t('modals.person.create.cancel_text') }}
+          </h2>
 
-          <font-awesome-icon class="text-base text-orange-brand" icon="arrow-right" />
+          <font-awesome-icon
+            class="text-base text-orange-brand"
+            icon="arrow-right"
+          />
         </button>
       </div>
     </template>
@@ -124,10 +135,9 @@ export default class PersonCreateModal extends Vue {
   public open: boolean = this.isOpen
 
   create(): void {
-    this.$accessor.people
-      .store(this.asFormData())
-      .then(() => {
-        this.closeModal()
+    this.$accessor.people.store(this.asFormData()).then(() => {
+      this.closeModal()
+      this.$auth.fetchUser()
     })
   }
 
