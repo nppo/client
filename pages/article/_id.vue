@@ -30,6 +30,20 @@
               />
             </div>
           </div>
+          <div v-if="article.temes && article.temes.length > 0">
+            <h2 class="mb-3 text-3xl font-bold">
+              {{ $t('pages.article._id.headings.temes') }}
+            </h2>
+
+            <div class="flex flex-wrap mb-8">
+              <Badge
+                v-for="theme in article.temes"
+                :key="'article_theme_' + theme.id"
+                :text="theme.label"
+                class="mb-2 mr-2"
+              />
+            </div>
+          </div>
         </div>
         <div class="w-4/12"></div>
       </div>

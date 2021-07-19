@@ -314,6 +314,7 @@ export default {
       _id: {
         headings: {
           tags: 'Tags',
+          themes: 'Thema\'s',
         },
       },
     },
