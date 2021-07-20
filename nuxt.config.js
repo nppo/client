@@ -198,7 +198,7 @@ export default {
         'faBoxOpen',
       ],
       regular: ['faBookmark', 'faPlayCircle'],
-      brands: ['faLinkedin', 'faResearchgate', 'faTwitterSquare'],
+      brands: ['faLinkedin', 'faResearchgate', 'faTwitterSquare', 'faYoutube'],
     },
   },
 

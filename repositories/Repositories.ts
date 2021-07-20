@@ -9,6 +9,7 @@ import PersonRepository from '~/repositories/PersonRepository'
 import SearchRepository from '~/repositories/SearchRepository'
 import ThemeRepository from '~/repositories/ThemeRepository'
 import PartyRepository from '~/repositories/PartyRepository'
+import LikeRepository from '~/repositories/LikeRepository'
 import TypeRepository from '~/repositories/TypeRepository'
 import SkillRepository from '~/repositories/SkillRepository'
 import TagRepository from '~/repositories/TagRepository'
@@ -22,6 +23,7 @@ export default class Repositories {
   search: SearchRepository
   theme: ThemeRepository
   party: PartyRepository
+  like: LikeRepository
   type: TypeRepository
   skill: SkillRepository
   productTypes: ProductTypeRepository
@@ -37,6 +39,7 @@ export default class Repositories {
     this.search = new SearchRepository($axios)
     this.theme = new ThemeRepository($axios)
     this.party = new PartyRepository($axios)
+    this.like = new LikeRepository($axios)
     this.type = new TypeRepository($axios)
     this.skill = new SkillRepository($axios)
     this.productTypes = new ProductTypeRepository($axios)

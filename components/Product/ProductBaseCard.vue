@@ -20,6 +20,7 @@
           v-for="(button, index) in buttons"
           :key="index"
           v-bind="{ ...button }"
+          v-on="{ ...button.on }"
         />
 
         <a
