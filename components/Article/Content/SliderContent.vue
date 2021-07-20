@@ -1,5 +1,12 @@
 <template>
   <div class="relative w-full">
+     <CoolLightBox
+      :src="activeImage"
+      :index="index"
+      :items="allImages"
+      @close="index = null"
+    />
+
     <VueSlickCarousel
       ref="slider"
       class="slick-same-height article-slider"
@@ -11,12 +18,21 @@
       center-padding="100px"
       :focus-on-select="true"
     >
-      <img
-        v-for="(image, index) in data.images"
-        :key="index"
-        :src="image.url"
-        class="block object-cover h-96"
-      />
+      <div
+        v-for="(image, imageIndex) in data.images"
+        :key="imageIndex"
+        class="relative"
+        @click="setLargeImage(image.url)"
+      >
+        <img
+          :src="image.url"
+          class="block object-cover w-full h-96"
+        />
+
+        <span class="absolute top-0 right-0 z-10 p-3 text-white">
+          <font-awesome-icon class="text-xl fill-current" icon="expand" />
+        </span>
+      </div>
     </VueSlickCarousel>
 
     <div
@@ -69,14 +85,18 @@ import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import { SliderComponent } from '~/types/entities'
 
 import VueSlickCarousel from 'vue-slick-carousel'
+import CoolLightBox from 'vue-cool-lightbox'
+import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
 
 @Component({
   components: {
     VueSlickCarousel,
+    CoolLightBox,
   },
 })
 export default class SliderContent extends Vue {
   private index: null | number = null
+  private activeImage: string = ''
 
   $refs!: {
     slider: typeof VueSlickCarousel
@@ -84,12 +104,23 @@ export default class SliderContent extends Vue {
 
   @Prop({ type: Object, required: true }) data!: SliderComponent
 
+  get allImages() {
+    return this.data.images.map((image: object) => {
+        return image.url
+    })
+  }
+
   next() {
     this.$refs.slider.next()
   }
 
   previous() {
     this.$refs.slider.prev()
+  }
+
+  setLargeImage(image: string) {
+    this.index = 0
+    this.activeImage = image
   }
 }
 </script>
