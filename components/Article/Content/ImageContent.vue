@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full cursor-pointer">
+  <div class="w-full">
     <CoolLightBox
       :src="data.image.url"
       :index="index"
@@ -7,7 +7,7 @@
       @close="index = null"
     />
     <div class="relative w-full h-104" @click="index = 0">
-      <img :src="data.image.url" class="block object-cover w-full rounded-md h-104" />
+      <img :src="data.image.url" class="block object-cover w-full rounded-md cursor-pointer h-104" />
 
       <span class="absolute top-0 right-0 p-3 text-white">
         <font-awesome-icon class="text-xl fill-current" icon="expand" />

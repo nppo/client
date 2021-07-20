@@ -26,7 +26,7 @@
       >
         <img
           :src="image.url"
-          class="block object-cover w-full h-96"
+          class="block object-cover w-full cursor-pointer h-96"
         />
 
         <span class="absolute top-0 right-0 z-10 p-3 text-white">
