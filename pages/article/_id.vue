@@ -1,6 +1,10 @@
 <template>
   <div class="flex-1 pb-24">
-    <Header has-search-bar>
+    <Header
+      v-if="article.header.length > 0 && article.header[0].url"
+      has-search-bar
+      :image-url="article.header[0].url"
+    >
       <div class="flex items-center justify-between mt-8">
         <BackButton :has-navigated-internal="hasNavigatedInternal" />
       </div>
