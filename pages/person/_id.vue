@@ -158,7 +158,7 @@
                 />
 
                 <CreateButton
-                  v-if="this.$auth.user && this.$auth.user.id === person.id"
+                  v-if="$auth.user && $auth.user.id === person.id"
                   v-can="'create projects'"
                   page="project"
                 />
@@ -193,7 +193,7 @@
                   color="yellow-brand"
                 />
                 <CreateButton
-                  v-if="this.$auth.user && this.$auth.user.id === person.id"
+                  v-if="$auth.user && $auth.user.id === person.id"
                   v-can="'create products'"
                   page="product"
                 />

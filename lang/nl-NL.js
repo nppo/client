@@ -143,11 +143,13 @@ export default {
         preview: {
           fallback:
             'Sorry, het was voor ons niet mogelijk om dit product te previewen',
+          loading: 'Preview wordt geladen...',
         },
         actions: {
           share: 'Delen',
           bookmark: 'Opslaan',
           download: 'Download',
+          visit: 'Bezoeken',
         },
         edit: {
           title: 'Bewerk {name}',
@@ -314,6 +316,7 @@ export default {
       _id: {
         headings: {
           tags: 'Tags',
+          themes: "Thema's",
         },
       },
     },

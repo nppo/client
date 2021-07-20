@@ -23,7 +23,7 @@
             class="mb-18"
           />
           <div v-if="article.tags && article.tags.length > 0">
-            <h2 class="mb-3 text-3xl font-bold">
+            <h2 class="mb-3 text-2xl font-bold">
               {{ $t('pages.article._id.headings.tags') }}
             </h2>
 
@@ -32,6 +32,20 @@
                 v-for="tag in article.tags"
                 :key="'article_tag_' + tag.id"
                 :text="tag.label"
+                class="mb-2 mr-2"
+              />
+            </div>
+          </div>
+          <div v-if="article.themes && article.themes.length > 0">
+            <h2 class="mb-3 text-2xl font-bold">
+              {{ $t('pages.article._id.headings.themes') }}
+            </h2>
+
+            <div class="flex flex-wrap mb-8">
+              <Badge
+                v-for="theme in article.themes"
+                :key="'article_theme_' + theme.id"
+                :text="theme.label"
                 class="mb-2 mr-2"
               />
             </div>

@@ -31,14 +31,41 @@
         class="text-3xl text-blue-500"
       />
     </div>
+
+    <LinkPrevue
+      v-if="product.type === 'link'"
+      :url="product.links.preview"
+      card-width="100%"
+      :show-button="false"
+    >
+      <template slot-scope="props">
+        <div v-if="props.img">
+          <img
+            class="object-cover w-full h-32 mb-2"
+            :src="props.img"
+            :alt="props.title"
+          />
+        </div>
+        <div
+          v-else
+          class="flex items-center justify-center w-full h-32 mb-2 bg-blue-800"
+        />
+      </template>
+    </LinkPrevue>
   </div>
 </template>
 
 <script lang="ts">
+import LinkPrevue from 'link-prevue'
+
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 import { Product } from '~/types/models'
 
-@Component
+@Component({
+  components: {
+    LinkPrevue,
+  },
+})
 export default class ProductBlock extends Vue {
   @Prop({ type: Object, required: true }) readonly product!: Product
 }
