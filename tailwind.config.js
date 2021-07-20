@@ -35,6 +35,7 @@ module.exports = {
         },
       },
       opacity: {
+        70: '0.7',
         90: '0.9',
       },
       backgroundOpacity: (theme) => theme('opacity'),

@@ -1,7 +1,7 @@
 <template>
   <div class="relative w-full">
      <CoolLightBox
-      :src="activeImage"
+      :src="currentImageUrl"
       :index="index"
       :items="allImages"
       @close="index = null"
@@ -22,7 +22,7 @@
         v-for="(image, imageIndex) in data.images"
         :key="imageIndex"
         class="relative"
-        @click="setLargeImage(image.url)"
+        @click="openSlideshow(image.url)"
       >
         <img
           :src="image.url"
@@ -96,7 +96,8 @@ import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
 })
 export default class SliderContent extends Vue {
   private index: null | number = null
-  private activeImage: string = ''
+  private currentImageUrl: string = ''
+  private showIcon: boolean = false
 
   $refs!: {
     slider: typeof VueSlickCarousel
@@ -118,9 +119,9 @@ export default class SliderContent extends Vue {
     this.$refs.slider.prev()
   }
 
-  setLargeImage(image: string) {
+  openSlideshow(imageUrl: string) {
     this.index = 0
-    this.activeImage = image
+    this.currentImageUrl = imageUrl
   }
 }
 </script>
@@ -142,18 +143,11 @@ export default class SliderContent extends Vue {
   height: 100% !important;
 }
 .article-slider .slick-slide img {
-  @apply transition-spacing duration-100 ease-in-out py-4 !important;
-}
-
-.article-slider .slick-current {
-  @apply z-10 !important;
-
-  box-shadow: 0 9px 0 0 white, 0 -9px 0 0 white,
-    75px 0 100px -4px rgba(0, 3, 63, 0.8),
-    -75px 0 100px -4px rgba(0, 3, 63, 0.8);
+  @apply transition-spacing duration-100 ease-in-out py-4 opacity-70 !important;
 }
 
 .article-slider .slick-current img {
-  @apply rounded-md py-0 !important;
+  @apply rounded-md py-0 opacity-100 shadow-md !important;
 }
 </style>
+
