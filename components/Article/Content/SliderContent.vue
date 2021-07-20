@@ -22,14 +22,14 @@
         v-for="(image, imageIndex) in data.images"
         :key="imageIndex"
         class="relative"
-        @click="openSlideshow(image.url)"
+        @click="openSlideshow(imageIndex, image.url)"
       >
         <img
           :src="image.url"
           class="block object-cover w-full cursor-pointer h-96"
         />
 
-        <span class="absolute top-0 right-0 z-10 p-3 text-white">
+        <span class="absolute top-0 right-0 z-10 p-3 text-transparent">
           <font-awesome-icon class="text-xl fill-current" icon="expand" />
         </span>
       </div>
@@ -119,8 +119,8 @@ export default class SliderContent extends Vue {
     this.$refs.slider.prev()
   }
 
-  openSlideshow(imageUrl: string) {
-    this.index = 0
+  openSlideshow(imageIndex: number, imageUrl: string) {
+    this.index = imageIndex
     this.currentImageUrl = imageUrl
   }
 }
@@ -148,6 +148,10 @@ export default class SliderContent extends Vue {
 
 .article-slider .slick-current img {
   @apply rounded-md py-0 opacity-100 shadow-md !important;
+}
+
+.article-slider .slick-current span {
+  @apply text-white !important;
 }
 </style>
 
