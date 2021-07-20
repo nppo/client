@@ -15,6 +15,11 @@ export const mutations = mutationTree(state, {
   setCurrent(state, newValue: Search) {
     state.current = newValue
   },
+  addResults(state, results) {
+    // TODO: Fix type errors
+    state.current[results.type].items = state.current[results.type].items.concat(results.data[results.type].items)
+    state.current[results.type].next_cursor = results.data[results.type].next_cursor
+  },
   setFilter(state, filter: Filter) {
     Vue.set(state.filters, filter.type, [...filter.values])
   },
@@ -53,6 +58,18 @@ export const actions = actionTree(
 
       if (status === 200) {
         commit('setCurrent', data)
+        localStorage.setItem('currentSearch', JSON.stringify(data as Search))
+      }
+    },
+
+    async additionalResults({ commit }, query): Promise<void> {
+      const {
+        status,
+        data: { data },
+      } = await this.$repositories.search.result(query.searchString)
+
+      if (status === 200) {
+        commit('addResults', { type: query.type, data })
         localStorage.setItem('currentSearch', JSON.stringify(data as Search))
       }
     },

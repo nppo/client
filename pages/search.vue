@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-1">
+  <div class="flex-1" @scroll="detectLoadMore">
     <Header>
       <div class="container pb-16">
         <BackButton
@@ -52,7 +52,7 @@
           </div>
           <div v-else>
             <SearchCollapse
-              v-if="products.length > 0"
+              v-if="products.items.length > 0"
               :show-header="!hasSpecificTypeFilter"
               :header="$t('entities.product.plural')"
               class="mb-20"
@@ -62,7 +62,7 @@
                 class="grid grid-cols-1 gap-4 mb-5 md:grid-cols-2 lg:grid-cols-3"
               >
                 <div
-                  v-for="product in getMaxEntities(products, 6)"
+                  v-for="product in getMaxEntities(products.items, 6)"
                   :key="product.id"
                 >
                   <component
@@ -78,7 +78,7 @@
             </SearchCollapse>
 
             <SearchCollapse
-              v-if="people.length > 0"
+              v-if="people.items.length > 0"
               :show-header="!hasSpecificTypeFilter"
               :header="$t('entities.person.plural')"
               class="mb-20"
@@ -86,7 +86,7 @@
             >
               <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 <div
-                  v-for="person in getMaxEntities(people, 3)"
+                  v-for="person in getMaxEntities(people.items, 3)"
                   :key="person.id"
                 >
                   <PersonBlock :person="person" />
@@ -95,7 +95,7 @@
             </SearchCollapse>
 
             <SearchCollapse
-              v-if="projects.length > 0"
+              v-if="projects.items.length > 0"
               :show-header="!hasSpecificTypeFilter"
               :header="$t('entities.project.plural')"
               class="mb-20"
@@ -105,7 +105,7 @@
                 class="grid grid-cols-1 gap-4 mb-5 md:grid-cols-2 lg:grid-cols-3"
               >
                 <div
-                  v-for="project in getMaxEntities(projects, 6)"
+                  v-for="project in getMaxEntities(projects.items, 6)"
                   :key="project.id"
                 >
                   <ProjectBlock :project="project" />
@@ -114,7 +114,7 @@
             </SearchCollapse>
 
             <SearchCollapse
-              v-if="parties.length > 0"
+              v-if="parties.items.length > 0"
               :show-header="!hasSpecificTypeFilter"
               :header="$t('entities.party.plural')"
               @show-all="setFilterByLabel('party')"
@@ -123,13 +123,19 @@
                 class="grid grid-cols-1 gap-4 mb-5 md:grid-cols-2 lg:grid-cols-3"
               >
                 <div
-                  v-for="party in getMaxEntities(parties, 3)"
+                  v-for="party in getMaxEntities(parties.items, 3)"
                   :key="party.id"
                 >
                   <PartyBlock :party="party" />
                 </div>
               </div>
             </SearchCollapse>
+
+            <div v-if="showInfiniteLoader" class="-mt-16">
+              <SearchSkeleton />
+            </div>
+
+            <div v-if="resourceDepleted" class="-mt-12 text-xl text-gray-500 text-center">That's all folks!</div>
 
             <div v-if="current.results === 0">
               {{ $t('pages.search.no_results') }}
@@ -145,20 +151,25 @@
 import { Component, mixins } from 'nuxt-property-decorator'
 import qs from 'qs'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
-import { Search, Type } from '~/types/entities'
+import { ProductSearch, Search, Type} from '~/types/entities'
 import { Party, Person, Product, Project, Theme } from '~/types/models'
 
 import CollectionBlock from '~/components/Blocks/CollectionBlock.vue'
 import ProductBlock from '~/components/Blocks/ProductBlock.vue'
+import filterTypes from '~/config/entities'
 
 @Component({
   async fetch(this: SearchPage) {
+    window.addEventListener('scroll', this.detectLoadMore)
+
     await this.$accessor.themes.fetchAll()
     await this.$accessor.types.fetchAll()
 
     this.prepareFilters()
 
-    await this.search()
+    if (this.$accessor.search.current && this.filters.types.length !== 1) {
+      await this.search()
+    }
   },
   components: {
     CollectionBlock,
@@ -169,6 +180,8 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
   private searchString: string = ''
   private filterString: string = ''
   private isLoading: boolean = false
+  private showInfiniteLoader: boolean = false
+  private resourceDepleted: boolean = false
 
   get current(): Search {
     return this.$accessor.search.current
@@ -206,6 +219,12 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
     return this.filters.types?.length === 1
   }
 
+  get requestString(): string {
+    return this.searchString
+      ? 'query=' + this.searchString + this.filterString
+      : this.filterString.substring(1)
+  }
+
   isActive(id: any, type: string): boolean {
     return this.filters[type] && this.filters[type].includes(String(id))
   }
@@ -234,15 +253,11 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
         }
       }
 
-      const requestString: string = this.searchString
-        ? 'query=' + this.searchString + this.filterString
-        : this.filterString.substring(1)
-
       if (replaceUrl) {
-        this.$router.replace('/search?' + requestString)
+        this.$router.replace('/search?' + this.requestString)
       }
 
-      await this.$accessor.search.result(requestString)
+      await this.$accessor.search.result(this.requestString)
     }
 
     this.isLoading = false
@@ -294,6 +309,30 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
 
   getMaxEntities(entities: Array<any>, max: number): Array<any> {
     return this.hasSpecificTypeFilter ? entities : entities.slice(0, max)
+  }
+
+  detectLoadMore() {
+    const type: string = filterTypes[this.filters.types[0]]
+
+    if (this.filters.types.length > 1 || this.showInfiniteLoader) return
+
+    if (this[type].next_cursor === false) {
+      this.resourceDepleted = true
+      return
+    }
+
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+      this.showInfiniteLoader = true
+
+      const searchString: string =
+        this.requestString + '&cursor=' + this[type].next_cursor
+
+      this.$accessor.search
+        .additionalResults({ searchString, type })
+        .then(() => {
+          this.showInfiniteLoader = false
+        })
+    }
   }
 }
 </script>

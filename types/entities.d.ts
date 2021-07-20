@@ -15,11 +15,16 @@ export interface ErrorMessage {
   message: string
 }
 
+export interface ProductSearch {
+  items: Product[]
+  nextCursor: string
+}
+
 export interface Search {
   results: number
   parties?: Party[]
   people?: Person[]
-  products?: Product[]
+  products?: ProductSearch[]
   projects?: Project[]
   filters?: Filter[]
 }
