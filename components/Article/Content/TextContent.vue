@@ -1,5 +1,6 @@
 <template>
   <div class="w-full | markdown">
+    <!-- eslint-disable-next-line vue/no-v-html -->
     <p v-html="$md.render(data.text)" />
   </div>
 </template>

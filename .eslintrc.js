@@ -12,7 +12,5 @@ module.exports = {
   ],
   plugins: ['prettier'],
   // add your custom rules here
-  rules: {
-    'vue/no-v-html': false,
-  },
+  rules: {},
 }

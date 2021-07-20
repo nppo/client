@@ -1,6 +1,6 @@
 <template>
   <div class="relative w-full">
-     <CoolLightBox
+    <CoolLightBox
       :src="currentImageUrl"
       :index="index"
       :items="allImages"
@@ -82,10 +82,9 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
-import { SliderComponent } from '~/types/entities'
-
 import VueSlickCarousel from 'vue-slick-carousel'
 import CoolLightBox from 'vue-cool-lightbox'
+import { SliderComponent } from '~/types/entities'
 import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
 
 @Component({
@@ -107,7 +106,7 @@ export default class SliderContent extends Vue {
 
   get allImages() {
     return this.data.images.map((image: object) => {
-        return image.url
+      return image.url
     })
   }
 
@@ -154,4 +153,3 @@ export default class SliderContent extends Vue {
   @apply text-white !important;
 }
 </style>
-
