@@ -120,7 +120,12 @@ export interface Article extends Model {
   title: string
   tags?: Tag[]
   themes?: Theme[]
+  header: StrapiMedia[]
   summary: string
   previewUrl: string
   createdAt: string
+}
+
+export interface StrapiMedia {
+  url: string
 }
