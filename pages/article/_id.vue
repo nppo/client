@@ -1,7 +1,9 @@
 <template>
   <div class="flex-1 pb-24">
     <Header
-      v-if="article.header.length > 0 && article.header[0].url"
+      v-if="
+        article.header && article.header.length > 0 && article.header[0].url
+      "
       has-search-bar
       :image-url="article.header[0].url"
     >
