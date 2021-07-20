@@ -66,6 +66,22 @@ export interface MetaData {
   value: any
 }
 
+export interface TextComponent {
+  text: string
+  component: string
+}
+export interface SliderComponent {
+  images: [
+    { url: string }
+  ]
+  component: string
+}
+
+export interface ImageComponent {
+  image: { url: string }
+  component: string
+}
+
 export interface MetaAuthOptions {
   requiredPermissions?: string[]
 }

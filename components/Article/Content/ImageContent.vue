@@ -14,6 +14,8 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
+import { ImageComponent } from '~/types/entities'
+
 import CoolLightBox from 'vue-cool-lightbox'
 import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
 
@@ -23,8 +25,8 @@ import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
   },
 })
 export default class ImageContent extends Vue {
-  private index: null | number = null
+  public index: null | number = null
 
-  @Prop({ type: Object, required: true }) data!: object
+  @Prop({ type: Object, required: true }) data!: ImageComponent
 }
 </script>

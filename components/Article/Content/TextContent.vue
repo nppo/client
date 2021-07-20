@@ -1,17 +1,15 @@
 <template>
-  <div class="w-full">
-    <!-- @TODO SURAPP-301: Render the text (which is markdown) -->
-    <div v-html="$md.render(data.text)" />
+  <div class="w-full | markdown">
+    <p v-html="$md.render(data.text)" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
+import { TextComponent } from '~/types/entities'
 
 @Component
 export default class TextContent extends Vue {
-  private index: null | number = null
-
-  @Prop({ type: Object, required: true }) data!: object
+  @Prop({ type: Object, required: true }) data!: TextComponent
 }
 </script>
