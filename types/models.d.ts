@@ -120,4 +120,7 @@ export interface Article extends Model {
   title: string
   tags?: Tag[]
   themes?: Theme[]
+  summary: string
+  previewUrl: string
+  createdAt: string
 }
