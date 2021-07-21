@@ -71,9 +71,7 @@ export interface TextComponent {
   component: string
 }
 export interface SliderComponent {
-  images: [
-    { url: string }
-  ]
+  images: [{ url: string }]
   component: string
 }
 

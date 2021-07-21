@@ -105,7 +105,7 @@ export default class SliderContent extends Vue {
   @Prop({ type: Object, required: true }) data!: SliderComponent
 
   get allImages() {
-    return this.data.images.map((image: object) => {
+    return this.data.images.map((image: any) => {
       return image.url
     })
   }
