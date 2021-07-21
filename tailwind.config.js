@@ -35,6 +35,7 @@ module.exports = {
         },
       },
       opacity: {
+        70: '0.7',
         90: '0.9',
       },
       backgroundOpacity: (theme) => theme('opacity'),
@@ -70,6 +71,13 @@ module.exports = {
       },
       lineHeight: {
         4.5: '1.125rem',
+      },
+      inset: {
+        '1/2': '50%',
+        6.5: '1.625rem',
+      },
+      transitionProperty: {
+        spacing: 'padding',
       },
     },
     customForms: () => ({

@@ -4,8 +4,8 @@
       <div class="flex items-center justify-between mt-8">
         <BackButton :has-navigated-internal="hasNavigatedInternal" />
       </div>
-      <div class="pt-32 text-white">
-        <h1 class="pb-6 text-4xl font-bold">
+      <div class="pt-48 text-white">
+        <h1 class="pb-12 text-4xl font-bold">
           {{ article.title }}
         </h1>
       </div>
@@ -13,9 +13,15 @@
     <div class="mb-12 border-b border-gray-200">
       <div class="container relative h-full mx-auto"></div>
     </div>
-    <div class="container relative px-12 mx-auto">
+    <div class="container relative mx-auto">
       <div class="flex justify-between space-x-32 mt-18">
         <div class="w-8/12">
+          <ContentPart
+            v-for="(part, index) in article.content"
+            :key="index"
+            :data="part"
+            class="mb-18"
+          />
           <div v-if="article.tags && article.tags.length > 0">
             <h2 class="mb-3 text-2xl font-bold">
               {{ $t('pages.article._id.headings.tags') }}
