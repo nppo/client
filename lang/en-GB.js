@@ -94,6 +94,7 @@ export default {
         product: 'Product',
         person: 'Person',
         project: 'Project',
+        article: 'Article',
       },
     },
   },

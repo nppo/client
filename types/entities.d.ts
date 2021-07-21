@@ -1,4 +1,4 @@
-import { Party, Person, Product, Project } from './models'
+import { Article, Party, Person, Product, Project } from './models'
 
 /* eslint-disable no-use-before-define */
 export interface Skill {
@@ -21,6 +21,7 @@ export interface Search {
   people?: Person[]
   products?: Product[]
   projects?: Project[]
+  articles?: Article[]
   filters?: Filter[]
 }
 
