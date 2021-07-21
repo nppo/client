@@ -31,6 +31,7 @@ export interface Discover {
   people?: Person[]
   products?: Product[]
   projects?: Project[]
+  articles?: Article[]
 }
 
 export interface Type {
