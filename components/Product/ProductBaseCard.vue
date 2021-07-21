@@ -28,8 +28,8 @@
           :icon-style="hasLike ? 'fas' : 'far'"
           :text="
             hasLike
-              ? this.$t('pages.product._id.actions.bookmarked')
-              : this.$t('pages.product._id.actions.bookmark')
+              ? $t('pages.product._id.actions.bookmarked')
+              : $t('pages.product._id.actions.bookmark')
           "
           text-color="white"
           color="blue-500"
