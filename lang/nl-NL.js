@@ -129,6 +129,10 @@ export default {
           description:
             'Organisaties en instellingen die betrokken zijn bij praktijkgericht onderzoek ',
         },
+        article: {
+          title: 'Artikelen',
+          description: 'Artikelen die zijn geschreven voor dit platform',
+        },
       },
     },
 

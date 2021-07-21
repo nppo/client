@@ -126,6 +126,10 @@ export default {
           description:
             'Organizations and institutions involved in practice-oriented research',
         },
+        article: {
+          title: 'Articles',
+          description: 'Articles written for this platform',
+        },
       },
     },
 
