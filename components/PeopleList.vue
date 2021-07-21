@@ -24,7 +24,7 @@
           </div>
         </LocaleLink>
 
-        <FollowButton />
+        <FollowButton entity="person" :entity-id="person.id" />
       </div>
     </div>
 

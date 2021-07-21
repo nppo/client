@@ -73,7 +73,7 @@
     </div>
 
     <div class="flex justify-end px-4 pb-3 mt-auto">
-      <FollowButton />
+      <FollowButton entity="person" :entity-id="person.id" />
     </div>
   </LocaleLink>
 </template>

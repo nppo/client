@@ -34,7 +34,11 @@
             </span>
 
             <div class="flex items-center justify-center">
-              <FollowButton class="mb-6" />
+              <FollowButton
+                entity="person"
+                :entity-id="person.id"
+                class="mb-6"
+              />
             </div>
 
             <div class="flex items-center justify-center">

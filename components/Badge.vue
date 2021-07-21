@@ -4,7 +4,7 @@
     v-bind="{ ...$attrs }"
     class="flex items-center px-2 py-1 font-bold rounded-md"
     :class="`bg-${color} text-${textColor}`"
-    v-on="{ ...$attrs.on }"
+    v-on="{ ...$attrs.on, ...$listeners }"
   >
     <font-awesome-icon
       v-if="iconStyle && iconName"

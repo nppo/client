@@ -46,19 +46,38 @@
     <hr class="mb-10 border-gray-100" />
 
     <div class="flex justify-end px-4 pb-3 mt-auto">
-      <span class="text-blue-500">
-        <font-awesome-icon :icon="['far', 'bookmark']" class="text-base" />
-      </span>
+      <button
+        type="button"
+        class="text-blue-500 focus:outline-none"
+        @click.stop.prevent="toggleLike"
+      >
+        <font-awesome-icon
+          :icon="[hasLike ? 'fas' : 'far', 'bookmark']"
+          class="text-base"
+        />
+      </button>
     </div>
   </LocaleLink>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import { Models } from '~/types/enums'
 import { Party } from '~/types/models'
 
 @Component
 export default class PartyBlock extends Vue {
   @Prop({ type: Object, required: true }) party!: Party
+
+  get hasLike() {
+    return this.$accessor.likes.hasParty(this.party.id)
+  }
+
+  async toggleLike() {
+    await this.$accessor.likes.store({
+      likableType: Models.party,
+      likableId: this.party.id,
+    })
+  }
 }
 </script>

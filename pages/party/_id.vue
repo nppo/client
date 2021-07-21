@@ -20,7 +20,7 @@
             </h4>
 
             <div class="flex items-center justify-center mt-6 mb-5">
-              <FollowButton />
+              <FollowButton entity="party" :entity-id="party.id" />
             </div>
 
             <div class="flex items-center justify-center">

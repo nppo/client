@@ -63,6 +63,10 @@ export default class Navbar extends Vue {
       text: 'account.profile',
     },
     {
+      link: `/person/${this.person?.id}/likes`,
+      text: 'account.likes',
+    },
+    {
       link: '/logout',
       text: 'auth.actions.logout',
     },

@@ -10,6 +10,7 @@ export default {
     no: 'No',
 
     follow: 'Follow',
+    unfollow: 'Unfollow',
     skills: 'Skills',
     show_more: 'Show {number} more',
     show_less: 'Show less',
@@ -51,21 +52,25 @@ export default {
       plural: 'Themes',
       default: 'theme | themes',
     },
+    people: 'People',
     person: {
       singular: 'Person',
       plural: 'People',
       default: 'person | people',
     },
+    parties: 'Parties',
     party: {
       singular: 'Party',
       plural: 'Parties',
       default: 'party | parties',
     },
+    products: 'Products',
     product: {
       singular: 'Product',
       plural: 'Products',
       default: 'product | products',
     },
+    projects: 'Projects',
     project: {
       singular: 'Project',
       plural: 'Projects',
@@ -166,6 +171,7 @@ export default {
         actions: {
           share: 'Share',
           bookmark: 'Save',
+          bookmarked: 'Saved',
           download: 'Download',
           visit: 'Visit',
         },

@@ -23,10 +23,25 @@
           v-on="{ ...button.on }"
         />
 
+        <Badge
+          icon-name="bookmark"
+          :icon-style="hasLike ? 'fas' : 'far'"
+          :text="
+            hasLike
+              ? this.$t('pages.product._id.actions.bookmarked')
+              : this.$t('pages.product._id.actions.bookmark')
+          "
+          text-color="white"
+          color="blue-500"
+          tag="button"
+          type="button"
+          @click="toggleLike()"
+        />
+
         <a
           v-if="product.type === 'link'"
           :href="product.links.preview"
-          class="flex items-center px-2 py-1 font-bold rounded-md bg-orange-brand text-white"
+          class="flex items-center px-2 py-1 font-bold text-white rounded-md bg-orange-brand"
         >
           {{ $t('pages.product._id.actions.visit') }}
         </a>
@@ -38,14 +53,27 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 import { ProductTypeButton } from '~/types/entities'
+import { Models } from '~/types/enums'
 import { Product } from '~/types/models'
 
 @Component
 export default class ProductBaseCard extends Vue {
   @Prop({ type: Object, required: true }) product!: Product
   @Prop({ type: Array }) buttons!: ProductTypeButton[]
+
+  get hasLike() {
+    return this.$accessor.likes.hasProduct(this.product.id)
+  }
+
+  async toggleLike() {
+    await this.$accessor.likes.store({
+      likableType: Models.product,
+      likableId: this.product.id,
+    })
+  }
 }
 </script>
+
 <style scoped>
 .product-base-card {
   padding-bottom: calc(100% / (16 / 9));
