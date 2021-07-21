@@ -199,6 +199,7 @@ export default {
         'faCalendarAlt',
         'faBoxOpen',
         'faExpand',
+        'faNewspaper',
       ],
       regular: ['faBookmark', 'faPlayCircle'],
       brands: ['faLinkedin', 'faResearchgate', 'faTwitterSquare'],

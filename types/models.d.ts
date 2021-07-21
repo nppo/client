@@ -121,4 +121,12 @@ export interface Article extends Model {
   tags?: Tag[]
   themes?: Theme[]
   content: Array<object>
+  header: StrapiMedia[]
+  summary: string
+  previewUrl: string
+  createdAt: string
+}
+
+export interface StrapiMedia {
+  url: string
 }

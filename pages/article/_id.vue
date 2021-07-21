@@ -1,6 +1,6 @@
 <template>
   <div class="flex-1 pb-24">
-    <Header has-search-bar>
+    <Header has-search-bar :image-url="headerImage">
       <div class="flex items-center justify-between mt-8">
         <BackButton :has-navigated-internal="hasNavigatedInternal" />
       </div>
@@ -73,6 +73,10 @@ import { Article } from '~/types/models'
 export default class ArticleDetailPage extends mixins(NavigationRouterHook) {
   get article(): Article {
     return this.$accessor.articles.show
+  }
+
+  get headerImage(): string | null {
+    return this.article.header.length > 0 ? this.article.header[0].url : null
   }
 }
 </script>

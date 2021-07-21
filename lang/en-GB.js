@@ -76,6 +76,11 @@ export default {
       plural: 'Collections',
       default: 'collection | collections',
     },
+    article: {
+      singular: 'Article',
+      plural: 'Articles',
+      default: 'article | articles',
+    },
   },
 
   filters: {
