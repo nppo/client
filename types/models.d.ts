@@ -120,6 +120,15 @@ export interface Article extends Model {
   title: string
   tags?: Tag[]
   themes?: Theme[]
+  content: Array<object>
+  header: StrapiMedia[]
+  summary: string
+  previewUrl: string
+  createdAt: string
+}
+
+export interface StrapiMedia {
+  url: string
 }
 
 export interface Like extends Model {
