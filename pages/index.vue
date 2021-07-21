@@ -24,7 +24,9 @@
     </Header>
 
     <div class="container relative mx-auto">
-      <div class="grid grid-cols-1 gap-5 -mt-28 md:grid-cols-2 lg:grid-cols-4">
+      <div
+        class="grid grid-cols-1 gap-5 px-5 -mt-28 md:grid-cols-2 lg:grid-cols-4 lg:px-0"
+      >
         <LocaleLink
           v-for="(type, index) in types"
           :key="index"

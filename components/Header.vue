@@ -7,7 +7,7 @@
     />
 
     <div
-      class="relative inset-0 bg-blue-800"
+      class="relative inset-0 px-5 bg-blue-800 lg:px-0"
       :class="hasDarkHeader ? 'bg-opacity-90' : 'bg-opacity-50'"
     >
       <div class="container relative h-full mx-auto">
