@@ -58,6 +58,7 @@ module.exports = {
         24: theme('spacing.24'),
       }),
       maxHeight: (theme) => ({
+        32: theme('spacing.32'),
         40: theme('spacing.40'),
         48: theme('spacing.48'),
       }),

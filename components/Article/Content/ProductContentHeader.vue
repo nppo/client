@@ -2,14 +2,14 @@
   <div>
     <img
       v-if="product.links && product.links.preview && product.type === 'image'"
-      class="object-cover h-32 mb-2w-full"
+      class="object-cover w-full h-48"
       :src="product.links.preview"
       :alt="product.title + '_image'"
     />
 
     <iframe
       v-if="product.type === 'youtube'"
-      class="w-full h-32 mb-2"
+      class="w-full h-48"
       :src="product.links && product.links.preview"
       frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -17,14 +17,11 @@
     >
     </iframe>
 
-    <div
-      v-if="product.type === 'collection'"
-      class="w-full h-32 mb-2 bg-blue-800"
-    />
+    <div v-if="product.type === 'collection'" class="w-full h-48 bg-blue-800" />
 
     <div
       v-if="product.type === 'document' || product.type === 'empty'"
-      class="flex items-center justify-center w-full h-32 bg-blue-800"
+      class="flex items-center justify-center w-full h-48 bg-blue-800"
     >
       <font-awesome-icon
         :icon="['fas', 'file']"
@@ -41,14 +38,14 @@
       <template slot-scope="props">
         <div v-if="props.img">
           <img
-            class="object-cover w-full h-32 mb-2"
+            class="object-cover w-full h-48"
             :src="props.img"
             :alt="props.title"
           />
         </div>
         <div
           v-else
-          class="flex items-center justify-center w-full h-32 mb-2 bg-blue-800"
+          class="flex items-center justify-center w-full h-48 mb-2 bg-blue-800"
         />
       </template>
     </LinkPrevue>
@@ -68,5 +65,6 @@ import { Product } from '~/types/models'
 })
 export default class ProductBlock extends Vue {
   @Prop({ type: Object, required: true }) readonly product!: Product
+  @Prop({ type: Boolean, default: false }) readonly articleBlock!: boolean
 }
 </script>

@@ -19,6 +19,7 @@ export default class ContentCard extends Vue {
   get loadComponent(): Promise<String> {
     const type = this.data.__component.split('.')[1].toUpperCase()
     const name = type.charAt(0).toUpperCase() + type.substr(1).toLowerCase()
+
     return import(`~/components/Article/Content/${name}Content.vue`)
   }
 }
