@@ -9,17 +9,16 @@ import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import { Product } from '~/types/models'
 
 @Component({
-  async fetch(): Promise<void> {
-    if (this.data?.identifier) {
-      const { status, data } = await this.$repositories.product.show(
-        this.data.identifier
-      )
-
-      if (status === 200) {
-        this.product = data.data
-      }
-    }
-  },
+  // async fetch(): Promise<void> {
+  //   if (this.data?.identifier) {
+  //     const { status, data } = await this.$repositories.product.show(
+  //       this.data.identifier
+  //     )
+  //     if (status === 200) {
+  //       this.product = data.data
+  //     }
+  //   }
+  // },
 })
 export default class ProductContent extends Vue {
   @Prop({ type: Object, required: true }) data!: object
