@@ -36,43 +36,13 @@
     </VueSlickCarousel>
 
     <div
-      class="
-        absolute
-        flex
-        items-center
-        justify-center
-        w-12
-        h-12
-        p-2
-        text-blue-800
-        rounded-full
-        cursor-pointer
-        left-6.5
-        bg-yellow-brand
-        |
-        arrows
-      "
+      class="absolute flex items-center justify-center w-12 h-12 p-2 text-blue-800 rounded-full cursor-pointer left-6.5 bg-yellow-brand | arrows"
       @click="previous()"
     >
       <font-awesome-icon class="text-xl" icon="arrow-left" />
     </div>
     <div
-      class="
-        absolute
-        flex
-        items-center
-        justify-center
-        w-12
-        h-12
-        p-2
-        text-blue-800
-        rounded-full
-        cursor-pointer
-        right-6.5
-        bg-yellow-brand
-        |
-        arrows
-      "
+      class="absolute flex items-center justify-center w-12 h-12 p-2 text-blue-800 rounded-full cursor-pointer right-6.5 bg-yellow-brand | arrows"
       @click="next()"
     >
       <font-awesome-icon class="text-xl" icon="arrow-right" />

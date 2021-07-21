@@ -77,8 +77,8 @@ module.exports = {
         6.5: '1.625rem',
       },
       transitionProperty: {
-        'spacing': 'padding',
-      }
+        spacing: 'padding',
+      },
     },
     customForms: () => ({
       default: {
