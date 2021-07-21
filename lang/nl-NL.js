@@ -29,6 +29,10 @@ export default {
     required_label: '*verplicht',
   },
 
+  help_text: {
+    image_upload: 'Gebruik een plaatje met zelfde hoogte en breedte',
+  },
+
   account: {
     manage: 'Mijn Account',
     profile: 'Mijn Profiel',
@@ -275,6 +279,20 @@ export default {
         },
         products: {
           empty: 'Deze persoon heeft nog geen producten.',
+        },
+      },
+
+      create: {
+        labels: {
+          first_name: 'Voornaam',
+          profile_picture: 'Profiel foto',
+          last_name: 'Achternaam',
+          about: 'Over',
+          skills: 'Skills',
+          themes: "Thema's",
+          function: 'Functie',
+          phone: 'Telefoonnummer',
+          email: 'E-mail',
         },
       },
     },
