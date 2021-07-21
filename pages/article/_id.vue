@@ -70,11 +70,7 @@ export default class ArticleDetailPage extends mixins(NavigationRouterHook) {
   }
 
   get headerImage(): string | null {
-    if (this.article.header.length < 1) {
-      return null
-    }
-
-    return this.article.header[0].url
+    return this.article.header.length > 0 ? this.article.header[0].url : null
   }
 }
 </script>
