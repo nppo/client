@@ -12,17 +12,7 @@
     >
       <div v-if="isOpen" class="fixed inset-0 z-20 overflow-y-auto">
         <div
-          class="
-            flex
-            items-end
-            justify-center
-            min-h-screen
-            px-4
-            pt-4
-            pb-20
-            text-center
-            sm:block sm:p-0
-          "
+          class="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0"
         >
           <div
             class="fixed inset-0 transition-opacity bg-gray-500 opacity-75"
@@ -44,20 +34,7 @@
             leave-to-class="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
           >
             <div
-              class="
-                inline-block
-                w-full
-                h-auto
-                overflow-hidden
-                text-left
-                align-middle
-                transition-all
-                transform
-                bg-white
-                rounded-lg
-                shadow-2xl
-                sm:my-5
-              "
+              class="inline-block w-full h-auto overflow-hidden text-left align-middle transition-all transform bg-white rounded-lg shadow-2xl sm:my-5"
               :class="width"
               role="dialog"
               aria-modal="true"

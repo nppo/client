@@ -19,7 +19,7 @@
 
                 <input
                   :id="$t('pages.person.create.labels.profile_picture')"
-                  class="px-3 py-3 font-bold rounded-md shadow  focus:outline-none"
+                  class="px-3 py-3 font-bold rounded-md shadow focus:outline-none"
                   type="file"
                   @change="profilePictureSelected"
                 />
