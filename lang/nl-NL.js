@@ -33,6 +33,7 @@ export default {
   account: {
     manage: 'Mijn Account',
     profile: 'Mijn Profiel',
+    saved: 'Opgeslagen',
   },
 
   auth: {

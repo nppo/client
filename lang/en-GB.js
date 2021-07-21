@@ -32,6 +32,7 @@ export default {
   account: {
     manage: 'My Account',
     profile: 'My Profile',
+    saved: 'Saved',
   },
 
   auth: {
