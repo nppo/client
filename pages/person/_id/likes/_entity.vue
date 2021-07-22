@@ -22,10 +22,10 @@
       </div>
     </div>
 
-    <div>
+    <div v-if="likes">
       <h1 class="inline-flex items-center mb-6 text-4xl font-bold">
         {{ $t(`entities.${activeEntity}`) }}
-        <span class="px-1 ml-3 text-base font-bold rounded-sm bg-yellow-brand">
+        <span class="p-1 ml-3 text-base font-bold rounded-sm bg-yellow-brand">
           <template v-if="activeEntity === 'projects'">
             {{ likes.likedProjects.length }}
           </template>
@@ -90,7 +90,7 @@ export default class PersonLikesPage extends mixins(NavigationRouterHook) {
     return this.$accessor.people.current
   }
 
-  get likes(): Like {
+  get likes(): Like | null {
     return this.$accessor.likes.all
   }
 

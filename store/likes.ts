@@ -4,7 +4,9 @@ import { Models } from '~/types/enums'
 import { Like, User } from '~/types/models'
 
 export const state = () => ({
-  all: {} as Like,
+  all: (localStorage.getItem('likes')
+    ? JSON.parse(<string>localStorage.getItem('likes'))
+    : null) as Like | null,
 })
 
 export type LikesState = ReturnType<typeof state>
@@ -17,17 +19,17 @@ export const mutations = mutationTree(state, {
 
 export const getters = getterTree(state, {
   hasProduct: (state) => (id: number) =>
-    Boolean(state.all.likedProducts?.find((product) => product.id === id)) ||
+    Boolean(state.all?.likedProducts.find((product) => product.id === id)) ||
     false,
 
   hasPerson: (state) => (id: number) =>
-    Boolean(state.all.likedPeople?.find((person) => person.id === id)) || false,
+    Boolean(state.all?.likedPeople.find((person) => person.id === id)) || false,
 
   hasParty: (state) => (id: number) =>
-    Boolean(state.all.likedParties?.find((party) => party.id === id)) || false,
+    Boolean(state.all?.likedParties.find((party) => party.id === id)) || false,
 
   hasProject: (state) => (id: number) =>
-    Boolean(state.all.likedProjects?.find((project) => project.id === id)) ||
+    Boolean(state.all?.likedProjects.find((project) => project.id === id)) ||
     false,
 })
 
