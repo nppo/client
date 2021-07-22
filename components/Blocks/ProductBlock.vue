@@ -53,7 +53,7 @@
         @click.stop.prevent="toggleLike"
       >
         <font-awesome-icon
-          :icon="[hasLike ? 'fas' : 'far', 'bookmark']"
+          :icon="[hasLiked ? 'fas' : 'far', 'bookmark']"
           class="text-base"
         />
       </button>
@@ -76,7 +76,7 @@ export default class ProductBlock extends Vue {
     return date.locale(this.$i18n.locale).format('D MMM YYYY')
   }
 
-  get hasLike() {
+  get hasLiked() {
     return this.$accessor.likes.hasProduct(this.product.id)
   }
 

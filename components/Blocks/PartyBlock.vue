@@ -52,7 +52,7 @@
         @click.stop.prevent="toggleLike"
       >
         <font-awesome-icon
-          :icon="[hasLike ? 'fas' : 'far', 'bookmark']"
+          :icon="[hasLiked ? 'fas' : 'far', 'bookmark']"
           class="text-base"
         />
       </button>
@@ -69,7 +69,7 @@ import { Party } from '~/types/models'
 export default class PartyBlock extends Vue {
   @Prop({ type: Object, required: true }) party!: Party
 
-  get hasLike() {
+  get hasLiked() {
     return this.$accessor.likes.hasParty(this.party.id)
   }
 

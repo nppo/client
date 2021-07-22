@@ -3,13 +3,13 @@
     type="button"
     class="inline-flex items-center px-2 py-1 space-x-2 font-bold border border-blue-500 rounded-md focus:outline-none"
     :class="{
-      'text-blue-500': !hasLike,
-      'text-white bg-blue-500': hasLike,
+      'text-blue-500': !hasLiked,
+      'text-white bg-blue-500': hasLiked,
     }"
     @click.prevent="toggleLike"
   >
-    <font-awesome-icon class="block" :icon="hasLike ? 'minus' : 'plus'" />
-    <span>{{ hasLike ? $t('general.unfollow') : $t('general.follow') }}</span>
+    <font-awesome-icon class="block" :icon="hasLiked ? 'minus' : 'plus'" />
+    <span>{{ hasLiked ? $t('general.unfollow') : $t('general.follow') }}</span>
   </button>
 </template>
 
@@ -34,7 +34,7 @@ export default class FollowButton extends Vue {
     })
   }
 
-  get hasLike() {
+  get hasLiked() {
     if (this.entity === 'person') {
       return this.$accessor.likes.hasPerson(this.entityId)
     }

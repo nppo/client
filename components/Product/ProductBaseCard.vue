@@ -25,9 +25,9 @@
 
         <Badge
           icon-name="bookmark"
-          :icon-style="hasLike ? 'fas' : 'far'"
+          :icon-style="hasLiked ? 'fas' : 'far'"
           :text="
-            hasLike
+            hasLiked
               ? $t('pages.product._id.actions.bookmarked')
               : $t('pages.product._id.actions.bookmark')
           "
@@ -61,7 +61,7 @@ export default class ProductBaseCard extends Vue {
   @Prop({ type: Object, required: true }) product!: Product
   @Prop({ type: Array }) buttons!: ProductTypeButton[]
 
-  get hasLike() {
+  get hasLiked() {
     return this.$accessor.likes.hasProduct(this.product.id)
   }
 
