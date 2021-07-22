@@ -2,7 +2,7 @@
   <div>
     <img
       v-if="product.links && product.links.preview && product.type === 'image'"
-      class="object-cover h-32 mb-2w-full"
+      class="object-cover w-full h-32 mb-2"
       :src="product.links.preview"
       :alt="product.title + '_image'"
     />
@@ -24,7 +24,7 @@
 
     <div
       v-if="product.type === 'document' || product.type === 'empty'"
-      class="flex items-center justify-center w-full h-32 bg-blue-800"
+      class="flex items-center justify-center w-full h-32 mb-2 bg-blue-800"
     >
       <font-awesome-icon
         :icon="['fas', 'file']"
