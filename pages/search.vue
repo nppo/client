@@ -131,6 +131,24 @@
               </div>
             </SearchCollapse>
 
+            <SearchCollapse
+              v-if="articles.length > 0"
+              :show-header="!hasSpecificTypeFilter"
+              :header="$t('entities.article.plural')"
+              @show-all="setFilterByLabel('article')"
+            >
+              <div
+                class="grid grid-cols-1 gap-4 mb-5 md:grid-cols-2 lg:grid-cols-3"
+              >
+                <div
+                  v-for="article in getMaxEntities(articles, 6)"
+                  :key="article.id"
+                >
+                  <ArticleBlock :article="article" />
+                </div>
+              </div>
+            </SearchCollapse>
+
             <div v-if="current.results === 0">
               {{ $t('pages.search.no_results') }}
             </div>
@@ -146,7 +164,7 @@ import { Component, mixins } from 'nuxt-property-decorator'
 import qs from 'qs'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import { Search, Type } from '~/types/entities'
-import { Party, Person, Product, Project, Theme } from '~/types/models'
+import { Party, Person, Product, Project, Theme, Article } from '~/types/models'
 
 import CollectionBlock from '~/components/Blocks/CollectionBlock.vue'
 import ProductBlock from '~/components/Blocks/ProductBlock.vue'
@@ -188,6 +206,10 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
 
   get projects(): Array<Project> {
     return this.current.projects || []
+  }
+
+  get articles(): Array<Article> {
+    return this.current.articles || []
   }
 
   get themes(): Array<Theme> {

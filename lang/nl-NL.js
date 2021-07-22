@@ -101,6 +101,7 @@ export default {
         product: 'Product',
         person: 'Persoon',
         project: 'Project',
+        article: 'Artikel',
       },
     },
   },
@@ -133,6 +134,10 @@ export default {
           title: 'Partijen',
           description:
             'Organisaties en instellingen die betrokken zijn bij praktijkgericht onderzoek ',
+        },
+        article: {
+          title: 'Artikelen',
+          description: 'Artikelen die zijn geschreven voor dit platform',
         },
       },
     },

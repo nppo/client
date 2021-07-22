@@ -100,6 +100,7 @@ export default {
         product: 'Product',
         person: 'Person',
         project: 'Project',
+        article: 'Article',
       },
     },
   },
@@ -130,6 +131,10 @@ export default {
           title: 'Parties',
           description:
             'Organizations and institutions involved in practice-oriented research',
+        },
+        article: {
+          title: 'Articles',
+          description: 'Articles written for this platform',
         },
       },
     },
