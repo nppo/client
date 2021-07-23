@@ -29,6 +29,8 @@
               type="file"
               @change="profilePictureSelected"
             />
+
+            <small>{{ $t('help_text.image_upload') }}</small>
           </div>
         </div>
 

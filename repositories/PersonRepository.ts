@@ -20,6 +20,10 @@ export default class PeopleRepository {
     return this.axios.get(`/api/${resource}/${id}`)
   }
 
+  store(data: FormData): Promise<AxiosResponse<SingleResult<Person>>> {
+    return this.axios.post(`/api/${resource}`, data)
+  }
+
   update(
     id: number,
     data: FormData

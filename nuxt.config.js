@@ -198,6 +198,7 @@ export default {
         'faFolderOpen',
         'faCalendarAlt',
         'faBoxOpen',
+        'faTimes',
         'faExpand',
         'faNewspaper',
       ],
