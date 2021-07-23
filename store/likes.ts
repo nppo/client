@@ -39,14 +39,14 @@ export const actions = actionTree(
     async fetchAll({ commit }): Promise<void> {
       const user = (this.$auth.user as unknown) as User
 
-      if (!user || !user.person) {
+      if (!user) {
         return
       }
 
       const {
         status,
         data: { data },
-      } = await this.$repositories.like.all(user.person.id)
+      } = await this.$repositories.like.all(user.id)
 
       if (status === 200) {
         commit('setAll', data)
@@ -62,7 +62,7 @@ export const actions = actionTree(
     ): Promise<void> {
       const user = (this.$auth.user as unknown) as User
 
-      if (!user || !user.person) {
+      if (!user) {
         return
       }
 
@@ -70,7 +70,7 @@ export const actions = actionTree(
         status,
         data: { data },
       } = await this.$repositories.like.store(
-        user.person.id,
+        user.id,
         objectToFormData({
           likable_type: payload.likableType,
           likable_id: payload.likableId,

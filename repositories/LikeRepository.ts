@@ -3,7 +3,7 @@ import { AxiosResponse } from 'axios'
 import { Like } from '~/types/models'
 import { SingleResult } from '~/types/repositories'
 
-const parentResource = 'people'
+const parentResource = 'users'
 const resource = 'likes'
 
 export default class LikeRepository {

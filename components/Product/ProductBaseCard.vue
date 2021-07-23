@@ -24,6 +24,7 @@
         />
 
         <Badge
+          v-if="showLikeButton"
           icon-name="bookmark"
           :icon-style="hasLiked ? 'fas' : 'far'"
           :text="
@@ -63,6 +64,10 @@ export default class ProductBaseCard extends Vue {
 
   get hasLiked() {
     return this.$accessor.likes.hasProduct(this.product.id)
+  }
+
+  get showLikeButton(): boolean {
+    return this.$auth.loggedIn
   }
 
   async toggleLike() {

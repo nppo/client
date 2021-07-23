@@ -98,7 +98,7 @@ export default {
   },
 
   router: {
-    middleware: 'set-permissions',
+    middleware: 'set-initial-data',
   },
 
   auth: {

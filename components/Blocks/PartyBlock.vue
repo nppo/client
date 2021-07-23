@@ -45,7 +45,7 @@
 
     <hr class="mb-10 border-gray-100" />
 
-    <div class="flex justify-end px-4 pb-3 mt-auto">
+    <div v-if="showLikeButton" class="flex justify-end px-4 pb-3 mt-auto">
       <button
         type="button"
         class="text-blue-500 focus:outline-none"
@@ -71,6 +71,10 @@ export default class PartyBlock extends Vue {
 
   get hasLiked() {
     return this.$accessor.likes.hasParty(this.party.id)
+  }
+
+  get showLikeButton(): boolean {
+    return this.$auth.loggedIn
   }
 
   async toggleLike() {

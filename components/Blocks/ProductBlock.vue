@@ -48,6 +48,7 @@
       </div>
 
       <button
+        v-if="showLikeButton"
         type="button"
         class="text-blue-500 focus:outline-none"
         @click.stop.prevent="toggleLike"
@@ -78,6 +79,10 @@ export default class ProductBlock extends Vue {
 
   get hasLiked() {
     return this.$accessor.likes.hasProduct(this.product.id)
+  }
+
+  get showLikeButton(): boolean {
+    return this.$auth.loggedIn
   }
 
   async toggleLike() {
