@@ -14,7 +14,7 @@
     </Header>
 
     <div class="container mx-auto -mt-6">
-      <div class="relative grid grid-cols-4 gap-4 mb-16">
+      <div class="relative grid grid-cols-4 gap-4 px-5 mb-16 lg:px-0">
         <SearchBar
           :aria-label="$t('pages.search.input_search')"
           variant="large"

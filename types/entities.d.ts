@@ -82,6 +82,22 @@ export interface ImageComponent {
   image: { url: string }
   component: string
 }
+export interface PartyComponent {
+  identifier: number
+  component: string
+}
+export interface ProductComponent {
+  identifier: number
+  component: string
+}
+export interface ProjectComponent {
+  identifier: number
+  component: string
+}
+export interface PersonComponent {
+  identifier: number
+  component: string
+}
 
 export interface MetaAuthOptions {
   requiredPermissions?: string[]
