@@ -98,7 +98,7 @@ export default {
   },
 
   router: {
-    middleware: 'set-permissions',
+    middleware: 'set-initial-data',
   },
 
   auth: {
@@ -201,6 +201,7 @@ export default {
         'faTimes',
         'faExpand',
         'faNewspaper',
+        'faSpinner',
       ],
       regular: ['faBookmark', 'faPlayCircle'],
       brands: ['faLinkedin', 'faResearchgate', 'faTwitterSquare', 'faYoutube'],

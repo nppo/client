@@ -130,3 +130,11 @@ export interface Article extends Model {
 export interface StrapiMedia {
   url: string
 }
+
+export interface Like extends Model {
+  userId: number
+  likedProducts: Product[]
+  likedProjects: Project[]
+  likedPeople: Person[]
+  likedParties: Party[]
+}

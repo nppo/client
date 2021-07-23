@@ -10,6 +10,7 @@ export default {
     no: 'No',
 
     follow: 'Follow',
+    unfollow: 'Unfollow',
     skills: 'Skills',
     show_more: 'Show {number} more',
     show_less: 'Show less',
@@ -31,6 +32,7 @@ export default {
   account: {
     manage: 'My Account',
     profile: 'My Profile',
+    saved: 'Saved',
   },
 
   auth: {
@@ -51,21 +53,25 @@ export default {
       plural: 'Themes',
       default: 'theme | themes',
     },
+    people: 'People',
     person: {
       singular: 'Person',
       plural: 'People',
       default: 'person | people',
     },
+    parties: 'Parties',
     party: {
       singular: 'Party',
       plural: 'Parties',
       default: 'party | parties',
     },
+    products: 'Products',
     product: {
       singular: 'Product',
       plural: 'Products',
       default: 'product | products',
     },
+    projects: 'Projects',
     project: {
       singular: 'Project',
       plural: 'Projects',
@@ -176,6 +182,7 @@ export default {
         actions: {
           share: 'Share',
           bookmark: 'Save',
+          bookmarked: 'Remove from saved',
           download: 'Download',
           visit: 'Visit',
         },
@@ -296,6 +303,10 @@ export default {
           parties: 'Organisations',
         },
       },
+    },
+
+    likes: {
+      no_results: 'No results found',
     },
 
     search: {

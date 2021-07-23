@@ -49,10 +49,25 @@
 
       <hr class="mb-10 border-gray-100" />
 
-      <div class="flex justify-end px-4 pb-3 mt-auto">
-        <span class="text-blue-500">
-          <font-awesome-icon :icon="['far', 'bookmark']" class="text-base" />
-        </span>
+      <div v-if="showLikeButton" class="flex justify-end px-4 pb-3 mt-auto">
+        <button
+          v-if="showLikeButton"
+          type="button"
+          class="text-blue-500 focus:outline-none"
+          :disabled="toggleLikeLoading"
+          @click.stop.prevent="toggleLike"
+        >
+          <font-awesome-icon
+            v-if="!toggleLikeLoading"
+            :icon="[hasLiked ? 'fas' : 'far', 'bookmark']"
+            class="text-base"
+          />
+          <font-awesome-icon
+            v-else
+            :icon="['fas', 'spinner']"
+            class="text-base animate-spin"
+          />
+        </button>
       </div>
     </div>
 
@@ -75,11 +90,30 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import { Models } from '~/types/enums'
 import { Party } from '~/types/models'
 
 @Component
 export default class PartyBlock extends Vue {
   @Prop({ type: Object, required: true }) party!: Party
   @Prop({ type: Boolean, default: false }) readonly articleBlock!: boolean
+  public toggleLikeLoading: boolean = false
+
+  get hasLiked() {
+    return this.$accessor.likes.hasParty(this.party.id)
+  }
+
+  get showLikeButton(): boolean {
+    return this.$auth.loggedIn
+  }
+
+  async toggleLike() {
+    this.toggleLikeLoading = true
+    await this.$accessor.likes.store({
+      likableType: Models.party,
+      likableId: this.party.id,
+    })
+    this.toggleLikeLoading = false
+  }
 }
 </script>

@@ -10,6 +10,7 @@ export default {
     no: 'Nee',
 
     follow: 'Volgen',
+    unfollow: 'Ontvolgen',
     skills: 'Skills',
     show_more: 'Toon {number} meer',
     show_less: 'Toon minder',
@@ -36,6 +37,7 @@ export default {
   account: {
     manage: 'Mijn Account',
     profile: 'Mijn Profiel',
+    saved: 'Opgeslagen',
   },
 
   auth: {
@@ -56,21 +58,25 @@ export default {
       plural: "Thema's",
       default: "thema | thema's",
     },
+    people: 'Personen',
     person: {
       singular: 'Persoon',
       plural: 'Personen',
       default: 'persoon | personen',
     },
+    parties: 'Partijen',
     party: {
       singular: 'Partij',
       plural: 'Partijen',
       default: 'partij | partijen',
     },
+    products: 'Producten',
     product: {
       singular: 'Product',
       plural: 'Producten',
       default: 'product | producten',
     },
+    projects: 'Projecten',
     project: {
       singular: 'Project',
       plural: 'Projecten',
@@ -162,6 +168,7 @@ export default {
         actions: {
           share: 'Delen',
           bookmark: 'Opslaan',
+          bookmarked: 'Verwijder uit opgeslagen',
           download: 'Download',
           visit: 'Bezoeken',
         },
@@ -316,6 +323,10 @@ export default {
           parties: 'Organisaties',
         },
       },
+    },
+
+    likes: {
+      no_results: 'Geen resultaten gevonden',
     },
 
     search: {

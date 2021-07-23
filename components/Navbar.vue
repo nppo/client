@@ -37,6 +37,12 @@
               {{ $t('account.profile') }}
             </span>
             <LocaleLink
+              :path="`/person/${person.id}/likes`"
+              class="w-full py-1 text-sm text-left border-b border-gray-100 hover:font-bold"
+            >
+              {{ $t('account.saved') }}
+            </LocaleLink>
+            <LocaleLink
               v-if="$auth.user"
               :path="`/logout`"
               class="w-full py-1 text-sm text-left border-b border-gray-100 hover:font-bold"

@@ -45,6 +45,7 @@ export interface ProductTypeButton {
   text: string
   textColor?: string
   color?: string
+  on?: object
 }
 
 export interface Error {
