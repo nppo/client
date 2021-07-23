@@ -47,13 +47,21 @@
 
     <div v-if="showLikeButton" class="flex justify-end px-4 pb-3 mt-auto">
       <button
+        v-if="showLikeButton"
         type="button"
         class="text-blue-500 focus:outline-none"
+        :disabled="toggleLikeLoading"
         @click.stop.prevent="toggleLike"
       >
         <font-awesome-icon
+          v-if="!toggleLikeLoading"
           :icon="[hasLiked ? 'fas' : 'far', 'bookmark']"
           class="text-base"
+        />
+        <font-awesome-icon
+          v-else
+          :icon="['fas', 'spinner']"
+          class="text-base animate-spin"
         />
       </button>
     </div>
@@ -68,6 +76,7 @@ import { Party } from '~/types/models'
 @Component
 export default class PartyBlock extends Vue {
   @Prop({ type: Object, required: true }) party!: Party
+  public toggleLikeLoading: boolean = false
 
   get hasLiked() {
     return this.$accessor.likes.hasParty(this.party.id)
@@ -78,10 +87,12 @@ export default class PartyBlock extends Vue {
   }
 
   async toggleLike() {
+    this.toggleLikeLoading = true
     await this.$accessor.likes.store({
       likableType: Models.party,
       likableId: this.party.id,
     })
+    this.toggleLikeLoading = false
   }
 }
 </script>

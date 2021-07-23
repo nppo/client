@@ -6,7 +6,9 @@
     :class="{
       'text-blue-500': !hasLiked,
       'text-white bg-blue-500': hasLiked,
+      'animate-pulse': toggleLikeLoading,
     }"
+    :disabled="toggleLikeLoading"
     @click.prevent="toggleLike"
   >
     <font-awesome-icon class="block" :icon="hasLiked ? 'minus' : 'plus'" />
@@ -29,11 +31,15 @@ export default class FollowButton extends Vue {
   })
   entity!: 'person' | 'party'
 
+  public toggleLikeLoading: boolean = false
+
   async toggleLike() {
+    this.toggleLikeLoading = true
     await this.$accessor.likes.store({
       likableType: Models[this.entity],
       likableId: this.entityId,
     })
+    this.toggleLikeLoading = false
   }
 
   get showLikeButton(): boolean {

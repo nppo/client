@@ -41,31 +41,52 @@
         </span>
       </h1>
 
+      <template
+        v-if="activeEntity === 'projects' && !likes.likedProjects.length"
+      >
+        <p>{{ $t('pages.likes.no_results') }}</p>
+      </template>
+      <template
+        v-else-if="activeEntity === 'parties' && !likes.likedParties.length"
+      >
+        <p>{{ $t('pages.likes.no_results') }}</p>
+      </template>
+      <template
+        v-else-if="activeEntity === 'products' && !likes.likedProducts.length"
+      >
+        <p>{{ $t('pages.likes.no_results') }}</p>
+      </template>
+      <template
+        v-else-if="activeEntity === 'people' && !likes.likedPeople.length"
+      >
+        <p>{{ $t('pages.likes.no_results') }}</p>
+      </template>
+
       <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         <template v-if="activeEntity === 'projects'">
           <ProjectBlock
-            v-for="project in likes.likedProjects.slice(0, 6)"
+            v-for="project in likes.likedProjects.slice(0, 9)"
             :key="project.id"
             :project="project"
           />
         </template>
         <template v-else-if="activeEntity === 'parties'">
           <PartyBlock
-            v-for="party in likes.likedParties.slice(0, 6)"
+            v-for="party in likes.likedParties.slice(0, 9)"
             :key="party.id"
             :party="party"
           />
         </template>
         <template v-else-if="activeEntity === 'products'">
           <ProductBlock
-            v-for="product in likes.likedProducts.slice(0, 6)"
+            v-for="product in likes.likedProducts.slice(0, 9)"
             :key="product.id"
             :product="product"
           />
         </template>
         <template v-else-if="activeEntity === 'people'">
           <PersonBlock
-            v-for="person in likes.likedPeople.slice(0, 6)"
+            v-for="person in likes.likedPeople.slice(0, 9)"
             :key="person.id"
             :person="person"
           />
@@ -84,7 +105,7 @@ import { Like, Person } from '~/types/models'
   middleware: ['auth'],
 })
 export default class PersonLikesPage extends mixins(NavigationRouterHook) {
-  public entities: Array<string> = ['projects', 'products', 'people', 'parties']
+  public entities: Array<string> = ['products', 'projects', 'people', 'parties']
 
   get person(): Person {
     return this.$accessor.people.current

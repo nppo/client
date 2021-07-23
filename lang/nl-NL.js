@@ -164,7 +164,7 @@ export default {
         actions: {
           share: 'Delen',
           bookmark: 'Opslaan',
-          bookmarked: 'Opgeslagen',
+          bookmarked: 'Verwijder uit opgeslagen',
           download: 'Download',
           visit: 'Bezoeken',
         },
@@ -297,6 +297,10 @@ export default {
           parties: 'Organisaties',
         },
       },
+    },
+
+    likes: {
+      no_results: 'Geen resultaten gevonden',
     },
 
     search: {

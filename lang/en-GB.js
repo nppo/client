@@ -182,7 +182,7 @@ export default {
         actions: {
           share: 'Share',
           bookmark: 'Save',
-          bookmarked: 'Saved',
+          bookmarked: 'Remove from saved',
           download: 'Download',
           visit: 'Visit',
         },
@@ -295,6 +295,10 @@ export default {
           parties: 'Organisations',
         },
       },
+    },
+
+    likes: {
+      no_results: 'No results found',
     },
 
     search: {

@@ -25,7 +25,7 @@
 
         <Badge
           v-if="showLikeButton"
-          icon-name="bookmark"
+          :icon-name="hasLiked ? 'minus' : 'bookmark'"
           :icon-style="hasLiked ? 'fas' : 'far'"
           :text="
             hasLiked
@@ -35,6 +35,8 @@
           text-color="white"
           color="blue-500"
           tag="button"
+          :class="{ 'animate-pulse': toggleLikeLoading }"
+          :disabled="toggleLikeLoading"
           type="button"
           @click="toggleLike()"
         />
@@ -61,6 +63,7 @@ import { Product } from '~/types/models'
 export default class ProductBaseCard extends Vue {
   @Prop({ type: Object, required: true }) product!: Product
   @Prop({ type: Array }) buttons!: ProductTypeButton[]
+  public toggleLikeLoading: boolean = false
 
   get hasLiked() {
     return this.$accessor.likes.hasProduct(this.product.id)
@@ -71,10 +74,12 @@ export default class ProductBaseCard extends Vue {
   }
 
   async toggleLike() {
+    this.toggleLikeLoading = true
     await this.$accessor.likes.store({
       likableType: Models.product,
       likableId: this.product.id,
     })
+    this.toggleLikeLoading = false
   }
 }
 </script>

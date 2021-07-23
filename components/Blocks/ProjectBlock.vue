@@ -54,11 +54,18 @@
         v-if="showLikeButton"
         type="button"
         class="text-blue-500 focus:outline-none"
+        :disabled="toggleLikeLoading"
         @click.stop.prevent="toggleLike"
       >
         <font-awesome-icon
+          v-if="!toggleLikeLoading"
           :icon="[hasLiked ? 'fas' : 'far', 'bookmark']"
           class="text-base"
+        />
+        <font-awesome-icon
+          v-else
+          :icon="['fas', 'spinner']"
+          class="text-base animate-spin"
         />
       </button>
     </div>
@@ -73,6 +80,7 @@ import { Project } from '~/types/models'
 @Component
 export default class ProjectBlock extends Vue {
   @Prop({ type: Object, required: true }) readonly project!: Project
+  public toggleLikeLoading: boolean = false
 
   get createdAt(): string {
     const date = this.$dayjs(this.project.createdAt)
@@ -89,10 +97,12 @@ export default class ProjectBlock extends Vue {
   }
 
   async toggleLike() {
+    this.toggleLikeLoading = true
     await this.$accessor.likes.store({
       likableType: Models.project,
       likableId: this.project.id,
     })
+    this.toggleLikeLoading = false
   }
 }
 </script>
