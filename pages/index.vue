@@ -67,6 +67,13 @@
     />
 
     <StatisticsSection :statistics="entityStatistics" />
+
+    <PersonCreate
+      v-if="$auth.user"
+      :is-open="showProfileModal"
+      :themes="themes"
+      :skills="skills"
+    />
   </div>
 </template>
 
@@ -74,7 +81,7 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import qs from 'qs'
 import { Type, Filter, Discover } from '~/types/entities'
-import { Theme } from '~/types/models'
+import { Theme, Tag } from '~/types/models'
 
 @Component({
   async fetch(this: IndexPage) {
@@ -89,6 +96,7 @@ import { Theme } from '~/types/models'
 
     await this.$accessor.themes.fetchAll()
     await this.$accessor.discover.fetchAll()
+    await this.$accessor.skills.fetchAll()
   },
 })
 export default class IndexPage extends Vue {
@@ -107,8 +115,19 @@ export default class IndexPage extends Vue {
     return this.$accessor.themes.all
   }
 
+  get skills(): Tag[] {
+    return this.$accessor.skills.all
+  }
+
   get entities(): Discover {
     return this.$accessor.discover.all
+  }
+
+  get showProfileModal() {
+    return (
+      this.$auth.user?.person === null &&
+      localStorage.getItem('closedProfileModal') === null
+    )
   }
 
   setFilters(type: string, filters: Array<any>): void {

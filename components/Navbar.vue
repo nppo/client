@@ -12,7 +12,7 @@
       <Dropdown v-if="$auth.loggedIn" :is-active.sync="active">
         <template #button>
           <button
-            class="flex items-center px-4 py-2 space-x-4 text-sm text-white rounded bg-orange-brand"
+            class="flex items-center px-4 py-2 space-x-4 text-sm text-white rounded bg-orange-brand focus:outline-none"
           >
             <span>{{ $t('account.manage') }}</span>
 
@@ -23,12 +23,31 @@
         <template #items>
           <div class="grid grid-cols-1 divide-y divide-gray-100">
             <LocaleLink
-              v-for="link in links"
-              :key="link.link"
-              :path="link.link"
+              v-if="person"
+              :path="`/person/${person.id}`"
               class="w-full py-1 text-sm text-left border-b border-gray-100 hover:font-bold"
             >
-              {{ $t(link.text) }}
+              {{ $t('account.profile') }}
+            </LocaleLink>
+            <span
+              v-else
+              class="w-full py-1 text-sm text-left border-b border-gray-100 hover:font-bold"
+              @click="createProfile"
+            >
+              {{ $t('account.profile') }}
+            </span>
+            <LocaleLink
+              :path="`/person/${person.id}/likes`"
+              class="w-full py-1 text-sm text-left border-b border-gray-100 hover:font-bold"
+            >
+              {{ $t('account.saved') }}
+            </LocaleLink>
+            <LocaleLink
+              v-if="$auth.user"
+              :path="`/logout`"
+              class="w-full py-1 text-sm text-left border-b border-gray-100 hover:font-bold"
+            >
+              {{ $t('auth.actions.logout') }}
             </LocaleLink>
           </div>
         </template>
@@ -57,19 +76,9 @@ export default class Navbar extends Vue {
     return this.$auth.user?.person as Person
   }
 
-  private links: Array<{ link: string; text: string }> = [
-    {
-      link: `/person/${this.person?.id}`,
-      text: 'account.profile',
-    },
-    {
-      link: `/person/${this.person?.id}/likes`,
-      text: 'account.saved',
-    },
-    {
-      link: '/logout',
-      text: 'auth.actions.logout',
-    },
-  ]
+  createProfile(): void {
+    localStorage.removeItem('closedProfileModal')
+    this.$router.push('/')
+  }
 }
 </script>

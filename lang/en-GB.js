@@ -280,8 +280,16 @@ export default {
             last_name: 'Last name',
             about: 'About',
             skills: 'Skills',
-            themes: 'themes',
+            themes: 'Themes',
+            function: 'Function',
+            phone: 'Phone',
           },
+        },
+        projects: {
+          empty: 'This person has no projects yet.',
+        },
+        products: {
+          empty: 'This person has no products yet.',
         },
       },
     },
@@ -337,6 +345,16 @@ export default {
           tags: 'Tags',
           themes: 'Themes',
         },
+      },
+    },
+  },
+
+  modals: {
+    person: {
+      create: {
+        heading: 'You do not have a profile yet, would you like to create one?',
+        cancel_text:
+          "Don't want to create a profile yet? Continue to the platform",
       },
     },
   },
