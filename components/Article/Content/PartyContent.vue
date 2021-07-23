@@ -1,14 +1,18 @@
 <template>
   <div class="w-full cursor-pointer">
     <PartyBlock v-if="party" :party="party" :article-block="true" />
+    <ContentSkeleton v-else />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import { Party } from '~/types/models'
+import ContentSkeleton from '~/components/Article/Content/ContentSkeleton.vue'
 
-@Component
+@Component({
+  components: { ContentSkeleton },
+})
 export default class PartyContent extends Vue {
   @Prop({ type: Object, required: true }) data!: object
 

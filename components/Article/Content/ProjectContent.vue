@@ -1,14 +1,18 @@
 <template>
   <div class="w-full cursor-pointer">
     <ProjectBlock v-if="project" :project="project" :article-block="true" />
+    <ContentSkeleton v-else />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import { Project } from '~/types/models'
+import ContentSkeleton from '~/components/Article/Content/ContentSkeleton.vue'
 
-@Component
+@Component({
+  components: { ContentSkeleton },
+})
 export default class ProjectContent extends Vue {
   @Prop({ type: Object, required: true }) data!: object
 
