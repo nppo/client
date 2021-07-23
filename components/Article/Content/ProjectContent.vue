@@ -8,7 +8,12 @@
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import { Project } from '~/types/models'
 
-@Component({
+@Component
+export default class ProjectContent extends Vue {
+  @Prop({ type: Object, required: true }) data!: object
+
+  public project: Project | null = null
+
   async fetch(): Promise<void> {
     if (this.data?.identifier) {
       const { status, data } = await this.$repositories.project.show(
@@ -18,11 +23,6 @@ import { Project } from '~/types/models'
         this.project = data.data
       }
     }
-  },
-})
-export default class ProjectContent extends Vue {
-  @Prop({ type: Object, required: true }) data!: object
-
-  public project: Project | null = null
+  }
 }
 </script>

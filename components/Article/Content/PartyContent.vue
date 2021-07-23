@@ -8,7 +8,12 @@
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import { Party } from '~/types/models'
 
-@Component({
+@Component
+export default class PartyContent extends Vue {
+  @Prop({ type: Object, required: true }) data!: object
+
+  public party: Party | null = null
+
   async fetch(): Promise<void> {
     if (this.data?.identifier) {
       const { status, data } = await this.$repositories.party.show(
@@ -18,11 +23,6 @@ import { Party } from '~/types/models'
         this.party = data.data
       }
     }
-  },
-})
-export default class PartyContent extends Vue {
-  @Prop({ type: Object, required: true }) data!: object
-
-  public party: Party | null = null
+  }
 }
 </script>

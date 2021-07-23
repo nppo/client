@@ -8,7 +8,12 @@
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import { Person } from '~/types/models'
 
-@Component({
+@Component
+export default class PersonContent extends Vue {
+  @Prop({ type: Object, required: true }) data!: object
+
+  public person: Person | null = null
+
   async fetch(): Promise<void> {
     if (this.data?.identifier) {
       const { status, data } = await this.$repositories.person.show(
@@ -18,11 +23,6 @@ import { Person } from '~/types/models'
         this.person = data.data
       }
     }
-  },
-})
-export default class PersonContent extends Vue {
-  @Prop({ type: Object, required: true }) data!: object
-
-  public person: Person | null = null
+  }
 }
 </script>

@@ -8,7 +8,12 @@
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import { Product } from '~/types/models'
 
-@Component({
+@Component
+export default class ProductContent extends Vue {
+  @Prop({ type: Object, required: true }) data!: object
+
+  public product: Product | null = null
+
   async fetch(): Promise<void> {
     if (this.data?.identifier) {
       const { status, data } = await this.$repositories.product.show(
@@ -18,11 +23,6 @@ import { Product } from '~/types/models'
         this.product = data.data
       }
     }
-  },
-})
-export default class ProductContent extends Vue {
-  @Prop({ type: Object, required: true }) data!: object
-
-  public product: Product | null = null
+  }
 }
 </script>
