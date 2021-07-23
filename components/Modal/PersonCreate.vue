@@ -120,7 +120,6 @@ import objectToFormData from '~/common/utils/objectToFormData'
 })
 export default class PersonCreateModal extends Vue {
   private formData: any = {
-    profile_picture: null,
     identifier: '1234567890',
     email: null,
     first_name: null,
