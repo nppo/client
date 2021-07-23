@@ -1,7 +1,7 @@
 <template>
-  <div class="bg-blue-800">
+  <div class="px-5 bg-blue-800 lg:px-0">
     <div class="container py-16 mx-auto">
-      <div>
+      <div class="px-5 lg:px-0">
         <h2 class="mb-8 ml-2 text-3xl font-bold text-white">
           {{ $t('pages.index.discover_heading') }}
         </h2>

@@ -66,7 +66,6 @@ import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
 export default class SliderContent extends Vue {
   private index: null | number = null
   private currentImageUrl: string = ''
-  private showIcon: boolean = false
 
   $refs!: {
     slider: typeof VueSlickCarousel

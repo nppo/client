@@ -1,31 +1,31 @@
 <template>
   <div class="w-full cursor-pointer">
-    <ProductBlock v-if="product" :product="product" :article-block="true" />
+    <PartyBlock v-if="party" :party="party" :article-block="true" />
     <ContentSkeleton v-else />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
-import { Product } from '~/types/models'
+import { Party } from '~/types/models'
 import ContentSkeleton from '~/components/Article/Content/ContentSkeleton.vue'
-import { ProductComponent } from '~/types/entities'
+import { PartyComponent } from '~/types/entities'
 
 @Component({
   components: { ContentSkeleton },
 })
-export default class ProductContent extends Vue {
-  @Prop({ type: Object, required: true }) data!: ProductComponent
+export default class PartyContent extends Vue {
+  @Prop({ type: Object, required: true }) data!: PartyComponent
 
-  public product: Product | null = null
+  public party: Party | null = null
 
   async fetch(): Promise<void> {
     if (this.data?.identifier) {
-      const { status, data } = await this.$repositories.product.show(
+      const { status, data } = await this.$repositories.party.show(
         this.data.identifier
       )
       if (status === 200) {
-        this.product = data.data
+        this.party = data.data
       }
     }
   }
