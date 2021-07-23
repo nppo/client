@@ -9,12 +9,13 @@
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import { Person } from '~/types/models'
 import ContentSkeleton from '~/components/Article/Content/ContentSkeleton.vue'
+import { PersonComponent } from '~/types/entities'
 
 @Component({
   components: { ContentSkeleton },
 })
 export default class PersonContent extends Vue {
-  @Prop({ type: Object, required: true }) data!: object
+  @Prop({ type: Object, required: true }) data!: PersonComponent
 
   public person: Person | null = null
 

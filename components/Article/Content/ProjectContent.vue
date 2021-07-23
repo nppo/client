@@ -9,12 +9,13 @@
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import { Project } from '~/types/models'
 import ContentSkeleton from '~/components/Article/Content/ContentSkeleton.vue'
+import { ProjectComponent } from '~/types/entities'
 
 @Component({
   components: { ContentSkeleton },
 })
 export default class ProjectContent extends Vue {
-  @Prop({ type: Object, required: true }) data!: object
+  @Prop({ type: Object, required: true }) data!: ProjectComponent
 
   public project: Project | null = null
 

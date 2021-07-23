@@ -9,12 +9,13 @@
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import { Party } from '~/types/models'
 import ContentSkeleton from '~/components/Article/Content/ContentSkeleton.vue'
+import { PartyComponent } from '~/types/entities'
 
 @Component({
   components: { ContentSkeleton },
 })
 export default class PartyContent extends Vue {
-  @Prop({ type: Object, required: true }) data!: object
+  @Prop({ type: Object, required: true }) data!: PartyComponent
 
   public party: Party | null = null
 
