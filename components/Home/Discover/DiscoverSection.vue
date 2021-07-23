@@ -83,6 +83,16 @@
               <PartyBlock class="shadow-none" :party="party" />
             </div>
           </BlockSlider>
+
+          <BlockSlider v-show="isActive('article')" ref="articleSlider">
+            <div
+              v-for="article in entities.articles"
+              :key="article.id"
+              class="h-full px-2"
+            >
+              <ArticleBlock class="shadow-none" :article="article" />
+            </div>
+          </BlockSlider>
         </div>
       </div>
     </div>
@@ -95,9 +105,10 @@ import { Discover, Type } from '~/types/entities'
 
 import CollectionBlock from '~/components/Blocks/CollectionBlock.vue'
 import ProductBlock from '~/components/Blocks/ProductBlock.vue'
+import ArticleBlock from '~/components/Blocks/ArticleBlock.vue'
 
 @Component({
-  components: { CollectionBlock, ProductBlock },
+  components: { CollectionBlock, ProductBlock, ArticleBlock },
 })
 export default class DiscoverSection extends Vue {
   public activeTab: String = 'product'

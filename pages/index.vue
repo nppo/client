@@ -25,13 +25,13 @@
 
     <div class="container relative mx-auto">
       <div
-        class="grid grid-cols-1 gap-5 px-5 -mt-28 md:grid-cols-2 lg:grid-cols-4 lg:px-0"
+        class="grid grid-cols-1 gap-5 px-5 -mt-28 md:grid-cols-2 lg:grid-cols-5 lg:px-0"
       >
         <LocaleLink
           v-for="(type, index) in types"
           :key="index"
           :path="'/search?filters[types][]=' + type.id"
-          class="block p-5 bg-white rounded shadow"
+          class="flex flex-col p-5 bg-white rounded shadow"
         >
           <div class="font-bold">
             {{ $t('pages.index.search_blocks.title') }}
@@ -45,7 +45,7 @@
             {{ $t('pages.index.search_blocks.' + type.label + '.description') }}
           </p>
 
-          <div class="flex justify-end">
+          <div class="flex justify-end mt-auto">
             <svg
               viewBox="0 0 13 13"
               class="w-3 h-3 fill-current text-orange-brand"
