@@ -31,6 +31,10 @@ export const getters = getterTree(state, {
   hasProject: (state) => (id: number) =>
     Boolean(state.all?.likedProjects.find((project) => project.id === id)) ||
     false,
+
+  hasArticle: (state) => (id: number) =>
+    Boolean(state.all?.likedArticles.find((article) => article.id === id)) ||
+    false,
 })
 
 export const actions = actionTree(

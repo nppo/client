@@ -38,6 +38,9 @@
           <template v-else-if="activeEntity === 'people'">
             {{ likes.likedPeople.length }}
           </template>
+          <template v-else-if="activeEntity === 'articles'">
+            {{ likes.likedArticles.length }}
+          </template>
         </span>
       </h1>
 
@@ -58,6 +61,11 @@
       </template>
       <template
         v-else-if="activeEntity === 'people' && !likes.likedPeople.length"
+      >
+        <p>{{ $t('pages.likes.no_results') }}</p>
+      </template>
+      <template
+        v-else-if="activeEntity === 'articles' && !likes.likedArticles.length"
       >
         <p>{{ $t('pages.likes.no_results') }}</p>
       </template>
@@ -94,6 +102,13 @@
             :person="person"
           />
         </template>
+        <template v-else-if="activeEntity === 'articles'">
+          <ArticleBlock
+            v-for="article in likes.likedArticles.slice(0, 9)"
+            :key="article.id"
+            :article="article"
+          />
+        </template>
       </div>
     </div>
   </div>
@@ -108,7 +123,13 @@ import { Like, Person } from '~/types/models'
   middleware: ['auth'],
 })
 export default class PersonLikesPage extends mixins(NavigationRouterHook) {
-  public entities: Array<string> = ['products', 'projects', 'people', 'parties']
+  public entities: Array<string> = [
+    'products',
+    'projects',
+    'people',
+    'parties',
+    'articles',
+  ]
 
   get person(): Person {
     return this.$accessor.people.current

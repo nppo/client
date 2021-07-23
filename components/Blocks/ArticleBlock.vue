@@ -48,25 +48,59 @@
         </div>
       </div>
 
-      <span class="text-blue-500">
-        <font-awesome-icon :icon="['far', 'bookmark']" class="text-base" />
-      </span>
+      <button
+        v-if="showLikeButton"
+        type="button"
+        class="text-blue-500 focus:outline-none"
+        :disabled="toggleLikeLoading"
+        @click.stop.prevent="toggleLike"
+      >
+        <font-awesome-icon
+          v-if="!toggleLikeLoading"
+          :icon="[hasLiked ? 'fas' : 'far', 'bookmark']"
+          class="text-base"
+        />
+        <font-awesome-icon
+          v-else
+          :icon="['fas', 'spinner']"
+          class="text-base animate-spin"
+        />
+      </button>
     </div>
   </LocaleLink>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import { Models } from '~/types/enums'
 import { Article } from '~/types/models'
 
 @Component
 export default class ArticleBlock extends Vue {
   @Prop({ type: Object, required: true }) readonly article!: Article
+  public toggleLikeLoading: boolean = false
 
   get createdAt(): string {
     const date = this.$dayjs(this.article.createdAt)
 
     return date.locale(this.$i18n.locale).format('D MMM YYYY')
+  }
+
+  get hasLiked() {
+    return this.$accessor.likes.hasArticle(this.article.id)
+  }
+
+  get showLikeButton(): boolean {
+    return this.$auth.loggedIn
+  }
+
+  async toggleLike() {
+    this.toggleLikeLoading = true
+    await this.$accessor.likes.store({
+      likableType: Models.article,
+      likableId: this.article.id,
+    })
+    this.toggleLikeLoading = false
   }
 }
 </script>

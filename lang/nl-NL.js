@@ -87,6 +87,7 @@ export default {
       plural: 'Collecties',
       default: 'collectie | collecties',
     },
+    articles: 'Artikelen',
     article: {
       singular: 'Artikel',
       plural: 'Artikelen',

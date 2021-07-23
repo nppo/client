@@ -3,4 +3,5 @@ export enum Models {
   project = 'App\\Models\\Project',
   party = 'App\\Models\\Party',
   person = 'App\\Models\\Person',
+  article = 'App\\Models\\Article',
 }
