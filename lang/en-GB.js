@@ -76,6 +76,11 @@ export default {
       plural: 'Collections',
       default: 'collection | collections',
     },
+    article: {
+      singular: 'Article',
+      plural: 'Articles',
+      default: 'article | articles',
+    },
   },
 
   filters: {
@@ -89,6 +94,7 @@ export default {
         product: 'Product',
         person: 'Person',
         project: 'Project',
+        article: 'Article',
       },
     },
   },
@@ -119,6 +125,10 @@ export default {
           title: 'Parties',
           description:
             'Organizations and institutions involved in practice-oriented research',
+        },
+        article: {
+          title: 'Articles',
+          description: 'Articles written for this platform',
         },
       },
     },
@@ -322,6 +332,7 @@ export default {
       _id: {
         headings: {
           tags: 'Tags',
+          themes: 'Themes',
         },
       },
     },

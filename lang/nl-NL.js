@@ -81,6 +81,11 @@ export default {
       plural: 'Collecties',
       default: 'collectie | collecties',
     },
+    article: {
+      singular: 'Artikel',
+      plural: 'Artikelen',
+      default: 'artikel | artikelen',
+    },
   },
 
   filters: {
@@ -94,6 +99,7 @@ export default {
         product: 'Product',
         person: 'Persoon',
         project: 'Project',
+        article: 'Artikel',
       },
     },
   },
@@ -126,6 +132,10 @@ export default {
           title: 'Partijen',
           description:
             'Organisaties en instellingen die betrokken zijn bij praktijkgericht onderzoek ',
+        },
+        article: {
+          title: 'Artikelen',
+          description: 'Artikelen die zijn geschreven voor dit platform',
         },
       },
     },
@@ -342,6 +352,7 @@ export default {
       _id: {
         headings: {
           tags: 'Tags',
+          themes: "Thema's",
         },
       },
     },
