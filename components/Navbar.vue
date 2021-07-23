@@ -23,12 +23,25 @@
         <template #items>
           <div class="grid grid-cols-1 divide-y divide-gray-100">
             <LocaleLink
-              v-for="link in links"
-              :key="link.link"
-              :path="link.link"
+              v-if="person"
+              :path="`/person/${person.id}`"
               class="w-full py-1 text-sm text-left border-b border-gray-100 hover:font-bold"
             >
-              {{ $t(link.text) }}
+              {{ $t('account.profile') }}
+            </LocaleLink>
+            <span
+              v-else
+              class="w-full py-1 text-sm text-left border-b border-gray-100 hover:font-bold"
+              @click="createProfile"
+            >
+              {{ $t('account.profile') }}
+            </span>
+            <LocaleLink
+              v-if="$auth.user"
+              :path="`/logout`"
+              class="w-full py-1 text-sm text-left border-b border-gray-100 hover:font-bold"
+            >
+              {{ $t('auth.actions.logout') }}
             </LocaleLink>
           </div>
         </template>
@@ -53,26 +66,13 @@ import { Person } from '~/types/models'
 export default class Navbar extends Vue {
   public active: boolean = false
 
-  get links(): Array<{ link: string; text: string }> {
-    const links = []
-
-    if (this.person) {
-      links.push({
-        link: `/person/${this.person?.id}`,
-        text: 'account.profile',
-      })
-    }
-
-    links.push({
-      link: '/logout',
-      text: 'auth.actions.logout',
-    })
-
-    return links
-  }
-
   get person(): Person | undefined {
     return this.$auth.user?.person as Person
+  }
+
+  createProfile(): void {
+    localStorage.removeItem('closedProfileModal')
+    this.$router.push('/')
   }
 }
 </script>
