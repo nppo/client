@@ -78,11 +78,14 @@
           />
         </template>
         <template v-else-if="activeEntity === 'products'">
-          <ProductBlock
-            v-for="product in likes.likedProducts.slice(0, 9)"
-            :key="product.id"
-            :product="product"
-          />
+          <template v-for="product in likes.likedProducts.slice(0, 9)">
+            <CollectionBlock
+              v-if="product.type === 'collection'"
+              :key="product.id"
+              :product="product"
+            />
+            <ProductBlock v-else :key="product.id" :product="product" />
+          </template>
         </template>
         <template v-else-if="activeEntity === 'people'">
           <PersonBlock
