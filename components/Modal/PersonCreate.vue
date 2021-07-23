@@ -90,6 +90,7 @@
               </button>
 
               <button
+                type="button"
                 class="flex items-center text-left focus:outline-none"
                 @click="closeModal"
               >
@@ -120,7 +121,7 @@ import objectToFormData from '~/common/utils/objectToFormData'
 })
 export default class PersonCreateModal extends Vue {
   private formData: any = {
-    identifier: '1234567890',
+    identifier: Math.random().toString(36).substr(2, 9),
     email: null,
     first_name: null,
     last_name: null,
