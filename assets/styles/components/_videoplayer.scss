@@ -1,0 +1,15 @@
+.videoplayer > .video-js .vjs-big-play-button {
+  top: calc(50% - 3rem);
+  left: calc(50% - 3rem);
+  background-color: transparent;
+  height: 6rem !important;
+  width: 6rem !important;
+  border-radius: 50%;
+  border-width: 5px;
+}
+
+.video-js .vjs-big-play-button .vjs-icon-placeholder::before {
+  top: calc(50% - 22.5px) !important;
+  left: calc(50% - 25px) !important;
+  font-size: 50px;
+}

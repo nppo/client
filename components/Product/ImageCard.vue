@@ -1,5 +1,5 @@
 <template>
-  <ProductBaseCard v-bind="settings">
+  <ProductBaseCard v-if="product.links" v-bind="settings">
     <div class="w-full h-full cursor-pointer">
       <CoolLightBox
         :src="product.links.preview"
