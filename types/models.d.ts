@@ -117,6 +117,7 @@ export interface Role extends Model {
 }
 
 export interface Article extends Model {
+  id: number
   title: string
   tags?: Tag[]
   themes?: Theme[]
@@ -137,4 +138,5 @@ export interface Like extends Model {
   likedProjects: Project[]
   likedPeople: Person[]
   likedParties: Party[]
+  likedArticles: Article[]
 }
