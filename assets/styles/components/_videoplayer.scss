@@ -1,15 +1,34 @@
 .videoplayer > .video-js .vjs-big-play-button {
-  top: calc(50% - 3rem);
-  left: calc(50% - 3rem);
-  background-color: transparent;
-  height: 6rem !important;
-  width: 6rem !important;
-  border-radius: 50%;
-  border-width: 5px;
+  @apply bg-transparent h-24 w-24 rounded-full border-5 #{!important};
+
+  top: calc(50% - theme('spacing.12'));
+  left: calc(50% - theme('spacing.12'));
 }
 
 .video-js .vjs-big-play-button .vjs-icon-placeholder::before {
+  @apply text-5xl w-auto h-auto #{!important};
+
   top: calc(50% - 22.5px) !important;
   left: calc(50% - 25px) !important;
-  font-size: 50px;
+}
+
+.videoplayer-block-header .video-js {
+  padding-top: 42%;
+}
+
+.videoplayer-block-header
+  .video-js
+  .vjs-big-play-button
+  .vjs-icon-placeholder::before {
+  @apply text-5xl w-auto h-auto #{!important};
+
+  top: calc(50% - 22.5px) !important;
+  left: calc(50% - 24px) !important;
+}
+
+.videoplayer-block-header > .video-js .vjs-big-play-button {
+  @apply h-16 w-16 #{!important};
+
+  top: calc(50% - theme('spacing.8'));
+  left: calc(50% - theme('spacing.8'));
 }
