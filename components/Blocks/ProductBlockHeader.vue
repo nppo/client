@@ -52,11 +52,22 @@
         />
       </template>
     </LinkPrevue>
+
+    <video-player
+      v-if="product.type === 'video'"
+      ref="videoPlayer"
+      class="h-32 mb-2 videoplayer videoplayer-block-header"
+      :options="playerOptions"
+      :responsive="true"
+    >
+    </video-player>
   </div>
 </template>
 
 <script lang="ts">
 import LinkPrevue from 'link-prevue'
+import 'video.js/dist/video-js.css'
+import { videoPlayer } from 'vue-video-player'
 
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 import { Product } from '~/types/models'
@@ -64,9 +75,20 @@ import { Product } from '~/types/models'
 @Component({
   components: {
     LinkPrevue,
+    videoPlayer,
   },
 })
 export default class ProductBlock extends Vue {
   @Prop({ type: Object, required: true }) readonly product!: Product
+
+  private playerOptions: object = {
+    playbackRates: [0.7, 1.0, 1.5, 2.0],
+    sources: [
+      {
+        src: this.product.links?.preview,
+      },
+    ],
+    fluid: true,
+  }
 }
 </script>

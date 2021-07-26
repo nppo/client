@@ -80,6 +80,9 @@ module.exports = {
       transitionProperty: {
         spacing: 'padding',
       },
+      borderWidth: {
+        5: '5px',
+      },
     },
     customForms: () => ({
       default: {
