@@ -4,9 +4,12 @@
     class="flex h-full overflow-hidden bg-white rounded-md shadow"
     :class="articleBlock ? 'flex-row' : 'flex-col'"
   >
-    <div class="flex flex-col w-3/4">
+    <div
+      class="flex flex-col"
+      :class="articleBlock ? 'w-3/4' : 'h-full w-full'"
+    >
       <div class="flex flex-col items-center p-4">
-        <div v-if="!articleBlock">
+        <div v-if="!articleBlock" class="flex flex-col items-center mb-2">
           <img
             v-if="party.partyPictureUrl"
             class="inline w-24 h-24 mb-2 rounded-full shadow"
