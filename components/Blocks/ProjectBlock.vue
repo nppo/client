@@ -22,7 +22,10 @@
       </div>
     </div>
 
-    <div class="flex flex-col w-3/4">
+    <div
+      class="flex flex-col"
+      :class="articleBlock ? 'w-3/4' : 'h-full w-full'"
+    >
       <div v-if="!articleBlock" class="flex justify-between px-4 text-tiny">
         <span>{{ createdAt }}</span>
       </div>
