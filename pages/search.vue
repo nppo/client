@@ -137,7 +137,7 @@
 
             <div
               v-if="resourceDepleted"
-              class="-mt-12 text-xl text-gray-500 text-center"
+              class="-mt-12 text-xl text-center text-gray-500"
             >
               That's all folks!
             </div>
@@ -156,12 +156,15 @@
 import { Component, mixins } from 'nuxt-property-decorator'
 import qs from 'qs'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
-import { Search, Type } from '~/types/entities'
+import { Search, SearchResultItem, Type } from '~/types/entities'
 import { Party, Person, Product, Project, Theme } from '~/types/models'
 
 import CollectionBlock from '~/components/Blocks/CollectionBlock.vue'
 import ProductBlock from '~/components/Blocks/ProductBlock.vue'
-import filterTypes from '~/config/entities'
+import filterTypes, {
+  filterTypesKeys,
+  filterTypesValues,
+} from '~/config/entities'
 
 @Component({
   async fetch(this: SearchPage) {
@@ -174,7 +177,7 @@ import filterTypes from '~/config/entities'
 
     if (
       this.hasSpecificTypeFilter ||
-      this.current[this.getSpecificTypeFilter].items.length === 0
+      this.current[this.getSpecificTypeFilter]?.items.length === 0
     ) {
       await this.search()
     }
@@ -195,20 +198,20 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
     return this.$accessor.search.current
   }
 
-  get people(): Array<Person> {
-    return this.current.people || []
+  get people(): SearchResultItem<Person> | undefined {
+    return this.current.people
   }
 
-  get parties(): Array<Party> {
-    return this.current.parties || []
+  get parties(): SearchResultItem<Party> | undefined {
+    return this.current.parties
   }
 
-  get products(): Array<Product> {
-    return this.current.products || []
+  get products(): SearchResultItem<Product> | undefined {
+    return this.current.products
   }
 
-  get projects(): Array<Project> {
-    return this.current.projects || []
+  get projects(): SearchResultItem<Project> | undefined {
+    return this.current.projects
   }
 
   get themes(): Array<Theme> {
@@ -227,9 +230,9 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
     return this.filters.types?.length === 1
   }
 
-  get getSpecificTypeFilter(): string {
-    const typeFilter = this.filters.types[0]
-    return filterTypes[Number(typeFilter)]
+  get getSpecificTypeFilter(): filterTypesValues {
+    const typeFilter = this.filters.types[0] as filterTypesKeys
+    return filterTypes[typeFilter]
   }
 
   get requestString(): string {
@@ -327,7 +330,9 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
   detectLoadMore() {
     if (!this.hasSpecificTypeFilter || this.showInfiniteLoader) return
 
-    if (!this[this.getSpecificTypeFilter].next_cursor) {
+    const nextCursor = this[this.getSpecificTypeFilter]?.next_cursor
+
+    if (!nextCursor) {
       this.resourceDepleted = true
       return
     }
@@ -335,7 +340,7 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
       this.showInfiniteLoader = true
 
-      const searchString: string = this.requestString + '&cursor=' + this[this.getSpecificTypeFilter].next_cursor
+      const searchString: string = this.requestString + '&cursor=' + nextCursor
 
       this.$accessor.search
         .additionalResults({ searchString, type: this.getSpecificTypeFilter })

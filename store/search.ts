@@ -1,6 +1,7 @@
 import { actionTree, mutationTree } from 'nuxt-typed-vuex'
 import { Vue } from 'nuxt-property-decorator'
 import { Filter, Search } from '~/types/entities'
+import { filterTypesValues } from '~/config/entities'
 
 export const state = () => ({
   current: localStorage.getItem('currentSearch')
@@ -15,10 +16,23 @@ export const mutations = mutationTree(state, {
   setCurrent(state, newValue: Search) {
     state.current = newValue
   },
-  addResults(state, results: any) {
-    // TODO: Fix type errors
-    state.current[results.type].items = state.current[results.type].items.concat(results.data[results.type].items)
-    state.current[results.type].next_cursor = results.data[results.type].next_cursor
+  addResults(state, results: { type: filterTypesValues; data: Search }) {
+    const type = results.type
+    const current = state.current?.[type]
+
+    if (!current) {
+      return
+    }
+
+    const items = results.data?.[type]
+
+    if (!items) {
+      return
+    }
+
+    // @ts-ignore-next-line
+    current.items = [...current.items, ...items.items]
+    current.next_cursor = items.next_cursor
   },
   setFilter(state, filter: Filter) {
     Vue.set(state.filters, filter.type, [...filter.values])
@@ -62,7 +76,10 @@ export const actions = actionTree(
       }
     },
 
-    async additionalResults({ commit }, query): Promise<void> {
+    async additionalResults(
+      { commit },
+      query: { searchString: string; type: filterTypesValues }
+    ): Promise<void> {
       const {
         status,
         data: { data },

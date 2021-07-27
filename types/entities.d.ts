@@ -20,12 +20,17 @@ export interface ProductSearch {
   nextCursor: string
 }
 
+export interface SearchResultItem<T> {
+  items: Array<T>
+  next_cursor: string | null | false
+}
+
 export interface Search {
   results: number
-  parties?: Party[]
-  people?: Person[]
-  products?: Product[]
-  projects?: Project[]
+  parties?: SearchResultItem<Party>
+  people?: SearchResultItem<Person>
+  products?: SearchResultItem<Product>
+  projects?: SearchResultItem<Project>
   filters?: Filter[]
 }
 
