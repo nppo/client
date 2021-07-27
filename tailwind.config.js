@@ -41,6 +41,7 @@ module.exports = {
       backgroundOpacity: (theme) => theme('opacity'),
       spacing: {
         11: '2.625rem',
+        14: '3.5rem',
         18: '4.5rem',
         28: '7rem',
         96: '24rem',

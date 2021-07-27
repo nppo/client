@@ -1,3 +1,6 @@
+$play-button-height-icon: 45px;
+$play-button-width-icon: 50px;
+
 .videoplayer > .video-js .vjs-big-play-button {
   @apply bg-transparent h-24 w-24 rounded-full border-5 #{!important};
 
@@ -8,22 +11,13 @@
 .video-js .vjs-big-play-button .vjs-icon-placeholder::before {
   @apply text-5xl w-auto h-auto #{!important};
 
-  top: calc(50% - 22.5px) !important;
-  left: calc(50% - 25px) !important;
+  top: calc(50% - theme('fontSize.2xl')) !important;
+  left: calc(50% - theme('fontSize.2xl')) !important;
 }
 
+// Give the header the correct height
 .videoplayer-block-header .video-js {
   padding-top: 42%;
-}
-
-.videoplayer-block-header
-  .video-js
-  .vjs-big-play-button
-  .vjs-icon-placeholder::before {
-  @apply text-5xl w-auto h-auto #{!important};
-
-  top: calc(50% - 22.5px) !important;
-  left: calc(50% - 24px) !important;
 }
 
 .videoplayer-block-header > .video-js .vjs-big-play-button {
@@ -46,8 +40,10 @@
 .vjs-error .vjs-error-display::before {
   content: url('~assets/img/file.svg') !important;
   text-shadow: none !important;
-  top: 35% !important;
-  left: calc(50% - 3.5rem) !important;
 
-  @apply flex items-center justify-center mb-5 bg-gray-200 rounded-full h-28 w-28 text-blue-500 #{!important};
+  // Give the icon the correct top position
+  top: 35% !important;
+  left: calc(50% - theme('spacing.14')) !important;
+
+  @apply flex items-center justify-center bg-gray-200 rounded-full h-28 w-28 text-blue-500 #{!important};
 }
