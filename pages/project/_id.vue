@@ -19,23 +19,43 @@
 
     <div v-if="activePage !== 'edit'" class="mb-12 border-b border-gray-200">
       <div class="container relative h-full mx-auto">
-        <nav class="flex space-x-16" aria-label="Tabs">
-          <LocaleLink
-            v-for="(page, index) in pages"
-            :key="index"
-            class="pt-5 pb-5 text-base font-medium border-b-2 border-transparent outline-none hover:border-yellow-brand whitespace-nowrap"
-            :class="{
-              'border-yellow-brand font-bold': activePage === page,
-            }"
-            :path="
-              page === 'project'
-                ? '/project/' + $route.params.id
-                : '/project/' + $route.params.id + '/' + page
+        <div class="flex items-center justify-between">
+          <nav class="flex space-x-16" aria-label="Tabs">
+            <LocaleLink
+              v-for="(page, index) in pages"
+              :key="index"
+              class="pt-5 pb-5 text-base font-medium border-b-2 border-transparent outline-none hover:border-yellow-brand whitespace-nowrap"
+              :class="{
+                'border-yellow-brand font-bold': activePage === page,
+              }"
+              :path="
+                page === 'project'
+                  ? '/project/' + $route.params.id
+                  : '/project/' + $route.params.id + '/' + page
+              "
+            >
+              {{ $t('pages.project._id.types.' + page) }}
+            </LocaleLink>
+          </nav>
+
+          <Badge
+            v-if="showLikeButton"
+            :icon-name="hasLiked ? 'minus' : 'bookmark'"
+            :icon-style="hasLiked ? 'fas' : 'far'"
+            :text="
+              hasLiked
+                ? $t('pages.product._id.actions.bookmarked')
+                : $t('pages.product._id.actions.bookmark')
             "
-          >
-            {{ $t('pages.project._id.types.' + page) }}
-          </LocaleLink>
-        </nav>
+            text-color="white"
+            color="blue-500"
+            tag="button"
+            :class="{ 'animate-pulse': toggleLikeLoading }"
+            :disabled="toggleLikeLoading"
+            type="button"
+            @click="toggleLike()"
+          />
+        </div>
       </div>
     </div>
 
@@ -175,6 +195,7 @@ import { Context } from '@nuxt/types'
 import { Component, mixins } from 'nuxt-property-decorator'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import { MetaData, Type } from '~/types/entities'
+import { Models } from '~/types/enums'
 import { Project, Product } from '~/types/models'
 
 @Component({
@@ -190,6 +211,7 @@ import { Project, Product } from '~/types/models'
 })
 export default class ProjectDetailPage extends mixins(NavigationRouterHook) {
   public pages: Array<string> = ['project', 'products', 'people', 'parties']
+  public toggleLikeLoading: boolean = false
 
   get project(): Project {
     return this.$accessor.projects.current
@@ -238,6 +260,23 @@ export default class ProjectDetailPage extends mixins(NavigationRouterHook) {
           : productB.publishedAt.localeCompare(productA.publishedAt)
       )
       .slice(0, 2)
+  }
+
+  get hasLiked() {
+    return this.$accessor.likes.hasProject(this.project.id)
+  }
+
+  get showLikeButton(): boolean {
+    return this.$auth.loggedIn
+  }
+
+  async toggleLike() {
+    this.toggleLikeLoading = true
+    await this.$accessor.likes.store({
+      likableType: Models.project,
+      likableId: this.project.id,
+    })
+    this.toggleLikeLoading = false
   }
 }
 </script>
