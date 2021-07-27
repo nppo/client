@@ -38,7 +38,7 @@
         <div v-else>
           <BlockSlider v-show="isActive('product')" ref="productSlider">
             <div
-              v-for="product in entities.products"
+              v-for="product in entities.products.items"
               :key="product.id"
               class="h-full px-2"
             >
@@ -56,7 +56,7 @@
 
           <BlockSlider v-show="isActive('project')" ref="projectSlider">
             <div
-              v-for="project in entities.projects"
+              v-for="project in entities.projects.items"
               :key="project.id"
               class="h-full px-2"
             >
@@ -66,7 +66,7 @@
 
           <BlockSlider v-show="isActive('person')" ref="personSlider">
             <div
-              v-for="person in entities.people"
+              v-for="person in entities.people.items"
               :key="person.id"
               class="h-full px-2"
             >
@@ -76,7 +76,7 @@
 
           <BlockSlider v-show="isActive('party')" ref="partySlider">
             <div
-              v-for="party in entities.parties"
+              v-for="party in entities.parties.items"
               :key="party.id"
               class="h-full px-2"
             >

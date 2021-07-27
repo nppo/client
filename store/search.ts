@@ -15,7 +15,7 @@ export const mutations = mutationTree(state, {
   setCurrent(state, newValue: Search) {
     state.current = newValue
   },
-  addResults(state, results) {
+  addResults(state, results: any) {
     // TODO: Fix type errors
     state.current[results.type].items = state.current[results.type].items.concat(results.data[results.type].items)
     state.current[results.type].next_cursor = results.data[results.type].next_cursor

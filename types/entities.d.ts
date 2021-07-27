@@ -24,7 +24,7 @@ export interface Search {
   results: number
   parties?: Party[]
   people?: Person[]
-  products?: ProductSearch[]
+  products?: Product[]
   projects?: Project[]
   filters?: Filter[]
 }

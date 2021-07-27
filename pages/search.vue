@@ -135,7 +135,12 @@
               <SearchSkeleton />
             </div>
 
-            <div v-if="resourceDepleted" class="-mt-12 text-xl text-gray-500 text-center">That's all folks!</div>
+            <div
+              v-if="resourceDepleted"
+              class="-mt-12 text-xl text-gray-500 text-center"
+            >
+              That's all folks!
+            </div>
 
             <div v-if="current.results === 0">
               {{ $t('pages.search.no_results') }}
@@ -151,7 +156,7 @@
 import { Component, mixins } from 'nuxt-property-decorator'
 import qs from 'qs'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
-import { ProductSearch, Search, Type} from '~/types/entities'
+import { Search, Type } from '~/types/entities'
 import { Party, Person, Product, Project, Theme } from '~/types/models'
 
 import CollectionBlock from '~/components/Blocks/CollectionBlock.vue'
@@ -167,7 +172,10 @@ import filterTypes from '~/config/entities'
 
     this.prepareFilters()
 
-    if (this.$accessor.search.current && this.filters.types.length !== 1) {
+    if (
+      this.hasSpecificTypeFilter ||
+      this.current[this.getSpecificTypeFilter].items.length === 0
+    ) {
       await this.search()
     }
   },
@@ -217,6 +225,11 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
 
   get hasSpecificTypeFilter(): boolean {
     return this.filters.types?.length === 1
+  }
+
+  get getSpecificTypeFilter(): string {
+    const typeFilter = this.filters.types[0]
+    return filterTypes[Number(typeFilter)]
   }
 
   get requestString(): string {
@@ -312,11 +325,9 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
   }
 
   detectLoadMore() {
-    const type: string = filterTypes[this.filters.types[0]]
+    if (!this.hasSpecificTypeFilter || this.showInfiniteLoader) return
 
-    if (this.filters.types.length > 1 || this.showInfiniteLoader) return
-
-    if (this[type].next_cursor === false) {
+    if (!this[this.getSpecificTypeFilter].next_cursor) {
       this.resourceDepleted = true
       return
     }
@@ -324,11 +335,10 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
       this.showInfiniteLoader = true
 
-      const searchString: string =
-        this.requestString + '&cursor=' + this[type].next_cursor
+      const searchString: string = this.requestString + '&cursor=' + this[this.getSpecificTypeFilter].next_cursor
 
       this.$accessor.search
-        .additionalResults({ searchString, type })
+        .additionalResults({ searchString, type: this.getSpecificTypeFilter })
         .then(() => {
           this.showInfiniteLoader = false
         })

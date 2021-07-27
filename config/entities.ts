@@ -1,4 +1,4 @@
-const filterTypes = {
+const filterTypes: { [key: number]: string } = {
   1: 'products',
   2: 'projects',
   3: 'people',
