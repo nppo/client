@@ -32,3 +32,21 @@
   top: calc(50% - theme('spacing.8'));
   left: calc(50% - theme('spacing.8'));
 }
+
+.vjs-error .vjs-error-display {
+  background: none !important;
+
+  @apply bg-gray-100 #{!important};
+}
+
+.vjs-error .vjs-error-display .vjs-modal-dialog-content {
+  @apply flex items-center justify-center text-blue-800 text-xs pt-32 #{!important};
+}
+
+.vjs-error .vjs-error-display::before {
+  text-shadow: none !important;
+  top: 35% !important;
+  left: calc(50% - 3.5rem) !important;
+
+  @apply flex items-center justify-center mb-5 bg-gray-200 rounded-full h-28 w-28 text-blue-500 #{!important};
+}

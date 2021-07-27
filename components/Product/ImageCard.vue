@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import Component, { mixins } from 'vue-class-component'
+import { Component, mixins } from 'nuxt-property-decorator'
 import CoolLightBox from 'vue-cool-lightbox'
 import ProductPreview from '~/mixins/product-preview'
 import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'

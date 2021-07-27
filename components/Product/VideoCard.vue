@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import Component, { mixins } from 'vue-class-component'
+import { Component, mixins } from 'nuxt-property-decorator'
 import 'video.js/dist/video-js.css'
 import { videoPlayer } from 'vue-video-player'
 import ProductPreview from '~/mixins/product-preview'
@@ -33,6 +33,10 @@ export default class ImageCard extends mixins(ProductPreview) {
       },
     ],
     fluid: true,
+    suppressNotSupportedError: true,
+    notSupportedMessage: String(
+      this.$i18n.t('pages.product._id.preview.fallback')
+    ),
   }
 }
 </script>
