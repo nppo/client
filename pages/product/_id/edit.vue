@@ -122,14 +122,13 @@ import objectToFormData from '~/common/utils/objectToFormData'
   middleware: ['auth', 'check-permissions'],
 
   async asyncData({ $accessor }) {
-    await Promise.all([
-      $accessor.tags.fetchAll(),
-      $accessor.themes.fetchAll(),
-      $accessor.people.fetchAll(),
-      $accessor.people.fetchCurrent(
-        $accessor.user.current.person?.id as number
-      ),
-    ])
+    await $accessor.tags.fetchAll()
+    await $accessor.themes.fetchAll()
+    await $accessor.people.fetchAll()
+
+    if ($accessor.user.current.person?.id) {
+      await $accessor.people.fetchCurrent($accessor.user.current.person?.id)
+    }
   },
 
   components: {

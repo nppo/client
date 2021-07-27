@@ -290,7 +290,7 @@ import ProductBlock from '~/components/Blocks/ProductBlock.vue'
 @Component({
   async asyncData({ params, $accessor }: Context) {
     const { id } = params
-    await $accessor.people.fetchCurrent(Number(id))
+    await $accessor.people.fetchCurrent(id)
   },
 
   components: {

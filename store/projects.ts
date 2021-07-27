@@ -16,7 +16,7 @@ export const mutations = mutationTree(state, {
 export const actions = actionTree(
   { state, mutations },
   {
-    async fetchCurrent({ commit }, id: number): Promise<void> {
+    async fetchCurrent({ commit }, id: string): Promise<void> {
       const { status, data } = await this.$repositories.project.show(id)
 
       if (status === 200) {
@@ -36,7 +36,7 @@ export const actions = actionTree(
 
     async update(
       { commit },
-      updateData: { id: number; data: FormData }
+      updateData: { id: string; data: FormData }
     ): Promise<void> {
       const { status, data } = await this.$repositories.project.update(
         updateData.id,

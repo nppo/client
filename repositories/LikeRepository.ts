@@ -13,12 +13,12 @@ export default class LikeRepository {
     this.axios = axios
   }
 
-  all(personId: number): Promise<AxiosResponse<SingleResult<Like>>> {
+  all(personId: string): Promise<AxiosResponse<SingleResult<Like>>> {
     return this.axios.get(`/api/${parentResource}/${personId}/${resource}`)
   }
 
   store(
-    personId: number,
+    personId: string,
     data: FormData
   ): Promise<AxiosResponse<SingleResult<Like>>> {
     return this.axios.post(

@@ -67,7 +67,7 @@ import { Article } from '~/types/models'
   async asyncData({ params, $accessor }: Context) {
     const { id } = params
 
-    await $accessor.articles.fetchShow(Number(id))
+    await $accessor.articles.fetchShow(id)
   },
 })
 export default class ArticleDetailPage extends mixins(NavigationRouterHook) {

@@ -40,7 +40,7 @@ export const actions = actionTree(
       this.$gates.setPermissions(user.permissions.map(({ name }) => name) || [])
     },
 
-    async fetchProducts({ commit }, id: number): Promise<void> {
+    async fetchProducts({ commit }, id: string): Promise<void> {
       const {
         status,
         data: { data },

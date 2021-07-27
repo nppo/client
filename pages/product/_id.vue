@@ -224,7 +224,7 @@ import { Product } from '~/types/models'
   async asyncData({ params, $accessor }: Context) {
     const { id } = params
 
-    await $accessor.products.fetchCurrent(Number(id))
+    await $accessor.products.fetchCurrent(id)
 
     if ($accessor.products.all.length < 1) {
       await $accessor.products.fetchAll()
