@@ -206,6 +206,7 @@ export default {
         'faThList',
         'faTags',
         'faCopy',
+        'faCaretDown',
       ],
       regular: ['faBookmark', 'faPlayCircle'],
       brands: ['faLinkedin', 'faResearchgate', 'faTwitterSquare', 'faYoutube'],

@@ -11,8 +11,8 @@
 
       <div class="grid h-32 grid-cols-4 gap-4">
         <LocaleLink
-          path="/"
-          class="flex items-center p-5 bg-white rounded shadow justify-evenly"
+          path="/management/users"
+          class="flex items-center p-5 bg-white rounded shadow hover:bg-opacity-50 justify-evenly"
         >
           <font-awesome-icon
             class="text-4xl text-gray-200 fill-current"
@@ -22,8 +22,8 @@
           <h2 class="text-2xl font-bold">Gebruikers</h2>
         </LocaleLink>
         <LocaleLink
-          path="/"
-          class="flex items-center p-5 bg-white rounded shadow justify-evenly"
+          path="/management/themes"
+          class="flex items-center p-5 bg-white rounded shadow hover:bg-opacity-50 justify-evenly"
         >
           <font-awesome-icon
             class="text-4xl text-gray-200 fill-current"
@@ -34,7 +34,7 @@
         </LocaleLink>
         <LocaleLink
           path="/"
-          class="flex items-center p-5 bg-white rounded shadow justify-evenly"
+          class="flex items-center p-5 bg-white rounded shadow hover:bg-opacity-50 justify-evenly"
         >
           <font-awesome-icon
             class="text-4xl text-gray-200 fill-current"
@@ -45,7 +45,7 @@
         </LocaleLink>
         <LocaleLink
           path="/"
-          class="flex items-center p-5 bg-white rounded shadow justify-evenly"
+          class="flex items-center p-5 bg-white rounded shadow hover:bg-opacity-50 justify-evenly"
         >
           <font-awesome-icon
             class="text-4xl text-gray-200 fill-current"

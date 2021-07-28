@@ -4,4 +4,8 @@ export enum Models {
   party = 'App\\Models\\Party',
   person = 'App\\Models\\Person',
   article = 'App\\Models\\Article',
+
+  Text = 'text',
+  Select = 'select',
+  Date = 'date',
 }

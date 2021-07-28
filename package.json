@@ -78,6 +78,7 @@
     "stylelint-config-standard": "^21.0.0",
     "ts-jest": "^26.4.4",
     "ts-loader": "^8.0.13",
+    "vue-debounce-decorator": "^1.0.1",
     "vue-jest": "^3.0.7"
   }
 }
