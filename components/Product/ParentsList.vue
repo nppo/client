@@ -12,7 +12,7 @@
 
         <div class="flex flex-col flex-wrap w-3/4 px-4 py-2 mr-2 break-all">
           <span class="flex flex-row mb-1">
-            <Badge :text="$t('entities.collection.singular')" />
+            <TypeBadge :product="parent" />
           </span>
 
           <span class="text-base font-bold">

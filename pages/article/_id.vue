@@ -51,7 +51,22 @@
             </div>
           </div>
         </div>
-        <div class="w-4/12"></div>
+        <div class="w-4/12">
+          <div v-if="article.projects.length > 0">
+            <h3 class="mb-5 text-2xl font-bold">
+              {{ $t('pages.article._id.headings.related_projects') }}
+            </h3>
+
+            <ProjectsList :projects="article.projects" />
+          </div>
+          <div v-if="article.products.length > 0">
+            <h3 class="mb-5 text-2xl font-bold">
+              {{ $t('pages.article._id.headings.related_products') }}
+            </h3>
+
+            <ParentsList :parents="article.products" />
+          </div>
+        </div>
       </div>
     </div>
   </div>

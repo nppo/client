@@ -126,6 +126,8 @@ export interface Article extends Model {
   summary: string
   previewUrl: string
   createdAt: string
+  products?: Product[]
+  projects?: Project[]
 }
 
 export interface StrapiMedia {
