@@ -6,15 +6,7 @@ import { Product } from '~/types/models'
 export default class ProductPreview extends Vue {
   @Prop({ type: Object }) product!: Product
 
-  private defaultButtons: Array<ProductTypeButton> = [
-    {
-      iconName: 'share-alt',
-      iconStyle: 'fas',
-      text: String(this.$t('pages.product._id.actions.share')),
-      textColor: 'white',
-      color: 'blue-500',
-    },
-  ]
+  private defaultButtons: Array<ProductTypeButton> = []
 
   protected customButtons: Array<ProductTypeButton> = []
 
