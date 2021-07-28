@@ -4,10 +4,9 @@ import { Filter, Search } from '~/types/entities'
 import { filterTypesValues } from '~/config/entities'
 
 export const state = () => ({
-  current: localStorage.getItem('currentSearch')
-    ? (JSON.parse(<string>localStorage.getItem('currentSearch')) as Search)
-    : ({} as Search),
+  current: {} as Search,
   filters: {} as any,
+  scrollState: 0,
 })
 
 export type SearchState = ReturnType<typeof state>
@@ -19,20 +18,15 @@ export const mutations = mutationTree(state, {
   addResults(state, results: { type: filterTypesValues; data: Search }) {
     const type = results.type
     const current = state.current?.[type]
+    const resultData = results.data?.[type]
 
-    if (!current) {
-      return
-    }
-
-    const items = results.data?.[type]
-
-    if (!items) {
+    if (!current || !resultData) {
       return
     }
 
     // @ts-ignore-next-line
-    current.items = [...current.items, ...items.items]
-    current.next_cursor = items.next_cursor
+    current.items = [...current.items, ...resultData.items]
+    current.nextCursor = resultData.nextCursor
   },
   setFilter(state, filter: Filter) {
     Vue.set(state.filters, filter.type, [...filter.values])
@@ -59,6 +53,9 @@ export const mutations = mutationTree(state, {
   reset(state) {
     state.filters = {} as any
   },
+  saveScrollState(state, scrollState) {
+    state.scrollState = scrollState
+  },
 })
 
 export const actions = actionTree(
@@ -72,7 +69,6 @@ export const actions = actionTree(
 
       if (status === 200) {
         commit('setCurrent', data)
-        localStorage.setItem('currentSearch', JSON.stringify(data as Search))
       }
     },
 
@@ -87,7 +83,6 @@ export const actions = actionTree(
 
       if (status === 200) {
         commit('addResults', { type: query.type, data })
-        localStorage.setItem('currentSearch', JSON.stringify(data as Search))
       }
     },
 
@@ -97,6 +92,10 @@ export const actions = actionTree(
 
     resetSearch({ commit }): void {
       commit('reset')
+    },
+
+    setScrollState({ commit }, scrollState: number): void {
+      commit('saveScrollState', scrollState)
     },
   }
 )

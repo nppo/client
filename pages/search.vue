@@ -176,10 +176,13 @@ import filterTypes, {
     this.prepareFilters()
 
     if (
-      this.hasSpecificTypeFilter ||
-      this.current[this.getSpecificTypeFilter]?.items.length === 0
+      !this.hasSpecificTypeFilter ||
+      (this.hasSpecificTypeFilter && Object.keys(this.current).length === 0) ||
+      (this.hasSpecificTypeFilter &&
+        this.current[this.getSpecificTypeFilter]?.items.length === 0)
     ) {
       await this.search()
+      this.resourceDepleted = false
     }
   },
   components: {
@@ -191,6 +194,7 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
   private searchString: string = ''
   private filterString: string = ''
   private isLoading: boolean = false
+  private hasScrolled: boolean = false
   private showInfiniteLoader: boolean = false
   private resourceDepleted: boolean = false
 
@@ -238,7 +242,7 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
   get requestString(): string {
     return this.searchString
       ? 'query=' + this.searchString + this.filterString
-      : this.filterString.substring(1)
+      : this.filterString
   }
 
   isActive(id: any, type: string): boolean {
@@ -305,6 +309,13 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
           this.setFilters(type, filters[type] as any)
         }
       }
+
+      for (const filter in this.filters) {
+        this.filters[filter].map(
+          (value: any) =>
+            (this.filterString += '&filters[' + filter + '][]=' + value)
+        )
+      }
     }
   }
 
@@ -328,9 +339,11 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
   }
 
   detectLoadMore() {
+    this.hasScrolled = true
+
     if (!this.hasSpecificTypeFilter || this.showInfiniteLoader) return
 
-    const nextCursor = this[this.getSpecificTypeFilter]?.next_cursor
+    const nextCursor = this[this.getSpecificTypeFilter]?.nextCursor
 
     if (!nextCursor) {
       this.resourceDepleted = true
@@ -348,6 +361,19 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
           this.showInfiniteLoader = false
         })
     }
+  }
+
+  updated() {
+    if (!this.hasScrolled) {
+      this.$nextTick(() => {
+        window.scrollTo(0, this.$accessor.search.scrollState)
+      })
+    }
+  }
+
+  beforeDestroy() {
+    this.$accessor.search.setScrollState(window.scrollY)
+    window.removeEventListener('scroll', this.detectLoadMore)
   }
 }
 </script>

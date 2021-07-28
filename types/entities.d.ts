@@ -15,14 +15,9 @@ export interface ErrorMessage {
   message: string
 }
 
-export interface ProductSearch {
-  items: Product[]
-  nextCursor: string
-}
-
 export interface SearchResultItem<T> {
   items: Array<T>
-  next_cursor: string | null | false
+  nextCursor: string | null | false
 }
 
 export interface Search {
