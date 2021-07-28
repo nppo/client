@@ -40,33 +40,6 @@
                 class="mb-6"
               />
             </div>
-
-            <div class="flex items-center justify-center">
-              <div
-                class="flex justify-center w-8 h-8 p-2 mr-2 text-white bg-blue-500 rounded-full"
-              >
-                <font-awesome-icon
-                  :icon="['fab', 'twitter-square']"
-                  class="text-base"
-                />
-              </div>
-              <div
-                class="flex justify-center w-8 h-8 p-2 mr-2 text-white bg-blue-500 rounded-full"
-              >
-                <font-awesome-icon
-                  :icon="['fab', 'linkedin']"
-                  class="text-base"
-                />
-              </div>
-              <div
-                class="flex justify-center w-8 h-8 p-2 text-white bg-blue-500 rounded-full"
-              >
-                <font-awesome-icon
-                  :icon="['fab', 'researchgate']"
-                  class="text-base"
-                />
-              </div>
-            </div>
           </div>
 
           <hr class="mb-8 border-gray-200" />
