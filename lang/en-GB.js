@@ -15,6 +15,8 @@ export default {
     show_more: 'Show {number} more',
     show_less: 'Show less',
     save: 'Save',
+    management: 'Management',
+
     actions: {
       create: 'Create',
     },

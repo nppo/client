@@ -15,6 +15,7 @@ export default {
     show_more: 'Toon {number} meer',
     show_less: 'Toon minder',
     save: 'Opslaan',
+    management: 'Beheer',
 
     actions: {
       create: 'Aanmaken',

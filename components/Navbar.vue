@@ -43,6 +43,12 @@
               {{ $t('account.saved') }}
             </LocaleLink>
             <LocaleLink
+              path="/management"
+              class="w-full py-1 text-sm text-left border-b border-gray-100 hover:font-bold"
+            >
+              {{ $t('general.management') }}
+            </LocaleLink>
+            <LocaleLink
               v-if="$auth.user"
               :path="`/logout`"
               class="w-full py-1 text-sm text-left border-b border-gray-100 hover:font-bold"
