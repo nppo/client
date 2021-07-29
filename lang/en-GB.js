@@ -392,6 +392,10 @@ export default {
             email: 'E-mail',
           },
         },
+
+        create: {
+          heading: 'Create user',
+        },
       },
     },
   },

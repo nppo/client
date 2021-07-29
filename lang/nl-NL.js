@@ -394,6 +394,10 @@ export default {
             email: 'E-mail',
           },
         },
+
+        create: {
+          heading: 'Gebruiker aanmaken',
+        },
       },
     },
   },
