@@ -10,6 +10,7 @@ export default {
     no: 'Nee',
 
     follow: 'Volgen',
+    unfollow: 'Ontvolgen',
     skills: 'Skills',
     show_more: 'Toon {number} meer',
     show_less: 'Toon minder',
@@ -29,9 +30,14 @@ export default {
     required_label: '*verplicht',
   },
 
+  help_text: {
+    image_upload: 'Gebruik een plaatje met zelfde hoogte en breedte',
+  },
+
   account: {
     manage: 'Mijn Account',
     profile: 'Mijn Profiel',
+    saved: 'Opgeslagen',
   },
 
   auth: {
@@ -52,21 +58,25 @@ export default {
       plural: "Thema's",
       default: "thema | thema's",
     },
+    people: 'Personen',
     person: {
       singular: 'Persoon',
       plural: 'Personen',
       default: 'persoon | personen',
     },
+    parties: 'Partijen',
     party: {
       singular: 'Partij',
       plural: 'Partijen',
       default: 'partij | partijen',
     },
+    products: 'Producten',
     product: {
       singular: 'Product',
       plural: 'Producten',
       default: 'product | producten',
     },
+    projects: 'Projecten',
     project: {
       singular: 'Project',
       plural: 'Projecten',
@@ -76,6 +86,12 @@ export default {
       singular: 'Collectie',
       plural: 'Collecties',
       default: 'collectie | collecties',
+    },
+    articles: 'Artikelen',
+    article: {
+      singular: 'Artikel',
+      plural: 'Artikelen',
+      default: 'artikel | artikelen',
     },
   },
 
@@ -90,6 +106,7 @@ export default {
         product: 'Product',
         person: 'Persoon',
         project: 'Project',
+        article: 'Artikel',
       },
     },
   },
@@ -123,6 +140,10 @@ export default {
           description:
             'Organisaties en instellingen die betrokken zijn bij praktijkgericht onderzoek ',
         },
+        article: {
+          title: 'Artikelen',
+          description: 'Artikelen die zijn geschreven voor dit platform',
+        },
       },
     },
 
@@ -143,11 +164,14 @@ export default {
         preview: {
           fallback:
             'Sorry, het was voor ons niet mogelijk om dit product te previewen',
+          loading: 'Preview wordt geladen...',
         },
         actions: {
           share: 'Delen',
           bookmark: 'Opslaan',
+          bookmarked: 'Verwijder uit opgeslagen',
           download: 'Download',
+          visit: 'Bezoeken',
         },
         edit: {
           title: 'Bewerk {name}',
@@ -264,7 +288,29 @@ export default {
             about: 'Over',
             skills: 'Skills',
             themes: "Thema's",
+            function: 'Functie',
+            phone: 'Telefoonnummer',
           },
+        },
+        projects: {
+          empty: 'Deze persoon heeft nog geen projecten.',
+        },
+        products: {
+          empty: 'Deze persoon heeft nog geen producten.',
+        },
+      },
+
+      create: {
+        labels: {
+          first_name: 'Voornaam',
+          profile_picture: 'Profiel foto',
+          last_name: 'Achternaam',
+          about: 'Over',
+          skills: 'Skills',
+          themes: "Thema's",
+          function: 'Functie',
+          phone: 'Telefoonnummer',
+          email: 'E-mail',
         },
       },
     },
@@ -278,6 +324,10 @@ export default {
           parties: 'Organisaties',
         },
       },
+    },
+
+    likes: {
+      no_results: 'Geen resultaten gevonden',
     },
 
     search: {
@@ -308,6 +358,24 @@ export default {
       404: 'Deze pagina bestaat niet',
       500: 'Er heeft zich een onverwachte fout voorgedaan',
       back_to_homepage: 'Ga terug naar de homepagina',
+    },
+
+    article: {
+      _id: {
+        headings: {
+          tags: 'Tags',
+          themes: "Thema's",
+        },
+      },
+    },
+  },
+
+  modals: {
+    person: {
+      create: {
+        heading: 'Je hebt nog geen profiel, wil je die aanmaken?',
+        cancel_text: 'Nu geen profiel aanmaken? Ga door naar het platform',
+      },
     },
   },
 }

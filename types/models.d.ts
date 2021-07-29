@@ -115,3 +115,28 @@ export interface Role extends Model {
   id: number
   name: string
 }
+
+export interface Article extends Model {
+  id: number
+  title: string
+  tags?: Tag[]
+  themes?: Theme[]
+  content: Array<object>
+  header: StrapiMedia[]
+  summary: string
+  previewUrl: string
+  createdAt: string
+}
+
+export interface StrapiMedia {
+  url: string
+}
+
+export interface Like extends Model {
+  userId: number
+  likedProducts: Product[]
+  likedProjects: Project[]
+  likedPeople: Person[]
+  likedParties: Party[]
+  likedArticles: Article[]
+}

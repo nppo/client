@@ -34,7 +34,11 @@
             </span>
 
             <div class="flex items-center justify-center">
-              <FollowButton class="mb-6" />
+              <FollowButton
+                entity="person"
+                :entity-id="person.id"
+                class="mb-6"
+              />
             </div>
 
             <div class="flex items-center justify-center">
@@ -145,7 +149,7 @@
             </p>
           </div>
 
-          <template v-if="person.projects && person.projects.length > 0">
+          <template>
             <div class="flex items-center justify-between mt-10 mb-6">
               <div class="flex items-center space-x-5">
                 <h2 class="text-4xl font-bold">
@@ -158,7 +162,7 @@
                 />
 
                 <CreateButton
-                  v-if="this.$auth.user && this.$auth.user.id === person.id"
+                  v-if="$auth.user && $auth.user.person.id === person.id"
                   v-can="'create projects'"
                   page="project"
                 />
@@ -171,7 +175,11 @@
               />
             </div>
 
-            <BlockSlider ref="projectSlider" :slides-to-show="sliderShowMax">
+            <BlockSlider
+              v-if="person.projects && person.projects.length > 0"
+              ref="projectSlider"
+              :slides-to-show="sliderShowMax"
+            >
               <div
                 v-for="project in person.projects"
                 :key="project.id"
@@ -180,9 +188,10 @@
                 <ProjectBlock :project="project" />
               </div>
             </BlockSlider>
+            <p v-else>{{ $t('pages.person._id.projects.empty') }}</p>
           </template>
 
-          <template v-if="person.products && person.products.length > 0">
+          <template>
             <div class="flex items-center justify-between mt-10 mb-6">
               <div class="flex items-center space-x-5">
                 <h2 class="text-4xl font-bold">
@@ -193,7 +202,7 @@
                   color="yellow-brand"
                 />
                 <CreateButton
-                  v-if="this.$auth.user && this.$auth.user.id === person.id"
+                  v-if="$auth.user && $auth.user.person.id === person.id"
                   v-can="'create products'"
                   page="product"
                 />
@@ -206,7 +215,11 @@
               />
             </div>
 
-            <BlockSlider ref="productSlider" :slides-to-show="3">
+            <BlockSlider
+              v-if="person.products && person.products.length > 0"
+              ref="productSlider"
+              :slides-to-show="3"
+            >
               <div
                 v-for="product in person.products"
                 :key="product.id"
@@ -222,6 +235,7 @@
                 />
               </div>
             </BlockSlider>
+            <p v-else>{{ $t('pages.person._id.products.empty') }}</p>
           </template>
 
           <template v-if="person.parties && person.parties.length > 0">

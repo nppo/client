@@ -17,6 +17,7 @@ export default class LogoutPage extends Vue {
     setTimeout(() => {
       if (this.$auth.loggedIn) {
         this.$auth.logout()
+        localStorage.removeItem('closedProfileModal')
       }
     }, 1000)
   }

@@ -10,6 +10,7 @@ export default {
     no: 'No',
 
     follow: 'Follow',
+    unfollow: 'Unfollow',
     skills: 'Skills',
     show_more: 'Show {number} more',
     show_less: 'Show less',
@@ -31,6 +32,7 @@ export default {
   account: {
     manage: 'My Account',
     profile: 'My Profile',
+    saved: 'Saved',
   },
 
   auth: {
@@ -51,21 +53,25 @@ export default {
       plural: 'Themes',
       default: 'theme | themes',
     },
+    people: 'People',
     person: {
       singular: 'Person',
       plural: 'People',
       default: 'person | people',
     },
+    parties: 'Parties',
     party: {
       singular: 'Party',
       plural: 'Parties',
       default: 'party | parties',
     },
+    products: 'Products',
     product: {
       singular: 'Product',
       plural: 'Products',
       default: 'product | products',
     },
+    projects: 'Projects',
     project: {
       singular: 'Project',
       plural: 'Projects',
@@ -75,6 +81,12 @@ export default {
       singular: 'Collection',
       plural: 'Collections',
       default: 'collection | collections',
+    },
+    articles: 'Articles',
+    article: {
+      singular: 'Article',
+      plural: 'Articles',
+      default: 'article | articles',
     },
   },
 
@@ -89,6 +101,7 @@ export default {
         product: 'Product',
         person: 'Person',
         project: 'Project',
+        article: 'Article',
       },
     },
   },
@@ -120,6 +133,10 @@ export default {
           description:
             'Organizations and institutions involved in practice-oriented research',
         },
+        article: {
+          title: 'Articles',
+          description: 'Articles written for this platform',
+        },
       },
     },
 
@@ -140,6 +157,7 @@ export default {
 
         preview: {
           fallback: 'Sorry, we were not able to preview this product',
+          loading: 'Preview is loading...',
         },
 
         edit: {
@@ -165,7 +183,9 @@ export default {
         actions: {
           share: 'Share',
           bookmark: 'Save',
+          bookmarked: 'Remove from saved',
           download: 'Download',
+          visit: 'Visit',
         },
       },
       types: {
@@ -261,8 +281,16 @@ export default {
             last_name: 'Last name',
             about: 'About',
             skills: 'Skills',
-            themes: 'themes',
+            themes: 'Themes',
+            function: 'Function',
+            phone: 'Phone',
           },
+        },
+        projects: {
+          empty: 'This person has no projects yet.',
+        },
+        products: {
+          empty: 'This person has no products yet.',
         },
       },
     },
@@ -276,6 +304,10 @@ export default {
           parties: 'Organisations',
         },
       },
+    },
+
+    likes: {
+      no_results: 'No results found',
     },
 
     search: {
@@ -306,6 +338,25 @@ export default {
       404: 'This page does not exist',
       500: 'An unexpected error has occurred',
       back_to_homepage: 'Go back to the home page',
+    },
+
+    article: {
+      _id: {
+        headings: {
+          tags: 'Tags',
+          themes: 'Themes',
+        },
+      },
+    },
+  },
+
+  modals: {
+    person: {
+      create: {
+        heading: 'You do not have a profile yet, would you like to create one?',
+        cancel_text:
+          "Don't want to create a profile yet? Continue to the platform",
+      },
     },
   },
 }

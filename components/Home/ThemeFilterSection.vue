@@ -1,5 +1,5 @@
 <template>
-  <div class="container w-4/5 py-24 mx-auto">
+  <div class="container w-4/5 py-16 mx-auto lg:py-24">
     <div class="flex flex-col items-center">
       <h2 class="mb-12 text-3xl font-bold">
         {{ $t('pages.index.find_by_theme') }}

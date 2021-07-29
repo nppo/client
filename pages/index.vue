@@ -24,12 +24,14 @@
     </Header>
 
     <div class="container relative mx-auto">
-      <div class="grid grid-cols-1 gap-5 -mt-28 md:grid-cols-2 lg:grid-cols-4">
+      <div
+        class="grid grid-cols-1 gap-5 px-5 -mt-28 md:grid-cols-2 lg:grid-cols-5 lg:px-0"
+      >
         <LocaleLink
           v-for="(type, index) in types"
           :key="index"
           :path="'/search?filters[types][]=' + type.id"
-          class="block p-5 bg-white rounded shadow"
+          class="flex flex-col p-5 bg-white rounded shadow"
         >
           <div class="font-bold">
             {{ $t('pages.index.search_blocks.title') }}
@@ -43,7 +45,7 @@
             {{ $t('pages.index.search_blocks.' + type.label + '.description') }}
           </p>
 
-          <div class="flex justify-end">
+          <div class="flex justify-end mt-auto">
             <svg
               viewBox="0 0 13 13"
               class="w-3 h-3 fill-current text-orange-brand"
@@ -67,6 +69,13 @@
     />
 
     <StatisticsSection :statistics="entityStatistics" />
+
+    <PersonCreate
+      v-if="$auth.user"
+      :is-open="showProfileModal"
+      :themes="themes"
+      :skills="skills"
+    />
   </div>
 </template>
 
@@ -74,7 +83,7 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import qs from 'qs'
 import { Type, Filter, Discover } from '~/types/entities'
-import { Theme } from '~/types/models'
+import { Theme, Tag } from '~/types/models'
 
 @Component({
   async fetch(this: IndexPage) {
@@ -89,6 +98,7 @@ import { Theme } from '~/types/models'
 
     await this.$accessor.themes.fetchAll()
     await this.$accessor.discover.fetchAll()
+    await this.$accessor.skills.fetchAll()
   },
 })
 export default class IndexPage extends Vue {
@@ -107,8 +117,19 @@ export default class IndexPage extends Vue {
     return this.$accessor.themes.all
   }
 
+  get skills(): Tag[] {
+    return this.$accessor.skills.all
+  }
+
   get entities(): Discover {
     return this.$accessor.discover.all
+  }
+
+  get showProfileModal() {
+    return (
+      this.$auth.user?.person === null &&
+      localStorage.getItem('closedProfileModal') === null
+    )
   }
 
   setFilters(type: string, filters: Array<any>): void {

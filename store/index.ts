@@ -11,7 +11,9 @@ import * as user from '~/store/user'
 import * as discover from '~/store/discover'
 import * as people from '~/store/people'
 import * as projects from '~/store/projects'
+import * as articles from '~/store/articles'
 import * as skills from '~/store/skills'
+import * as likes from '~/store/likes'
 
 export const state = () => ({})
 
@@ -30,6 +32,8 @@ export const accessorType = getAccessorType({
     discover,
     people,
     projects,
+    articles,
     skills,
+    likes,
   },
 })

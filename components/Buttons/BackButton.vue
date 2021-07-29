@@ -6,7 +6,7 @@
     }"
     class="inline-flex items-center px-2 py-1 space-x-2 text-white bg-blue-500 rounded-md"
     v-on="{
-      ...(hasNavigatedInternal ? { click: () => this.$router.back() } : {}),
+      ...(hasNavigatedInternal ? { click: () => $router.back() } : {}),
     }"
   >
     <font-awesome-icon class="block" icon="arrow-left" />

@@ -14,13 +14,6 @@ export default class ProductPreview extends Vue {
       textColor: 'white',
       color: 'blue-500',
     },
-    {
-      iconName: 'bookmark',
-      iconStyle: 'fas',
-      text: String(this.$t('pages.product._id.actions.bookmark')),
-      textColor: 'white',
-      color: 'blue-500',
-    },
   ]
 
   protected customButtons: Array<ProductTypeButton> = []

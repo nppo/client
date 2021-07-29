@@ -14,7 +14,7 @@
     </Header>
 
     <div class="container mx-auto -mt-6">
-      <div class="relative grid grid-cols-4 gap-4 mb-16">
+      <div class="relative grid grid-cols-4 gap-4 px-5 mb-16 lg:px-0">
         <SearchBar
           :aria-label="$t('pages.search.input_search')"
           variant="large"
@@ -131,6 +131,24 @@
               </div>
             </SearchCollapse>
 
+            <SearchCollapse
+              v-if="articles.items.length > 0"
+              :show-header="!hasSpecificTypeFilter"
+              :header="$t('entities.article.plural')"
+              @show-all="setFilterByLabel('article')"
+            >
+              <div
+                class="grid grid-cols-1 gap-4 mb-5 md:grid-cols-2 lg:grid-cols-3"
+              >
+                <div
+                  v-for="article in getMaxEntities(articles.items, 6)"
+                  :key="article.id"
+                >
+                  <ArticleBlock :article="article" />
+                </div>
+              </div>
+            </SearchCollapse>
+
             <div v-if="showInfiniteLoader" class="-mt-16">
               <SearchSkeleton />
             </div>
@@ -157,7 +175,7 @@ import { Component, mixins } from 'nuxt-property-decorator'
 import qs from 'qs'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import { Search, SearchResultItem, Type } from '~/types/entities'
-import { Party, Person, Product, Project, Theme } from '~/types/models'
+import { Party, Person, Product, Project, Theme, Article } from '~/types/models'
 
 import CollectionBlock from '~/components/Blocks/CollectionBlock.vue'
 import ProductBlock from '~/components/Blocks/ProductBlock.vue'
@@ -216,6 +234,10 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
 
   get projects(): SearchResultItem<Project> | undefined {
     return this.current.projects
+  }
+
+  get articles(): SearchResultItem<Article> | undefined {
+    return this.current.articles
   }
 
   get themes(): Array<Theme> {

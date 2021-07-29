@@ -74,6 +74,8 @@ export default {
     '@nuxtjs/auth-next',
     // Doc: https://github.com/nuxt-community/dayjs-module
     '@nuxtjs/dayjs',
+    // Doc: https://github.com/nuxt-community/markdownit-module
+    '@nuxtjs/markdownit',
   ],
 
   /*
@@ -96,7 +98,7 @@ export default {
   },
 
   router: {
-    middleware: 'set-permissions',
+    middleware: 'set-initial-data',
   },
 
   auth: {
@@ -196,9 +198,13 @@ export default {
         'faFolderOpen',
         'faCalendarAlt',
         'faBoxOpen',
+        'faTimes',
+        'faExpand',
+        'faNewspaper',
+        'faSpinner',
       ],
       regular: ['faBookmark', 'faPlayCircle'],
-      brands: ['faLinkedin', 'faResearchgate', 'faTwitterSquare'],
+      brands: ['faLinkedin', 'faResearchgate', 'faTwitterSquare', 'faYoutube'],
     },
   },
 
@@ -207,6 +213,10 @@ export default {
       'Baloo Tammudu 2': [400],
       'Baloo Tamma 2': [500, 700],
     },
+  },
+
+  markdownit: {
+    runtime: true,
   },
 
   /*
