@@ -23,6 +23,7 @@
       "@nuxtjs/axios",
       "@nuxtjs/auth-next",
       "@nuxtjs/dayjs",
+      "vue-sweetalert2",
     ]
   },
   "exclude": ["node_modules", ".nuxt", "dist"]

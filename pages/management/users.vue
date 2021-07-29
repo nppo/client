@@ -68,7 +68,7 @@
                   :entity-id="user.id"
                   :page="'/users/' + user.id + 'edit'"
                 />
-                <DeleteButton :entity-id="user.id" />
+                <DeleteButton @delete-entity="deleteEntity(user.id)" />
               </div>
             </Value>
           </tr>
@@ -89,10 +89,13 @@
 
 <script lang="ts">
 import { Component, mixins } from 'nuxt-property-decorator'
+import Swal from 'sweetalert2/dist/sweetalert2.js'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import TableInteraction from '~/mixins/table-interaction'
 import { TableField } from '~/types/entities'
 import { Models } from '~/types/enums'
+
+import 'sweetalert2/src/sweetalert2.scss'
 
 @Component({
   middleware: ['auth'],
@@ -140,5 +143,13 @@ export default class ManagementPage extends mixins(
         : ''
     ),
   }))
+
+  deleteEntity(userId: number): void {
+    this.$accessor.user
+      .delete(String(userId))
+      .then(() =>
+        Swal.fire('Deleted!', 'Your file has been deleted.', 'success')
+      )
+  }
 }
 </script>
