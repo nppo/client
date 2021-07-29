@@ -3,6 +3,7 @@ const filterTypes = {
   2: 'projects',
   3: 'people',
   4: 'parties',
+  5: 'articles',
 } as const
 
 export default filterTypes

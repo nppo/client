@@ -154,10 +154,10 @@
             </div>
 
             <div
-              v-if="resourceDepleted"
-              class="-mt-12 text-xl text-center text-gray-500"
+              v-if="hasSpecificTypeFilter && resourceDepleted"
+              class="mt-12 text-xl text-center text-gray-500"
             >
-              That's all folks!
+              {{ $t('pages.search.depleted') }}
             </div>
 
             <div v-if="current.results === 0">
