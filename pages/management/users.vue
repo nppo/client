@@ -5,8 +5,12 @@
     <div class="container mx-auto mt-6">
       <BackButton :has-navigated-internal="hasNavigatedInternal" />
 
-      <div class="mt-18">
-        <h1 class="mb-6 text-4xl font-bold">Gebruikers</h1>
+      <div class="flex items-center space-x-3 mt-18">
+        <h1 class="text-4xl font-bold">
+          {{ $t('pages.management.users.index.heading') }}
+        </h1>
+
+        <CreateButton page="users" />
       </div>
 
       <Table
@@ -59,12 +63,16 @@
             </Value>
 
             <Value>
-              {{ user.name }}
+              {{ user.person.first_name }} {{ user.person.last_name }}
+            </Value>
+
+            <Value>
+              {{ user.email }}
             </Value>
 
             <Value class="w-1">
               <div class="flex items-center space-x-2">
-                <EditButton :entity-id="user.id" page="/users" />
+                <EditButton :entity-id="user.id" page="users" />
                 <DeleteButton @delete-entity="deleteEntity(user)" />
               </div>
             </Value>
@@ -93,6 +101,7 @@ import { TableField } from '~/types/entities'
 import { Models } from '~/types/enums'
 
 import 'sweetalert2/src/sweetalert2.scss'
+import { User } from '~/types/models'
 
 @Component({
   middleware: ['auth'],
@@ -104,13 +113,36 @@ export default class ManagementPage extends mixins(
   private users = [
     {
       id: 1,
-      name: 'Tom',
+      email: 'tom@way2web.nl',
+      person: {
+        first_name: 'Tom',
+        last_name: 'Stemerding',
+      },
     },
-    { id: 2, name: 'Arlon' },
-
-    { id: 3, name: 'Nick' },
-
-    { id: 4, name: 'Chris' },
+    {
+      id: 2,
+      email: 'tom@way2web.nl',
+      person: {
+        first_name: 'Tom',
+        last_name: 'Stemerding',
+      },
+    },
+    {
+      id: 3,
+      email: 'tom@way2web.nl',
+      person: {
+        first_name: 'Tom',
+        last_name: 'Stemerding',
+      },
+    },
+    {
+      id: 4,
+      email: 'tom@way2web.nl',
+      person: {
+        first_name: 'Tom',
+        last_name: 'Stemerding',
+      },
+    },
   ]
 
   public fields: TableField[] = [
@@ -122,6 +154,12 @@ export default class ManagementPage extends mixins(
     },
     {
       name: 'name',
+      searchValue: '',
+      isSortable: true,
+      inputType: Models.Text,
+    },
+    {
+      name: 'email',
       searchValue: '',
       isSortable: true,
       inputType: Models.Text,
@@ -141,13 +179,15 @@ export default class ManagementPage extends mixins(
     ),
   }))
 
-  deleteEntity(user: object): void {
+  deleteEntity(user: User): void {
     this.$accessor.user.delete(String(user.id)).then(() =>
       Swal.fire(
         String(this.$t('general.actions.confirm.delete.success_title')),
         String(
           this.$t('general.actions.confirm.delete.success_text', {
-            entity: user.name,
+            entity: user.person
+              ? user.person.firstName + user.person.lastName
+              : '',
           })
         ),
         'success'

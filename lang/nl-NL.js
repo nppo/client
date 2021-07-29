@@ -187,6 +187,9 @@ export default {
         },
         edit: {
           title: 'Bewerk {name}',
+          headings: {
+            metadata: 'Metadata',
+          },
           labels: {
             type: 'Type',
             title: 'Titel',
@@ -384,9 +387,11 @@ export default {
     management: {
       users: {
         index: {
+          heading: 'Gebruikers',
           table_fields: {
             identifier: 'identifier',
             name: 'Naam',
+            email: 'E-mail',
           },
         },
       },
