@@ -50,5 +50,13 @@ export const actions = actionTree(
         commit('setProducts', data)
       }
     },
+
+    update({ commit }, updateData: { id: number; data: FormData }): any {
+      console.log(updateData)
+    },
+
+    delete({ commit }, id: string): any {
+      console.log(id)
+    },
   }
 )

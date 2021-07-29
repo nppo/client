@@ -15,9 +15,21 @@ export default {
     show_more: 'Toon {number} meer',
     show_less: 'Toon minder',
     save: 'Opslaan',
+    management: 'Beheer',
 
     actions: {
       create: 'Aanmaken',
+
+      confirm: {
+        delete: {
+          title: 'Weet je zeker dat je wilt verwijderen?',
+          text: 'Dit is niet terug te draaien!',
+          confirm_button: 'Ja, verwijder!',
+          cancel_button: 'Annuleer',
+          success_title: 'Verwijderd!',
+          success_text: '{entity} is verwijderd.',
+        },
+      },
     },
   },
 
@@ -175,6 +187,9 @@ export default {
         },
         edit: {
           title: 'Bewerk {name}',
+          headings: {
+            metadata: 'Metadata',
+          },
           labels: {
             type: 'Type',
             title: 'Titel',
@@ -365,6 +380,23 @@ export default {
         headings: {
           tags: 'Tags',
           themes: "Thema's",
+        },
+      },
+    },
+
+    management: {
+      users: {
+        index: {
+          heading: 'Gebruikers',
+          table_fields: {
+            identifier: 'identifier',
+            name: 'Naam',
+            email: 'E-mail',
+          },
+        },
+
+        create: {
+          heading: 'Gebruiker aanmaken',
         },
       },
     },

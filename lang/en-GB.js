@@ -15,8 +15,21 @@ export default {
     show_more: 'Show {number} more',
     show_less: 'Show less',
     save: 'Save',
+    management: 'Management',
+
     actions: {
       create: 'Create',
+
+      confirm: {
+        delete: {
+          title: 'Are you sure you want to delete this?',
+          text: "This can't be undone!",
+          confirm_button: 'Yes, delete!',
+          cancel_button: 'Cancel',
+          success_title: 'Deleted!',
+          success_text: '{entity} is deleted.',
+        },
+      },
     },
   },
 
@@ -27,6 +40,10 @@ export default {
   validation: {
     required: 'This field is required',
     required_label: '*required',
+  },
+
+  help_text: {
+    image_upload: 'Use an image with same height and width',
   },
 
   account: {
@@ -159,7 +176,13 @@ export default {
           fallback: 'Sorry, we were not able to preview this product',
           loading: 'Preview is loading...',
         },
-
+        actions: {
+          share: 'Share',
+          bookmark: 'Save',
+          bookmarked: 'Remove from saved',
+          download: 'Download',
+          visit: 'Visit',
+        },
         edit: {
           title: 'Edit {name}',
           headings: {
@@ -179,25 +202,7 @@ export default {
             published_at: 'Published on',
           },
         },
-
-        actions: {
-          share: 'Share',
-          bookmark: 'Save',
-          bookmarked: 'Remove from saved',
-          download: 'Download',
-          visit: 'Visit',
-        },
       },
-      types: {
-        video: 'Video',
-        image: 'Image',
-        youtube: 'YouTube',
-        collection: 'Collection',
-        document: 'Document',
-        link: 'Link',
-        empty: 'Empty',
-      },
-
       create: {
         headings: {
           create: 'Create a new product',
@@ -205,6 +210,8 @@ export default {
         form: {
           labels: {
             type: 'Type',
+            external: 'External',
+            link: 'Link',
             title: 'Title',
             summary: 'Summary',
             description: 'Description',
@@ -217,6 +224,15 @@ export default {
             published_at: 'Published on',
           },
         },
+      },
+      types: {
+        video: 'Video',
+        image: 'Image',
+        youtube: 'YouTube',
+        collection: 'Collection',
+        document: 'Document',
+        link: 'Link',
+        empty: 'Empty',
       },
     },
 
@@ -275,6 +291,9 @@ export default {
         },
         edit: {
           title: 'Edit {name}',
+          headings: {
+            metadata: 'Metadata',
+          },
           labels: {
             first_name: 'First name',
             profile_picture: 'Profile foto',
@@ -291,6 +310,20 @@ export default {
         },
         products: {
           empty: 'This person has no products yet.',
+        },
+
+        create: {
+          labels: {
+            first_name: 'First name',
+            profile_picture: 'Profile photo',
+            last_name: 'Last name',
+            about: 'About',
+            skills: 'Skills',
+            themes: 'Themes',
+            function: 'Function',
+            phone: 'Phone number',
+            email: 'E-mail',
+          },
         },
       },
     },
@@ -345,6 +378,23 @@ export default {
         headings: {
           tags: 'Tags',
           themes: 'Themes',
+        },
+      },
+    },
+
+    management: {
+      users: {
+        index: {
+          heading: 'Users',
+          table_fields: {
+            identifier: 'identifier',
+            name: 'Name',
+            email: 'E-mail',
+          },
+        },
+
+        create: {
+          heading: 'Create user',
         },
       },
     },
