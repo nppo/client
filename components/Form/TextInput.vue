@@ -1,9 +1,5 @@
 <template>
-  <ValidationProvider
-    v-slot="{ errors }"
-    :name="name"
-    :rules="{ required: required }"
-  >
+  <ValidationProvider v-slot="validation" :name="name" :rules="formattedRules">
     <div class="flex flex-col mb-4">
       <label v-if="label" :for="name" class="pl-3 mb-1">
         {{ label }}
@@ -19,27 +15,32 @@
           v-model="localValue"
           :name="name"
           class="w-full px-3 py-3 font-bold rounded-md shadow focus:outline-none"
-          :class="{ 'border border-red-300': errors[0] }"
+          :class="{
+            'border border-red-300': hasErrors(validation.errors),
+          }"
           type="text"
         />
       </div>
 
-      <span v-if="errors[0]" class="pl-3 text-red-500">{{ errorMessage }}</span>
+      <div>
+        <span
+          v-for="(error, index) in formattedValidationErrors(validation.errors)"
+          :key="index"
+          class="pl-3 text-red-500"
+        >
+          {{ error }}
+        </span>
+      </div>
     </div>
   </ValidationProvider>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Watch } from 'nuxt-property-decorator'
+import { Component, Prop, Watch, mixins } from 'nuxt-property-decorator'
+import FormInput from '~/mixins/form-input'
 
-import { ValidationProvider } from 'vee-validate'
-
-@Component({
-  components: {
-    ValidationProvider,
-  },
-})
-export default class TextInput extends Vue {
+@Component
+export default class TextInput extends mixins(FormInput) {
   @Prop({ type: String }) value!: string
   @Prop({ type: String, default: '' }) readonly name!: string
   @Prop({ type: String, default: '' }) readonly label!: string

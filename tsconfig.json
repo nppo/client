@@ -22,8 +22,9 @@
       "nuxt-i18n",
       "@nuxtjs/axios",
       "@nuxtjs/auth-next",
-      "@nuxtjs/dayjs",
-    ]
+      "@nuxtjs/dayjs"
+    ],
+    "resolveJsonModule": true
   },
   "exclude": ["node_modules", ".nuxt", "dist"]
 }

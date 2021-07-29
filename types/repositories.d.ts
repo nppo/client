@@ -7,9 +7,28 @@ interface MultipleResults<T = any> {
   data: T[]
 }
 
-interface MultipleResultsWithMeta<DataType = any, MetaType = any> {
+interface PaginateMeta {
+  currentPage: number
+  from: number
+  lastPage: number
+  perPage: number
+}
+
+interface MultipleResultsWithMeta<
+  DataType = any,
+  MetaType = PaginateMeta | any
+> {
   data: DataType[]
   meta: MetaType
+}
+
+interface ValidationErrors {
+  [key: string]: Array<string>
+}
+
+interface IndexRequest {
+  page?: number
+  perPage?: number
 }
 
 interface SingleResult<T = any> {
