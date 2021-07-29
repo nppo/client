@@ -8,14 +8,18 @@
       <div class="mt-18">
         <div class="flex items-center mb-6 space-x-3">
           <h1 class="text-4xl font-bold">
-            {{ $t('pages.management.users.create.heading') }}
+            {{
+              $t('pages.management.users.edit.heading', {
+                name: user.person.firstName + ' ' + user.person.lastName,
+              })
+            }}
           </h1>
         </div>
 
         <ValidationObserver v-slot="{ handleSubmit }">
           <form
             class="p-4 overflow-hidden bg-white rounded-md shadow"
-            @submit.prevent="handleSubmit(create)"
+            @submit.prevent="handleSubmit(update)"
           >
             <div class="flex mb-6 space-x-32">
               <div class="w-6/12">
@@ -72,8 +76,10 @@
 import { Component, mixins } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
 import { Context } from '@nuxt/types'
+import Swal from 'sweetalert2/dist/sweetalert2.js'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import objectToFormData from '~/common/utils/objectToFormData'
+import 'sweetalert2/src/sweetalert2.scss'
 
 @Component({
   components: {
@@ -86,29 +92,53 @@ import objectToFormData from '~/common/utils/objectToFormData'
         $accessor.user.current.person?.id as number
       ),
     ])
-
-    return {
-      formData: {
-        email: '',
-        person: {
-          first_name: '',
-          last_name: '',
-        },
-      },
-    }
   },
 })
-export default class USerCreatePage extends mixins(NavigationRouterHook) {
-  private formData: any
+export default class UserEditPage extends mixins(NavigationRouterHook) {
+  private formData: {
+    email: ''
+    person: {
+      firstName: ''
+      lastName: ''
+    }
+  }
 
-  create(): void {
-    this.$accessor.user.store(this.asFormData()).then(() => {
-      this.$router.push('/user/' + this.$accessor.user.current.id)
+  @Ref('form') readonly form!: HTMLFormElement
+
+  update(): void {
+    this.$accessor.user.update({ id: 1, data: this.asFormData() }).then(() => {
+      this.$router.push('/management/users')
+
+      Swal.fire(
+        String(this.$t('general.actions.confirm.edit.success_title')),
+        String(
+          this.$t('general.actions.confirm.edit.success_text', {
+            entity: formData.person
+              ? formData.person.firstName + formData.person.lastName
+              : '',
+          })
+        ),
+        'success'
+      )
     })
   }
 
   asFormData(): FormData {
     return objectToFormData(this.formData)
+  }
+
+  beforeMount() {
+    this.resetForm()
+  }
+
+  resetForm() {
+    if (this.form) {
+      this.form.reset()
+    }
+
+    this.formData.person.first_name = 'Tom'
+    this.formData.person.last_name = 'Stemerding'
+    this.formData.email = 'tom@way2web.nl'
   }
 }
 </script>

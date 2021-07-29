@@ -6,7 +6,7 @@
       <BackButton :has-navigated-internal="hasNavigatedInternal" />
 
       <div class="mt-18">
-        <div class="flex items-center space-x-3 mb-6">
+        <div class="flex items-center mb-6 space-x-3">
           <h1 class="text-4xl font-bold">
             {{ $t('pages.management.users.index.heading') }}
           </h1>
@@ -77,7 +77,7 @@
 
               <Value class="w-1">
                 <div class="flex items-center space-x-2">
-                  <EditButton :entity-id="user.id" page="users" />
+                  <EditButton :entity-id="user.id" page="user" />
                   <DeleteButton @delete-entity="deleteEntity(user)" />
                 </div>
               </Value>
