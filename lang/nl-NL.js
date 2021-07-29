@@ -369,6 +369,17 @@ export default {
         },
       },
     },
+
+    management: {
+      users: {
+        index: {
+          table_fields: {
+            identifier: 'identifier',
+            name: 'Naam',
+          },
+        },
+      },
+    },
   },
 
   modals: {

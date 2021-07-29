@@ -23,18 +23,22 @@
               :key="field.name"
               class="relative px-3 py-4 whitespace-nowrap"
             >
-              <FormTextInput
+              <TextInput
                 v-if="field.inputType === 'text'"
                 :value="field.searchValue"
-                :name="$t(`pages.users.index.tableFields.${field.name}`)"
+                :name="
+                  $t(`pages.management.users.index.table_fields.${field.name}`)
+                "
                 type="search"
                 input-class="w-full px-5 py-3 placeholder-gray-200 border-gray-200 rounded"
                 @update:value="handleHeaderInputChanged(field.name, $event)"
               />
-              <FormSelectInput
+              <SelectInput
                 v-else-if="field.inputType === 'select'"
                 :value="field.searchValue"
-                :name="$t(`pages.users.index.tableFields.${field.name}`)"
+                :name="
+                  $t(`pages.management.users.index.table_fields.${field.name}`)
+                "
                 class="min-w-48"
                 :options="field.options"
                 @update:value="handleHeaderInputChanged(field.name, $event)"
@@ -45,18 +49,28 @@
 
         <template #default>
           <tr v-for="user in users" :key="user.id" class="text-gray-500">
-            <TableValue>
+            <Value>
               <LocaleLink
                 class="font-semibold text-black hover:text-blue-700"
                 :path="`/users/${user.id}`"
               >
                 {{ user.id }}
               </LocaleLink>
-            </TableValue>
+            </Value>
 
-            <TableValue>
+            <Value>
               {{ user.name }}
-            </TableValue>
+            </Value>
+
+            <Value class="w-1">
+              <div class="flex items-center space-x-2">
+                <EditButton
+                  :entity-id="user.id"
+                  :page="'/users/' + user.id + 'edit'"
+                />
+                <DeleteButton :entity-id="user.id" />
+              </div>
+            </Value>
           </tr>
           <tr v-if="users.length < 1">
             <td colspan="6" class="p-4 text-center">
@@ -101,7 +115,7 @@ export default class ManagementPage extends mixins(
 
   public fields: TableField[] = [
     {
-      name: 'id',
+      name: 'identifier',
       searchValue: '',
       isSortable: true,
       inputType: Models.Text,
@@ -112,9 +126,19 @@ export default class ManagementPage extends mixins(
       isSortable: true,
       inputType: Models.Text,
     },
+    {
+      name: null,
+      searchValue: '',
+      isSortable: false,
+      inputType: null,
+    },
   ].map((field) => ({
     ...field,
-    label: String(this.$t(`pages.users.index.tableFields.${field.name}`)),
+    label: String(
+      field.name
+        ? this.$t(`pages.management.users.index.table_fields.${field.name}`)
+        : ''
+    ),
   }))
 }
 </script>

@@ -47,7 +47,7 @@
       </slot>
     </thead>
 
-    <tbody class="bg-white divide-y divide-gray-100 rounded-t">
+    <tbody class="bg-white divide-y divide-gray-100 rounded-md shadow">
       <slot name="bodyHeading" />
 
       <slot

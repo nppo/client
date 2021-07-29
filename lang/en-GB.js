@@ -295,6 +295,17 @@ export default {
           empty: 'This person has no products yet.',
         },
       },
+
+      management: {
+        users: {
+          index: {
+            table_fields: {
+              identifier: 'identifier',
+              name: 'Name',
+            },
+          },
+        },
+      },
     },
 
     party: {

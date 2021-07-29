@@ -106,7 +106,7 @@ export interface MetaAuthOptions {
 
 export interface TableField {
   label: string
-  name: string
+  name: string | null
   searchValue: string | { value: string }
   isSortable: boolean
   inputType: Models | null
