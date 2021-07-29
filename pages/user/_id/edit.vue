@@ -10,7 +10,7 @@
           <h1 class="text-4xl font-bold">
             {{
               $t('pages.management.users.edit.heading', {
-                name: user.person.firstName + ' ' + user.person.lastName,
+                name: 'Tom' + ' ' + 'Stemerding',
               })
             }}
           </h1>
@@ -26,7 +26,7 @@
                 <div class="flex space-x-8">
                   <div class="w-6/12">
                     <TextInput
-                      :value.sync="formData.person.first_name"
+                      :value.sync="formData.person.firstName"
                       :name="'First'"
                       :label="'First'"
                       :required="true"
@@ -36,7 +36,7 @@
 
                   <div class="w-6/12">
                     <TextInput
-                      :value.sync="formData.person.last_name"
+                      :value.sync="formData.person.lastName"
                       :name="'last'"
                       :label="'last'"
                       :required="true"
@@ -73,7 +73,7 @@
 </template>
 
 <script lang="ts">
-import { Component, mixins } from 'nuxt-property-decorator'
+import { Component, Ref, mixins } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
 import { Context } from '@nuxt/types'
 import Swal from 'sweetalert2/dist/sweetalert2.js'
@@ -86,20 +86,20 @@ import 'sweetalert2/src/sweetalert2.scss'
     ValidationObserver,
   },
 
-  async asyncData({ $accessor }: Context) {
-    await Promise.all([
-      $accessor.people.fetchCurrent(
-        $accessor.user.current.person?.id as number
-      ),
-    ])
-  },
+  // async asyncData({ $accessor }: Context) {
+  //   await Promise.all([
+  //     $accessor.people.fetchCurrent(
+  //       $accessor.user.current.person?.id as number
+  //     ),
+  //   ])
+  // },
 })
 export default class UserEditPage extends mixins(NavigationRouterHook) {
   private formData: {
-    email: ''
+    email: 'Tom@way2web.nl'
     person: {
-      firstName: ''
-      lastName: ''
+      firstName: 'Tom'
+      lastName: 'Stemerding'
     }
   }
 
@@ -136,9 +136,9 @@ export default class UserEditPage extends mixins(NavigationRouterHook) {
       this.form.reset()
     }
 
-    this.formData.person.first_name = 'Tom'
-    this.formData.person.last_name = 'Stemerding'
-    this.formData.email = 'tom@way2web.nl'
+    // this.formData.person.firstName = 'Tom'
+    // this.formData.person.lastName = 'Stemerding'
+    // this.formData.email = 'tom@way2web.nl'
   }
 }
 </script>
