@@ -20,13 +20,19 @@ export default class DeleteButton extends Vue {
 
   deleteEntity(): void {
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: String(this.$t('general.actions.confirm.delete.title')),
+      text: String(this.$t('general.actions.confirm.delete.text')),
       icon: 'warning',
+      focusConfirm: false,
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
+      confirmButtonColor: '#ff8427',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!',
+      confirmButtonText: String(
+        this.$t('general.actions.confirm.delete.confirm_button')
+      ),
+      cancelButtonText: String(
+        this.$t('general.actions.confirm.delete.cancel_button')
+      ),
     }).then((result) => {
       if (result.isConfirmed) {
         this.$emit('delete-entity')

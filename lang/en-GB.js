@@ -19,6 +19,15 @@ export default {
 
     actions: {
       create: 'Create',
+
+      confirm: {
+        delete: {
+          title: 'Are you sure you want to delete this?',
+          text: "This can't be undone!",
+          confirm_button: 'Yes, delete!',
+          cancel_button: 'Cancel',
+        },
+      },
     },
   },
 

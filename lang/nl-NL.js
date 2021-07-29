@@ -19,6 +19,17 @@ export default {
 
     actions: {
       create: 'Aanmaken',
+
+      confirm: {
+        delete: {
+          title: 'Weet je zeker dat je wilt verwijderen?',
+          text: 'Dit is niet terug te draaien!',
+          confirm_button: 'Ja, verwijder!',
+          cancel_button: 'Annuleer',
+          success_title: 'Verwijderd!',
+          success_text: '{entity} is verwijderd.',
+        },
+      },
     },
   },
 

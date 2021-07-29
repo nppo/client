@@ -64,11 +64,8 @@
 
             <Value class="w-1">
               <div class="flex items-center space-x-2">
-                <EditButton
-                  :entity-id="user.id"
-                  :page="'/users/' + user.id + 'edit'"
-                />
-                <DeleteButton @delete-entity="deleteEntity(user.id)" />
+                <EditButton :entity-id="user.id" page="/users" />
+                <DeleteButton @delete-entity="deleteEntity(user)" />
               </div>
             </Value>
           </tr>
@@ -107,13 +104,13 @@ export default class ManagementPage extends mixins(
   private users = [
     {
       id: 1,
-      name: 2,
+      name: 'Tom',
     },
-    { id: 2, name: 2 },
+    { id: 2, name: 'Arlon' },
 
-    { id: 3, name: 2 },
+    { id: 3, name: 'Nick' },
 
-    { id: 4, name: 2 },
+    { id: 4, name: 'Chris' },
   ]
 
   public fields: TableField[] = [
@@ -144,12 +141,18 @@ export default class ManagementPage extends mixins(
     ),
   }))
 
-  deleteEntity(userId: number): void {
-    this.$accessor.user
-      .delete(String(userId))
-      .then(() =>
-        Swal.fire('Deleted!', 'Your file has been deleted.', 'success')
+  deleteEntity(user: object): void {
+    this.$accessor.user.delete(String(user.id)).then(() =>
+      Swal.fire(
+        String(this.$t('general.actions.confirm.delete.success_title')),
+        String(
+          this.$t('general.actions.confirm.delete.success_text', {
+            entity: user.name,
+          })
+        ),
+        'success'
       )
+    )
   }
 }
 </script>
