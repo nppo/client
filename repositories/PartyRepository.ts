@@ -16,7 +16,7 @@ export default class PartyRepository {
     return this.axios.get(`/api/${resource}`)
   }
 
-  show(id: number): Promise<AxiosResponse<SingleResult<Party>>> {
+  show(id: string): Promise<AxiosResponse<SingleResult<Party>>> {
     return this.axios.get(`/api/${resource}/${id}`)
   }
 }

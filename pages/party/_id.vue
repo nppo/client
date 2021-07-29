@@ -164,7 +164,7 @@ import { Party } from '~/types/models'
 @Component({
   async asyncData({ params, $accessor }: Context) {
     const { id } = params
-    await $accessor.parties.fetchCurrent(Number(id))
+    await $accessor.parties.fetchCurrent(id)
   },
 })
 export default class PartyDetailPage extends mixins(NavigationRouterHook) {

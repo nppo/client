@@ -158,15 +158,14 @@ import { Party, Person, Product, Tag, Theme } from '~/types/models'
     ValidationObserver,
   },
   async asyncData({ $accessor }: Context) {
-    await Promise.all([
-      $accessor.productTypes.fetchAll(),
-      $accessor.tags.fetchAll(),
-      $accessor.themes.fetchAll(),
-      $accessor.people.fetchAll(),
-      $accessor.people.fetchCurrent(
-        $accessor.user.current.person?.id as number
-      ),
-    ])
+    await $accessor.productTypes.fetchAll()
+    await $accessor.tags.fetchAll()
+    await $accessor.themes.fetchAll()
+    await $accessor.people.fetchAll()
+
+    if ($accessor.user.current.person?.id) {
+      await $accessor.people.fetchCurrent($accessor.user.current.person?.id)
+    }
 
     return {
       formData: {

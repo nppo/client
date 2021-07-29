@@ -12,7 +12,7 @@ export default class ArticleRepository {
     this.axios = axios
   }
 
-  show(id: number): Promise<AxiosResponse<SingleResult<Article>>> {
+  show(id: string): Promise<AxiosResponse<SingleResult<Article>>> {
     return this.axios.get(`/api/${resource}/${id}`)
   }
 }

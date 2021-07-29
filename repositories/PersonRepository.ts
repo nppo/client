@@ -16,7 +16,7 @@ export default class PeopleRepository {
     return this.axios.get(`/api/${resource}`)
   }
 
-  show(id: number): Promise<AxiosResponse<SingleResult<Person>>> {
+  show(id: string): Promise<AxiosResponse<SingleResult<Person>>> {
     return this.axios.get(`/api/${resource}/${id}`)
   }
 
@@ -25,7 +25,7 @@ export default class PeopleRepository {
   }
 
   update(
-    id: number,
+    id: string,
     data: FormData
   ): Promise<AxiosResponse<SingleResult<Person>>> {
     // Needed as Laravel otherwise does not allow uploading of images
@@ -33,7 +33,7 @@ export default class PeopleRepository {
     return this.axios.post(`/api/${resource}/${id}`, data)
   }
 
-  products(id: number): Promise<AxiosResponse<MultipleResults<Product>>> {
+  products(id: string): Promise<AxiosResponse<MultipleResults<Product>>> {
     return this.axios.get(`/api/${resource}/${id}/products`)
   }
 }
