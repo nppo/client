@@ -16,7 +16,7 @@
         class="self-start px-4 py-2 text-sm text-white rounded bg-orange-brand"
         type="submit"
       >
-        {{ $t('general.actions.create') }}
+        {{ $t('general.save') }}
       </button>
     </form>
   </ValidationObserver>
@@ -34,27 +34,15 @@ import { ValidationErrors } from '~/types/repositories'
   },
 })
 export default class ThemeForm extends Vue {
-  @Prop() theme: Theme | null = null
+  @Prop({ default: null }) readonly theme!: Theme | null
+  @Prop({ default: () => {} }) readonly errors!: ValidationErrors
 
   private data = {
     label: this.theme?.label ?? '',
   }
 
-  private errors: ValidationErrors | object = {}
-
   submit(): void {
-    this.$accessor.themes
-      .store({ data: this.data })
-      .then(() => {
-        const route = this.localeRoute({ name: 'theme' })
-
-        if (route) {
-          this.$router.push(route)
-        }
-      })
-      .catch((errors: ValidationErrors) => {
-        this.errors = errors
-      })
+    this.$emit('submit', this.data)
   }
 }
 </script>

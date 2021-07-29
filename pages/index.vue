@@ -114,7 +114,7 @@ export default class IndexPage extends Vue {
   }
 
   get themes(): Theme[] {
-    return this.$accessor.themes.all
+    return this.$accessor.themes.all.items
   }
 
   get skills(): Tag[] {

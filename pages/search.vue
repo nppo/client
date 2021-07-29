@@ -213,7 +213,7 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
   }
 
   get themes(): Array<Theme> {
-    return this.$accessor.themes.all
+    return this.$accessor.themes.all.items
   }
 
   get types(): Array<Type> {

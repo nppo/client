@@ -158,7 +158,7 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
   }
 
   get themes(): Theme[] {
-    return this.$accessor.themes.all
+    return this.$accessor.themes.all.items
   }
 
   asFormData(): FormData {
