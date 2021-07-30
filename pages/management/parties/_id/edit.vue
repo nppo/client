@@ -8,11 +8,16 @@
       <div class="mt-18">
         <div class="flex items-center mb-6 space-x-3">
           <h1 class="text-4xl font-bold">
-            {{ $t('pages.management.tags._id.edit.heading') }}
+            {{ $t('pages.management.parties._id.edit.heading') }}
           </h1>
         </div>
 
-        <TagForm v-if="tag" :errors="errors" :tag="tag" @submit="update" />
+        <PartyForm
+          v-if="party"
+          :errors="errors"
+          :party="party"
+          @submit="update"
+        />
       </div>
     </div>
   </div>
@@ -20,39 +25,39 @@
 
 <script lang="ts">
 import { Component, mixins } from 'nuxt-property-decorator'
-import TagForm from '~/components/Tag/TagForm.vue'
+import PartyForm from '~/components/Party/PartyForm.vue'
 import permissions from '~/config/Permissions'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import { MetaAuthOptions } from '~/types/entities'
-import { Tag } from '~/types/models'
+import { Party } from '~/types/models'
 import { ValidationErrors } from '~/types/repositories'
 
 @Component({
   async asyncData({ params, $accessor }) {
-    await $accessor.tags.fetch({ id: params.id })
+    await $accessor.parties.fetch({ id: params.id })
   },
   components: {
-    TagForm,
+    PartyForm,
   },
   middleware: ['auth', 'check-permissions'],
   meta: {
     auth: {
-      requiredPermissions: [permissions.updateTag],
+      requiredPermissions: [permissions.updateParty],
     } as MetaAuthOptions,
   },
 })
-export default class TagEditPage extends mixins(NavigationRouterHook) {
+export default class PartyEditPage extends mixins(NavigationRouterHook) {
   private errors: ValidationErrors | object = {}
 
-  get tag(): Tag {
-    return this.$accessor.tags.show
+  get party(): Party {
+    return this.$accessor.parties.show
   }
 
   update(data: Object | FormData): void {
-    this.$accessor.tags
-      .update({ id: String(this.tag.id), data })
+    this.$accessor.parties
+      .update({ id: String(this.party.id), data })
       .then(() => {
-        const route = this.localeRoute({ name: 'management-tags' })
+        const route = this.localeRoute({ name: 'management-parties' })
 
         if (route) {
           this.$router.push(route)

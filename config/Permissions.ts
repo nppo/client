@@ -5,6 +5,10 @@ export const permissions = {
 
   createTheme: 'create theme',
   updateTheme: 'update theme',
+
+  createParty: 'create party',
+  updateParty: 'update party',
+  deleteParty: 'delete party',
 }
 
 export default permissions

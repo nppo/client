@@ -387,20 +387,43 @@ export default {
         index: {
           heading: 'Tags',
         },
-      },
-      themes: {
-        index: {
-          heading: "Thema's",
-        },
         create: {
-          heading: 'Thema aanmaken',
+          heading: 'Create tag',
         },
         _id: {
           edit: {
-            heading: 'Thema aanpassen',
+            heading: 'Edit tag',
           },
         },
       },
+      themes: {
+        index: {
+          heading: 'Themes',
+        },
+        create: {
+          heading: 'Create theme',
+        },
+        _id: {
+          edit: {
+            heading: 'Edit theme',
+          },
+        },
+      },
+
+      parties: {
+        index: {
+          heading: 'Parties',
+        },
+        create: {
+          heading: 'Create party',
+        },
+        _id: {
+          edit: {
+            heading: 'Edit party',
+          },
+        },
+      },
+
       users: {
         index: {
           heading: 'Users',
@@ -433,6 +456,14 @@ export default {
       labels: {
         id: 'Identifier',
         label: 'Label',
+      },
+    },
+
+    party: {
+      labels: {
+        id: 'Identifier',
+        name: 'Name',
+        description: 'Description',
       },
     },
 

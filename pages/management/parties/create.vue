@@ -8,11 +8,11 @@
       <div class="mt-18">
         <div class="flex items-center mb-6 space-x-3">
           <h1 class="text-4xl font-bold">
-            {{ $t('pages.management.tags._id.edit.heading') }}
+            {{ $t('pages.management.parties.create.heading') }}
           </h1>
         </div>
 
-        <TagForm v-if="tag" :errors="errors" :tag="tag" @submit="update" />
+        <PartyForm :errors="errors" @submit="create" />
       </div>
     </div>
   </div>
@@ -20,39 +20,32 @@
 
 <script lang="ts">
 import { Component, mixins } from 'nuxt-property-decorator'
-import TagForm from '~/components/Tag/TagForm.vue'
+import objectToFormData from '~/common/utils/objectToFormData'
+import PartyForm from '~/components/Party/PartyForm.vue'
 import permissions from '~/config/Permissions'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import { MetaAuthOptions } from '~/types/entities'
-import { Tag } from '~/types/models'
 import { ValidationErrors } from '~/types/repositories'
 
 @Component({
-  async asyncData({ params, $accessor }) {
-    await $accessor.tags.fetch({ id: params.id })
-  },
   components: {
-    TagForm,
+    PartyForm,
   },
   middleware: ['auth', 'check-permissions'],
   meta: {
     auth: {
-      requiredPermissions: [permissions.updateTag],
+      requiredPermissions: [permissions.createParty],
     } as MetaAuthOptions,
   },
 })
-export default class TagEditPage extends mixins(NavigationRouterHook) {
+export default class PartyCreatePage extends mixins(NavigationRouterHook) {
   private errors: ValidationErrors | object = {}
 
-  get tag(): Tag {
-    return this.$accessor.tags.show
-  }
-
-  update(data: Object | FormData): void {
-    this.$accessor.tags
-      .update({ id: String(this.tag.id), data })
+  create(data: Object | FormData): void {
+    this.$accessor.parties
+      .store({ data: objectToFormData(data) })
       .then(() => {
-        const route = this.localeRoute({ name: 'management-tags' })
+        const route = this.localeRoute({ name: 'management-parties' })
 
         if (route) {
           this.$router.push(route)
