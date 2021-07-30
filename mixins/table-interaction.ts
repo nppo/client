@@ -121,4 +121,8 @@ export default class TableInteraction extends Vue {
       throw new Error('No table fields set')
     }
   }
+
+  beforeMount(): void {
+    this.fetchTableData(this.getCurrentParams({}))
+  }
 }

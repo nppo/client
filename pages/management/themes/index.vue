@@ -11,6 +11,12 @@
             {{ $t('pages.management.themes.index.heading') }}
           </h1>
 
+          <Badge
+            v-if="$accessor.themes.all.meta.total"
+            :text="`${$accessor.themes.all.meta.total}`"
+            color="yellow-brand"
+          />
+
           <CreateButton
             v-if="$gates.hasPermission($permissions.createTheme)"
             page="management/themes"
@@ -101,9 +107,6 @@ import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import { Filter } from '~/types/repositories'
 
 @Component({
-  async asyncData({ $accessor }) {
-    await $accessor.themes.index({})
-  },
   middleware: ['auth'],
 })
 export default class ThemeIndexPage extends mixins(

@@ -11,6 +11,12 @@
             {{ $t('pages.management.parties.index.heading') }}
           </h1>
 
+          <Badge
+            v-if="$accessor.parties.all.meta.total"
+            :text="`${$accessor.parties.all.meta.total}`"
+            color="yellow-brand"
+          />
+
           <CreateButton
             v-if="$gates.hasPermission($permissions.createParty)"
             page="management/parties"

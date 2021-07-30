@@ -11,6 +11,12 @@
             {{ $t('pages.management.tags.index.heading') }}
           </h1>
 
+          <Badge
+            v-if="$accessor.tags.all.meta.total"
+            :text="`${$accessor.tags.all.meta.total}`"
+            color="yellow-brand"
+          />
+
           <CreateButton
             v-if="$gates.hasPermission($permissions.createTag)"
             page="management/tags"
