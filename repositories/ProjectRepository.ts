@@ -12,7 +12,7 @@ export default class ProjectRepository {
     this.axios = axios
   }
 
-  show(id: number): Promise<AxiosResponse<SingleResult<Project>>> {
+  show(id: string): Promise<AxiosResponse<SingleResult<Project>>> {
     return this.axios.get(`/api/${resource}/${id}`)
   }
 
@@ -21,7 +21,7 @@ export default class ProjectRepository {
   }
 
   update(
-    id: number,
+    id: string,
     data: FormData
   ): Promise<AxiosResponse<SingleResult<Project>>> {
     // Needed as Laravel otherwise does not allow uploading of images

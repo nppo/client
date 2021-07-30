@@ -28,7 +28,7 @@ export const actions = actionTree(
         commit('setAll', data.data)
       }
     },
-    async fetchCurrent({ commit }, id: number): Promise<void> {
+    async fetchCurrent({ commit }, id: string): Promise<void> {
       const { status, data } = await this.$repositories.party.show(id)
 
       if (status === 200) {

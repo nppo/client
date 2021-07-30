@@ -30,7 +30,7 @@ export const actions = actionTree(
       }
     },
 
-    async fetchCurrent({ commit }, id: number): Promise<void> {
+    async fetchCurrent({ commit }, id: string): Promise<void> {
       const { status, data } = await this.$repositories.person.show(id)
 
       if (status === 200) {
@@ -48,7 +48,7 @@ export const actions = actionTree(
 
     async update(
       { commit },
-      updateData: { id: number; data: FormData }
+      updateData: { id: string; data: FormData }
     ): Promise<void> {
       const { status, data } = await this.$repositories.person.update(
         updateData.id,

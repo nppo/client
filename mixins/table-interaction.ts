@@ -1,6 +1,7 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import { Debounce } from 'vue-debounce-decorator'
-import { Filter, SortBy, TableField } from '~/types/entities'
+import { SortBy, TableField } from '~/types/entities'
+import { Filter } from '~/types/repositories'
 
 @Component
 export default class TableInteraction extends Vue {
@@ -52,18 +53,18 @@ export default class TableInteraction extends Vue {
     this.isLoading = false
   }
 
-  changeFilter(field: any, value: string | { value: string }): void {
+  changeFilter(key: any, value: string | { value: string }): void {
     if (typeof value === 'object' && value !== null) {
       value = value.value
     }
 
     const index = this.currentFilters.findIndex(
-      ({ field: filterField }) => field === filterField
+      ({ key: filterField }) => key === filterField
     )
 
     if (index === -1) {
       this.currentFilters.push({
-        field,
+        key,
         value,
       })
     } else if (value !== '') {

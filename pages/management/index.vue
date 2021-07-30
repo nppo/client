@@ -62,8 +62,6 @@
 import { Component, mixins } from 'nuxt-property-decorator'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 
-@Component({
-  middleware: ['auth'],
-})
+@Component
 export default class ManagementPage extends mixins(NavigationRouterHook) {}
 </script>

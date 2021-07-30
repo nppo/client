@@ -181,7 +181,7 @@ import { Project, Product } from '~/types/models'
   async asyncData({ params, $accessor }: Context) {
     const { id } = params
 
-    await $accessor.projects.fetchCurrent(Number(id))
+    await $accessor.projects.fetchCurrent(id)
 
     if ($accessor.types.all.length < 1) {
       await $accessor.types.fetchAll()

@@ -18,21 +18,21 @@ export const mutations = mutationTree(state, {
 })
 
 export const getters = getterTree(state, {
-  hasProduct: (state) => (id: number) =>
+  hasProduct: (state) => (id: string) =>
     Boolean(state.all?.likedProducts.find((product) => product.id === id)) ||
     false,
 
-  hasPerson: (state) => (id: number) =>
+  hasPerson: (state) => (id: string) =>
     Boolean(state.all?.likedPeople.find((person) => person.id === id)) || false,
 
-  hasParty: (state) => (id: number) =>
+  hasParty: (state) => (id: string) =>
     Boolean(state.all?.likedParties.find((party) => party.id === id)) || false,
 
-  hasProject: (state) => (id: number) =>
+  hasProject: (state) => (id: string) =>
     Boolean(state.all?.likedProjects.find((project) => project.id === id)) ||
     false,
 
-  hasArticle: (state) => (id: number) =>
+  hasArticle: (state) => (id: string) =>
     Boolean(state.all?.likedArticles.find((article) => article.id === id)) ||
     false,
 })
@@ -61,7 +61,7 @@ export const actions = actionTree(
       { commit },
       payload: {
         likableType: Models
-        likableId: number
+        likableId: string
       }
     ): Promise<void> {
       const user = (this.$auth.user as unknown) as User

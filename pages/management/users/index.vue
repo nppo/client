@@ -186,14 +186,12 @@ export default class ManagementPage extends mixins(
   }))
 
   deleteEntity(user: User): void {
-    this.$accessor.user.delete(String(user.id)).then(() =>
+    this.$accessor.user.delete({ id: String(user.id) }).then(() =>
       Swal.fire(
         String(this.$t('general.actions.confirm.delete.success_title')),
         String(
           this.$t('general.actions.confirm.delete.success_text', {
-            entity: user.person
-              ? user.person.firstName + user.person.lastName
-              : '',
+            entity: user.email,
           })
         ),
         'success'

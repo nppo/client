@@ -39,6 +39,7 @@ export default {
     '~/plugins/axios.ts',
     '~/plugins/vee-validate.ts',
     '~/plugins/vue-gates.ts',
+    '~/plugins/permissions.ts',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

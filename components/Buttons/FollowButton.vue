@@ -23,7 +23,7 @@ import { User } from '~/types/models'
 
 @Component
 export default class FollowButton extends Vue {
-  @Prop({ type: Number, required: true }) entityId!: number
+  @Prop({ type: String, required: true }) entityId!: string
   @Prop({
     type: String,
     required: true,

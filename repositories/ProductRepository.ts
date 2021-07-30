@@ -16,12 +16,12 @@ export default class ProductRepository {
     return this.axios.get(`/api/${resource}`)
   }
 
-  show(id: number): Promise<AxiosResponse<SingleResult<Product>>> {
+  show(id: string): Promise<AxiosResponse<SingleResult<Product>>> {
     return this.axios.get(`/api/${resource}/${id}`)
   }
 
   update(
-    id: number,
+    id: string,
     data: FormData
   ): Promise<AxiosResponse<SingleResult<Product>>> {
     // Needed as Laravel otherwise does not allow uploading of images
