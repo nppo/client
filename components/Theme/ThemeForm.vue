@@ -7,8 +7,8 @@
       <TextInput
         :rules="['required', 'min:3']"
         :errors="errors.label"
-        :name="$t('pages.theme.create.labels.label')"
-        :label="$t('pages.theme.create.labels.label')"
+        :name="$t('models.theme.labels.label')"
+        :label="$t('models.theme.labels.label')"
         :value.sync="data.label"
       />
 

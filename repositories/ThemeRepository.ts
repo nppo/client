@@ -13,7 +13,7 @@ const resource = 'themes'
 export default class ThemeRepository extends AbstractRepository {
   all({
     page = 1,
-    perPage = 10,
+    perPage = 15,
     filters = [],
     sorts = [],
   }: IndexRequest): Promise<

@@ -11,7 +11,10 @@
             {{ $t('pages.management.themes.index.heading') }}
           </h1>
 
-          <CreateButton page="management/themes" />
+          <CreateButton
+            v-if="$gates.hasPermission($permissions.createTheme)"
+            page="management/themes"
+          />
         </div>
 
         <Table
@@ -72,7 +75,11 @@
 
               <Value class="w-1">
                 <div class="flex items-center space-x-2">
-                  <EditButton :entity-id="theme.id" page="management/themes" />
+                  <EditButton
+                    v-if="$gates.hasPermission($permissions.updateTheme)"
+                    :entity-id="theme.id"
+                    page="management/themes"
+                  />
                 </div>
               </Value>
             </tr>
@@ -105,6 +112,7 @@ import { Filter } from '~/types/repositories'
   async asyncData({ $accessor }) {
     await $accessor.themes.index({})
   },
+  middleware: ['auth'],
 })
 export default class ThemeIndexPage extends mixins(
   TableInteraction,
@@ -132,9 +140,7 @@ export default class ThemeIndexPage extends mixins(
   ].map((field) => ({
     ...field,
     label: String(
-      field.name
-        ? this.$t(`pages.management.themes.index.table_fields.${field.name}`)
-        : ''
+      field.name ? this.$t(`models.theme.labels.${field.name}`) : ''
     ),
   }))
 

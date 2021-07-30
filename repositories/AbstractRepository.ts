@@ -23,8 +23,8 @@ export default abstract class AbstractRepository {
   ): string {
     const query = new URLSearchParams()
 
-    query.append('page', String(page))
-    query.append('perPage', String(perPage))
+    query.append('page[number]', String(page))
+    query.append('page[size]', String(perPage))
 
     filters.forEach((filter: Filter) => {
       query.append(`filter[${filter.key}]`, String(filter.value))

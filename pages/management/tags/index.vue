@@ -11,7 +11,10 @@
             {{ $t('pages.management.tags.index.heading') }}
           </h1>
 
-          <CreateButton page="management/tags" />
+          <CreateButton
+            v-if="$gates.hasPermission($permissions.createTag)"
+            page="management/tags"
+          />
         </div>
 
         <Table
@@ -64,8 +67,15 @@
 
               <Value class="w-1">
                 <div class="flex items-center space-x-2">
-                  <EditButton :entity-id="tag.id" page="management/tags" />
-                  <DeleteButton @delete-entity="deleteEntity(tag)" />
+                  <EditButton
+                    v-if="$gates.hasPermission($permissions.updateTag)"
+                    :entity-id="tag.id"
+                    page="management/tags"
+                  />
+                  <DeleteButton
+                    v-if="$gates.hasPermission($permissions.deleteTag)"
+                    @delete-entity="deleteEntity(tag)"
+                  />
                 </div>
               </Value>
             </tr>
@@ -98,6 +108,7 @@ import { Filter } from '~/types/repositories'
   async asyncData({ $accessor }) {
     await $accessor.tags.index({})
   },
+  middleware: ['auth'],
 })
 export default class TagIndexPage extends mixins(
   TableInteraction,
@@ -124,11 +135,7 @@ export default class TagIndexPage extends mixins(
     },
   ].map((field) => ({
     ...field,
-    label: String(
-      field.name
-        ? this.$t(`pages.management.tags.index.table_fields.${field.name}`)
-        : ''
-    ),
+    label: String(field.name ? this.$t(`models.tag.labels.${field.name}`) : ''),
   }))
 
   get tags(): Tag[] {

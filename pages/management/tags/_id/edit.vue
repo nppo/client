@@ -21,7 +21,9 @@
 <script lang="ts">
 import { Component, mixins } from 'nuxt-property-decorator'
 import TagForm from '~/components/Tag/TagForm.vue'
+import permissions from '~/config/Permissions'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
+import { MetaAuthOptions } from '~/types/entities'
 import { Tag } from '~/types/models'
 import { ValidationErrors } from '~/types/repositories'
 
@@ -31,6 +33,12 @@ import { ValidationErrors } from '~/types/repositories'
   },
   components: {
     TagForm,
+  },
+  middleware: ['auth', 'check-permissions'],
+  meta: {
+    auth: {
+      requiredPermissions: [permissions.updateTag],
+    } as MetaAuthOptions,
   },
 })
 export default class TagEditPage extends mixins(NavigationRouterHook) {

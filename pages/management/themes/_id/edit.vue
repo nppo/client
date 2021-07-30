@@ -8,7 +8,7 @@
       <div class="mt-18">
         <div class="flex items-center mb-6 space-x-3">
           <h1 class="text-4xl font-bold">
-            {{ $t('pages.management.themes.index.heading') }}
+            {{ $t('pages.management.themes._id.edit.heading') }}
           </h1>
         </div>
 
@@ -26,7 +26,9 @@
 <script lang="ts">
 import { Component, mixins } from 'nuxt-property-decorator'
 import ThemeForm from '~/components/Theme/ThemeForm.vue'
+import permissions from '~/config/Permissions'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
+import { MetaAuthOptions } from '~/types/entities'
 import { Theme } from '~/types/models'
 import { ValidationErrors } from '~/types/repositories'
 
@@ -36,6 +38,12 @@ import { ValidationErrors } from '~/types/repositories'
   },
   components: {
     ThemeForm,
+  },
+  middleware: ['auth', 'check-permissions'],
+  meta: {
+    auth: {
+      requiredPermissions: [permissions.updateTheme],
+    } as MetaAuthOptions,
   },
 })
 export default class ThemeEditPage extends mixins(NavigationRouterHook) {

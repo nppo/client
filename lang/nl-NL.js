@@ -385,6 +385,24 @@ export default {
     },
 
     management: {
+      tags: {
+        index: {
+          heading: 'Tags',
+        },
+      },
+      themes: {
+        index: {
+          heading: "Thema's",
+        },
+        create: {
+          heading: 'Thema aanmaken',
+        },
+        _id: {
+          edit: {
+            heading: 'Thema aanpassen',
+          },
+        },
+      },
       users: {
         index: {
           heading: 'Gebruikers',
@@ -407,6 +425,22 @@ export default {
       create: {
         heading: 'Je hebt nog geen profiel, wil je die aanmaken?',
         cancel_text: 'Nu geen profiel aanmaken? Ga door naar het platform',
+      },
+    },
+  },
+
+  models: {
+    theme: {
+      labels: {
+        id: 'Identifier',
+        label: 'Label',
+      },
+    },
+
+    tag: {
+      labels: {
+        id: 'Identifier',
+        label: 'Label',
       },
     },
   },

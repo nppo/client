@@ -123,7 +123,7 @@ import objectToFormData from '~/common/utils/objectToFormData'
 
   async asyncData({ $accessor }) {
     await $accessor.tags.fetchAll()
-    await $accessor.themes.fetchAll()
+    await $accessor.themes.index({ perPage: 50 })
     await $accessor.people.fetchAll()
 
     if ($accessor.user.current.person?.id) {

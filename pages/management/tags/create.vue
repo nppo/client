@@ -23,10 +23,19 @@ import { Component, mixins } from 'nuxt-property-decorator'
 import TagForm from '~/components/Tag/TagForm.vue'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import { ValidationErrors } from '~/types/repositories'
+import { MetaAuthOptions } from '~/types/entities'
+import permissions from '~/config/Permissions'
 
 @Component({
   components: {
     TagForm,
+  },
+  middleware: ['auth', 'check-permissions'],
+
+  meta: {
+    auth: {
+      requiredPermissions: [permissions.createTag],
+    } as MetaAuthOptions,
   },
 })
 export default class TagCreatePage extends mixins(NavigationRouterHook) {

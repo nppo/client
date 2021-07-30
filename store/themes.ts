@@ -37,26 +37,18 @@ export const mutations = mutationTree(state, {
 export const actions = actionTree(
   { state, mutations },
   {
-    async fetchAll({ commit }): Promise<void> {
-      const res = await this.$repositories.theme.all({})
-      const { status, data } = res
-
-      if (status === 200) {
-        commit('allSet', data.data)
-      }
-    },
-
     index(
       { commit },
       {
         mutation = 'allSet',
         page = 1,
+        perPage = 15,
         filters = [],
         sorts = [],
       }: PaginatedIndexAction<typeof mutations>
     ): Promise<Theme[]> {
       return this.$repositories.theme
-        .all({ page, filters, sorts })
+        .all({ page, filters, sorts, perPage })
         .then((response: AxiosResponse<MultipleResultsWithMeta<Theme>>) => {
           commit('metaSet', response.data.meta)
 

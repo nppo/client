@@ -43,12 +43,13 @@ export const actions = actionTree(
       {
         mutation = 'allSet',
         page = 1,
+        perPage = 15,
         filters = [],
         sorts = [],
       }: PaginatedIndexAction<typeof mutations>
     ): Promise<Tag[]> {
       return this.$repositories.tag
-        .all({ page, sorts, filters })
+        .all({ page, sorts, filters, perPage })
         .then((response: AxiosResponse<MultipleResultsWithMeta<Tag>>) => {
           commit('metaSet', response.data.meta)
 

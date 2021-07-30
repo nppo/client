@@ -383,6 +383,24 @@ export default {
     },
 
     management: {
+      tags: {
+        index: {
+          heading: 'Tags',
+        },
+      },
+      themes: {
+        index: {
+          heading: "Thema's",
+        },
+        create: {
+          heading: 'Thema aanmaken',
+        },
+        _id: {
+          edit: {
+            heading: 'Thema aanpassen',
+          },
+        },
+      },
       users: {
         index: {
           heading: 'Users',
@@ -406,6 +424,22 @@ export default {
         heading: 'You do not have a profile yet, would you like to create one?',
         cancel_text:
           "Don't want to create a profile yet? Continue to the platform",
+      },
+    },
+  },
+
+  models: {
+    theme: {
+      labels: {
+        id: 'Identifier',
+        label: 'Label',
+      },
+    },
+
+    tag: {
+      labels: {
+        id: 'Identifier',
+        label: 'Label',
       },
     },
   },

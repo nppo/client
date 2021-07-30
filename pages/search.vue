@@ -171,7 +171,7 @@ import ProductBlock from '~/components/Blocks/ProductBlock.vue'
 
 @Component({
   async fetch(this: SearchPage) {
-    await this.$accessor.themes.fetchAll()
+    await this.$accessor.themes.index({ perPage: 50 })
     await this.$accessor.types.fetchAll()
 
     this.prepareFilters()
