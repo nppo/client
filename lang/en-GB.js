@@ -464,6 +464,7 @@ export default {
         id: 'Identifier',
         name: 'Name',
         description: 'Description',
+        profilePicture: 'Profile picture',
       },
     },
 

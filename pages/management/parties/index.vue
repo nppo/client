@@ -65,7 +65,7 @@
               :key="index"
               class="text-gray-500"
             >
-              <Value class="items-center w-20">
+              <Value class="text-center w-30">
                 <img
                   v-if="party.partyPictureUrl"
                   class="inline w-10 h-10 mr-4 rounded-full"

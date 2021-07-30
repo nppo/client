@@ -463,6 +463,7 @@ export default {
         id: 'Identifier',
         name: 'Naam',
         description: 'Beschrijving / Over',
+        profilePicture: 'Profielfoto',
       },
     },
 

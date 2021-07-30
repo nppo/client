@@ -4,20 +4,24 @@
       class="p-4 overflow-hidden bg-white rounded-md shadow"
       @submit.prevent="handleSubmit(submit)"
     >
-      <TextInput
-        :rules="['required', 'min:3']"
-        :errors="errors.name"
-        :name="$t('models.party.labels.name')"
-        :label="$t('models.party.labels.name')"
-        :value.sync="data.name"
-      />
-      <Textarea
-        :rules="['required', 'min:3']"
-        :errors="errors.description"
-        :name="$t('models.party.labels.description')"
-        :label="$t('models.party.labels.description')"
-        :value.sync="data.description"
-      />
+      <div class="flex flex-col md:flex-row">
+        <div class="md:w-1/2">
+          <TextInput
+            :rules="['required', 'min:3']"
+            :errors="errors.name"
+            :name="$t('models.party.labels.name')"
+            :label="$t('models.party.labels.name')"
+            :value.sync="data.name"
+          />
+          <Textarea
+            :rules="['required', 'min:3']"
+            :errors="errors.description"
+            :name="$t('models.party.labels.description')"
+            :label="$t('models.party.labels.description')"
+            :value.sync="data.description"
+          />
+        </div>
+      </div>
 
       <button
         class="self-start px-4 py-2 text-sm text-white rounded bg-orange-brand"
