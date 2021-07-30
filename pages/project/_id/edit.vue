@@ -96,7 +96,7 @@ import { MetaAuthOptions } from '~/types/entities'
   async asyncData({ $accessor, $auth }: Context) {
     const personId = ($auth.user?.person as Person).id
 
-    await $accessor.parties.fetchAll()
+    await $accessor.parties.index({ perPage: 100 })
     await $accessor.people.fetchCurrent(personId)
   },
 
@@ -130,7 +130,7 @@ export default class ProjectEditPage extends mixins(NavigationRouterHook) {
   }
 
   get parties(): Party[] {
-    return this.$accessor.parties.all
+    return this.$accessor.parties.all.items
   }
 
   get relatedProducts(): Product[] {

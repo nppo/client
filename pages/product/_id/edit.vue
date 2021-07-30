@@ -122,8 +122,8 @@ import objectToFormData from '~/common/utils/objectToFormData'
   middleware: ['auth', 'check-permissions'],
 
   async asyncData({ $accessor }) {
-    await $accessor.tags.fetchAll()
-    await $accessor.themes.index({ perPage: 50 })
+    await $accessor.tags.index({ perPage: 100 })
+    await $accessor.themes.index({ perPage: 100 })
     await $accessor.people.fetchAll()
 
     if ($accessor.user.current.person?.id) {

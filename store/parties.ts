@@ -21,13 +21,13 @@ export const state = () => ({
 export type PartiesState = ReturnType<typeof state>
 
 export const mutations = mutationTree(state, {
-  allSet(state: PartiesState, themes: Party[]): void {
+  setAll(state: PartiesState, themes: Party[]): void {
     state.all.items = themes
   },
-  allAppend(state: PartiesState, themes: Party[]): void {
+  appendAll(state: PartiesState, themes: Party[]): void {
     state.all.items = [...state.all.items, ...themes]
   },
-  metaSet(state: PartiesState, meta: any): void {
+  setMeta(state: PartiesState, meta: any): void {
     state.all.meta = meta
   },
   setShow(state: PartiesState, theme: Party): void {
@@ -41,7 +41,7 @@ export const actions = actionTree(
     index(
       { commit },
       {
-        mutation = 'allSet',
+        mutation = 'setAll',
         page = 1,
         perPage = 15,
         filters = [],
@@ -51,7 +51,7 @@ export const actions = actionTree(
       return this.$repositories.party
         .all({ page, filters, sorts, perPage })
         .then((response: AxiosResponse<MultipleResultsWithMeta<Party>>) => {
-          commit('metaSet', response.data.meta)
+          commit('setMeta', response.data.meta)
 
           if (mutation) {
             commit(mutation, response.data.data)

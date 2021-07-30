@@ -169,7 +169,7 @@ export default class TagIndexPage extends mixins(
   }): Promise<void> {
     return this.$accessor.tags
       .index({
-        mutation: 'allSet',
+        mutation: 'setAll',
         page: _params.page,
         filters: _params.filters,
         sorts: _params.sortBy,

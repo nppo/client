@@ -175,7 +175,7 @@ export default class PartyIndexPage extends mixins(
   }): Promise<void> {
     return this.$accessor.parties
       .index({
-        mutation: 'allSet',
+        mutation: 'setAll',
         page: _params.page,
         filters: _params.filters,
         sorts: _params.sortBy,

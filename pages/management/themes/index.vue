@@ -155,7 +155,7 @@ export default class ThemeIndexPage extends mixins(
   }): Promise<void> {
     return this.$accessor.themes
       .index({
-        mutation: 'allSet',
+        mutation: 'setAll',
         page: _params.page,
         filters: _params.filters,
         sorts: _params.sortBy,

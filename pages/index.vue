@@ -96,7 +96,7 @@ import { Theme, Tag } from '~/types/models'
       await this.$accessor.types.fetchAll()
     }
 
-    await this.$accessor.themes.index({ perPage: 50 })
+    await this.$accessor.themes.index({ perPage: 100 })
     await this.$accessor.discover.fetchAll()
     await this.$accessor.skills.fetchAll()
   },

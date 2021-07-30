@@ -56,7 +56,7 @@ export default class TestPage extends Vue {
 
     this.$accessor.themes
       .index({
-        mutation: 'allAppend',
+        mutation: 'appendAll',
         page,
       })
       .then(() => {
