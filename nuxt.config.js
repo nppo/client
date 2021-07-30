@@ -202,6 +202,7 @@ export default {
         'faExpand',
         'faNewspaper',
         'faSpinner',
+        'faPlay',
       ],
       regular: ['faBookmark', 'faPlayCircle'],
       brands: ['faLinkedin', 'faResearchgate', 'faTwitterSquare', 'faYoutube'],

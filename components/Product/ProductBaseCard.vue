@@ -42,7 +42,7 @@
         />
 
         <a
-          v-if="product.type === 'link'"
+          v-if="product.links && product.type === 'link'"
           :href="product.links.preview"
           class="flex items-center px-2 py-1 font-bold text-white rounded-md bg-orange-brand"
         >
