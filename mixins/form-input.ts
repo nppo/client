@@ -14,7 +14,11 @@ export default class FormInput extends Vue {
     return this.rules.join('|')
   }
 
-  hasErrors(validationErrors: Array<string>) {
+  get isRequired(): boolean {
+    return this.rules.includes(this.$rules.required)
+  }
+
+  hasErrors(validationErrors: Array<string> = []) {
     return this.formattedValidationErrors(validationErrors).length > 0
   }
 

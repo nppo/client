@@ -19,7 +19,7 @@
         :name="$t('pages.person.create.labels.function')"
         :label="$t('pages.person.create.labels.function')"
         :errors="errors.label"
-        :rules="['required']"
+        :rules="[$rules.required, $rules.between(10, 12)]"
       />
       <div class="w-full bg-red" @click="submit">Test 123</div>
     </div>

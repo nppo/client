@@ -30,18 +30,17 @@
               :value.sync="formData.title"
               :name="$t('pages.product._id.edit.labels.title')"
               :label="$t('pages.product._id.edit.labels.title')"
-              :required="true"
-              :error-message="$t('validation.required')"
+              :rules="[$rules.required]"
               :has-errors.sync="titleError"
             />
 
-            <Textarea
+            <TextArea
               :value.sync="formData.summary"
               :name="$t('pages.product.create.form.labels.summary')"
               :label="$t('pages.product.create.form.labels.summary')"
             />
 
-            <Textarea
+            <TextArea
               :value.sync="formData.description"
               :name="$t('pages.product.create.form.labels.description')"
               :label="$t('pages.product.create.form.labels.description')"

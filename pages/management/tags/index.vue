@@ -34,9 +34,7 @@
                 <TextInput
                   v-if="field.inputType === 'text'"
                   :value="field.searchValue"
-                  :name="
-                    $t(`pages.management.tags.index.table_fields.${field.name}`)
-                  "
+                  :name="$t(`models.tags.labels.${field.name}`)"
                   type="search"
                   input-class="w-full px-5 py-3 placeholder-gray-200 border-gray-200 rounded"
                   @update:value="handleHeaderInputChanged(field.name, $event)"
@@ -44,9 +42,7 @@
                 <SelectInput
                   v-else-if="field.inputType === 'select'"
                   :value="field.searchValue"
-                  :name="
-                    $t(`pages.management.tags.index.table_fields.${field.name}`)
-                  "
+                  :name="$t(`models.tags.labels.${field.name}`)"
                   class="min-w-48"
                   :options="field.options"
                   @update:value="handleHeaderInputChanged(field.name, $event)"

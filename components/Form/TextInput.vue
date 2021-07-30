@@ -4,7 +4,7 @@
       <label v-if="label" :for="name" class="pl-3 mb-1">
         {{ label }}
 
-        <small v-if="required" class="ml-1 text-red-500">
+        <small v-if="isRequired" class="ml-1 text-red-500">
           {{ $t('validation.required_label') }}
         </small>
       </label>
@@ -22,15 +22,7 @@
         />
       </div>
 
-      <div>
-        <span
-          v-for="(error, index) in formattedValidationErrors(validation.errors)"
-          :key="index"
-          class="pl-3 text-red-500"
-        >
-          {{ error }}
-        </span>
-      </div>
+      <Errors :errors="formattedValidationErrors(validation.errors)" />
     </div>
   </ValidationProvider>
 </template>
@@ -44,8 +36,6 @@ export default class TextInput extends mixins(FormInput) {
   @Prop({ type: String }) value!: string
   @Prop({ type: String, default: '' }) readonly name!: string
   @Prop({ type: String, default: '' }) readonly label!: string
-  @Prop({ type: String, default: '' }) readonly errorMessage!: string
-  @Prop({ type: Boolean, default: false }) readonly required!: boolean
 
   private localValue: string = this.value
 

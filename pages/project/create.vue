@@ -41,11 +41,10 @@
                   :value.sync="formData.title"
                   :name="$t('pages.project.form.labels.title')"
                   :label="$t('pages.project.form.labels.title')"
-                  :required="true"
-                  :error-message="$t('validation.required')"
+                  :rules="[$rules.required]"
                 />
 
-                <Textarea
+                <TextArea
                   :value.sync="formData.description"
                   :name="$t('pages.project.form.labels.description')"
                   :label="$t('pages.project.form.labels.description')"
@@ -66,7 +65,7 @@
                 />
               </div>
               <div class="w-6/12">
-                <Textarea
+                <TextArea
                   :value.sync="formData.purpose"
                   :name="$t('pages.project.form.labels.purpose')"
                   :label="$t('pages.project.form.labels.purpose')"

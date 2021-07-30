@@ -7,14 +7,14 @@
       <div class="flex flex-col md:flex-row">
         <div class="md:w-1/2">
           <TextInput
-            :rules="['required', 'min:3']"
+            :rules="[$rules.required, $rules.min(3)]"
             :errors="errors.name"
             :name="$t('models.party.labels.name')"
             :label="$t('models.party.labels.name')"
             :value.sync="data.name"
           />
-          <Textarea
-            :rules="['required', 'min:3']"
+          <TextArea
+            :rules="[$rules.required, $rules.min(3)]"
             :errors="errors.description"
             :name="$t('models.party.labels.description')"
             :label="$t('models.party.labels.description')"

@@ -40,6 +40,7 @@ export default {
     '~/plugins/vee-validate.ts',
     '~/plugins/vue-gates.ts',
     '~/plugins/permissions.ts',
+    '~/plugins/rules.ts',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

@@ -29,8 +29,7 @@
                       :value.sync="formData.person.firstName"
                       :name="'First'"
                       :label="'First'"
-                      :required="true"
-                      :error-message="$t('validation.required')"
+                      :rules="[$rules.required]"
                     />
                   </div>
 
@@ -39,8 +38,7 @@
                       :value.sync="formData.person.lastName"
                       :name="'last'"
                       :label="'last'"
-                      :required="true"
-                      :error-message="$t('validation.required')"
+                      :rules="[$rules.required]"
                     />
                   </div>
                 </div>
@@ -49,8 +47,7 @@
                   :value.sync="formData.email"
                   :name="$t('pages.product.create.form.labels.title')"
                   :label="$t('pages.product.create.form.labels.title')"
-                  :required="true"
-                  :error-message="$t('validation.required')"
+                  :rules="[$rules.required]"
                 />
               </div>
 
