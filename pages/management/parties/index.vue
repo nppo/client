@@ -122,7 +122,7 @@ import { Filter } from '~/types/repositories'
 
 @Component({
   async asyncData({ $accessor }) {
-    await $accessor.parties.index({})
+    await $accessor.parties.fetchIndex({})
   },
   middleware: ['auth'],
 })
@@ -172,7 +172,7 @@ export default class PartyIndexPage extends mixins(
     sortBy?: SortBy[]
   }): Promise<void> {
     return this.$accessor.parties
-      .index({
+      .fetchIndex({
         mutation: 'setAll',
         page: _params.page,
         filters: _params.filters,

@@ -38,7 +38,7 @@ export const mutations = mutationTree(state, {
 export const actions = actionTree(
   { state, mutations },
   {
-    index(
+    fetchIndex(
       { commit },
       {
         mutation = 'setAll',
@@ -83,12 +83,12 @@ export const actions = actionTree(
         })
     },
 
-    update(
+    create(
       { commit },
-      { id, data, mutation = 'setShow' }: UpdateAction<typeof mutations>
+      { data, mutation = 'setShow' }: StoreAction<typeof mutations>
     ): Promise<Party> {
       return this.$repositories.party
-        .update(String(id), data)
+        .store(data)
         .then((response: AxiosResponse<SingleResult<Party>>) => {
           if (mutation) {
             commit('setShow', response.data.data)
@@ -105,12 +105,12 @@ export const actions = actionTree(
         })
     },
 
-    store(
+    update(
       { commit },
-      { data, mutation = 'setShow' }: StoreAction<typeof mutations>
+      { id, data, mutation = 'setShow' }: UpdateAction<typeof mutations>
     ): Promise<Party> {
       return this.$repositories.party
-        .store(data)
+        .update(String(id), data)
         .then((response: AxiosResponse<SingleResult<Party>>) => {
           if (mutation) {
             commit('setShow', response.data.data)

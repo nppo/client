@@ -45,7 +45,7 @@ export default class PartyCreatePage extends mixins(NavigationRouterHook) {
 
   create(data: Object | FormData): void {
     this.$accessor.parties
-      .store({ data: objectToFormData(data) })
+      .create({ data: objectToFormData(data) })
       .then((party: Party) => {
         const route = this.localeRoute({ name: 'management-parties' })
 
