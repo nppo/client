@@ -457,6 +457,15 @@ export default {
     },
 
     general: {
+      unauthenticated: {
+        title: 'Not logged in',
+        text: 'It looks like you are not logged in at this moment.',
+      },
+      unauthorized: {
+        title: 'Not authorized',
+        text: 'You are not authorized to perform this action.',
+      },
+
       create: {
         success: {
           title: 'Succesfully created',
@@ -467,6 +476,12 @@ export default {
         success: {
           title: 'Succesfully changed',
           text: '{entity} has succesfully been changed.',
+        },
+      },
+      delete: {
+        success: {
+          title: 'Deleted',
+          text: '{entity} has succesfully been deleted.',
         },
       },
     },

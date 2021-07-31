@@ -456,6 +456,15 @@ export default {
     },
 
     general: {
+      unauthenticated: {
+        title: 'Niet ingelogd',
+        text: 'Het lijkt erop of je niet bent ingelogd op dit moment.',
+      },
+      unauthorized: {
+        title: 'Niet gemachtigd',
+        text: 'Je bent niet gemachtigd om deze actie te doen.',
+      },
+
       create: {
         success: {
           title: 'Succesvol aangemaakt',

@@ -158,9 +158,9 @@ export default class ManagementPage extends mixins(
       .delete({ id: String(user.id) })
       .then(() => {
         this.$swal.fire(
-          String(this.$t('modals.general.create.success.title')),
+          String(this.$t('modals.general.delete.success.title')),
           String(
-            this.$t('modals.general.create.success.text', {
+            this.$t('modals.general.delete.success.text', {
               entity: user.email,
             })
           ),
