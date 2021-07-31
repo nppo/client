@@ -38,6 +38,22 @@ interface IndexRequest {
   perPage?: number
 }
 
+interface Filter {
+  key: string
+  value: any | any[]
+}
+
+interface ValidationErrors {
+  [key: string]: Array<string>
+}
+
+interface IndexRequest {
+  filters?: Filter[]
+  sorts?: SortBy[]
+  page?: number
+  perPage?: number
+}
+
 interface SingleResult<T = any> {
   data: T
 }

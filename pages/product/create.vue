@@ -49,22 +49,20 @@
                   :value.sync="formData.title"
                   :name="$t('pages.product.create.form.labels.title')"
                   :label="$t('pages.product.create.form.labels.title')"
-                  :required="true"
-                  :error-message="$t('validation.required')"
+                  :rules="[$rules.required]"
                 />
 
-                <Textarea
+                <TextArea
                   :value.sync="formData.summary"
                   :name="$t('pages.product.create.form.labels.summary')"
                   :label="$t('pages.product.create.form.labels.summary')"
                 />
 
-                <Textarea
+                <TextArea
                   :value.sync="formData.description"
                   :name="$t('pages.product.create.form.labels.description')"
                   :label="$t('pages.product.create.form.labels.description')"
-                  :required="true"
-                  :error-message="$t('validation.required')"
+                  :rules="[$rules.required]"
                 />
               </div>
 
@@ -80,8 +78,7 @@
                     :value.sync="formData.link"
                     :name="$t('pages.product.create.form.labels.link')"
                     :label="$t('pages.product.create.form.labels.link')"
-                    :required="true"
-                    :error-message="$t('validation.required')"
+                    :rules="[$rules.required]"
                   />
 
                   <FileInput
@@ -158,15 +155,14 @@ import { Party, Person, Product, Tag, Theme } from '~/types/models'
     ValidationObserver,
   },
   async asyncData({ $accessor }: Context) {
-    await Promise.all([
-      $accessor.productTypes.fetchAll(),
-      $accessor.tags.fetchAll(),
-      $accessor.themes.fetchAll(),
-      $accessor.people.fetchAll(),
-      $accessor.people.fetchCurrent(
-        $accessor.user.current.person?.id as number
-      ),
-    ])
+    await $accessor.productTypes.fetchAll()
+    await $accessor.tags.index({ perPage: 100 })
+    await $accessor.themes.index({ perPage: 100 })
+    await $accessor.people.fetchAll()
+
+    if ($accessor.user.current.person?.id) {
+      await $accessor.people.fetchCurrent($accessor.user.current.person?.id)
+    }
 
     return {
       formData: {
@@ -200,7 +196,7 @@ export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
   }
 
   get themes(): Theme[] {
-    return this.$accessor.themes.all
+    return this.$accessor.themes.all.items
   }
 
   get people(): Person[] {

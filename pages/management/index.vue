@@ -33,7 +33,7 @@
           <h2 class="text-2xl font-bold">Thema's</h2>
         </LocaleLink>
         <LocaleLink
-          path="/"
+          path="/management/tags"
           class="flex items-center p-5 bg-white rounded shadow hover:bg-opacity-50 justify-evenly"
         >
           <font-awesome-icon
@@ -44,7 +44,7 @@
           <h2 class="text-2xl font-bold">Tags</h2>
         </LocaleLink>
         <LocaleLink
-          path="/"
+          path="/management/parties"
           class="flex items-center p-5 bg-white rounded shadow hover:bg-opacity-50 justify-evenly"
         >
           <font-awesome-icon

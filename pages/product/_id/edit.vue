@@ -30,18 +30,17 @@
               :value.sync="formData.title"
               :name="$t('pages.product._id.edit.labels.title')"
               :label="$t('pages.product._id.edit.labels.title')"
-              :required="true"
-              :error-message="$t('validation.required')"
+              :rules="[$rules.required]"
               :has-errors.sync="titleError"
             />
 
-            <Textarea
+            <TextArea
               :value.sync="formData.summary"
               :name="$t('pages.product.create.form.labels.summary')"
               :label="$t('pages.product.create.form.labels.summary')"
             />
 
-            <Textarea
+            <TextArea
               :value.sync="formData.description"
               :name="$t('pages.product.create.form.labels.description')"
               :label="$t('pages.product.create.form.labels.description')"
@@ -122,14 +121,13 @@ import objectToFormData from '~/common/utils/objectToFormData'
   middleware: ['auth', 'check-permissions'],
 
   async asyncData({ $accessor }) {
-    await Promise.all([
-      $accessor.tags.fetchAll(),
-      $accessor.themes.fetchAll(),
-      $accessor.people.fetchAll(),
-      $accessor.people.fetchCurrent(
-        $accessor.user.current.person?.id as number
-      ),
-    ])
+    await $accessor.tags.index({ perPage: 100 })
+    await $accessor.themes.index({ perPage: 100 })
+    await $accessor.people.fetchAll()
+
+    if ($accessor.user.current.person?.id) {
+      await $accessor.people.fetchCurrent($accessor.user.current.person?.id)
+    }
   },
 
   components: {
@@ -174,7 +172,7 @@ export default class ProductEditPage extends mixins(NavigationRouterHook) {
   }
 
   get themes(): Theme[] {
-    return this.$accessor.themes.all
+    return this.$accessor.themes.all.items
   }
 
   get people(): Person[] {

@@ -43,6 +43,7 @@
               {{ $t('account.saved') }}
             </LocaleLink>
             <LocaleLink
+              v-if="$gates.hasAnyPermission(managementPermissions)"
               path="/management"
               class="w-full py-1 text-sm text-left border-b border-gray-100 hover:font-bold"
             >
@@ -80,6 +81,16 @@ export default class Navbar extends Vue {
 
   get person(): Person | undefined {
     return this.$auth.user?.person as Person
+  }
+
+  get managementPermissions(): string {
+    return [
+      this.$permissions.createTag,
+      this.$permissions.updateTag,
+      this.$permissions.deleteTag,
+      this.$permissions.createTheme,
+      this.$permissions.updateTheme,
+    ].join('|')
   }
 
   createProfile(): void {

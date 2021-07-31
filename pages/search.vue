@@ -171,7 +171,7 @@ import ProductBlock from '~/components/Blocks/ProductBlock.vue'
 
 @Component({
   async fetch(this: SearchPage) {
-    await this.$accessor.themes.fetchAll()
+    await this.$accessor.themes.index({ perPage: 100 })
     await this.$accessor.types.fetchAll()
 
     this.prepareFilters()
@@ -213,7 +213,7 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
   }
 
   get themes(): Array<Theme> {
-    return this.$accessor.themes.all
+    return this.$accessor.themes.all.items
   }
 
   get types(): Array<Type> {

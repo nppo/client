@@ -3,7 +3,7 @@ import { Models } from './enums'
 
 /* eslint-disable no-use-before-define */
 export interface Skill {
-  id: number
+  id: string
   label: string
 }
 export interface Filter {
@@ -84,19 +84,19 @@ export interface ImageComponent {
   component: string
 }
 export interface PartyComponent {
-  identifier: number
+  identifier: string
   component: string
 }
 export interface ProductComponent {
-  identifier: number
+  identifier: string
   component: string
 }
 export interface ProjectComponent {
-  identifier: number
+  identifier: string
   component: string
 }
 export interface PersonComponent {
-  identifier: number
+  identifier: string
   component: string
 }
 

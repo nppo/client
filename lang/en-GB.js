@@ -383,6 +383,47 @@ export default {
     },
 
     management: {
+      tags: {
+        index: {
+          heading: 'Tags',
+        },
+        create: {
+          heading: 'Create tag',
+        },
+        _id: {
+          edit: {
+            heading: 'Edit tag',
+          },
+        },
+      },
+      themes: {
+        index: {
+          heading: 'Themes',
+        },
+        create: {
+          heading: 'Create theme',
+        },
+        _id: {
+          edit: {
+            heading: 'Edit theme',
+          },
+        },
+      },
+
+      parties: {
+        index: {
+          heading: 'Parties',
+        },
+        create: {
+          heading: 'Create party',
+        },
+        _id: {
+          edit: {
+            heading: 'Edit party',
+          },
+        },
+      },
+
       users: {
         index: {
           heading: 'Users',
@@ -406,6 +447,31 @@ export default {
         heading: 'You do not have a profile yet, would you like to create one?',
         cancel_text:
           "Don't want to create a profile yet? Continue to the platform",
+      },
+    },
+  },
+
+  models: {
+    theme: {
+      labels: {
+        id: 'Identifier',
+        label: 'Label',
+      },
+    },
+
+    party: {
+      labels: {
+        id: 'Identifier',
+        name: 'Name',
+        description: 'Description',
+        profilePicture: 'Profile picture',
+      },
+    },
+
+    tag: {
+      labels: {
+        id: 'Identifier',
+        label: 'Label',
       },
     },
   },

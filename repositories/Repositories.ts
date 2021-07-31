@@ -30,7 +30,7 @@ export default class Repositories {
   type: TypeRepository
   skill: SkillRepository
   productTypes: ProductTypeRepository
-  tags: TagRepository
+  tag: TagRepository
   article: ArticleRepository
   role: RoleRepository
 
@@ -48,7 +48,7 @@ export default class Repositories {
     this.type = new TypeRepository($axios)
     this.skill = new SkillRepository($axios)
     this.productTypes = new ProductTypeRepository($axios)
-    this.tags = new TagRepository($axios)
+    this.tag = new TagRepository($axios)
     this.article = new ArticleRepository($axios)
     this.role = new RoleRepository($axios)
   }

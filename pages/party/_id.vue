@@ -164,14 +164,14 @@ import { Party } from '~/types/models'
 @Component({
   async asyncData({ params, $accessor }: Context) {
     const { id } = params
-    await $accessor.parties.fetchCurrent(id)
+    await $accessor.parties.fetch({ id })
   },
 })
 export default class PartyDetailPage extends mixins(NavigationRouterHook) {
   public sliderShowMax: number = 3
 
   get party(): Party {
-    return this.$accessor.parties.current
+    return this.$accessor.parties.show
   }
 }
 </script>

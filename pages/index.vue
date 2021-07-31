@@ -96,7 +96,7 @@ import { Theme, Tag } from '~/types/models'
       await this.$accessor.types.fetchAll()
     }
 
-    await this.$accessor.themes.fetchAll()
+    await this.$accessor.themes.index({ perPage: 100 })
     await this.$accessor.discover.fetchAll()
     await this.$accessor.skills.fetchAll()
   },
@@ -114,7 +114,7 @@ export default class IndexPage extends Vue {
   }
 
   get themes(): Theme[] {
-    return this.$accessor.themes.all
+    return this.$accessor.themes.all.items
   }
 
   get skills(): Tag[] {

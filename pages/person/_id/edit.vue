@@ -40,8 +40,7 @@
               :value.sync="formData.first_name"
               :name="$t('pages.person._id.edit.labels.first_name')"
               :label="$t('pages.person._id.edit.labels.first_name')"
-              :required="true"
-              :error-message="$t('validation.required')"
+              :rules="[$rules.required]"
               :has-errors.sync="firstNameError"
             />
 
@@ -49,8 +48,7 @@
               :value.sync="formData.last_name"
               :name="$t('pages.person._id.edit.labels.last_name')"
               :label="$t('pages.person._id.edit.labels.last_name')"
-              :required="true"
-              :error-message="$t('validation.required')"
+              :rules="[$rules.required]"
               :has-errors.sync="lastNameError"
             />
 
@@ -71,7 +69,7 @@
             />
           </div>
           <div class="w-8/12">
-            <Textarea
+            <TextArea
               :value.sync="formData.about"
               :name="$t('pages.person._id.edit.labels.about')"
               :label="$t('pages.person._id.edit.labels.about')"
@@ -118,7 +116,7 @@ import { MetaAuthOptions } from '~/types/entities'
 @Component({
   async asyncData({ $accessor }: Context) {
     await $accessor.skills.fetchAll()
-    await $accessor.themes.fetchAll()
+    await $accessor.themes.index({ perPage: 100 })
   },
 
   meta: {
@@ -158,7 +156,7 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
   }
 
   get themes(): Theme[] {
-    return this.$accessor.themes.all
+    return this.$accessor.themes.all.items
   }
 
   asFormData(): FormData {

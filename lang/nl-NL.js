@@ -385,6 +385,45 @@ export default {
     },
 
     management: {
+      tags: {
+        index: {
+          heading: 'Tags',
+        },
+        create: {
+          heading: 'Tag aanmaken',
+        },
+        _id: {
+          edit: {
+            heading: 'Tag aanpassen',
+          },
+        },
+      },
+      themes: {
+        index: {
+          heading: "Thema's",
+        },
+        create: {
+          heading: 'Thema aanmaken',
+        },
+        _id: {
+          edit: {
+            heading: 'Thema aanpassen',
+          },
+        },
+      },
+      parties: {
+        index: {
+          heading: 'Partijen',
+        },
+        create: {
+          heading: 'Partij aanmaken',
+        },
+        _id: {
+          edit: {
+            heading: 'Partij aanpassen',
+          },
+        },
+      },
       users: {
         index: {
           heading: 'Gebruikers',
@@ -407,6 +446,31 @@ export default {
       create: {
         heading: 'Je hebt nog geen profiel, wil je die aanmaken?',
         cancel_text: 'Nu geen profiel aanmaken? Ga door naar het platform',
+      },
+    },
+  },
+
+  models: {
+    theme: {
+      labels: {
+        id: 'Identifier',
+        label: 'Label',
+      },
+    },
+
+    party: {
+      labels: {
+        id: 'Identifier',
+        name: 'Naam',
+        description: 'Beschrijving / Over',
+        profilePicture: 'Profielfoto',
+      },
+    },
+
+    tag: {
+      labels: {
+        id: 'Identifier',
+        label: 'Label',
       },
     },
   },

@@ -10,7 +10,7 @@ export interface Model {
 }
 
 export interface Party extends Model {
-  id: number
+  id: string
   name: string
   description: string
   partyPictureUrl: string
@@ -20,17 +20,17 @@ export interface Party extends Model {
 }
 
 export interface Tag extends Model {
-  id: number
+  id: string
   label: string
 }
 
 export interface Theme extends Model {
-  id: number
+  id: string
   label: string
 }
 
 export interface Person extends Model {
-  id: number
+  id: string
   identifier: string
   firstName: string
   lastName: string
@@ -48,7 +48,7 @@ export interface Person extends Model {
 }
 
 export interface Product extends Model {
-  id: number
+  id: string
   type: string
   title: string
   summary: string
@@ -81,7 +81,7 @@ export interface Owner extends Model {
 }
 
 export interface Project extends Model {
-  id: number
+  id: string
   title: string
   purpose: string
   description: string
@@ -117,7 +117,7 @@ export interface Role extends Model {
 }
 
 export interface Article extends Model {
-  id: number
+  id: string
   title: string
   tags?: Tag[]
   themes?: Theme[]
@@ -133,7 +133,7 @@ export interface StrapiMedia {
 }
 
 export interface Like extends Model {
-  userId: number
+  userId: string
   likedProducts: Product[]
   likedProjects: Project[]
   likedPeople: Person[]

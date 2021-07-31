@@ -38,12 +38,11 @@
               :value.sync="formData.title"
               :name="$t('pages.project.form.labels.title')"
               :label="$t('pages.project.form.labels.title')"
-              :required="true"
-              :error-message="$t('validation.required')"
+              :rules="[$rules.required]"
               :has-errors.sync="titleError"
             />
 
-            <Textarea
+            <TextArea
               :value.sync="formData.description"
               :name="$t('pages.project.form.labels.description')"
               :label="$t('pages.project.form.labels.description')"
@@ -64,7 +63,7 @@
             />
           </div>
           <div class="w-6/12">
-            <Textarea
+            <TextArea
               :value.sync="formData.purpose"
               :name="$t('pages.project.form.labels.purpose')"
               :label="$t('pages.project.form.labels.purpose')"
@@ -96,7 +95,7 @@ import { MetaAuthOptions } from '~/types/entities'
   async asyncData({ $accessor, $auth }: Context) {
     const personId = ($auth.user?.person as Person).id
 
-    await $accessor.parties.fetchAll()
+    await $accessor.parties.index({ perPage: 100 })
     await $accessor.people.fetchCurrent(personId)
   },
 
@@ -130,7 +129,7 @@ export default class ProjectEditPage extends mixins(NavigationRouterHook) {
   }
 
   get parties(): Party[] {
-    return this.$accessor.parties.all
+    return this.$accessor.parties.all.items
   }
 
   get relatedProducts(): Product[] {
