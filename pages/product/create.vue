@@ -26,7 +26,7 @@
                       :name="$t('pages.product.create.form.labels.type')"
                       :label="$t('pages.product.create.form.labels.type')"
                       :options="types"
-                      :required="true"
+                      :rules="$rules.required"
                       :error-message="$t('validation.required')"
                       :on-selected="(option) => option.label"
                     />
