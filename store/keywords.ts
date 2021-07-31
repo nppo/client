@@ -38,7 +38,7 @@ export const mutations = mutationTree(state, {
 export const actions = actionTree(
   { state, mutations },
   {
-    index(
+    fetchIndex(
       { commit },
       {
         mutation = 'setAll',
@@ -83,7 +83,7 @@ export const actions = actionTree(
         })
     },
 
-    store(
+    create(
       { commit },
       { data, mutation = 'setShow' }: StoreAction<typeof mutations>
     ): Promise<Keyword> {

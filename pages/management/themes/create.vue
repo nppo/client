@@ -44,7 +44,7 @@ export default class ThemeCreatePage extends mixins(NavigationRouterHook) {
 
   create(data: Object | FormData): void {
     this.$accessor.themes
-      .store({ data })
+      .create({ data })
       .then((theme: Theme) => {
         const route = this.localeRoute({ name: 'management-themes' })
 

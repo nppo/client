@@ -116,7 +116,7 @@ import { MetaAuthOptions, Skill } from '~/types/entities'
 @Component({
   async asyncData({ $accessor }: Context) {
     await $accessor.skills.fetchIndex({ perPage: 100 })
-    await $accessor.themes.index({ perPage: 100 })
+    await $accessor.themes.fetchIndex({ perPage: 100 })
   },
 
   meta: {

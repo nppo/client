@@ -113,7 +113,7 @@ import { Filter } from '~/types/repositories'
 
 @Component({
   async asyncData({ $accessor }) {
-    await $accessor.keywords.index({})
+    await $accessor.keywords.fetchIndex({})
   },
   middleware: ['auth'],
 })
@@ -176,7 +176,7 @@ export default class KeywordIndexPage extends mixins(
     sortBy?: SortBy[]
   }): Promise<void> {
     return this.$accessor.keywords
-      .index({
+      .fetchIndex({
         mutation: 'setAll',
         page: _params.page,
         filters: _params.filters,

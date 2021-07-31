@@ -156,8 +156,8 @@ import { Keyword, Party, Person, Product, Theme } from '~/types/models'
   },
   async asyncData({ $accessor }: Context) {
     await $accessor.productTypes.fetchAll()
-    await $accessor.keywords.index({ perPage: 100 })
-    await $accessor.themes.index({ perPage: 100 })
+    await $accessor.keywords.fetchIndex({ perPage: 100 })
+    await $accessor.themes.fetchIndex({ perPage: 100 })
     await $accessor.people.fetchAll()
 
     if ($accessor.user.current.person?.id) {

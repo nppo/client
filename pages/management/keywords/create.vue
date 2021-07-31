@@ -45,7 +45,7 @@ export default class KeywordCreatePage extends mixins(NavigationRouterHook) {
 
   create(data: Object | FormData): void {
     this.$accessor.keywords
-      .store({ data })
+      .create({ data })
       .then((keyword: Keyword) => {
         const route = this.localeRoute({ name: 'management-keywords' })
 
