@@ -4,21 +4,33 @@
       class="p-4 overflow-hidden bg-white rounded-md shadow"
       @submit.prevent="handleSubmit(submit)"
     >
-      <SelectInput
-        :value.sync="data.roles"
-        :name="$t('pages.user.edit.labels.role')"
-        :label="$t('pages.user.edit.labels.role')"
-        :options="formatRolesAsOption(roles)"
-        :rules="['required']"
-        :errors="errors.role"
-        :multiple="true"
-      />
+      <div class="flex flex-col space-x-6 md:flex-row">
+        <div class="w-1/2">
+          <TextInput
+            :value.sync="data.email"
+            :name="$t('models.user.labels.email')"
+            :label="$t('models.user.labels.email')"
+            :rules="[$rules.required, $rules.email]"
+            :errors="errors.email"
+          />
+        </div>
+        <div class="w-1/2">
+          <SelectInput
+            :value.sync="data.roles"
+            :name="$t('models.user.relationships.roles')"
+            :label="$t('models.user.relationships.roles')"
+            :options="formatRolesAsOption(roles)"
+            :errors="errors.role"
+            :multiple="true"
+          />
+        </div>
+      </div>
 
       <button
         class="self-start px-4 py-2 text-sm text-white rounded bg-orange-brand"
         type="submit"
       >
-        {{ $t('general.actions.create') }}
+        {{ $t('general.save') }}
       </button>
     </form>
   </ValidationObserver>
@@ -40,6 +52,7 @@ export default class UserForm extends Vue {
   @Prop({ default: () => {} }) readonly errors!: ValidationErrors
 
   private data = {
+    email: this.user?.email ?? '',
     roles: this.formatRolesAsOption(this.user?.roles ?? []),
   }
 

@@ -40,7 +40,7 @@
                 <TextInput
                   v-if="field.inputType === 'text'"
                   :value="field.searchValue"
-                  :name="$t(`models.tags.labels.${field.name}`)"
+                  :name="$t(`models.tag.labels.${field.name}`)"
                   type="search"
                   input-class="w-full px-5 py-3 placeholder-gray-200 border-gray-200 rounded"
                   @update:value="handleHeaderInputChanged(field.name, $event)"
@@ -48,7 +48,7 @@
                 <SelectInput
                   v-else-if="field.inputType === 'select'"
                   :value="field.searchValue"
-                  :name="$t(`models.tags.labels.${field.name}`)"
+                  :name="$t(`models.tag.labels.${field.name}`)"
                   class="min-w-48"
                   :options="field.options"
                   @update:value="handleHeaderInputChanged(field.name, $event)"
@@ -99,7 +99,7 @@
 
 <script lang="ts">
 import { Component, mixins } from 'nuxt-property-decorator'
-import Swal from 'sweetalert2/dist/sweetalert2.js'
+
 import { SortBy, TableField } from '~/types/entities'
 import { Tag } from '~/types/models'
 import { Models } from '~/types/enums'
@@ -149,7 +149,7 @@ export default class TagIndexPage extends mixins(
     this.$accessor.tags
       .delete({ id: String(tag.id) })
       .then(() => {
-        Swal.fire(
+        this.$swal.fire(
           String(this.$t('general.actions.confirm.delete.success_title')),
           String(
             this.$t('general.actions.confirm.delete.success_text', {

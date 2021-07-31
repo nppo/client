@@ -20,11 +20,13 @@
 
 <script lang="ts">
 import { Component, mixins } from 'nuxt-property-decorator'
+
 import TagForm from '~/components/Tag/TagForm.vue'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import { ValidationErrors } from '~/types/repositories'
 import { MetaAuthOptions } from '~/types/entities'
 import permissions from '~/config/Permissions'
+import { Tag } from '~/types/models'
 
 @Component({
   components: {
@@ -44,12 +46,22 @@ export default class TagCreatePage extends mixins(NavigationRouterHook) {
   create(data: Object | FormData): void {
     this.$accessor.tags
       .store({ data })
-      .then(() => {
+      .then((tag: Tag) => {
         const route = this.localeRoute({ name: 'management-tags' })
 
         if (route) {
           this.$router.push(route)
         }
+
+        this.$swal.fire(
+          String(this.$t('modals.general.create.success.title')),
+          String(
+            this.$t('modals.general.create.success.text', {
+              entity: tag.label,
+            })
+          ),
+          'success'
+        )
       })
       .catch((errors: ValidationErrors) => {
         this.errors = errors

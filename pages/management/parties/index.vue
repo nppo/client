@@ -112,7 +112,7 @@
 
 <script lang="ts">
 import { Component, mixins } from 'nuxt-property-decorator'
-import Swal from 'sweetalert2/dist/sweetalert2.js'
+
 import { SortBy, TableField } from '~/types/entities'
 import { Party } from '~/types/models'
 import { Models } from '~/types/enums'
@@ -185,7 +185,7 @@ export default class PartyIndexPage extends mixins(
     this.$accessor.parties
       .delete({ id: String(party.id) })
       .then(() => {
-        Swal.fire(
+        this.$swal.fire(
           String(this.$t('general.actions.confirm.delete.success_title')),
           String(
             this.$t('general.actions.confirm.delete.success_text', {

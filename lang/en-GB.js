@@ -437,6 +437,12 @@ export default {
         create: {
           heading: 'Create user',
         },
+
+        _id: {
+          edit: {
+            heading: 'Edit user',
+          },
+        },
       },
     },
   },
@@ -447,6 +453,21 @@ export default {
         heading: 'You do not have a profile yet, would you like to create one?',
         cancel_text:
           "Don't want to create a profile yet? Continue to the platform",
+      },
+    },
+
+    general: {
+      create: {
+        success: {
+          title: 'Succesfully created',
+          text: '{entity} has succesfully been created.',
+        },
+      },
+      edit: {
+        success: {
+          title: 'Succesfully changed',
+          text: '{entity} has succesfully been changed.',
+        },
       },
     },
   },
@@ -472,6 +493,16 @@ export default {
       labels: {
         id: 'Identifier',
         label: 'Label',
+      },
+    },
+
+    user: {
+      labels: {
+        id: 'Identifier',
+        email: 'Email',
+      },
+      relationships: {
+        roles: 'Roles',
       },
     },
   },

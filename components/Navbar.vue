@@ -85,6 +85,9 @@ export default class Navbar extends Vue {
 
   get managementPermissions(): string {
     return [
+      this.$permissions.createUser,
+      this.$permissions.updateUser,
+      this.$permissions.deleteUser,
       this.$permissions.createTag,
       this.$permissions.updateTag,
       this.$permissions.deleteTag,

@@ -437,6 +437,12 @@ export default {
         create: {
           heading: 'Gebruiker aanmaken',
         },
+
+        _id: {
+          edit: {
+            heading: 'Gebruiker bewerken',
+          },
+        },
       },
     },
   },
@@ -446,6 +452,27 @@ export default {
       create: {
         heading: 'Je hebt nog geen profiel, wil je die aanmaken?',
         cancel_text: 'Nu geen profiel aanmaken? Ga door naar het platform',
+      },
+    },
+
+    general: {
+      create: {
+        success: {
+          title: 'Succesvol aangemaakt',
+          text: '{entity} is succesvol aangemaakt.',
+        },
+      },
+      edit: {
+        success: {
+          title: 'Succesvol aangepast',
+          text: '{entity} is succesvol aangepast.',
+        },
+      },
+      delete: {
+        success: {
+          title: 'Verwijderd',
+          text: '{entity} is succesvol verwijderd.',
+        },
       },
     },
   },
@@ -471,6 +498,16 @@ export default {
       labels: {
         id: 'Identifier',
         label: 'Label',
+      },
+    },
+
+    user: {
+      labels: {
+        id: 'Identifier',
+        email: 'Email',
+      },
+      relationships: {
+        roles: 'Rollen',
       },
     },
   },

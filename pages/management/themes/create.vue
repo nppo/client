@@ -20,10 +20,12 @@
 
 <script lang="ts">
 import { Component, mixins } from 'nuxt-property-decorator'
+
 import ThemeForm from '~/components/Theme/ThemeForm.vue'
 import permissions from '~/config/Permissions'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import { MetaAuthOptions } from '~/types/entities'
+import { Theme } from '~/types/models'
 import { ValidationErrors } from '~/types/repositories'
 
 @Component({
@@ -43,12 +45,22 @@ export default class ThemeCreatePage extends mixins(NavigationRouterHook) {
   create(data: Object | FormData): void {
     this.$accessor.themes
       .store({ data })
-      .then(() => {
+      .then((theme: Theme) => {
         const route = this.localeRoute({ name: 'management-themes' })
 
         if (route) {
           this.$router.push(route)
         }
+
+        this.$swal.fire(
+          String(this.$t('modals.general.create.success.title')),
+          String(
+            this.$t('modals.general.create.success.text', {
+              entity: theme.label,
+            })
+          ),
+          'success'
+        )
       })
       .catch((errors: ValidationErrors) => {
         this.errors = errors

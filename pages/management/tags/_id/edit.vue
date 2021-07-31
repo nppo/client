@@ -12,7 +12,7 @@
           </h1>
         </div>
 
-        <TagForm v-if="tag" :errors="errors" :tag="tag" @submit="update" />
+        <TagForm :errors="errors" :tag="tag" @submit="update" />
       </div>
     </div>
   </div>
@@ -20,6 +20,7 @@
 
 <script lang="ts">
 import { Component, mixins } from 'nuxt-property-decorator'
+
 import TagForm from '~/components/Tag/TagForm.vue'
 import permissions from '~/config/Permissions'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
@@ -51,12 +52,22 @@ export default class TagEditPage extends mixins(NavigationRouterHook) {
   update(data: Object | FormData): void {
     this.$accessor.tags
       .update({ id: String(this.tag.id), data })
-      .then(() => {
+      .then((tag: Tag) => {
         const route = this.localeRoute({ name: 'management-tags' })
 
         if (route) {
           this.$router.push(route)
         }
+
+        this.$swal.fire(
+          String(this.$t('modals.general.edit.success.title')),
+          String(
+            this.$t('modals.general.edit.success.text', {
+              entity: tag.label,
+            })
+          ),
+          'success'
+        )
       })
       .catch((errors: ValidationErrors) => {
         this.errors = errors

@@ -2,6 +2,7 @@ export const permissions = {
   updateUser: 'update user',
   deleteUser: 'delete user',
   createUser: 'create user',
+
   createTag: 'create tag',
   updateTag: 'update tag',
   deleteTag: 'delete tag',

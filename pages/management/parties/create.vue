@@ -20,12 +20,14 @@
 
 <script lang="ts">
 import { Component, mixins } from 'nuxt-property-decorator'
+
 import objectToFormData from '~/common/utils/objectToFormData'
 import PartyForm from '~/components/Party/PartyForm.vue'
 import permissions from '~/config/Permissions'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import { MetaAuthOptions } from '~/types/entities'
 import { ValidationErrors } from '~/types/repositories'
+import { Party } from '~/types/models'
 
 @Component({
   components: {
@@ -44,12 +46,22 @@ export default class PartyCreatePage extends mixins(NavigationRouterHook) {
   create(data: Object | FormData): void {
     this.$accessor.parties
       .store({ data: objectToFormData(data) })
-      .then(() => {
+      .then((party: Party) => {
         const route = this.localeRoute({ name: 'management-parties' })
 
         if (route) {
           this.$router.push(route)
         }
+
+        this.$swal.fire(
+          String(this.$t('modals.general.create.success.title')),
+          String(
+            this.$t('modals.general.create.success.text', {
+              entity: party.name,
+            })
+          ),
+          'success'
+        )
       })
       .catch((errors: ValidationErrors) => {
         this.errors = errors

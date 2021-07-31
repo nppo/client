@@ -11,7 +11,7 @@
             {{ $t('pages.management.users.index.heading') }}
           </h1>
 
-          <CreateButton page="user" />
+          <CreateButton page="management/users" />
         </div>
 
         <Table
@@ -59,12 +59,7 @@
           <template #default>
             <tr v-for="user in users" :key="user.id" class="text-gray-500">
               <Value>
-                <LocaleLink
-                  class="font-semibold text-black hover:text-blue-700"
-                  :path="`/user/${user.id}`"
-                >
-                  {{ user.id }}
-                </LocaleLink>
+                {{ user.id }}
               </Value>
 
               <Value>
@@ -73,7 +68,7 @@
 
               <Value class="w-1">
                 <div class="flex items-center space-x-2">
-                  <EditButton :entity-id="user.id" page="user" />
+                  <EditButton :entity-id="user.id" page="management/users" />
                   <DeleteButton @delete-entity="deleteEntity(user)" />
                 </div>
               </Value>
@@ -96,7 +91,7 @@
 
 <script lang="ts">
 import { Component, mixins } from 'nuxt-property-decorator'
-import Swal from 'sweetalert2/dist/sweetalert2.js'
+
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import TableInteraction from '~/mixins/table-interaction'
 import { SortBy, TableField } from '~/types/entities'
@@ -135,9 +130,7 @@ export default class ManagementPage extends mixins(
   ].map((field) => ({
     ...field,
     label: String(
-      field.name
-        ? this.$t(`pages.management.users.index.table_fields.${field.name}`)
-        : ''
+      field.name ? this.$t(`models.user.labels.${field.name}`) : ''
     ),
   }))
 
@@ -161,17 +154,22 @@ export default class ManagementPage extends mixins(
   }
 
   deleteEntity(user: User): void {
-    this.$accessor.user.delete({ id: String(user.id) }).then(() =>
-      Swal.fire(
-        String(this.$t('general.actions.confirm.delete.success_title')),
-        String(
-          this.$t('general.actions.confirm.delete.success_text', {
-            entity: user.email,
-          })
-        ),
-        'success'
-      )
-    )
+    this.$accessor.user
+      .delete({ id: String(user.id) })
+      .then(() => {
+        this.$swal.fire(
+          String(this.$t('modals.general.create.success.title')),
+          String(
+            this.$t('modals.general.create.success.text', {
+              entity: user.email,
+            })
+          ),
+          'success'
+        )
+      })
+      .finally(() => {
+        this.fetchTableData(this.getCurrentParams({}))
+      })
   }
 }
 </script>

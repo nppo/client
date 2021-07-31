@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import { Component, mixins } from 'nuxt-property-decorator'
-import Swal from 'sweetalert2/dist/sweetalert2.js'
+
 import permissions from '~/config/Permissions'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import { MetaAuthOptions } from '~/types/entities'
@@ -49,11 +49,11 @@ export default class UserCreatePage extends mixins(NavigationRouterHook) {
           this.$router.push(route)
         }
 
-        Swal.fire(
-          String(this.$t('general.actions.confirm.edit.success_title')),
+        this.$swal.fire(
+          String(this.$t('modals.general.create.success.title')),
           String(
-            this.$t('general.actions.confirm.edit.success_text', {
-              user: user.email,
+            this.$t('modals.general.create.success.text', {
+              entity: user.email,
             })
           ),
           'success'

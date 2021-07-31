@@ -62,6 +62,8 @@ export default {
     'nuxt-typed-vuex',
     // Doc: https://github.com/nuxt-community/google-fonts
     '@nuxtjs/google-fonts',
+    // Doc: https://github.com/avil13/vue-sweetalert2
+    'vue-sweetalert2/nuxt',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

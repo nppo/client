@@ -9,14 +9,14 @@
         <div class="flex items-center mb-6 space-x-3">
           <h1 class="text-4xl font-bold">
             {{
-              $t('pages.management.users.edit.heading', {
-                name: user.email,
+              $t('pages.management.users._id.edit.heading', {
+                email: user.email,
               })
             }}
           </h1>
         </div>
 
-        <UserForm v-if="user" :errors="errors" :user="user" @submit="update" />
+        <UserForm :errors="errors" :user="user" @submit="update" />
       </div>
     </div>
   </div>
@@ -24,7 +24,7 @@
 
 <script lang="ts">
 import { Component, mixins } from 'nuxt-property-decorator'
-import Swal from 'sweetalert2/dist/sweetalert2.js'
+
 import permissions from '~/config/Permissions'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import { MetaAuthOptions } from '~/types/entities'
@@ -53,18 +53,18 @@ export default class UserEditPage extends mixins(NavigationRouterHook) {
   update(data: Object | FormData): void {
     this.$accessor.user
       .update({ id: this.user.id, data })
-      .then(() => {
+      .then((user: User) => {
         const route = this.localeRoute({ name: 'management-users' })
 
         if (route) {
           this.$router.push(route)
         }
 
-        Swal.fire(
-          String(this.$t('general.actions.confirm.edit.success_title')),
+        this.$swal.fire(
+          String(this.$t('modals.general.edit.success.title')),
           String(
-            this.$t('general.actions.confirm.edit.success_text', {
-              user: this.user.email,
+            this.$t('modals.general.edit.success.text', {
+              entity: user.email,
             })
           ),
           'success'
