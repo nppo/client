@@ -21,11 +21,11 @@ export const state = () => ({
 export type PartiesState = ReturnType<typeof state>
 
 export const mutations = mutationTree(state, {
-  setAll(state: PartiesState, themes: Party[]): void {
-    state.all.items = themes
+  setAll(state: PartiesState, parties: Party[]): void {
+    state.all.items = parties
   },
-  appendAll(state: PartiesState, themes: Party[]): void {
-    state.all.items = [...state.all.items, ...themes]
+  appendAll(state: PartiesState, parties: Party[]): void {
+    state.all.items = [...state.all.items, ...parties]
   },
   setMeta(state: PartiesState, meta: any): void {
     state.all.meta = meta

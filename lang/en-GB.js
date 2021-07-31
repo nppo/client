@@ -383,16 +383,16 @@ export default {
     },
 
     management: {
-      tags: {
+      keywords: {
         index: {
-          heading: 'Tags',
+          heading: 'Keywords',
         },
         create: {
-          heading: 'Create tag',
+          heading: 'Create keyword',
         },
         _id: {
           edit: {
-            heading: 'Edit tag',
+            heading: 'Edit keyword',
           },
         },
       },
@@ -504,7 +504,7 @@ export default {
       },
     },
 
-    tag: {
+    keyword: {
       labels: {
         id: 'Identifier',
         label: 'Label',

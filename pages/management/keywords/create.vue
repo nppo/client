@@ -8,11 +8,11 @@
       <div class="mt-18">
         <div class="flex items-center mb-6 space-x-3">
           <h1 class="text-4xl font-bold">
-            {{ $t('pages.management.tags._id.edit.heading') }}
+            {{ $t('pages.management.keywords.index.heading') }}
           </h1>
         </div>
 
-        <TagForm :errors="errors" :tag="tag" @submit="update" />
+        <KeywordForm :errors="errors" @submit="create" />
       </div>
     </div>
   </div>
@@ -21,49 +21,43 @@
 <script lang="ts">
 import { Component, mixins } from 'nuxt-property-decorator'
 
-import TagForm from '~/components/Tag/TagForm.vue'
-import permissions from '~/config/Permissions'
+import KeywordForm from '~/components/Keyword/KeywordForm.vue'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
-import { MetaAuthOptions } from '~/types/entities'
-import { Tag } from '~/types/models'
 import { ValidationErrors } from '~/types/repositories'
+import { MetaAuthOptions } from '~/types/entities'
+import permissions from '~/config/Permissions'
+import { Keyword } from '~/types/models'
 
 @Component({
-  async asyncData({ params, $accessor }) {
-    await $accessor.tags.fetch({ id: params.id })
-  },
   components: {
-    TagForm,
+    KeywordForm,
   },
   middleware: ['auth', 'check-permissions'],
+
   meta: {
     auth: {
-      requiredPermissions: [permissions.updateTag],
+      requiredPermissions: [permissions.createKeyword],
     } as MetaAuthOptions,
   },
 })
-export default class TagEditPage extends mixins(NavigationRouterHook) {
+export default class KeywordCreatePage extends mixins(NavigationRouterHook) {
   private errors: ValidationErrors | object = {}
 
-  get tag(): Tag {
-    return this.$accessor.tags.show
-  }
-
-  update(data: Object | FormData): void {
-    this.$accessor.tags
-      .update({ id: String(this.tag.id), data })
-      .then((tag: Tag) => {
-        const route = this.localeRoute({ name: 'management-tags' })
+  create(data: Object | FormData): void {
+    this.$accessor.keywords
+      .store({ data })
+      .then((keyword: Keyword) => {
+        const route = this.localeRoute({ name: 'management-keywords' })
 
         if (route) {
           this.$router.push(route)
         }
 
         this.$swal.fire(
-          String(this.$t('modals.general.edit.success.title')),
+          String(this.$t('modals.general.create.success.title')),
           String(
-            this.$t('modals.general.edit.success.text', {
-              entity: tag.label,
+            this.$t('modals.general.create.success.text', {
+              entity: keyword.label,
             })
           ),
           'success'

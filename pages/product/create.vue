@@ -91,9 +91,9 @@
                   />
 
                   <Multiselect
-                    :entity.sync="formData.tags"
-                    :options="tags"
-                    :label="$t('pages.product.create.form.labels.tags')"
+                    :entity.sync="formData.keywords"
+                    :options="keywords"
+                    :label="$t('pages.product.create.form.labels.keywords')"
                     :taggable="true"
                   />
 
@@ -148,7 +148,7 @@ import { Context } from '@nuxt/types'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import objectToFormData from '~/common/utils/objectToFormData'
 import { Type } from '~/types/entities'
-import { Party, Person, Product, Tag, Theme } from '~/types/models'
+import { Keyword, Party, Person, Product, Theme } from '~/types/models'
 
 @Component({
   components: {
@@ -156,7 +156,7 @@ import { Party, Person, Product, Tag, Theme } from '~/types/models'
   },
   async asyncData({ $accessor }: Context) {
     await $accessor.productTypes.fetchAll()
-    await $accessor.tags.index({ perPage: 100 })
+    await $accessor.keywords.index({ perPage: 100 })
     await $accessor.themes.index({ perPage: 100 })
     await $accessor.people.fetchAll()
 
@@ -170,7 +170,7 @@ import { Party, Person, Product, Tag, Theme } from '~/types/models'
         title: '',
         summary: '',
         description: '',
-        tags: [],
+        keywords: [],
         themes: [],
         people: [],
         parties: [],
@@ -191,8 +191,8 @@ export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
     return this.$accessor.productTypes.all
   }
 
-  get tags(): Tag[] {
-    return this.$accessor.tags.all
+  get keywords(): Keyword[] {
+    return this.$accessor.keywords.all.items
   }
 
   get themes(): Theme[] {

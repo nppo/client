@@ -3,9 +3,9 @@ export const permissions = {
   deleteUser: 'delete user',
   createUser: 'create user',
 
-  createTag: 'create tag',
-  updateTag: 'update tag',
-  deleteTag: 'delete tag',
+  createKeyword: 'create keyword',
+  updateKeyword: 'update keyword',
+  deleteKeyword: 'delete keyword',
 
   createTheme: 'create theme',
   updateTheme: 'update theme',

@@ -14,7 +14,7 @@ import PartyRepository from '~/repositories/PartyRepository'
 import LikeRepository from '~/repositories/LikeRepository'
 import TypeRepository from '~/repositories/TypeRepository'
 import SkillRepository from '~/repositories/SkillRepository'
-import TagRepository from '~/repositories/TagRepository'
+import KeywordRepository from '~/repositories/KeywordRepository'
 
 export default class Repositories {
   statistics: StatisticsRepository
@@ -30,9 +30,9 @@ export default class Repositories {
   type: TypeRepository
   skill: SkillRepository
   productTypes: ProductTypeRepository
-  tag: TagRepository
   article: ArticleRepository
   role: RoleRepository
+  keyword: KeywordRepository
 
   constructor($axios: NuxtAxiosInstance) {
     this.statistics = new StatisticsRepository($axios)
@@ -48,8 +48,8 @@ export default class Repositories {
     this.type = new TypeRepository($axios)
     this.skill = new SkillRepository($axios)
     this.productTypes = new ProductTypeRepository($axios)
-    this.tag = new TagRepository($axios)
     this.article = new ArticleRepository($axios)
     this.role = new RoleRepository($axios)
+    this.keyword = new KeywordRepository($axios)
   }
 }

@@ -24,10 +24,9 @@ export interface Tag extends Model {
   label: string
 }
 
-export interface Theme extends Model {
-  id: string
-  label: string
-}
+export interface Theme extends Tag {}
+export interface Keyword extends Tag {}
+export interface Skill extends Tag {}
 
 export interface Person extends Model {
   id: string
@@ -39,7 +38,7 @@ export interface Person extends Model {
   profilePictureUrl: string
   phone: string
   about: string
-  skills?: Tag[]
+  skills?: Skill[]
   parties?: Party[]
   products?: Product[]
   projects?: Project[]
@@ -60,7 +59,7 @@ export interface Product extends Model {
   themes?: Theme[]
   parties?: Party[]
   people?: Person[]
-  tags?: Tag[]
+  keywords?: Keyword[]
   links?: ProductLinks
   meta?: MetaData[]
   children?: Product[]
@@ -77,7 +76,7 @@ export interface Owner extends Model {
   phone: string
   about: string
   identifier: string
-  tags?: Tag[]
+  keywords?: Keyword[]
 }
 
 export interface Project extends Model {
@@ -90,7 +89,7 @@ export interface Project extends Model {
   createdAt: string
   owner?: Owner
   meta?: MetaData[]
-  tags?: Tag[]
+  keywords?: Keyword[]
   themes?: Theme[]
   parties?: Party[]
   people?: Person[]
@@ -119,7 +118,7 @@ export interface Role extends Model {
 export interface Article extends Model {
   id: string
   title: string
-  tags?: Tag[]
+  keywords?: Keyword[]
   themes?: Theme[]
   content: Array<object>
   header: StrapiMedia[]

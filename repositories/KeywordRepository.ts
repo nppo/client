@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios'
 import AbstractRepository from './AbstractRepository'
-import { Tag } from '~/types/models'
+import { Keyword } from '~/types/models'
 import {
   IndexRequest,
   MultipleResultsWithMeta,
@@ -8,41 +8,43 @@ import {
   SingleResult,
 } from '~/types/repositories'
 
-const resource = 'tags'
+const resource = 'keywords'
 
-export default class TagRepository extends AbstractRepository {
+export default class KeywordRepository extends AbstractRepository {
   all({
     page = 1,
     perPage = 15,
     filters = [],
     sorts = [],
   }: IndexRequest): Promise<
-    AxiosResponse<MultipleResultsWithMeta<Tag, PaginateMeta>>
+    AxiosResponse<MultipleResultsWithMeta<Keyword, PaginateMeta>>
   > {
     return this.axios.get(
       `/api/${resource}?${this.allToQuery(page, perPage, filters, sorts)}`
     )
   }
 
-  fetch(id: string): Promise<AxiosResponse<SingleResult<Tag>>> {
+  fetch(id: string): Promise<AxiosResponse<SingleResult<Keyword>>> {
     return this.axios.get(`/api/${resource}/${id}`)
   }
 
-  store(data: Object | FormData): Promise<AxiosResponse<SingleResult<Tag>>> {
+  store(
+    data: Object | FormData
+  ): Promise<AxiosResponse<SingleResult<Keyword>>> {
     return this.axios.post(`api/${resource}`, data)
   }
 
   update(
     id: string,
     data: Object | FormData
-  ): Promise<AxiosResponse<SingleResult<Tag>>> {
+  ): Promise<AxiosResponse<SingleResult<Keyword>>> {
     return this.axios.post(`api/${resource}/${id}`, {
       ...data,
       _method: 'PUT',
     })
   }
 
-  delete(id: string): Promise<AxiosResponse<SingleResult<Tag>>> {
+  delete(id: string): Promise<AxiosResponse<SingleResult<Keyword>>> {
     return this.axios.delete(`/api/${resource}/${id}`)
   }
 }

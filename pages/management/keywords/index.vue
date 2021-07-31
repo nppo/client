@@ -8,18 +8,18 @@
       <div class="mt-18">
         <div class="flex items-center mb-6 space-x-3">
           <h1 class="text-4xl font-bold">
-            {{ $t('pages.management.tags.index.heading') }}
+            {{ $t('pages.management.keywords.index.heading') }}
           </h1>
 
           <Badge
-            v-if="$accessor.tags.all.meta.total"
-            :text="`${$accessor.tags.all.meta.total}`"
+            v-if="$accessor.keywords.all.meta.total"
+            :text="`${$accessor.keywords.all.meta.total}`"
             color="yellow-brand"
           />
 
           <CreateButton
-            v-if="$gates.hasPermission($permissions.createTag)"
-            page="management/tags"
+            v-if="$gates.hasPermission($permissions.createKeyword)"
+            page="management/keywords"
           />
         </div>
 
@@ -40,7 +40,7 @@
                 <TextInput
                   v-if="field.inputType === 'text'"
                   :value="field.searchValue"
-                  :name="$t(`models.tag.labels.${field.name}`)"
+                  :name="$t(`models.keyword.labels.${field.name}`)"
                   type="search"
                   input-class="w-full px-5 py-3 placeholder-gray-200 border-gray-200 rounded"
                   @update:value="handleHeaderInputChanged(field.name, $event)"
@@ -48,7 +48,7 @@
                 <SelectInput
                   v-else-if="field.inputType === 'select'"
                   :value="field.searchValue"
-                  :name="$t(`models.tag.labels.${field.name}`)"
+                  :name="$t(`models.keyword.labels.${field.name}`)"
                   class="min-w-48"
                   :options="field.options"
                   @update:value="handleHeaderInputChanged(field.name, $event)"
@@ -58,34 +58,38 @@
           </template>
 
           <template #default>
-            <tr v-for="(tag, index) in tags" :key="index" class="text-gray-500">
+            <tr
+              v-for="(keyword, index) in keywords"
+              :key="index"
+              class="text-gray-500"
+            >
               <Value>
-                {{ tag.id }}
+                {{ keyword.id }}
               </Value>
 
               <Value>
-                {{ tag.label }}
+                {{ keyword.label }}
               </Value>
 
               <Value class="w-1">
                 <div class="flex items-center space-x-2">
                   <EditButton
-                    v-if="$gates.hasPermission($permissions.updateTag)"
-                    :entity-id="tag.id"
-                    page="management/tags"
+                    v-if="$gates.hasPermission($permissions.updateKeyword)"
+                    :entity-id="keyword.id"
+                    page="management/keywords"
                   />
                   <DeleteButton
-                    v-if="$gates.hasPermission($permissions.deleteTag)"
-                    @delete-entity="deleteEntity(tag)"
+                    v-if="$gates.hasPermission($permissions.deleteKeyword)"
+                    @delete-entity="deleteEntity(keyword)"
                   />
                 </div>
               </Value>
             </tr>
-            <tr v-if="tags.length < 1">
+            <tr v-if="keywords.length < 1">
               <td colspan="6" class="p-4 text-center">
                 {{
                   $t('general.noResults', {
-                    model: $t('pages.tags.index.heading'),
+                    model: $t('pages.keywords.index.heading'),
                   })
                 }}
               </td>
@@ -101,7 +105,7 @@
 import { Component, mixins } from 'nuxt-property-decorator'
 
 import { SortBy, TableField } from '~/types/entities'
-import { Tag } from '~/types/models'
+import { Keyword } from '~/types/models'
 import { Models } from '~/types/enums'
 import TableInteraction from '~/mixins/table-interaction'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
@@ -109,11 +113,11 @@ import { Filter } from '~/types/repositories'
 
 @Component({
   async asyncData({ $accessor }) {
-    await $accessor.tags.index({})
+    await $accessor.keywords.index({})
   },
   middleware: ['auth'],
 })
-export default class TagIndexPage extends mixins(
+export default class KeywordIndexPage extends mixins(
   TableInteraction,
   NavigationRouterHook
 ) {
@@ -138,22 +142,24 @@ export default class TagIndexPage extends mixins(
     },
   ].map((field) => ({
     ...field,
-    label: String(field.name ? this.$t(`models.tag.labels.${field.name}`) : ''),
+    label: String(
+      field.name ? this.$t(`models.keyword.labels.${field.name}`) : ''
+    ),
   }))
 
-  get tags(): Tag[] {
-    return this.$accessor.tags.all.items
+  get keywords(): Keyword[] {
+    return this.$accessor.keywords.all.items
   }
 
-  deleteEntity(tag: Tag): void {
-    this.$accessor.tags
-      .delete({ id: String(tag.id) })
+  deleteEntity(keyword: Keyword): void {
+    this.$accessor.keywords
+      .delete({ id: String(keyword.id) })
       .then(() => {
         this.$swal.fire(
           String(this.$t('general.actions.confirm.delete.success_title')),
           String(
             this.$t('general.actions.confirm.delete.success_text', {
-              entity: tag.label,
+              entity: keyword.label,
             })
           ),
           'success'
@@ -169,7 +175,7 @@ export default class TagIndexPage extends mixins(
     filters?: Filter[]
     sortBy?: SortBy[]
   }): Promise<void> {
-    return this.$accessor.tags
+    return this.$accessor.keywords
       .index({
         mutation: 'setAll',
         page: _params.page,

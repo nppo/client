@@ -124,16 +124,16 @@
             <hr class="mb-8 border-gray-200" />
           </div>
 
-          <div v-if="project.tags && project.tags.length > 0">
+          <div v-if="project.keywords && project.keywords.length > 0">
             <h3 class="mb-5 text-2xl font-bold">
-              {{ $t('pages.project._id.headings.tags') }}
+              {{ $t('pages.project._id.headings.keywords') }}
             </h3>
 
             <div class="flex flex-wrap mb-8">
               <Badge
-                v-for="tag in project.tags"
-                :key="'project_tag_' + tag.id"
-                :text="tag.label"
+                v-for="keyword in project.keywords"
+                :key="'project_keyword_' + keyword.id"
+                :text="keyword.label"
                 class="mb-2 mr-2"
               />
             </div>

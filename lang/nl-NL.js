@@ -385,19 +385,20 @@ export default {
     },
 
     management: {
-      tags: {
+      keywords: {
         index: {
-          heading: 'Tags',
+          heading: 'Trefwoorden',
         },
         create: {
-          heading: 'Tag aanmaken',
+          heading: 'Trefwoord aanmaken',
         },
         _id: {
           edit: {
-            heading: 'Tag aanpassen',
+            heading: 'Trefwoord aanpassen',
           },
         },
       },
+
       themes: {
         index: {
           heading: "Thema's",
@@ -411,6 +412,7 @@ export default {
           },
         },
       },
+
       parties: {
         index: {
           heading: 'Partijen',
@@ -424,6 +426,7 @@ export default {
           },
         },
       },
+
       users: {
         index: {
           heading: 'Gebruikers',
@@ -503,7 +506,7 @@ export default {
       },
     },
 
-    tag: {
+    keyword: {
       labels: {
         id: 'Identifier',
         label: 'Label',

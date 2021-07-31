@@ -50,10 +50,10 @@
           <div class="w-6/12">
             <div class="flex flex-col mb-4">
               <Multiselect
-                :entity.sync="formData.tags"
-                :options="tags"
+                :entity.sync="formData.keywords"
+                :options="keywords"
                 :taggable="true"
-                :label="$t('pages.product._id.edit.labels.tags')"
+                :label="$t('pages.product._id.edit.labels.keywords')"
               />
 
               <Multiselect
@@ -108,7 +108,7 @@ import { ValidationObserver } from 'vee-validate'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import { MetaAuthOptions, Type } from '~/types/entities'
 
-import { Product, Party, Person, Tag, Theme } from '~/types/models'
+import { Product, Party, Person, Theme, Keyword } from '~/types/models'
 import objectToFormData from '~/common/utils/objectToFormData'
 
 @Component({
@@ -121,7 +121,7 @@ import objectToFormData from '~/common/utils/objectToFormData'
   middleware: ['auth', 'check-permissions'],
 
   async asyncData({ $accessor }) {
-    await $accessor.tags.index({ perPage: 100 })
+    await $accessor.keywords.index({ perPage: 100 })
     await $accessor.themes.index({ perPage: 100 })
     await $accessor.people.fetchAll()
 
@@ -141,7 +141,7 @@ export default class ProductEditPage extends mixins(NavigationRouterHook) {
     summary: '',
     description: '',
     file: null,
-    tags: [],
+    keywords: [],
     themes: [],
     people: [],
     parties: [],
@@ -167,8 +167,8 @@ export default class ProductEditPage extends mixins(NavigationRouterHook) {
     return types
   }
 
-  get tags(): Tag[] {
-    return this.$accessor.tags.all
+  get keywords(): Keyword[] {
+    return this.$accessor.keywords.all.items
   }
 
   get themes(): Theme[] {
@@ -215,7 +215,7 @@ export default class ProductEditPage extends mixins(NavigationRouterHook) {
     this.formData.summary = this.product.summary
     this.formData.description = this.product.description
     this.formData.type = this.product.type
-    this.formData.tags = this.product.tags
+    this.formData.keywords = this.product.keywords
     this.formData.themes = this.product.themes
     this.formData.people = this.product.people
     this.formData.parties = this.product.parties

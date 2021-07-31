@@ -1,6 +1,6 @@
 import { actionTree, mutationTree } from 'nuxt-typed-vuex'
 import { AxiosResponse, AxiosError } from 'axios'
-import { Tag } from '~/types/models'
+import { Keyword } from '~/types/models'
 import { MultipleResultsWithMeta, SingleResult } from '~/types/repositories'
 import {
   DeleteAction,
@@ -12,26 +12,26 @@ import {
 
 export const state = () => ({
   all: {
-    items: [] as Tag[],
+    items: [] as Keyword[],
     meta: {} as any,
   },
-  show: {} as Tag,
+  show: {} as Keyword,
 })
 
-export type TagsState = ReturnType<typeof state>
+export type KeywordsState = ReturnType<typeof state>
 
 export const mutations = mutationTree(state, {
-  setAll(state: TagsState, themes: Tag[]): void {
-    state.all.items = themes
+  setAll(state: KeywordsState, keywords: Keyword[]): void {
+    state.all.items = keywords
   },
-  appendAll(state: TagsState, themes: Tag[]): void {
-    state.all.items = [...state.all.items, ...themes]
+  appendAll(state: KeywordsState, keywords: Keyword[]): void {
+    state.all.items = [...state.all.items, ...keywords]
   },
-  setMeta(state: TagsState, meta: any): void {
+  setMeta(state: KeywordsState, meta: any): void {
     state.all.meta = meta
   },
-  setShow(state: TagsState, theme: Tag): void {
-    state.show = theme
+  setShow(state: KeywordsState, keyword: Keyword): void {
+    state.show = keyword
   },
 })
 
@@ -47,10 +47,10 @@ export const actions = actionTree(
         filters = [],
         sorts = [],
       }: PaginatedIndexAction<typeof mutations>
-    ): Promise<Tag[]> {
-      return this.$repositories.tag
+    ): Promise<Keyword[]> {
+      return this.$repositories.keyword
         .all({ page, sorts, filters, perPage })
-        .then((response: AxiosResponse<MultipleResultsWithMeta<Tag>>) => {
+        .then((response: AxiosResponse<MultipleResultsWithMeta<Keyword>>) => {
           commit('setMeta', response.data.meta)
 
           if (mutation) {
@@ -64,10 +64,10 @@ export const actions = actionTree(
     fetch(
       { commit },
       { id, mutation = 'setShow' }: FetchAction<typeof mutations>
-    ): Promise<Tag> {
-      return this.$repositories.tag
+    ): Promise<Keyword> {
+      return this.$repositories.keyword
         .fetch(String(id))
-        .then((response: AxiosResponse<SingleResult<Tag>>) => {
+        .then((response: AxiosResponse<SingleResult<Keyword>>) => {
           if (mutation) {
             commit('setShow', response.data.data)
           }
@@ -86,10 +86,10 @@ export const actions = actionTree(
     store(
       { commit },
       { data, mutation = 'setShow' }: StoreAction<typeof mutations>
-    ): Promise<Tag> {
-      return this.$repositories.tag
+    ): Promise<Keyword> {
+      return this.$repositories.keyword
         .store(data)
-        .then((response: AxiosResponse<SingleResult<Tag>>) => {
+        .then((response: AxiosResponse<SingleResult<Keyword>>) => {
           if (mutation) {
             commit('setShow', response.data.data)
           }
@@ -108,10 +108,10 @@ export const actions = actionTree(
     update(
       { commit },
       { id, data, mutation = 'setShow' }: UpdateAction<typeof mutations>
-    ): Promise<Tag> {
-      return this.$repositories.tag
+    ): Promise<Keyword> {
+      return this.$repositories.keyword
         .update(String(id), data)
-        .then((response: AxiosResponse<SingleResult<Tag>>) => {
+        .then((response: AxiosResponse<SingleResult<Keyword>>) => {
           if (mutation) {
             commit('setShow', response.data.data)
           }
@@ -130,10 +130,10 @@ export const actions = actionTree(
     delete(
       { commit },
       { id, mutation = null }: DeleteAction<typeof mutations>
-    ): Promise<Tag> {
-      return this.$repositories.tag
+    ): Promise<Keyword> {
+      return this.$repositories.keyword
         .delete(String(id))
-        .then((response: AxiosResponse<SingleResult<Tag>>) => {
+        .then((response: AxiosResponse<SingleResult<Keyword>>) => {
           if (mutation) {
             commit('setShow', response.data.data)
           }

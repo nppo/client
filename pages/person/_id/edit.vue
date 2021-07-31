@@ -109,13 +109,13 @@ import { Component, mixins, Ref } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
 import { Context } from '@nuxt/types'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
-import { Person, Tag, Theme } from '~/types/models'
+import { Person, Theme } from '~/types/models'
 import objectToFormData from '~/common/utils/objectToFormData'
-import { MetaAuthOptions } from '~/types/entities'
+import { MetaAuthOptions, Skill } from '~/types/entities'
 
 @Component({
   async asyncData({ $accessor }: Context) {
-    await $accessor.skills.fetchAll()
+    await $accessor.skills.fetchIndex({ perPage: 100 })
     await $accessor.themes.index({ perPage: 100 })
   },
 
@@ -151,8 +151,8 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
     return this.$accessor.people.current
   }
 
-  get skills(): Tag[] {
-    return this.$accessor.skills.all
+  get skills(): Skill[] {
+    return this.$accessor.skills.all.items
   }
 
   get themes(): Theme[] {

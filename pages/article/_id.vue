@@ -22,16 +22,16 @@
             :data="part"
             class="mb-18"
           />
-          <div v-if="article.tags && article.tags.length > 0">
+          <div v-if="article.keywords && article.keywords.length > 0">
             <h2 class="mb-3 text-2xl font-bold">
-              {{ $t('pages.article._id.headings.tags') }}
+              {{ $t('pages.article._id.headings.keywords') }}
             </h2>
 
             <div class="flex flex-wrap mb-8">
               <Badge
-                v-for="tag in article.tags"
-                :key="'article_tag_' + tag.id"
-                :text="tag.label"
+                v-for="keyword in article.keywords"
+                :key="'article_keyword_' + keyword.id"
+                :text="keyword.label"
                 class="mb-2 mr-2"
               />
             </div>

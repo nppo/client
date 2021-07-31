@@ -88,9 +88,9 @@ export default class Navbar extends Vue {
       this.$permissions.createUser,
       this.$permissions.updateUser,
       this.$permissions.deleteUser,
-      this.$permissions.createTag,
-      this.$permissions.updateTag,
-      this.$permissions.deleteTag,
+      this.$permissions.createKeyword,
+      this.$permissions.updateKeyword,
+      this.$permissions.deleteKeyword,
       this.$permissions.createTheme,
       this.$permissions.updateTheme,
     ].join('|')

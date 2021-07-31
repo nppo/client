@@ -16,6 +16,7 @@ import * as skills from '~/store/skills'
 import * as likes from '~/store/likes'
 import * as users from '~/store/users'
 import * as roles from '~/store/roles'
+import * as keywords from '~/store/keywords'
 
 export const state = () => ({})
 
@@ -39,5 +40,6 @@ export const accessorType = getAccessorType({
     likes,
     users,
     roles,
+    keywords,
   },
 })

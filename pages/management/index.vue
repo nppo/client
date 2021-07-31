@@ -33,7 +33,7 @@
           <h2 class="text-2xl font-bold">Thema's</h2>
         </LocaleLink>
         <LocaleLink
-          path="/management/tags"
+          path="/management/keywords"
           class="flex items-center p-5 bg-white rounded shadow hover:bg-opacity-50 justify-evenly"
         >
           <font-awesome-icon
@@ -41,7 +41,7 @@
             icon="tags"
           />
 
-          <h2 class="text-2xl font-bold">Tags</h2>
+          <h2 class="text-2xl font-bold">Trefwoorden</h2>
         </LocaleLink>
         <LocaleLink
           path="/management/parties"
