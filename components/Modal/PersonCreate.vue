@@ -30,28 +30,28 @@
                 :value.sync="formData.function"
                 :name="$t('pages.person.create.labels.function')"
                 :label="$t('pages.person.create.labels.function')"
-                :rules=[$rules.required]
+                :rules="[$rules.required]"
               />
 
               <TextInput
                 :value.sync="formData.email"
                 :name="$t('pages.person.create.labels.email')"
                 :label="$t('pages.person.create.labels.email')"
-                :rules=[$rules.required]
+                :rules="[$rules.required]"
               />
 
               <TextInput
                 :value.sync="formData.first_name"
                 :name="$t('pages.person.create.labels.first_name')"
                 :label="$t('pages.person.create.labels.first_name')"
-                :rules=[$rules.required]
+                :rules="[$rules.required]"
               />
 
               <TextInput
                 :value.sync="formData.last_name"
                 :name="$t('pages.person.create.labels.last_name')"
                 :label="$t('pages.person.create.labels.last_name')"
-                :rules=[$rules.required]
+                :rules="[$rules.required]"
               />
 
               <TextInput

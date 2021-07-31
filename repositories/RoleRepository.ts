@@ -1,4 +1,3 @@
-import { NuxtAxiosInstance } from '@nuxtjs/axios'
 import { AxiosResponse } from 'axios'
 import AbstractRepository from './AbstractRepository'
 import { Role } from '~/types/models'
