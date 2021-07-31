@@ -12,7 +12,7 @@
           </h1>
 
           <Badge
-            v-if="$accessor.themes.all.meta.total"
+            v-if="$accessor.themes.all.meta"
             :text="`${$accessor.themes.all.meta.total}`"
             color="yellow-brand"
           />
@@ -24,7 +24,7 @@
         </div>
 
         <Table
-          class="min-w-full"
+          class="min-w-full mb-6"
           :is-loading="isLoading"
           :fields="fields"
           :default-sort-by="defaultSortBy"
@@ -92,6 +92,16 @@
             </tr>
           </template>
         </Table>
+
+        <Pagination
+          v-if="
+            $accessor.themes.all.meta && $accessor.themes.all.meta.last_page > 1
+          "
+          class="flex flex-wrap justify-center space-x-1"
+          :current="$accessor.themes.all.meta.current_page"
+          :total="$accessor.themes.all.meta.last_page"
+          @changed="handlePaginationClick"
+        />
       </div>
     </div>
   </div>

@@ -15,7 +15,7 @@
         </div>
 
         <Table
-          class="min-w-full"
+          class="min-w-full mb-6"
           :is-loading="isLoading"
           :fields="fields"
           :default-sort-by="defaultSortBy"
@@ -84,6 +84,16 @@
             </tr>
           </template>
         </Table>
+
+        <Pagination
+          v-if="
+            $accessor.users.all.meta && $accessor.users.all.meta.last_page > 1
+          "
+          class="flex flex-wrap justify-center space-x-1"
+          :current="$accessor.users.all.meta.current_page"
+          :total="$accessor.users.all.meta.last_page"
+          @changed="handlePaginationClick"
+        />
       </div>
     </div>
   </div>
