@@ -36,6 +36,11 @@ export default class TypeBadge extends Vue {
       icon: 'link',
       style: 'fas',
     },
+    {
+      type: 'video',
+      icon: 'video',
+      style: 'fas',
+    },
   ]
 
   private fallback: IconSetting = {

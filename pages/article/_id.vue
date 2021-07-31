@@ -10,8 +10,29 @@
         </h1>
       </div>
     </Header>
-    <div class="mb-12 border-b border-gray-200">
-      <div class="container relative h-full mx-auto"></div>
+
+    <div class="pt-5 pb-5 mb-12 border-b border-gray-200">
+      <div class="container relative h-full mx-auto">
+        <div class="flex items-center justify-end">
+          <Badge
+            v-if="showLikeButton"
+            :icon-name="hasLiked ? 'minus' : 'bookmark'"
+            :icon-style="hasLiked ? 'fas' : 'far'"
+            :text="
+              hasLiked
+                ? $t('pages.product._id.actions.bookmarked')
+                : $t('pages.product._id.actions.bookmark')
+            "
+            text-color="white"
+            color="blue-500"
+            tag="button"
+            :class="{ 'animate-pulse': toggleLikeLoading }"
+            :disabled="toggleLikeLoading"
+            type="button"
+            @click="toggleLike()"
+          />
+        </div>
+      </div>
     </div>
     <div class="container relative mx-auto">
       <div class="flex justify-between space-x-32 mt-18">
@@ -61,6 +82,7 @@
 import { Context } from '@nuxt/types'
 import { Component, mixins } from 'nuxt-property-decorator'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
+import { Models } from '~/types/enums'
 import { Article } from '~/types/models'
 
 @Component({
@@ -71,12 +93,31 @@ import { Article } from '~/types/models'
   },
 })
 export default class ArticleDetailPage extends mixins(NavigationRouterHook) {
+  public toggleLikeLoading: boolean = false
+
   get article(): Article {
     return this.$accessor.articles.show
   }
 
   get headerImage(): string | null {
     return this.article.header.length > 0 ? this.article.header[0].url : null
+  }
+
+  get hasLiked() {
+    return this.$accessor.likes.hasArticle(this.article.id)
+  }
+
+  get showLikeButton(): boolean {
+    return this.$auth.loggedIn
+  }
+
+  async toggleLike() {
+    this.toggleLikeLoading = true
+    await this.$accessor.likes.store({
+      likableType: Models.article,
+      likableId: this.article.id,
+    })
+    this.toggleLikeLoading = false
   }
 }
 </script>

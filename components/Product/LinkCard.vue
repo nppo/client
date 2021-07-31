@@ -46,7 +46,7 @@
 <script lang="ts">
 import LinkPrevue from 'link-prevue'
 
-import Component, { mixins } from 'vue-class-component'
+import { Component, mixins } from 'nuxt-property-decorator'
 import ProductPreview from '~/mixins/product-preview'
 
 @Component({

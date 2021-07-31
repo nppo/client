@@ -13,7 +13,7 @@
         <p class="text-xl">
           {{ product.title }}
         </p>
-        <p class="text-md">
+        <p class="text-xs">
           {{ $t('pages.product._id.preview.fallback') }}
         </p>
       </div>
