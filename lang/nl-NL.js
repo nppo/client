@@ -495,6 +495,9 @@ export default {
         id: 'Identifier',
         label: 'Label',
       },
+      actions: {
+        transform: 'Transformeer een thema in een trefwoord',
+      },
     },
 
     party: {

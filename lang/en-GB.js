@@ -493,6 +493,9 @@ export default {
         id: 'Identifier',
         label: 'Label',
       },
+      actions: {
+        transform: 'Transform theme into a keyword',
+      },
     },
 
     party: {

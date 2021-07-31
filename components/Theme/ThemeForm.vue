@@ -4,6 +4,13 @@
       class="p-4 overflow-hidden bg-white rounded-md shadow"
       @submit.prevent="handleSubmit(submit)"
     >
+      <ToggleInput
+        v-if="theme"
+        :name="$t('models.theme.actions.transform')"
+        :label="$t('models.theme.actions.transform')"
+        @update:value="$event ? (data.type = 'keyword') : (data.type = null)"
+      />
+
       <TextInput
         :rules="[$rules.required, $rules.min(2)]"
         :errors="errors.label"
@@ -38,6 +45,7 @@ export default class ThemeForm extends Vue {
   @Prop({ default: () => {} }) readonly errors!: ValidationErrors
 
   private data = {
+    type: null,
     label: this.theme?.label ?? '',
   }
 
