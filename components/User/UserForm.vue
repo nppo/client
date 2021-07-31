@@ -5,13 +5,13 @@
       @submit.prevent="handleSubmit(submit)"
     >
       <SelectInput
-        :value.sync="data.role"
+        :value.sync="data.roles"
         :name="$t('pages.user.edit.labels.role')"
         :label="$t('pages.user.edit.labels.role')"
-        :options="roles"
+        :options="formatRolesAsOption(roles)"
         :rules="['required']"
         :errors="errors.role"
-        :on-selected="(option) => option.label"
+        :multiple="true"
       />
 
       <button
@@ -27,7 +27,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
-import { User } from '~/types/models'
+import { Role, User } from '~/types/models'
 import { ValidationErrors } from '~/types/repositories'
 
 @Component({
@@ -40,7 +40,24 @@ export default class UserForm extends Vue {
   @Prop({ default: () => {} }) readonly errors!: ValidationErrors
 
   private data = {
-    role: this.user?.roles ?? '',
+    roles: this.formatRolesAsOption(this.user?.roles ?? []),
+  }
+
+  get roles(): Array<Role> {
+    return this.$accessor.roles.all.items
+  }
+
+  formatRolesAsOption(roles: Array<Role>): Array<any> {
+    return roles.map((role: Role) => {
+      return {
+        ...role,
+        label: role.name,
+      }
+    })
+  }
+
+  fetch(): Promise<void> {
+    return this.$accessor.roles.fetchIndex({ perPage: 50 }).then(() => {})
   }
 
   submit(): void {

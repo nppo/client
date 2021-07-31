@@ -28,6 +28,10 @@ export default class UserRepository extends AbstractRepository {
     return this.axios.get(`/api/${resource}/${id}`)
   }
 
+  store(data: Object | FormData): Promise<AxiosResponse<SingleResult<User>>> {
+    return this.axios.post(`/api/${resource}`, data)
+  }
+
   update(
     id: string,
     data: Object | FormData

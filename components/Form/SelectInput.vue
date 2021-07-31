@@ -1,9 +1,5 @@
 <template>
-  <ValidationProvider
-    v-slot="{ validation }"
-    :name="name"
-    :rules="formattedRules"
-  >
+  <ValidationProvider v-slot="validation" :name="name" :rules="formattedRules">
     <div class="flex flex-col mb-4">
       <label v-if="label" class="pl-3 mb-1">
         {{ label }}
@@ -18,6 +14,7 @@
         append-to-body
         :class="{ 'error-border': hasErrors(validation.errors) }"
         :reduce="onSelected"
+        v-bind="$attrs"
       />
 
       <span

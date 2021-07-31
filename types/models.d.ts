@@ -99,7 +99,7 @@ export interface Project extends Model {
 }
 
 export interface User extends Model {
-  id: number
+  id: string
   email: string
   permissions?: Permission[]
   roles?: Role[]

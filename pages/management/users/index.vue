@@ -68,10 +68,6 @@
               </Value>
 
               <Value>
-                {{ user.person.first_name }} {{ user.person.last_name }}
-              </Value>
-
-              <Value>
                 {{ user.email }}
               </Value>
 
@@ -103,11 +99,12 @@ import { Component, mixins } from 'nuxt-property-decorator'
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import TableInteraction from '~/mixins/table-interaction'
-import { TableField } from '~/types/entities'
+import { SortBy, TableField } from '~/types/entities'
 import { Models } from '~/types/enums'
 
 import 'sweetalert2/src/sweetalert2.scss'
 import { User } from '~/types/models'
+import { Filter } from '~/types/repositories'
 
 @Component({
   middleware: ['auth'],
@@ -116,50 +113,9 @@ export default class ManagementPage extends mixins(
   NavigationRouterHook,
   TableInteraction
 ) {
-  private users = [
-    {
-      id: 1,
-      email: 'tom@way2web.nl',
-      person: {
-        first_name: 'Tom',
-        last_name: 'Stemerding',
-      },
-    },
-    {
-      id: 2,
-      email: 'tom@way2web.nl',
-      person: {
-        first_name: 'Tom',
-        last_name: 'Stemerding',
-      },
-    },
-    {
-      id: 3,
-      email: 'tom@way2web.nl',
-      person: {
-        first_name: 'Tom',
-        last_name: 'Stemerding',
-      },
-    },
-    {
-      id: 4,
-      email: 'tom@way2web.nl',
-      person: {
-        first_name: 'Tom',
-        last_name: 'Stemerding',
-      },
-    },
-  ]
-
   public fields: TableField[] = [
     {
-      name: 'identifier',
-      searchValue: '',
-      isSortable: true,
-      inputType: Models.Text,
-    },
-    {
-      name: 'name',
+      name: 'id',
       searchValue: '',
       isSortable: true,
       inputType: Models.Text,
@@ -184,6 +140,25 @@ export default class ManagementPage extends mixins(
         : ''
     ),
   }))
+
+  get users(): User[] {
+    return this.$accessor.users.all.items
+  }
+
+  fetchTableData(_params: {
+    page: number
+    filters?: Filter[]
+    sortBy?: SortBy[]
+  }): Promise<void> {
+    return this.$accessor.users
+      .index({
+        mutation: 'setAll',
+        page: _params.page,
+        filters: _params.filters,
+        sorts: _params.sortBy,
+      })
+      .then(() => {})
+  }
 
   deleteEntity(user: User): void {
     this.$accessor.user.delete({ id: String(user.id) }).then(() =>
