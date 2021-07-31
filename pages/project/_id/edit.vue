@@ -95,7 +95,7 @@ import { MetaAuthOptions } from '~/types/entities'
   async asyncData({ $accessor, $auth }: Context) {
     const personId = ($auth.user?.person as Person).id
 
-    await $accessor.parties.index({ perPage: 100 })
+    await $accessor.parties.fetchIndex({ perPage: 100 })
     await $accessor.people.fetchCurrent(personId)
   },
 
