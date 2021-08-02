@@ -203,6 +203,7 @@ export default {
         'faNewspaper',
         'faSpinner',
         'faPlay',
+        'faTrashAlt',
       ],
       regular: ['faBookmark', 'faPlayCircle'],
       brands: ['faLinkedin', 'faResearchgate', 'faTwitterSquare', 'faYoutube'],

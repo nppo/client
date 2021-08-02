@@ -32,4 +32,8 @@ export default class ProjectRepository {
   create(): Promise<AxiosResponse<any>> {
     return this.axios.get(`api/${resource}/create`)
   }
+
+  delete(id: string): Promise<AxiosResponse> {
+    return this.axios.delete(`api/${resource}/${id}`)
+  }
 }

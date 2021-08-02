@@ -122,7 +122,7 @@
             </p>
           </div>
 
-          <template>
+          <div>
             <div class="flex items-center justify-between mt-10 mb-6">
               <div class="flex items-center space-x-5">
                 <h2 class="text-4xl font-bold">
@@ -162,9 +162,9 @@
               </div>
             </BlockSlider>
             <p v-else>{{ $t('pages.person._id.projects.empty') }}</p>
-          </template>
+          </div>
 
-          <template>
+          <div>
             <div class="flex items-center justify-between mt-10 mb-6">
               <div class="flex items-center space-x-5">
                 <h2 class="text-4xl font-bold">
@@ -209,9 +209,9 @@
               </div>
             </BlockSlider>
             <p v-else>{{ $t('pages.person._id.products.empty') }}</p>
-          </template>
+          </div>
 
-          <template v-if="person.parties && person.parties.length > 0">
+          <div v-if="person.parties && person.parties.length > 0">
             <div class="flex items-center justify-between mt-10 mb-6">
               <div class="flex items-center space-x-5">
                 <h2 class="text-4xl font-bold">
@@ -239,7 +239,7 @@
                 <PartyBlock :party="party" />
               </div>
             </BlockSlider>
-          </template>
+          </div>
         </div>
       </div>
 

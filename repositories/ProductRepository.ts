@@ -32,4 +32,8 @@ export default class ProductRepository {
   store(data: FormData): Promise<AxiosResponse<SingleResult<Product>>> {
     return this.axios.post(`/api/${resource}`, data)
   }
+
+  delete(id: string): Promise<AxiosResponse> {
+    return this.axios.delete(`api/${resource}/${id}`)
+  }
 }
