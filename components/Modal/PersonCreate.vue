@@ -6,25 +6,34 @@
   >
     <template #content>
       <div class="flex flex-col">
-        <ValidationObserver v-slot="{ handleSubmit }">
+        <ValidationObserver v-slot="{ handleSubmit }" ref="form">
           <form class="space-y-6" @submit.prevent="handleSubmit(create)">
             <div class="grid grid-cols-3 gap-4">
-              <div class="flex flex-col mb-4">
-                <label
-                  :for="$t('pages.person.create.labels.profile_picture')"
-                  class="pl-3 mb-1"
-                >
-                  {{ $t('pages.person.create.labels.profile_picture') }}
-                </label>
+              <ValidationProvider
+                v-slot="{ errors }"
+                name="profile_picture"
+                slim
+              >
+                <div class="flex flex-col mb-4">
+                  <label
+                    :for="$t('pages.person.create.labels.profile_picture')"
+                    class="pl-3 mb-1"
+                  >
+                    {{ $t('pages.person.create.labels.profile_picture') }}
+                  </label>
 
-                <input
-                  :id="$t('pages.person.create.labels.profile_picture')"
-                  class="px-3 py-3 font-bold rounded-md shadow focus:outline-none"
-                  type="file"
-                  @change="profilePictureSelected"
-                />
-                <small>{{ $t('help_text.image_upload') }}</small>
-              </div>
+                  <input
+                    :id="$t('pages.person.create.labels.profile_picture')"
+                    class="px-3 py-3 font-bold rounded-md shadow focus:outline-none"
+                    type="file"
+                    @change="profilePictureSelected"
+                  />
+
+                  <small class="pl-3">{{ $t('help_text.image_upload') }}</small>
+
+                  <Errors :errors="errors" />
+                </div>
+              </ValidationProvider>
 
               <TextInput
                 :value.sync="formData.function"
@@ -113,11 +122,12 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { ValidationObserver } from 'vee-validate'
+import { ValidationObserver, ValidationProvider } from 'vee-validate'
+import { AxiosError } from 'axios'
 import objectToFormData from '~/common/utils/objectToFormData'
 
 @Component({
-  components: { ValidationObserver },
+  components: { ValidationObserver, ValidationProvider },
 })
 export default class PersonCreateModal extends Vue {
   private formData: any = {
@@ -139,11 +149,24 @@ export default class PersonCreateModal extends Vue {
 
   public open: boolean = this.isOpen
 
+  $refs!: {
+    form: InstanceType<typeof ValidationObserver>
+  }
+
   create(): void {
-    this.$accessor.people.store(this.asFormData()).then(() => {
-      this.closeModal()
-      this.$auth.fetchUser()
-    })
+    this.$accessor.people
+      .store(this.asFormData())
+      .then(() => {
+        this.closeModal()
+        this.$auth.fetchUser()
+      })
+      .catch((error: AxiosError) => {
+        const errors: Record<string, string[]> = error.response?.data?.errors
+
+        if (errors) {
+          this.$refs.form.setErrors(errors)
+        }
+      })
   }
 
   asFormData(): FormData {

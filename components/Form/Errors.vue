@@ -1,13 +1,9 @@
 <template>
-  <div>
-    <span
-      v-for="(error, index) in errors"
-      :key="index"
-      class="pl-3 text-red-500"
-    >
+  <ul>
+    <li v-for="(error, index) in errors" :key="index" class="pl-3 text-red-500">
       {{ error }}
-    </span>
-  </div>
+    </li>
+  </ul>
 </template>
 
 <script lang="ts">

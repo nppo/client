@@ -37,6 +37,7 @@
               {{ $t('account.profile') }}
             </span>
             <LocaleLink
+              v-if="person"
               :path="`/person/${person.id}/likes`"
               class="w-full py-1 text-sm text-left border-b border-gray-100 hover:font-bold"
             >
