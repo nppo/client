@@ -17,7 +17,7 @@
         v-bind="$attrs"
       />
 
-      <Erorrs :errors="formattedValidationErrors(validation.errors)" />
+      <Errors :errors="formattedValidationErrors(validation.errors)" />
     </div>
   </ValidationProvider>
 </template>

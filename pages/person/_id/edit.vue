@@ -93,12 +93,18 @@
           </div>
         </div>
 
-        <button
-          class="self-start px-4 py-2 text-sm text-white rounded bg-orange-brand"
-          type="submit"
-        >
-          {{ $t('general.save') }}
-        </button>
+        <div>
+          <button
+            class="px-4 py-2 text-sm text-white rounded bg-orange-brand"
+            type="submit"
+          >
+            {{ $t('general.save') }}
+          </button>
+
+          <LocaleLink :path="`/person/${person.id}`" class="ml-2 text-blue-500">
+            {{ $t('general.cancel') }}
+          </LocaleLink>
+        </div>
       </form>
     </ValidationObserver>
   </div>
