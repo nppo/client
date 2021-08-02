@@ -169,7 +169,7 @@ export default {
           part_of: 'Onderdeel van',
           summary: 'Samenvatting',
           description: 'Beschrijving',
-          tags: 'Trefwoorden',
+          keywords: 'Trefwoorden',
           themes: "Thema's",
           more_products: 'Meer producten',
         },

@@ -167,7 +167,7 @@ export default {
           part_of: 'Part of',
           summary: 'Summary',
           description: 'Description',
-          tags: 'Keywords',
+          keywords: 'Keywords',
           themes: 'Themes',
           more_products: 'More products',
         },
