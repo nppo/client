@@ -1,11 +1,12 @@
 <template>
-  <div
+  <button
+    type="button"
     class="flex justify-center p-2 text-blue-800 rounded-full cursor-pointer bg-yellow-brand"
     :class="`w-${circleSize} h-${circleSize}`"
     @click="$emit('delete-entity')"
   >
     <font-awesome-icon :class="`text-${iconSize}`" icon="trash-alt" />
-  </div>
+  </button>
 </template>
 
 <script lang="ts">
