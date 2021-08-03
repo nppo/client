@@ -35,7 +35,7 @@
                   currentSortBy.field === field.name &&
                   currentSortBy.direction !== null
                 "
-                class="text-4xl text-gray-200 fill-current"
+                class="ml-2 text-4xl text-gray-200 fill-current"
                 :class="{
                   'transform rotate-180': currentSortBy.direction === 'desc',
                 }"

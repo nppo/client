@@ -61,7 +61,7 @@
             <tr
               v-for="(keyword, index) in keywords"
               :key="index"
-              class="text-gray-500"
+              class="text-gray-700"
             >
               <Value>
                 {{ keyword.id }}
@@ -88,7 +88,7 @@
             <tr v-if="keywords.length < 1">
               <td colspan="6" class="p-4 text-center">
                 {{
-                  $t('general.noResults', {
+                  $t('general.no_results', {
                     model: $t('pages.keywords.index.heading'),
                   })
                 }}

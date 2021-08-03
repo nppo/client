@@ -57,7 +57,7 @@
           </template>
 
           <template #default>
-            <tr v-for="user in users" :key="user.id" class="text-gray-500">
+            <tr v-for="user in users" :key="user.id" class="text-gray-700">
               <Value>
                 {{ user.id }}
               </Value>
@@ -76,7 +76,7 @@
             <tr v-if="users.length < 1">
               <td colspan="6" class="p-4 text-center">
                 {{
-                  $t('general.noResults', {
+                  $t('general.no_results', {
                     model: $t('pages.users.index.heading'),
                   })
                 }}

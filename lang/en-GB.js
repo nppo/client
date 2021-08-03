@@ -16,6 +16,7 @@ export default {
     show_less: 'Show less',
     save: 'Save',
     management: 'Management',
+    no_results: 'No results',
 
     actions: {
       create: 'Create',

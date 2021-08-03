@@ -16,6 +16,7 @@ export default {
     show_less: 'Toon minder',
     save: 'Opslaan',
     management: 'Beheer',
+    no_results: 'Geen resultaten',
 
     actions: {
       create: 'Aanmaken',

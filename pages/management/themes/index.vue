@@ -61,7 +61,7 @@
             <tr
               v-for="(theme, index) in themes"
               :key="index"
-              class="text-gray-500"
+              class="text-gray-700"
             >
               <Value>
                 {{ theme.id }}
@@ -84,7 +84,7 @@
             <tr v-if="themes.length < 1">
               <td colspan="6" class="p-4 text-center">
                 {{
-                  $t('general.noResults', {
+                  $t('general.no_results', {
                     model: $t('pages.themes.index.heading'),
                   })
                 }}
