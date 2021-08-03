@@ -315,6 +315,7 @@ export default {
       placeholder: 'Start your search...',
       no_results: 'No products found',
       input_search: 'Start your search...',
+      depleted: "That's all folks!",
 
       items: {
         show_all: 'show all',

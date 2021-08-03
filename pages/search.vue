@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-1">
+  <div class="flex-1" @scroll="detectLoadMore">
     <Header>
       <div class="container pb-16">
         <BackButton
@@ -52,7 +52,7 @@
           </div>
           <div v-else>
             <SearchCollapse
-              v-if="products.length > 0"
+              v-if="products.items.length > 0"
               :show-header="!hasSpecificTypeFilter"
               :header="$t('entities.product.plural')"
               class="mb-20"
@@ -62,7 +62,7 @@
                 class="grid grid-cols-1 gap-4 mb-5 md:grid-cols-2 lg:grid-cols-3"
               >
                 <div
-                  v-for="product in getMaxEntities(products, 6)"
+                  v-for="product in getMaxEntities(products.items, 6)"
                   :key="product.id"
                 >
                   <component
@@ -78,7 +78,7 @@
             </SearchCollapse>
 
             <SearchCollapse
-              v-if="people.length > 0"
+              v-if="people.items.length > 0"
               :show-header="!hasSpecificTypeFilter"
               :header="$t('entities.person.plural')"
               class="mb-20"
@@ -86,7 +86,7 @@
             >
               <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 <div
-                  v-for="person in getMaxEntities(people, 3)"
+                  v-for="person in getMaxEntities(people.items, 3)"
                   :key="person.id"
                 >
                   <PersonBlock :person="person" />
@@ -95,7 +95,7 @@
             </SearchCollapse>
 
             <SearchCollapse
-              v-if="projects.length > 0"
+              v-if="projects.items.length > 0"
               :show-header="!hasSpecificTypeFilter"
               :header="$t('entities.project.plural')"
               class="mb-20"
@@ -105,7 +105,7 @@
                 class="grid grid-cols-1 gap-4 mb-5 md:grid-cols-2 lg:grid-cols-3"
               >
                 <div
-                  v-for="project in getMaxEntities(projects, 6)"
+                  v-for="project in getMaxEntities(projects.items, 6)"
                   :key="project.id"
                 >
                   <ProjectBlock :project="project" />
@@ -114,7 +114,7 @@
             </SearchCollapse>
 
             <SearchCollapse
-              v-if="parties.length > 0"
+              v-if="parties.items.length > 0"
               :show-header="!hasSpecificTypeFilter"
               :header="$t('entities.party.plural')"
               @show-all="setFilterByLabel('party')"
@@ -123,7 +123,7 @@
                 class="grid grid-cols-1 gap-4 mb-5 md:grid-cols-2 lg:grid-cols-3"
               >
                 <div
-                  v-for="party in getMaxEntities(parties, 3)"
+                  v-for="party in getMaxEntities(parties.items, 3)"
                   :key="party.id"
                 >
                   <PartyBlock :party="party" />
@@ -132,7 +132,7 @@
             </SearchCollapse>
 
             <SearchCollapse
-              v-if="articles.length > 0"
+              v-if="articles.items.length > 0"
               :show-header="!hasSpecificTypeFilter"
               :header="$t('entities.article.plural')"
               @show-all="setFilterByLabel('article')"
@@ -141,13 +141,24 @@
                 class="grid grid-cols-1 gap-4 mb-5 md:grid-cols-2 lg:grid-cols-3"
               >
                 <div
-                  v-for="article in getMaxEntities(articles, 6)"
+                  v-for="article in getMaxEntities(articles.items, 6)"
                   :key="article.id"
                 >
                   <ArticleBlock :article="article" />
                 </div>
               </div>
             </SearchCollapse>
+
+            <div v-if="showInfiniteLoader" class="-mt-16">
+              <SearchSkeleton />
+            </div>
+
+            <div
+              v-if="hasSpecificTypeFilter && resourceDepleted"
+              class="mt-12 text-xl text-center text-gray-500"
+            >
+              {{ $t('pages.search.depleted') }}
+            </div>
 
             <div v-if="current.results === 0">
               {{ $t('pages.search.no_results') }}
@@ -163,20 +174,34 @@
 import { Component, mixins } from 'nuxt-property-decorator'
 import qs from 'qs'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
-import { Search, Type } from '~/types/entities'
+import { Search, SearchResultItem, Type } from '~/types/entities'
 import { Party, Person, Product, Project, Theme, Article } from '~/types/models'
 
 import CollectionBlock from '~/components/Blocks/CollectionBlock.vue'
 import ProductBlock from '~/components/Blocks/ProductBlock.vue'
+import filterTypes, {
+  filterTypesKeys,
+  filterTypesValues,
+} from '~/config/entities'
 
 @Component({
   async fetch(this: SearchPage) {
+    window.addEventListener('scroll', this.detectLoadMore)
+
     await this.$accessor.themes.fetchAll()
     await this.$accessor.types.fetchAll()
 
     this.prepareFilters()
 
-    await this.search()
+    if (
+      !this.hasSpecificTypeFilter ||
+      (this.hasSpecificTypeFilter && Object.keys(this.current).length === 0) ||
+      (this.hasSpecificTypeFilter &&
+        this.current[this.getSpecificTypeFilter]?.items.length === 0)
+    ) {
+      await this.search()
+      this.resourceDepleted = false
+    }
   },
   components: {
     CollectionBlock,
@@ -187,29 +212,32 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
   private searchString: string = ''
   private filterString: string = ''
   private isLoading: boolean = false
+  private hasScrolled: boolean = false
+  private showInfiniteLoader: boolean = false
+  private resourceDepleted: boolean = false
 
   get current(): Search {
     return this.$accessor.search.current
   }
 
-  get people(): Array<Person> {
-    return this.current.people || []
+  get people(): SearchResultItem<Person> | undefined {
+    return this.current.people
   }
 
-  get parties(): Array<Party> {
-    return this.current.parties || []
+  get parties(): SearchResultItem<Party> | undefined {
+    return this.current.parties
   }
 
-  get products(): Array<Product> {
-    return this.current.products || []
+  get products(): SearchResultItem<Product> | undefined {
+    return this.current.products
   }
 
-  get projects(): Array<Project> {
-    return this.current.projects || []
+  get projects(): SearchResultItem<Project> | undefined {
+    return this.current.projects
   }
 
-  get articles(): Array<Article> {
-    return this.current.articles || []
+  get articles(): SearchResultItem<Article> | undefined {
+    return this.current.articles
   }
 
   get themes(): Array<Theme> {
@@ -226,6 +254,17 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
 
   get hasSpecificTypeFilter(): boolean {
     return this.filters.types?.length === 1
+  }
+
+  get getSpecificTypeFilter(): filterTypesValues {
+    const typeFilter = this.filters.types[0] as filterTypesKeys
+    return filterTypes[typeFilter]
+  }
+
+  get requestString(): string {
+    return this.searchString
+      ? 'query=' + this.searchString + this.filterString
+      : this.filterString
   }
 
   isActive(id: any, type: string): boolean {
@@ -256,15 +295,11 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
         }
       }
 
-      const requestString: string = this.searchString
-        ? 'query=' + this.searchString + this.filterString
-        : this.filterString.substring(1)
-
       if (replaceUrl) {
-        this.$router.replace('/search?' + requestString)
+        this.$router.replace('/search?' + this.requestString)
       }
 
-      await this.$accessor.search.result(requestString)
+      await this.$accessor.search.result(this.requestString)
     }
 
     this.isLoading = false
@@ -296,6 +331,13 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
           this.setFilters(type, filters[type] as any)
         }
       }
+
+      for (const filter in this.filters) {
+        this.filters[filter].map(
+          (value: any) =>
+            (this.filterString += '&filters[' + filter + '][]=' + value)
+        )
+      }
     }
   }
 
@@ -316,6 +358,44 @@ export default class SearchPage extends mixins(NavigationRouterHook) {
 
   getMaxEntities(entities: Array<any>, max: number): Array<any> {
     return this.hasSpecificTypeFilter ? entities : entities.slice(0, max)
+  }
+
+  detectLoadMore() {
+    this.hasScrolled = true
+
+    if (!this.hasSpecificTypeFilter || this.showInfiniteLoader) return
+
+    const nextCursor = this[this.getSpecificTypeFilter]?.nextCursor
+
+    if (!nextCursor) {
+      this.resourceDepleted = true
+      return
+    }
+
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+      this.showInfiniteLoader = true
+
+      const searchString: string = this.requestString + '&cursor=' + nextCursor
+
+      this.$accessor.search
+        .additionalResults({ searchString, type: this.getSpecificTypeFilter })
+        .then(() => {
+          this.showInfiniteLoader = false
+        })
+    }
+  }
+
+  updated() {
+    if (!this.hasScrolled) {
+      this.$nextTick(() => {
+        window.scrollTo(0, this.$accessor.search.scrollState)
+      })
+    }
+  }
+
+  beforeDestroy() {
+    this.$accessor.search.setScrollState(window.scrollY)
+    window.removeEventListener('scroll', this.detectLoadMore)
   }
 }
 </script>

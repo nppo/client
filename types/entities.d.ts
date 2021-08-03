@@ -15,13 +15,18 @@ export interface ErrorMessage {
   message: string
 }
 
+export interface SearchResultItem<T> {
+  items: Array<T>
+  nextCursor: string | null | false
+}
+
 export interface Search {
   results: number
-  parties?: Party[]
-  people?: Person[]
-  products?: Product[]
-  projects?: Project[]
-  articles?: Article[]
+  parties?: SearchResultItem<Party>
+  people?: SearchResultItem<Person>
+  products?: SearchResultItem<Product>
+  projects?: SearchResultItem<Project>
+  articles?: SearchResultItem<Article>
   filters?: Filter[]
 }
 
