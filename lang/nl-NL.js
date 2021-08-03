@@ -262,6 +262,7 @@ export default {
           purpose: 'Doel van project',
           parties: 'Partijen',
           products: 'Producten',
+          people: 'Auteurs',
         },
       },
     },
