@@ -336,6 +336,7 @@ export default {
       placeholder: 'Start je zoektocht...',
       no_results: 'Geen resultaten gevonden',
       input_search: 'Start je zoektocht...',
+      depleted: "That's all folks!",
 
       items: {
         show_all: 'toon alles',

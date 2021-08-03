@@ -1,7 +1,5 @@
 <template>
   <div>
-    <div class="w-1/3 h-10 mb-3 rounded shimmer"></div>
-
     <div class="grid grid-cols-3 gap-4">
       <div
         v-for="(block, index) in 6"
