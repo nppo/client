@@ -347,6 +347,8 @@ export default {
         headings: {
           tags: 'Tags',
           themes: 'Themes',
+          related_projects: 'Related projects',
+          related_products: 'Related products',
         },
       },
     },

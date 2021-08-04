@@ -367,6 +367,8 @@ export default {
         headings: {
           tags: 'Tags',
           themes: "Thema's",
+          related_projects: 'Gerelateerde projecten',
+          related_products: 'Gerelateerde producten',
         },
       },
     },
