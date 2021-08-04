@@ -15,6 +15,7 @@ export default {
     show_more: 'Show {number} more',
     show_less: 'Show less',
     save: 'Save',
+    cancel: 'Cancel',
     management: 'Management',
     no_results: 'No results',
 

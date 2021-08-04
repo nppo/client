@@ -99,10 +99,18 @@
             </div>
 
             <button
-              class="self-start px-4 py-2 text-sm text-white rounded bg-orange-brand"
+              class="px-4 py-2 text-sm text-white rounded bg-orange-brand"
               type="submit"
             >
               {{ $t('actions.create') }}
+            </button>
+
+            <button
+              type="button"
+              class="ml-2 text-blue-500"
+              @click="$router.back()"
+            >
+              {{ $t('general.cancel') }}
             </button>
           </form>
         </ValidationObserver>

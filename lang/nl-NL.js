@@ -15,6 +15,7 @@ export default {
     show_more: 'Toon {number} meer',
     show_less: 'Toon minder',
     save: 'Opslaan',
+    cancel: 'Annuleren',
     management: 'Beheer',
     no_results: 'Geen resultaten',
 

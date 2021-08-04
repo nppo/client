@@ -26,7 +26,7 @@
                       :name="$t('pages.product.create.form.labels.type')"
                       :label="$t('pages.product.create.form.labels.type')"
                       :options="types"
-                      :rules="$rules.required"
+                      :rules="[$rules.required]"
                       :error-message="$t('validation.required')"
                       :on-selected="(option) => option.label"
                     />
@@ -129,10 +129,18 @@
             </div>
 
             <button
-              class="self-start px-4 py-2 text-sm text-white rounded bg-orange-brand"
+              class="px-4 py-2 text-sm text-white rounded bg-orange-brand"
               type="submit"
             >
               {{ $t('general.actions.create') }}
+            </button>
+
+            <button
+              type="button"
+              class="ml-2 text-blue-500"
+              @click="$router.back()"
+            >
+              {{ $t('general.cancel') }}
             </button>
           </form>
         </ValidationObserver>
