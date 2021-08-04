@@ -259,6 +259,7 @@ export default {
           purpose: 'Purpose of the project',
           parties: 'Parties',
           products: 'Products',
+          people: 'Authors',
         },
       },
     },

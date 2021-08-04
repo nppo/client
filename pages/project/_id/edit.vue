@@ -62,6 +62,15 @@
               :label="$t('pages.project.form.labels.products')"
               option-label-attribute="title"
             />
+
+            <Multiselect
+              :entity.sync="formData.people"
+              :options="people"
+              :label="$t('pages.project.form.labels.people')"
+              :option-label="
+                (option) => `${option.firstName} ${option.lastName}`
+              "
+            />
           </div>
           <div class="w-6/12">
             <Textarea
@@ -98,6 +107,7 @@ import { MetaAuthOptions } from '~/types/entities'
 
     await $accessor.parties.fetchAll()
     await $accessor.people.fetchCurrent(personId)
+    await $accessor.people.fetchAll()
   },
 
   meta: {
@@ -119,6 +129,7 @@ export default class ProjectEditPage extends mixins(NavigationRouterHook) {
     description: '',
     parties: [],
     products: [],
+    people: [],
   }
 
   private titleError: boolean = false
@@ -131,6 +142,10 @@ export default class ProjectEditPage extends mixins(NavigationRouterHook) {
 
   get parties(): Party[] {
     return this.$accessor.parties.all
+  }
+
+  get people(): Person[] {
+    return this.$accessor.people.all
   }
 
   get relatedProducts(): Product[] {
@@ -166,6 +181,7 @@ export default class ProjectEditPage extends mixins(NavigationRouterHook) {
     this.formData.description = this.project.description
     this.formData.parties = this.project.parties
     this.formData.products = this.project.products
+    this.formData.people = this.project.people
     delete this.formData.project_picture
   }
 
