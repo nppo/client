@@ -148,19 +148,21 @@ export default class ManagementPage extends mixins(
     return this.$accessor.users.all.items
   }
 
-  fetchTableData(_params: {
+  async fetchTableData(params: {
     page: number
     filters?: Filter[]
     sortBy?: SortBy[]
   }): Promise<void> {
-    return this.$accessor.users
-      .index({
-        mutation: 'setAll',
-        page: _params.page,
-        filters: _params.filters,
-        sorts: _params.sortBy,
-      })
-      .then(() => {})
+    this.isLoading = true
+
+    await this.$accessor.users.index({
+      mutation: 'setAll',
+      page: params.page,
+      filters: params.filters,
+      sorts: params.sortBy,
+    })
+
+    this.isLoading = false
   }
 
   deleteEntity(user: User): void {
