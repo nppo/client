@@ -37,7 +37,6 @@
                     )
                   "
                   type="search"
-                  input-class="w-full px-5 py-3 placeholder-gray-200 border-gray-200 rounded"
                   @update:value="handleHeaderInputChanged(field.name, $event)"
                 />
                 <SelectInput

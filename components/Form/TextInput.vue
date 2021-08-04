@@ -1,5 +1,10 @@
 <template>
-  <ValidationProvider v-slot="validation" :name="name" :rules="formattedRules">
+  <ValidationProvider
+    v-slot="validation"
+    :name="name"
+    :rules="formattedRules"
+    slim
+  >
     <div class="flex flex-col mb-4">
       <label v-if="label" :for="name" class="pl-3 mb-1">
         {{ label }}
@@ -13,12 +18,12 @@
         <input
           :id="name"
           v-model="localValue"
+          :type="type"
           :name="name"
           class="w-full px-3 py-3 font-bold rounded-md shadow focus:outline-none"
           :class="{
             'border border-red-300': hasErrors(validation.errors),
           }"
-          type="text"
         />
       </div>
 
@@ -36,6 +41,7 @@ export default class TextInput extends mixins(FormInput) {
   @Prop({ type: String }) value!: string
   @Prop({ type: String, default: '' }) readonly name!: string
   @Prop({ type: String, default: '' }) readonly label!: string
+  @Prop({ type: String, default: 'text' }) readonly type!: string
 
   private localValue: string = this.value
 
