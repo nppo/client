@@ -278,6 +278,7 @@ export default {
           purpose: 'Doel van project',
           parties: 'Partijen',
           products: 'Producten',
+          people: 'Auteurs',
         },
       },
     },
@@ -382,6 +383,8 @@ export default {
         headings: {
           tags: 'Tags',
           themes: "Thema's",
+          related_projects: 'Gerelateerde projecten',
+          related_products: 'Gerelateerde producten',
         },
       },
     },

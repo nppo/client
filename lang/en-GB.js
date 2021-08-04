@@ -276,6 +276,7 @@ export default {
           purpose: 'Purpose of the project',
           parties: 'Parties',
           products: 'Products',
+          people: 'Authors',
         },
       },
     },
@@ -380,6 +381,8 @@ export default {
         headings: {
           tags: 'Tags',
           themes: 'Themes',
+          related_projects: 'Related projects',
+          related_products: 'Related products',
         },
       },
     },

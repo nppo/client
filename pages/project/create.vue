@@ -51,6 +51,15 @@
                 />
 
                 <Multiselect
+                  :entity.sync="formData.people"
+                  :options="people"
+                  :label="$t('pages.project.form.labels.people')"
+                  :option-label="
+                    (option) => `${option.firstName} ${option.lastName}`
+                  "
+                />
+
+                <Multiselect
                   :entity.sync="formData.parties"
                   :options="parties"
                   :label="$t('pages.project.form.labels.parties')"
@@ -116,6 +125,7 @@ import { MetaAuthOptions } from '~/types/entities'
     const personId = ($auth.user?.person as Person).id
 
     await $accessor.people.fetchCurrent(personId)
+    await $accessor.people.fetchAll()
 
     const metaData = await $repositories.project.create()
 
@@ -124,6 +134,7 @@ import { MetaAuthOptions } from '~/types/entities'
         title: '',
         description: '',
         purpose: '',
+        people: [],
         parties: [],
         products: [],
         meta: metaData.data.attributes.map((meta: any) => {
@@ -147,6 +158,10 @@ import { MetaAuthOptions } from '~/types/entities'
 })
 export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
   private formData: any
+
+  get people(): Person[] {
+    return this.$accessor.people.all
+  }
 
   get parties(): Party[] {
     return this.$accessor.people.current.parties || []

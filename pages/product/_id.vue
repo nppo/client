@@ -8,11 +8,18 @@
       <div class="flex justify-between pb-4">
         <BackButton :has-navigated-internal="hasNavigatedInternal" />
 
-        <EditButton
-          v-if="activePage === 'product' && product.can.update"
-          :page="activePage"
-          :entity-id="product.id"
-        />
+        <div class="flex space-x-4">
+          <EditButton
+            v-if="activePage === 'product' && product.can.update"
+            :page="activePage"
+            :entity-id="product.id"
+          />
+
+          <DeleteButton
+            v-if="activePage === 'product' && product.can.delete"
+            @delete-entity="deleteProduct(product.id)"
+          />
+        </div>
       </div>
 
       <div
@@ -284,6 +291,14 @@ export default class ProductDetailPage extends mixins(NavigationRouterHook) {
       (this.product.projects && this.product.projects.length > 0) ||
       (this.product.parents && this.product.parents.length > 0)
     )
+  }
+
+  deleteProduct(id: string) {
+    this.$repositories.product.delete(id).then((response) => {
+      if (response.status === 204) {
+        this.$router.push('/')
+      }
+    })
   }
 }
 </script>

@@ -3,11 +3,19 @@
     <Header has-search-bar :image-url="project.projectPictureUrl">
       <div class="flex items-center justify-between mt-8">
         <BackButton :has-navigated-internal="hasNavigatedInternal" />
-        <EditButton
-          v-if="activePage === 'project' && project.can.update"
-          :page="activePage"
-          :entity-id="project.id"
-        />
+
+        <div class="flex space-x-4">
+          <EditButton
+            v-if="activePage === 'project' && project.can.update"
+            :page="activePage"
+            :entity-id="project.id"
+          />
+
+          <DeleteButton
+            v-if="activePage === 'project' && project.can.delete"
+            @delete-entity="deleteProject(project.id)"
+          />
+        </div>
       </div>
 
       <div class="pt-32 text-white">
@@ -277,6 +285,14 @@ export default class ProjectDetailPage extends mixins(NavigationRouterHook) {
       likableId: this.project.id,
     })
     this.toggleLikeLoading = false
+  }
+
+  deleteProject(id: string) {
+    this.$repositories.project.delete(id).then((response) => {
+      if (response.status === 204) {
+        this.$router.push('/')
+      }
+    })
   }
 }
 </script>
