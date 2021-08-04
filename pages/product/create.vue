@@ -26,7 +26,7 @@
                       :name="$t('pages.product.create.form.labels.type')"
                       :label="$t('pages.product.create.form.labels.type')"
                       :options="types"
-                      :required="true"
+                      :rules="$rules.required"
                       :error-message="$t('validation.required')"
                       :on-selected="(option) => option.label"
                     />
@@ -49,22 +49,20 @@
                   :value.sync="formData.title"
                   :name="$t('pages.product.create.form.labels.title')"
                   :label="$t('pages.product.create.form.labels.title')"
-                  :required="true"
-                  :error-message="$t('validation.required')"
+                  :rules="[$rules.required]"
                 />
 
-                <Textarea
+                <TextArea
                   :value.sync="formData.summary"
                   :name="$t('pages.product.create.form.labels.summary')"
                   :label="$t('pages.product.create.form.labels.summary')"
                 />
 
-                <Textarea
+                <TextArea
                   :value.sync="formData.description"
                   :name="$t('pages.product.create.form.labels.description')"
                   :label="$t('pages.product.create.form.labels.description')"
-                  :required="true"
-                  :error-message="$t('validation.required')"
+                  :rules="[$rules.required]"
                 />
               </div>
 
@@ -80,8 +78,7 @@
                     :value.sync="formData.link"
                     :name="$t('pages.product.create.form.labels.link')"
                     :label="$t('pages.product.create.form.labels.link')"
-                    :required="true"
-                    :error-message="$t('validation.required')"
+                    :rules="[$rules.required]"
                   />
 
                   <FileInput
@@ -94,9 +91,9 @@
                   />
 
                   <Multiselect
-                    :entity.sync="formData.tags"
-                    :options="tags"
-                    :label="$t('pages.product.create.form.labels.tags')"
+                    :entity.sync="formData.keywords"
+                    :options="keywords"
+                    :label="$t('pages.product.create.form.labels.keywords')"
                     :taggable="true"
                   />
 
@@ -151,7 +148,7 @@ import { Context } from '@nuxt/types'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
 import objectToFormData from '~/common/utils/objectToFormData'
 import { Type } from '~/types/entities'
-import { Party, Person, Product, Tag, Theme } from '~/types/models'
+import { Keyword, Party, Person, Product, Theme } from '~/types/models'
 
 @Component({
   components: {
@@ -159,8 +156,8 @@ import { Party, Person, Product, Tag, Theme } from '~/types/models'
   },
   async asyncData({ $accessor }: Context) {
     await $accessor.productTypes.fetchAll()
-    await $accessor.tags.fetchAll()
-    await $accessor.themes.fetchAll()
+    await $accessor.keywords.fetchIndex({ perPage: 100 })
+    await $accessor.themes.fetchIndex({ perPage: 100 })
     await $accessor.people.fetchAll()
 
     if ($accessor.user.current.person?.id) {
@@ -173,7 +170,7 @@ import { Party, Person, Product, Tag, Theme } from '~/types/models'
         title: '',
         summary: '',
         description: '',
-        tags: [],
+        keywords: [],
         themes: [],
         people: [],
         parties: [],
@@ -194,12 +191,12 @@ export default class ProjectCreatePage extends mixins(NavigationRouterHook) {
     return this.$accessor.productTypes.all
   }
 
-  get tags(): Tag[] {
-    return this.$accessor.tags.all
+  get keywords(): Keyword[] {
+    return this.$accessor.keywords.all.items
   }
 
   get themes(): Theme[] {
-    return this.$accessor.themes.all
+    return this.$accessor.themes.all.items
   }
 
   get people(): Person[] {

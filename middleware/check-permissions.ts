@@ -2,9 +2,11 @@ import { Context } from '@nuxt/types'
 import { MetaAuthOptions } from '~/types/entities'
 
 export default function ({
+  app,
   error,
   $gates,
   route,
+  $swal,
   app: { i18n },
 }: Context): void {
   const permissions = getPermissionsFromAuthMeta(route.meta)
@@ -18,6 +20,12 @@ export default function ({
   ) {
     return
   }
+
+  $swal.fire(
+    String(app.i18n.t('modals.general.unauthorized.title')),
+    String(app.i18n.t('modals.general.unauthorized.text')),
+    'error'
+  )
 
   return error({
     statusCode: 403,

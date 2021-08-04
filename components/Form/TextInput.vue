@@ -1,14 +1,15 @@
 <template>
   <ValidationProvider
-    v-slot="{ errors }"
+    v-slot="validation"
     :name="name"
-    :rules="{ required: required }"
+    :rules="formattedRules"
+    slim
   >
     <div class="flex flex-col mb-4">
       <label v-if="label" :for="name" class="pl-3 mb-1">
         {{ label }}
 
-        <small v-if="required" class="ml-1 text-red-500">
+        <small v-if="isRequired" class="ml-1 text-red-500">
           {{ $t('validation.required_label') }}
         </small>
       </label>
@@ -17,34 +18,30 @@
         <input
           :id="name"
           v-model="localValue"
+          :type="type"
           :name="name"
           class="w-full px-3 py-3 font-bold rounded-md shadow focus:outline-none"
-          :class="{ 'border border-red-300': errors[0] }"
-          type="text"
+          :class="{
+            'border border-red-300': hasErrors(validation.errors),
+          }"
         />
       </div>
 
-      <span v-if="errors[0]" class="pl-3 text-red-500">{{ errorMessage }}</span>
+      <Errors :errors="formattedValidationErrors(validation.errors)" />
     </div>
   </ValidationProvider>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Watch } from 'nuxt-property-decorator'
+import { Component, Prop, Watch, mixins } from 'nuxt-property-decorator'
+import FormInput from '~/mixins/form-input'
 
-import { ValidationProvider } from 'vee-validate'
-
-@Component({
-  components: {
-    ValidationProvider,
-  },
-})
-export default class TextInput extends Vue {
+@Component
+export default class TextInput extends mixins(FormInput) {
   @Prop({ type: String }) value!: string
   @Prop({ type: String, default: '' }) readonly name!: string
   @Prop({ type: String, default: '' }) readonly label!: string
-  @Prop({ type: String, default: '' }) readonly errorMessage!: string
-  @Prop({ type: Boolean, default: false }) readonly required!: boolean
+  @Prop({ type: String, default: 'text' }) readonly type!: string
 
   private localValue: string = this.value
 

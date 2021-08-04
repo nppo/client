@@ -39,6 +39,8 @@ export default {
     '~/plugins/axios.ts',
     '~/plugins/vee-validate.ts',
     '~/plugins/vue-gates.ts',
+    '~/plugins/permissions.ts',
+    '~/plugins/rules.ts',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -60,6 +62,8 @@ export default {
     'nuxt-typed-vuex',
     // Doc: https://github.com/nuxt-community/google-fonts
     '@nuxtjs/google-fonts',
+    // Doc: https://github.com/avil13/vue-sweetalert2
+    'vue-sweetalert2/nuxt',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -202,6 +206,11 @@ export default {
         'faExpand',
         'faNewspaper',
         'faSpinner',
+        'faUser',
+        'faThList',
+        'faTags',
+        'faCopy',
+        'faCaretDown',
         'faPlay',
         'faTrashAlt',
       ],

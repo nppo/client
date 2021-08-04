@@ -1,18 +1,44 @@
-import { NuxtAxiosInstance } from '@nuxtjs/axios'
 import { AxiosResponse } from 'axios'
+import AbstractRepository from './AbstractRepository'
 import { Theme } from '~/types/models'
-import { MultipleResults } from '~/types/repositories'
+import {
+  PaginateMeta,
+  MultipleResultsWithMeta,
+  SingleResult,
+  IndexRequest,
+} from '~/types/repositories'
 
 const resource = 'themes'
 
-export default class ThemeRepository {
-  axios: NuxtAxiosInstance
-
-  constructor(axios: NuxtAxiosInstance) {
-    this.axios = axios
+export default class ThemeRepository extends AbstractRepository {
+  all({
+    page = 1,
+    perPage = 15,
+    filters = [],
+    sorts = [],
+  }: IndexRequest): Promise<
+    AxiosResponse<MultipleResultsWithMeta<Theme, PaginateMeta>>
+  > {
+    return this.axios.get(
+      `/api/${resource}?${this.allToQuery(page, perPage, filters, sorts)}`
+    )
   }
 
-  all(): Promise<AxiosResponse<MultipleResults<Theme>>> {
-    return this.axios.get(`/api/${resource}`)
+  fetch(id: string): Promise<AxiosResponse<SingleResult<Theme>>> {
+    return this.axios.get(`/api/${resource}/${id}`)
+  }
+
+  store(data: Object | FormData): Promise<AxiosResponse<SingleResult<Theme>>> {
+    return this.axios.post(`api/${resource}`, data)
+  }
+
+  update(
+    id: string,
+    data: Object | FormData
+  ): Promise<AxiosResponse<SingleResult<Theme>>> {
+    return this.axios.post(`api/${resource}/${id}`, {
+      ...data,
+      _method: 'PUT',
+    })
   }
 }

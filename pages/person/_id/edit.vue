@@ -40,8 +40,7 @@
               :value.sync="formData.first_name"
               :name="$t('pages.person._id.edit.labels.first_name')"
               :label="$t('pages.person._id.edit.labels.first_name')"
-              :required="true"
-              :error-message="$t('validation.required')"
+              :rules="[$rules.required]"
               :has-errors.sync="firstNameError"
             />
 
@@ -49,8 +48,7 @@
               :value.sync="formData.last_name"
               :name="$t('pages.person._id.edit.labels.last_name')"
               :label="$t('pages.person._id.edit.labels.last_name')"
-              :required="true"
-              :error-message="$t('validation.required')"
+              :rules="[$rules.required]"
               :has-errors.sync="lastNameError"
             />
 
@@ -71,7 +69,7 @@
             />
           </div>
           <div class="w-8/12">
-            <Textarea
+            <TextArea
               :value.sync="formData.about"
               :name="$t('pages.person._id.edit.labels.about')"
               :label="$t('pages.person._id.edit.labels.about')"
@@ -111,14 +109,14 @@ import { Component, mixins, Ref } from 'nuxt-property-decorator'
 import { ValidationObserver } from 'vee-validate'
 import { Context } from '@nuxt/types'
 import NavigationRouterHook from '~/mixins/navigation-router-hook'
-import { Person, Tag, Theme } from '~/types/models'
+import { Person, Theme } from '~/types/models'
 import objectToFormData from '~/common/utils/objectToFormData'
-import { MetaAuthOptions } from '~/types/entities'
+import { MetaAuthOptions, Skill } from '~/types/entities'
 
 @Component({
   async asyncData({ $accessor }: Context) {
-    await $accessor.skills.fetchAll()
-    await $accessor.themes.fetchAll()
+    await $accessor.skills.fetchIndex({ perPage: 100 })
+    await $accessor.themes.fetchIndex({ perPage: 100 })
   },
 
   meta: {
@@ -153,12 +151,12 @@ export default class PersonEditPage extends mixins(NavigationRouterHook) {
     return this.$accessor.people.current
   }
 
-  get skills(): Tag[] {
-    return this.$accessor.skills.all
+  get skills(): Skill[] {
+    return this.$accessor.skills.all.items
   }
 
   get themes(): Theme[] {
-    return this.$accessor.themes.all
+    return this.$accessor.themes.all.items
   }
 
   asFormData(): FormData {

@@ -15,8 +15,22 @@ export default {
     show_more: 'Show {number} more',
     show_less: 'Show less',
     save: 'Save',
+    management: 'Management',
+    no_results: 'No results',
+
     actions: {
       create: 'Create',
+
+      confirm: {
+        delete: {
+          title: 'Are you sure you want to delete this?',
+          text: "This can't be undone!",
+          confirm_button: 'Yes, delete!',
+          cancel_button: 'Cancel',
+          success_title: 'Deleted!',
+          success_text: '{entity} is deleted.',
+        },
+      },
     },
   },
 
@@ -27,6 +41,10 @@ export default {
   validation: {
     required: 'This field is required',
     required_label: '*required',
+  },
+
+  help_text: {
+    image_upload: 'Use an image with same height and width',
   },
 
   account: {
@@ -150,7 +168,7 @@ export default {
           part_of: 'Part of',
           summary: 'Summary',
           description: 'Description',
-          tags: 'Keywords',
+          keywords: 'Keywords',
           themes: 'Themes',
           more_products: 'More products',
         },
@@ -159,7 +177,13 @@ export default {
           fallback: 'Sorry, we were not able to preview this product',
           loading: 'Preview is loading...',
         },
-
+        actions: {
+          share: 'Share',
+          bookmark: 'Save',
+          bookmarked: 'Remove from saved',
+          download: 'Download',
+          visit: 'Visit',
+        },
         edit: {
           title: 'Edit {name}',
           headings: {
@@ -179,25 +203,7 @@ export default {
             published_at: 'Published on',
           },
         },
-
-        actions: {
-          share: 'Share',
-          bookmark: 'Save',
-          bookmarked: 'Remove from saved',
-          download: 'Download',
-          visit: 'Visit',
-        },
       },
-      types: {
-        video: 'Video',
-        image: 'Image',
-        youtube: 'YouTube',
-        collection: 'Collection',
-        document: 'Document',
-        link: 'Link',
-        empty: 'Empty',
-      },
-
       create: {
         headings: {
           create: 'Create a new product',
@@ -205,6 +211,8 @@ export default {
         form: {
           labels: {
             type: 'Type',
+            external: 'External',
+            link: 'Link',
             title: 'Title',
             summary: 'Summary',
             description: 'Description',
@@ -217,6 +225,15 @@ export default {
             published_at: 'Published on',
           },
         },
+      },
+      types: {
+        video: 'Video',
+        image: 'Image',
+        youtube: 'YouTube',
+        collection: 'Collection',
+        document: 'Document',
+        link: 'Link',
+        empty: 'Empty',
       },
     },
 
@@ -276,6 +293,9 @@ export default {
         },
         edit: {
           title: 'Edit {name}',
+          headings: {
+            metadata: 'Metadata',
+          },
           labels: {
             first_name: 'First name',
             profile_picture: 'Profile foto',
@@ -292,6 +312,20 @@ export default {
         },
         products: {
           empty: 'This person has no products yet.',
+        },
+
+        create: {
+          labels: {
+            first_name: 'First name',
+            profile_picture: 'Profile photo',
+            last_name: 'Last name',
+            about: 'About',
+            skills: 'Skills',
+            themes: 'Themes',
+            function: 'Function',
+            phone: 'Phone number',
+            email: 'E-mail',
+          },
         },
       },
     },
@@ -352,6 +386,70 @@ export default {
         },
       },
     },
+
+    management: {
+      keywords: {
+        index: {
+          heading: 'Keywords',
+        },
+        create: {
+          heading: 'Create keyword',
+        },
+        _id: {
+          edit: {
+            heading: 'Edit keyword',
+          },
+        },
+      },
+      themes: {
+        index: {
+          heading: 'Themes',
+        },
+        create: {
+          heading: 'Create theme',
+        },
+        _id: {
+          edit: {
+            heading: 'Edit theme',
+          },
+        },
+      },
+
+      parties: {
+        index: {
+          heading: 'Parties',
+        },
+        create: {
+          heading: 'Create party',
+        },
+        _id: {
+          edit: {
+            heading: 'Edit party',
+          },
+        },
+      },
+
+      users: {
+        index: {
+          heading: 'Users',
+          table_fields: {
+            identifier: 'identifier',
+            name: 'Name',
+            email: 'E-mail',
+          },
+        },
+
+        create: {
+          heading: 'Create user',
+        },
+
+        _id: {
+          edit: {
+            heading: 'Edit user',
+          },
+        },
+      },
+    },
   },
 
   modals: {
@@ -360,6 +458,74 @@ export default {
         heading: 'You do not have a profile yet, would you like to create one?',
         cancel_text:
           "Don't want to create a profile yet? Continue to the platform",
+      },
+    },
+
+    general: {
+      unauthenticated: {
+        title: 'Not logged in',
+        text: 'It looks like you are not logged in at this moment.',
+      },
+      unauthorized: {
+        title: 'Not authorized',
+        text: 'You are not authorized to perform this action.',
+      },
+
+      create: {
+        success: {
+          title: 'Succesfully created',
+          text: '{entity} has succesfully been created.',
+        },
+      },
+      edit: {
+        success: {
+          title: 'Succesfully changed',
+          text: '{entity} has succesfully been changed.',
+        },
+      },
+      delete: {
+        success: {
+          title: 'Deleted',
+          text: '{entity} has succesfully been deleted.',
+        },
+      },
+    },
+  },
+
+  models: {
+    theme: {
+      labels: {
+        id: 'Identifier',
+        label: 'Label',
+      },
+      actions: {
+        transform: 'Transform theme into a keyword',
+      },
+    },
+
+    party: {
+      labels: {
+        id: 'Identifier',
+        name: 'Name',
+        description: 'Description',
+        profilePicture: 'Profile picture',
+      },
+    },
+
+    keyword: {
+      labels: {
+        id: 'Identifier',
+        label: 'Label',
+      },
+    },
+
+    user: {
+      labels: {
+        id: 'Identifier',
+        email: 'Email',
+      },
+      relationships: {
+        roles: 'Roles',
       },
     },
   },

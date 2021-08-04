@@ -1,6 +1,6 @@
 <template>
   <div class="flex-1 pb-24">
-    <Header has-dark-header has-search-bar :has-image="false" />
+    <Header has-search-bar />
 
     <div class="container mx-auto mt-6">
       <BackButton :has-navigated-internal="hasNavigatedInternal" />
@@ -164,14 +164,14 @@ import { Party } from '~/types/models'
 @Component({
   async asyncData({ params, $accessor }: Context) {
     const { id } = params
-    await $accessor.parties.fetchCurrent(id)
+    await $accessor.parties.fetch({ id })
   },
 })
 export default class PartyDetailPage extends mixins(NavigationRouterHook) {
   public sliderShowMax: number = 3
 
   get party(): Party {
-    return this.$accessor.parties.current
+    return this.$accessor.parties.show
   }
 }
 </script>

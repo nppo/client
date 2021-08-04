@@ -1,4 +1,5 @@
 import { Article, Party, Person, Product, Project } from './models'
+import { Models } from './enums'
 
 /* eslint-disable no-use-before-define */
 export interface Skill {
@@ -106,4 +107,20 @@ export interface PersonComponent {
 
 export interface MetaAuthOptions {
   requiredPermissions?: string[]
+}
+
+export interface TableField {
+  label: string
+  name: string | null
+  searchValue: string | { value: string }
+  isSortable: boolean
+  inputType: Models | null
+  options?: { label: string; value: string | null }[]
+}
+
+export type SortByDirection = 'asc' | 'desc' | null
+
+export interface SortBy {
+  field: string
+  direction: SortByDirection
 }

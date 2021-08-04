@@ -1,15 +1,41 @@
 /* eslint-disable no-unused-vars */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import Vue from 'vue'
+import { SortBy } from './entities'
 import Repositories from '~/repositories/Repositories'
 
 interface MultipleResults<T = any> {
   data: T[]
 }
 
-interface MultipleResultsWithMeta<DataType = any, MetaType = any> {
+interface PaginateMeta {
+  currentPage: number
+  from: number
+  lastPage: number
+  perPage: number
+}
+
+interface MultipleResultsWithMeta<
+  DataType = any,
+  MetaType = PaginateMeta | any
+> {
   data: DataType[]
   meta: MetaType
+}
+interface Filter {
+  key: string
+  value: any | any[]
+}
+
+interface ValidationErrors {
+  [key: string]: Array<string>
+}
+
+interface IndexRequest {
+  filters?: Filter[]
+  sorts?: SortBy[]
+  page?: number
+  perPage?: number
 }
 
 interface SingleResult<T = any> {

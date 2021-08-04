@@ -82,8 +82,8 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import qs from 'qs'
-import { Type, Filter, Discover } from '~/types/entities'
-import { Theme, Tag } from '~/types/models'
+import { Type, Filter, Discover, Skill } from '~/types/entities'
+import { Theme } from '~/types/models'
 
 @Component({
   async fetch(this: IndexPage) {
@@ -96,9 +96,9 @@ import { Theme, Tag } from '~/types/models'
       await this.$accessor.types.fetchAll()
     }
 
-    await this.$accessor.themes.fetchAll()
+    await this.$accessor.themes.fetchIndex({ perPage: 100 })
     await this.$accessor.discover.fetchAll()
-    await this.$accessor.skills.fetchAll()
+    await this.$accessor.skills.fetchIndex({ perPage: 100 })
   },
 })
 export default class IndexPage extends Vue {
@@ -114,11 +114,11 @@ export default class IndexPage extends Vue {
   }
 
   get themes(): Theme[] {
-    return this.$accessor.themes.all
+    return this.$accessor.themes.all.items
   }
 
-  get skills(): Tag[] {
-    return this.$accessor.skills.all
+  get skills(): Skill[] {
+    return this.$accessor.skills.all.items
   }
 
   get entities(): Discover {

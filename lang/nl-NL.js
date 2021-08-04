@@ -15,9 +15,22 @@ export default {
     show_more: 'Toon {number} meer',
     show_less: 'Toon minder',
     save: 'Opslaan',
+    management: 'Beheer',
+    no_results: 'Geen resultaten',
 
     actions: {
       create: 'Aanmaken',
+
+      confirm: {
+        delete: {
+          title: 'Weet je zeker dat je wilt verwijderen?',
+          text: 'Dit is niet terug te draaien!',
+          confirm_button: 'Ja, verwijder!',
+          cancel_button: 'Annuleer',
+          success_title: 'Verwijderd!',
+          success_text: '{entity} is verwijderd.',
+        },
+      },
     },
   },
 
@@ -157,7 +170,7 @@ export default {
           part_of: 'Onderdeel van',
           summary: 'Samenvatting',
           description: 'Beschrijving',
-          tags: 'Trefwoorden',
+          keywords: 'Trefwoorden',
           themes: "Thema's",
           more_products: 'Meer producten',
         },
@@ -175,6 +188,9 @@ export default {
         },
         edit: {
           title: 'Bewerk {name}',
+          headings: {
+            metadata: 'Metadata',
+          },
           labels: {
             type: 'Type',
             title: 'Titel',
@@ -372,6 +388,71 @@ export default {
         },
       },
     },
+
+    management: {
+      keywords: {
+        index: {
+          heading: 'Trefwoorden',
+        },
+        create: {
+          heading: 'Trefwoord aanmaken',
+        },
+        _id: {
+          edit: {
+            heading: 'Trefwoord aanpassen',
+          },
+        },
+      },
+
+      themes: {
+        index: {
+          heading: "Thema's",
+        },
+        create: {
+          heading: 'Thema aanmaken',
+        },
+        _id: {
+          edit: {
+            heading: 'Thema aanpassen',
+          },
+        },
+      },
+
+      parties: {
+        index: {
+          heading: 'Partijen',
+        },
+        create: {
+          heading: 'Partij aanmaken',
+        },
+        _id: {
+          edit: {
+            heading: 'Partij aanpassen',
+          },
+        },
+      },
+
+      users: {
+        index: {
+          heading: 'Gebruikers',
+          table_fields: {
+            identifier: 'identifier',
+            name: 'Naam',
+            email: 'E-mail',
+          },
+        },
+
+        create: {
+          heading: 'Gebruiker aanmaken',
+        },
+
+        _id: {
+          edit: {
+            heading: 'Gebruiker bewerken',
+          },
+        },
+      },
+    },
   },
 
   modals: {
@@ -379,6 +460,74 @@ export default {
       create: {
         heading: 'Je hebt nog geen profiel, wil je die aanmaken?',
         cancel_text: 'Nu geen profiel aanmaken? Ga door naar het platform',
+      },
+    },
+
+    general: {
+      unauthenticated: {
+        title: 'Niet ingelogd',
+        text: 'Het lijkt erop of je niet bent ingelogd op dit moment.',
+      },
+      unauthorized: {
+        title: 'Niet gemachtigd',
+        text: 'Je bent niet gemachtigd om deze actie te doen.',
+      },
+
+      create: {
+        success: {
+          title: 'Succesvol aangemaakt',
+          text: '{entity} is succesvol aangemaakt.',
+        },
+      },
+      edit: {
+        success: {
+          title: 'Succesvol aangepast',
+          text: '{entity} is succesvol aangepast.',
+        },
+      },
+      delete: {
+        success: {
+          title: 'Verwijderd',
+          text: '{entity} is succesvol verwijderd.',
+        },
+      },
+    },
+  },
+
+  models: {
+    theme: {
+      labels: {
+        id: 'Identifier',
+        label: 'Label',
+      },
+      actions: {
+        transform: 'Transformeer een thema in een trefwoord',
+      },
+    },
+
+    party: {
+      labels: {
+        id: 'Identifier',
+        name: 'Naam',
+        description: 'Beschrijving / Over',
+        profilePicture: 'Profielfoto',
+      },
+    },
+
+    keyword: {
+      labels: {
+        id: 'Identifier',
+        label: 'Label',
+      },
+    },
+
+    user: {
+      labels: {
+        id: 'Identifier',
+        email: 'Email',
+      },
+      relationships: {
+        roles: 'Rollen',
       },
     },
   },
